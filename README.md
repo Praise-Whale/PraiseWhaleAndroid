@@ -15,3 +15,46 @@
  🌀 안나영- `나의 칭찬 고래` -> Third page, Splash View
 
 > **나의 칭찬 고래의 상태를 통해 나의 칭찬 중독 지수를 확인할 수 있어요!**
+
+
+<br>
+
+> retrofit interface
+
+```kotlin
+interface RequestInterface {
+    //최근 칭찬 유저 조회
+    @Headers("Content-Type:application/json")
+    @GET("users-praise")
+    fun getUsersPraise(
+
+    ) : Call<ResponseCollectionData>
+
+    // 홈 화면 조회
+    @GET("/home")
+    fun getPraise(
+
+    )  : Call<ResponseCollectionData>
+
+    // 칭찬한 사람 추가
+    @Headers("Content-Type:application/json")
+    @POST("users/target")
+    fun postUsers(
+        @Body body : RequestCollectionData
+    )  : Call<ResponseCollectionData>
+
+    // 칭찬 컬렉션 조회
+    @Headers("Content-Type:application/json")
+    @GET("praise/collection")
+    fun getCollection(
+
+    ): Call<ResponseCardData>
+    
+    // 레벨 조회
+    @Headers("Content-Type:application/json")
+    @GET("level/praise/{userIdx}")
+    fun getuserIdx(
+        @Path("userIdx") userIdx : Int
+    )  : Call<ResponseUserData>
+}
+```
