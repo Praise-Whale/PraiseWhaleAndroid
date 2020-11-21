@@ -19,8 +19,6 @@ class MainFragment : Fragment() {
 
     private lateinit var alertDialog: AlertDialog
     private val sharedPreferencesKey = "CountNegative"
-    private val sharedPreferencesValue =
-        MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "").toInt()
 
 
     override fun onCreateView(
@@ -36,6 +34,13 @@ class MainFragment : Fragment() {
 
         button_mainPositive.setOnClickListener(fragmentOnClickListener)
         button_mainNegative.setOnClickListener(fragmentOnClickListener)
+
+        val sharedPreferencesValue =
+            MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "")
+
+        if (sharedPreferencesValue.isEmpty()) {
+            MyApplication.mySharedPreferences.setValue(sharedPreferencesKey, 0.toString())
+        }
     }
 
     private val fragmentOnClickListener = View.OnClickListener {
@@ -45,6 +50,7 @@ class MainFragment : Fragment() {
             }
             R.id.button_mainNegative -> {
                 showNegativeDialog()
+                setNegativeDialog()
             }
             R.id.button_negativeOk -> {
                 updateSharedPreferences()
@@ -78,28 +84,46 @@ class MainFragment : Fragment() {
         alertDialog.show()
     }
 
-    private fun checkSharedPreferences() {
-        if (sharedPreferencesValue == 0) {
+    private fun setNegativeDialog() {
+        val sharedPreferencesValue =
+            MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "")
+
+        if (sharedPreferencesValue.toInt() == 0 || sharedPreferencesValue.isEmpty()) {
             alertDialog.textView_dialogTitle.text = "내일은 꼭 칭찬해보아요!"
+            Log.d("TAG", "setNegativeDialog_01: $sharedPreferencesValue")
 
-        } else if (sharedPreferencesValue == 1) {
+        } else if (sharedPreferencesValue.toInt() == 1) {
             alertDialog.textView_dialogTitle.text = "저 내일은 춤추고 싶어요!"
+            Log.d("TAG", "setNegativeDialog_02: $sharedPreferencesValue")
 
-        } else if (sharedPreferencesValue == 2) {
-
+        } else if (sharedPreferencesValue.toInt() == 2) {
+            alertDialog.textView_dialogTitle.text = "자꾸 이런 식이면\n" +
+                    "나 고래고래 소리지를고래애애!"
+            Log.d("TAG", "setNegativeDialog_03: $sharedPreferencesValue")
         } else {
             Log.d("TAG", "checkSharedPreferences: error")
         }
     }
 
     private fun updateSharedPreferences() {
-        if (sharedPreferencesValue == 2) {
+        val sharedPreferencesValue =
+            MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "")
+
+        if (sharedPreferencesValue.toInt() == 2) {
             MyApplication.mySharedPreferences.setValue(sharedPreferencesKey, "0")
+            Log.d("TAG", "setNegativeDialog_05: $sharedPreferencesValue")
         } else {
-            MyApplication.mySharedPreferences.setValue(
-                sharedPreferencesKey,
-                (sharedPreferencesValue + 1).toString()
-            )
+            if (sharedPreferencesValue.isNotEmpty()) {
+                MyApplication.mySharedPreferences.setValue(
+                    sharedPreferencesKey,
+                    ((sharedPreferencesValue.toInt() + 1).toString())
+                )
+                Log.d("TAG", "setNegativeDialog_06: $sharedPreferencesValue")
+            } else {
+                MyApplication.mySharedPreferences.setValue(
+                    sharedPreferencesKey, 0.toString())
+                Log.d("TAG", "setNegativeDialog_07: $sharedPreferencesValue")
+            }
         }
     }
 }
