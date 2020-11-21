@@ -64,7 +64,7 @@
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2020-11-22"
+        android:text="11월 22일"
         android:textSize="12sp"
         android:textColor="#503000"
         android:fontFamily="@font/noto_sans_medium"
