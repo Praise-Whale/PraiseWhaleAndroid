@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.TextView
 import com.example.praisewhale.R
+import kotlinx.android.synthetic.main.dialog_negative.view.*
 import kotlinx.android.synthetic.main.dialog_positive.*
+import kotlinx.android.synthetic.main.dialog_positive.view.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
@@ -31,8 +33,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textView_mainPraiseMission.text = "칭찬 내용 / 칭찬 내용 / 칭찬 내용 / 칭찬 내용 / 칭찬 내용 / "
-        Log.d("TAG", "onViewCreated: ${textView_mainPraiseMission.text}")
         button_mainPositive.setOnClickListener(fragmentOnClickListener)
         button_mainNegative.setOnClickListener(fragmentOnClickListener)
     }
@@ -44,46 +44,35 @@ class MainFragment : Fragment() {
             }
             R.id.button_mainNegative -> {
                 showNegativeDialog()
-                Log.d("TAG", "buttonNegative: clicked")
+            }
+            R.id.button_negativeOk -> {
+                alertDialog.dismiss()
+            }
+            R.id.button_positiveOk -> {
+                alertDialog.dismiss()
             }
         }
     }
 
     private fun showPositiveDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_positive, null)
+        dialogView.button_positiveOk.setOnClickListener(fragmentOnClickListener)
+
         val alarDialogBuilder = AlertDialog.Builder(context)
-            .setView(layoutInflater.inflate(R.layout.dialog_positive, null))
-            .setPositiveButton("확인", dialogClickListener)
-            .setNegativeButton("취소", dialogClickListener)
+            .setView(dialogView)
 
         alertDialog = alarDialogBuilder.create()
         alertDialog.show()
-        alertDialog.radioGroup_dialogRecentPraiseTo.setOnCheckedChangeListener(radioGroupListener)
-
     }
 
     private fun showNegativeDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_negative, null)
+        dialogView.button_negativeOk.setOnClickListener(fragmentOnClickListener)
+
         val alarDialogBuilder = AlertDialog.Builder(context)
-            .setView(layoutInflater.inflate(R.layout.dialog_negative, null))
-            .setPositiveButton("확인", dialogClickListener)
+            .setView(dialogView)
 
         alertDialog = alarDialogBuilder.create()
         alertDialog.show()
-    }
-
-    private val dialogClickListener = DialogInterface.OnClickListener { dialog, which ->
-        when (which) {
-            DialogInterface.BUTTON_POSITIVE -> {
-                alertDialog.editText_dialogPraiseTo?.setText("")
-                alertDialog.radioGroup_dialogRecentPraiseTo?.clearCheck()
-            }
-            DialogInterface.BUTTON_NEGATIVE -> {
-
-            }
-        }
-    }
-
-    private val radioGroupListener = RadioGroup.OnCheckedChangeListener { group, checkedId ->
-//        checkCategoryColorValidation(group)
-//        alartDialog.getButton(DialogInterface.BUTTON_POSITIVE).isEnabled = checkDialogValidation()
     }
 }

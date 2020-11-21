@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg"
+    android:background="@drawable/bg_gradient_rectangle"
     tools:context=".fragment.MainFragment">
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_marginRight="42dp"
         android:fontFamily="@font/noto_sans_medium"
         android:text="오늘의 칭찬"
-        android:textSize="27dp"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,72 +35,75 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_mainTitle">
 
         <ImageView
-            android:id="@+id/imageView_mainCardFrame"
+            android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginLeft="27dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="27dp"
-            android:layout_marginRight="27dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/main_ic_card"
             app:layout_constraintBottom_toBottomOf="@+id/imageView_mainCard"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/imageView_mainCard"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/imageView_mainCard"
             app:layout_constraintTop_toTopOf="@+id/imageView_mainCard"
-            app:layout_constraintVertical_bias="0.005" />
+            app:layout_constraintVertical_bias="0" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/gmarket_sans_medium"
-            android:text="칭찬..."
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView_mainCardFrame"
-            app:layout_constraintEnd_toEndOf="@+id/imageView_mainCardFrame"
-            app:layout_constraintStart_toStartOf="@+id/imageView_mainCardFrame"
-            app:layout_constraintTop_toTopOf="@+id/imageView_mainCardFrame" />
+            android:text="칭찬"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         <LinearLayout
             android:id="@+id/linearLayout_buttonContainer"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView_mainCardFrame"
-            app:layout_constraintStart_toStartOf="@+id/imageView_mainCardFrame"
-            app:layout_constraintTop_toBottomOf="@+id/imageView_mainCardFrame">
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView">
 
             <Button
                 android:id="@+id/button_mainNegative"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_marginRight="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="6dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_negative_round"
                 android:fontFamily="@font/noto_sans_regular"
                 android:text="못했어요.."
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button_mainPositive"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="6dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_positive_round"
                 android:fontFamily="@font/noto_sans_regular"
                 android:text="했어요!"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView_tipBox"
+        android:id="@+id/imageView2"
         android:layout_width="240dp"
         android:layout_height="100dp"
         android:layout_marginTop="60dp"
@@ -112,11 +115,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_regular"
-        android:text="항상 내 편인 친구에게\n고마움을 표현해보세요 :)"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView_tipBox"
-        app:layout_constraintEnd_toEndOf="@+id/imageView_tipBox"
-        app:layout_constraintStart_toStartOf="@+id/imageView_tipBox"
-        app:layout_constraintTop_toTopOf="@+id/imageView_tipBox" />
+        android:text="항상 내 편인 친구에게 \n 고마움을 표현해보세요 :)"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
