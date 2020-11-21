@@ -2,11 +2,15 @@ package com.example.praisewhale
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.telecom.Call
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.fragment.CollectionFragment
 import com.example.praisewhale.fragment.MainFragment
 import com.example.praisewhale.fragment.PraiseLevelFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Response
+import javax.security.auth.callback.Callback
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         initBottomNav()
     }
