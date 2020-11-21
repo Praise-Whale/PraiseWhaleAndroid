@@ -34,7 +34,7 @@
     <Button
         android:id="@+id/button_negativeOk"
         android:layout_width="0dp"
-        android:layout_height="63dp"
+        android:layout_height="45dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="36dp"
@@ -45,7 +45,7 @@
         android:fontFamily="@font/noto_sans_regular"
         android:gravity="center"
         android:text="확인"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

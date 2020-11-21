@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
         android:layout_marginLeft="42dp"
-        android:layout_marginTop="81dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="42dp"
         android:layout_marginRight="42dp"
         android:fontFamily="@font/noto_sans_medium"
         android:text="오늘의 칭찬"
-        android:textSize="27dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,19 +43,18 @@
             android:layout_marginTop="27dp"
             android:layout_marginEnd="27dp"
             android:layout_marginRight="27dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView_mainCard"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/imageView_mainCard"
             app:layout_constraintStart_toStartOf="@+id/imageView_mainCard"
-            app:layout_constraintTop_toTopOf="@+id/imageView_mainCard"
-            app:layout_constraintVertical_bias="0.005" />
+            app:layout_constraintTop_toTopOf="@+id/imageView_mainCard" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/gmarket_sans_medium"
             android:text="칭찬..."
-            android:textSize="30sp"
+            android:textSize="20sp"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/imageView_mainCardFrame"
             app:layout_constraintEnd_toEndOf="@+id/imageView_mainCardFrame"
             app:layout_constraintStart_toStartOf="@+id/imageView_mainCardFrame"
@@ -76,7 +75,7 @@
             <Button
                 android:id="@+id/button_mainNegative"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="45dp"
                 android:layout_marginRight="12dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_negative_round"
@@ -88,7 +87,7 @@
             <Button
                 android:id="@+id/button_mainPositive"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="45dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_positive_round"
                 android:fontFamily="@font/noto_sans_regular"
@@ -101,9 +100,9 @@
 
     <ImageView
         android:id="@+id/imageView_tipBox"
-        android:layout_width="240dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/main_box_tip"
         app:layout_constraintStart_toStartOf="@+id/imageView_mainCard"
         app:layout_constraintTop_toBottomOf="@+id/imageView_mainCard" />
@@ -113,15 +112,15 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_regular"
         android:text="항상 내 편인 친구에게\n고마움을 표현해보세요 :)"
-        android:textSize="18sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_tipBox"
         app:layout_constraintEnd_toEndOf="@+id/imageView_tipBox"
         app:layout_constraintStart_toStartOf="@+id/imageView_tipBox"
         app:layout_constraintTop_toTopOf="@+id/imageView_tipBox" />
 
     <ImageView
-        android:layout_width="140dp"
-        android:layout_height="240dp"
+        android:layout_width="100dp"
+        android:layout_height="180dp"
         android:background="@drawable/main_img_dolphin"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@+id/imageView_mainCard"
