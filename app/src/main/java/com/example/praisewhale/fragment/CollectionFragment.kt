@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.example.praisewhale.CollectionAdapter
 import com.example.praisewhale.data.CollectionData
 import com.example.praisewhale.R
-import com.example.praisewhale.api.CollectionImpl
+import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.data.PraiseResult
 import com.example.praisewhale.data.ResponseCardData
 import com.example.praisewhale.data.ResponseCollectionData
@@ -58,7 +58,7 @@ class CollectionFragment : Fragment() {
                     ?.body()
                     ?.let { it ->
                         tv_total.text = it.data.praiseCount[0].likeCount.toString()
-                        collectionAdapter.data = it.data.praiseResult as MutableList<PraiseResult>
+                        // collectionAdapter.data = it.data.praiseResult as MutableList<PraiseResult>
                         collectionAdapter.notifyDataSetChanged()
                     }
             }
