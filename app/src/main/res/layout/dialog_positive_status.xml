@@ -15,7 +15,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:gravity="center"
-        android:text="내일은 꼭 칭찬해보아요!"
+        android:text="잘했어요! 내일도 칭찬해!"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -24,15 +24,16 @@
 
     <ImageView
         android:id="@+id/imageView_dialogWhale"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
+        android:background="@drawable/main_img_dolphin"
         app:layout_constraintEnd_toEndOf="@+id/textView_dialogTitle"
         app:layout_constraintStart_toStartOf="@+id/textView_dialogTitle"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_negativeOk"
+        android:id="@+id/button_positiveStatusOk"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="24dp"

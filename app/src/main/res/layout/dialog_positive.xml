@@ -14,7 +14,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/noto_sans_regular"
         android:text="누구에게 칭찬했나요?"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,6 +34,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:hint="실명을 적어주세요. ex)홍길동"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView_dialogPraiseTo"
         app:layout_constraintTop_toBottomOf="@+id/textView_dialogPraiseTo" />
@@ -49,7 +50,7 @@
         android:layout_marginRight="24dp"
         android:text="최근 칭찬한 사람"
         android:textColor="#9c9c9c"
-        android:textSize="18sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_dialogPraiseTo" />
@@ -74,7 +75,8 @@
             android:backgroundTint="#fff5da"
             android:button="@null"
             android:gravity="center"
-            android:text="friend name"
+            android:text="남궁선규"
+            android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="parent" />
 
         <RadioButton
@@ -87,7 +89,8 @@
             android:backgroundTint="#fff5da"
             android:button="@null"
             android:gravity="center"
-            android:text="friend name" />
+            android:text="안나영"
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/radioButton_dialogRecentPraiseTo_03"
@@ -98,14 +101,15 @@
             android:backgroundTint="#fff5da"
             android:button="@null"
             android:gravity="center"
-            android:text="friend name" />
+            android:text="최다인"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/button_positiveOk"
         android:layout_width="0dp"
-        android:layout_height="63dp"
+        android:layout_height="45dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="32dp"
@@ -116,7 +120,7 @@
         android:fontFamily="@font/noto_sans_regular"
         android:gravity="center"
         android:text="확인"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

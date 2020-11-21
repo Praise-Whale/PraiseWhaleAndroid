@@ -1,10 +1,11 @@
-package com.example.praisewhale.api
+package com.example.praisewhale
 
 import com.google.gson.annotations.SerializedName
 
-data class HomeResponseModel(
+data class ResponseHomeData(
     val status: Int,
-    val message: String
+    val message: String,
+    val data: Data
 ) {
     data class Data(
         val id: Int,
