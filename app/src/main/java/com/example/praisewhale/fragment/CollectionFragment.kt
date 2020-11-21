@@ -37,9 +37,9 @@ class CollectionFragment : Fragment() {
         )
 
         collectionAdapter.data = mutableListOf(
-            CollectionData("1", "name1", "message1"),
-            CollectionData("2", "name2", "message2"),
-            CollectionData("3", "name3", "message3")
+            CollectionData("11월 20일", "1", "message1", "1"),
+            CollectionData("11월 20일", "2", "message2", "2"),
+            CollectionData("11월 20일", "3", "message3", "3")
         )
 
         super.onViewCreated(view, savedInstanceState)
