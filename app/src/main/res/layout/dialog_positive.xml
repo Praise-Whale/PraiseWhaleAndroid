@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView_dialogPraiseTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="누구에게 칭찬했나요?"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText_dialogPraiseTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="실명을 적어주세요. ex)홍길동"
+        app:layout_constraintEnd_toEndOf="@+id/textView_dialogPraiseTo"
+        app:layout_constraintStart_toStartOf="@+id/textView_dialogPraiseTo"
+        app:layout_constraintTop_toBottomOf="@+id/textView_dialogPraiseTo" />
+
+    <TextView
+        android:id="@+id/textView_dialogRecentPraiseTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="최근 칭찬한 사람"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_dialogPraiseTo" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_dialogRecentPraiseTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/textView_dialogRecentPraiseTo"
+        app:layout_constraintStart_toStartOf="@+id/textView_dialogRecentPraiseTo"
+        app:layout_constraintTop_toBottomOf="@+id/textView_dialogRecentPraiseTo">
+
+        <RadioButton
+            android:id="@+id/radioButton_dialogRecentPraiseTo_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_recent_praise"
+            android:button="@null"
+            android:gravity="center"
+            android:text="friend name"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <RadioButton
+            android:id="@+id/radioButton_dialogRecentPraiseTo_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_recent_praise"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_marginRight="12dp"
+            android:text="friend name" />
+
+        <RadioButton
+            android:id="@+id/radioButton_dialogRecentPraiseTo_03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_recent_praise"
+            android:button="@null"
+            android:gravity="center"
+            android:text="friend name" />
+
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

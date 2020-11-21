@@ -1,13 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1F1F1"
     tools:context=".fragment.MainFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="fragment_01" />
+        android:id="@+id/textView_mainTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="오늘의 칭찬"
+        android:textSize="33dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imageView_mainCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="96dp"
+        android:background="@drawable/bg_round_rectangle"
+        android:elevation="@dimen/cardview_default_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView_mainTitle"
+        app:layout_constraintStart_toStartOf="@+id/textView_mainTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textView_mainTitle" />
+
+    <TextView
+        android:id="@+id/textView_mainPraiseMission"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="24dp"
+        android:text="칭찬 내용"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_mainCard"
+        app:layout_constraintStart_toStartOf="@+id/imageView_mainCard"
+        app:layout_constraintTop_toTopOf="@+id/imageView_mainCard" />
+
+    <Button
+        android:id="@+id/button_mainPositive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="positive"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_mainCard"
+        app:layout_constraintStart_toStartOf="@+id/textView_mainPraiseMission" />
+
+    <Button
+        android:id="@+id/button_mainNegative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="negative"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_mainCard"
+        app:layout_constraintEnd_toEndOf="@+id/textView_mainPraiseMission" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
