@@ -1,10 +1,7 @@
 package com.example.praisewhale
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface RequestInterface {
     //최근 칭찬 유저 조회
@@ -18,13 +15,12 @@ interface RequestInterface {
     @Headers("Content-Type:application/json")
     @GET("home")
     fun getPraise(
-
-    )  : Call<ResponseCollectionData>
+    )  : Call<ResponseHomeData>
 
     // 칭찬한 사람 추가
     @Headers("Content-Type:application/json")
     @POST("users/target")
     fun postUsers(
-        @Body body : RequestCollectionData
-    )  : Call<ResponseCollectionData>
+        @Body body : ResponsePraiseTargetData
+    )  : Call<ResponsePraiseTargetData>
 }

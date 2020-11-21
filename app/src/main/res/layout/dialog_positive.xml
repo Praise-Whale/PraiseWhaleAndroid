@@ -75,7 +75,7 @@
             android:backgroundTint="#fff5da"
             android:button="@null"
             android:gravity="center"
-            android:text="friend name"
+            android:text="남궁선규"
             android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="parent" />
 
@@ -89,7 +89,7 @@
             android:backgroundTint="#fff5da"
             android:button="@null"
             android:gravity="center"
-            android:text="friend name"
+            android:text="안나영"
             android:textSize="12sp" />
 
         <RadioButton
@@ -101,7 +101,7 @@
             android:backgroundTint="#fff5da"
             android:button="@null"
             android:gravity="center"
-            android:text="friend name"
+            android:text="최다인"
             android:textSize="12sp" />
 
     </LinearLayout>
