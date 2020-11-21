@@ -1,4 +1,4 @@
-package com.example.praisewhale
+package com.example.praisewhale.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

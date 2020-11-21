@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.R
-import com.example.praisewhale.ResponseHomeData
-import com.example.praisewhale.ResponsePraiseTargetData
+import com.example.praisewhale.api.CollectionImpl
+import com.example.praisewhale.data.ResponseCollectionData
 import com.example.praisewhale.util.MyApplication
 import kotlinx.android.synthetic.main.dialog_negative.*
 import kotlinx.android.synthetic.main.dialog_negative.view.*
@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.properties.Delegates
 
 
 class MainFragment : Fragment() {
@@ -53,6 +52,26 @@ class MainFragment : Fragment() {
         if (sharedPreferencesValue.isEmpty()) {
             MyApplication.mySharedPreferences.setValue(sharedPreferencesKey, 0.toString())
         }
+
+        val call : Call<ResponseCollectionData> = CollectionImpl.service.getPraise()
+        call.enqueue(object : Callback<ResponseCollectionData> {
+            override fun onFailure(call: Call<ResponseCollectionData>, t: Throwable) {
+                Log.d("tag", t.localizedMessage)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseCollectionData>,
+                response: Response<ResponseCollectionData>
+            ) {
+                response.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let { it ->
+                        tv_main_msg.text = it.data.daily_praise
+                        tv_sub_msg.text = it.data.mission_praise
+                        val msgId = it.data.id
+                    }
+            }
+        })
     }
 
     override fun onStart(){

@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:orientation="horizontal"
-            android:paddingStart="42dp"
             android:paddingLeft="42dp"
+            android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +53,20 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_title"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:fontFamily="@font/noto_sans_medium"
+            android:text="개"
+            android:textColor=" #503000"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_total"
+            app:layout_constraintStart_toEndOf="@+id/tv_total"
+            app:layout_constraintTop_toTopOf="@+id/tv_total" />
 
         <ImageView
             android:id="@+id/imageView2"

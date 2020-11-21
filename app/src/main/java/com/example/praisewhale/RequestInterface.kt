@@ -24,3 +24,9 @@ interface RequestInterface {
         @Body body : ResponsePraiseTargetData
     )  : Call<ResponsePraiseTargetData>
 }
+    // 칭찬 컬렉션 조회
+    @Headers("Content-Type:application/json")
+    @GET("praise/collection")
+    fun getCollection(
+
+    ): Call<ResponseCardData>
