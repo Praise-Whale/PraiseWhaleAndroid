@@ -1,5 +1,8 @@
-package com.example.praisewhale
+package com.example.praisewhale.api
 
+import com.example.praisewhale.data.RequestCollectionData
+import com.example.praisewhale.data.ResponseCardData
+import com.example.praisewhale.data.ResponseCollectionData
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -15,8 +18,7 @@ interface RequestInterface {
     ) : Call<ResponseCollectionData>
 
     // 홈 화면 조회
-    @Headers("Content-Type:application/json")
-    @GET("home")
+    @GET("/home")
     fun getPraise(
 
     )  : Call<ResponseCollectionData>
@@ -27,4 +29,11 @@ interface RequestInterface {
     fun postUsers(
         @Body body : RequestCollectionData
     )  : Call<ResponseCollectionData>
+
+    // 칭찬 컬렉션 조회
+    @Headers("Content-Type:application/json")
+    @GET("praise/collection")
+    fun getCollection(
+
+    ): Call<ResponseCardData>
 }

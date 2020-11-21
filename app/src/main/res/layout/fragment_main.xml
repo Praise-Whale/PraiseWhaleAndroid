@@ -51,6 +51,7 @@
             app:layout_constraintVertical_bias="0.005" />
 
         <TextView
+            android:id="@+id/tv_main_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/gmarket_sans_medium"
@@ -109,6 +110,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView_mainCard" />
 
     <TextView
+        android:id="@+id/tv_sub_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_regular"
