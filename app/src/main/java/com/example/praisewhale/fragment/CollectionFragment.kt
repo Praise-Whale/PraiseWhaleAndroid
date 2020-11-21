@@ -7,12 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.praisewhale.CollectionAdapter
-import com.example.praisewhale.data.CollectionData
 import com.example.praisewhale.R
 import com.example.praisewhale.api.CollectionImpl
-import com.example.praisewhale.data.PraiseResult
-import com.example.praisewhale.data.ResponseCardData
-import com.example.praisewhale.data.ResponseCollectionData
+import com.example.praisewhale.data.*
 import kotlinx.android.synthetic.main.dialog_positive.*
 import kotlinx.android.synthetic.main.fragment_collection.*
 import retrofit2.Call
@@ -35,9 +32,11 @@ class CollectionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        val praiseResult = mutableListOf<PraiseResult>()
         collectionAdapter = CollectionAdapter(view.context)
 
         rv.adapter = collectionAdapter
+
         rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
             view.context,
             androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
@@ -57,12 +56,18 @@ class CollectionFragment : Fragment() {
                 response.takeIf { it.isSuccessful }
                     ?.body()
                     ?.let { it ->
+                        Log.d("tag", it.toString())
                         tv_total.text = it.data.praiseCount[0].likeCount.toString()
-                        collectionAdapter.data = it.data.praiseResult as MutableList<PraiseResult>
-                        collectionAdapter.notifyDataSetChanged()
                     }
+
             }
         })
+
+        collectionAdapter.data = mutableListOf(
+            PraiseResult("11월22일", "넌 참 사랑스러워", PraiseTarget(name="anna")),
+            PraiseResult("11월23일", "넌 참 사랑스러워", PraiseTarget(name="gui")),
+            PraiseResult("11월24일", "넌 참 사랑스러워", PraiseTarget(name="kmibin"))
+        )
 
         super.onViewCreated(view, savedInstanceState)
     }

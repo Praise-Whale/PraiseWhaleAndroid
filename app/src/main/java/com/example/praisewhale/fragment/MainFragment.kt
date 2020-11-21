@@ -66,8 +66,8 @@ class MainFragment : Fragment() {
                 response.takeIf { it.isSuccessful }
                     ?.body()
                     ?.let { it ->
-                        tv_main_msg.text = it.data.daily_praise
-                        tv_sub_msg.text = it.data.mission_praise
+                        tv_main_msg?.text = it.data.daily_praise
+                        tv_sub_msg?.text = it.data.mission_praise
                         val msgId = it.data.id
                     }
             }
