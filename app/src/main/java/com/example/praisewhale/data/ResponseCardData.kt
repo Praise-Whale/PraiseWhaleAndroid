@@ -6,7 +6,7 @@ class ResponseCardData (
     val data : CardData
 ) {
     data class CardData (
-        val praiseResult : List<PraiseResult>,
+        val praiseResult : MutableList<PraiseResult>,
         val praiseCount : List<PraiseCount>
     )
 }
