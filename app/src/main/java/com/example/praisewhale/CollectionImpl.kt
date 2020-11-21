@@ -1,5 +1,6 @@
 package com.example.praisewhale
 
+import com.example.praisewhale.api.RequestInterface
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

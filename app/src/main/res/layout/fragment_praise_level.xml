@@ -3,40 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
+    android:background="@drawable/level_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.PraiseLevelFragment" >
 
     <TextView
         android:id="@+id/level_txt"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/level_shape"
-        android:text="고래1단계"
+        android:textStyle="bold"
+        android:layout_height="42dp"
+        android:fontFamily="@font/notosans_regular"
+        android:layout_marginTop="143dp"
+        android:background="@drawable/level_box_level"
+        android:paddingHorizontal="45dp"
+        android:paddingVertical="11dp"
+        android:text="아직은 칭찬이 어색한 고래"
+        android:includeFontPadding="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="150dp"
-        android:src="@drawable/ic_baseline_mood_24"
+        android:id="@+id/level_whale"
+        android:layout_width="219dp"
+        android:layout_height="209dp"
+        android:layout_marginTop="86dp"
+        android:src="@drawable/ic_whale_level_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/level_txt" />
 
     <TextView
         android:id="@+id/detail_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="칭찬 5번만 더하면 브레이크 댄스\n
-추는 고래가 될 고래!!!!!!"
+        android:layout_width="300dp"
+        android:background="@drawable/level_box_text"
+        android:layout_height="125dp"
+        android:layout_marginTop="60dp"
+        android:paddingVertical="38dp"
+        android:fontFamily="@font/notosansmedium"
+        android:includeFontPadding="false"
+        android:paddingHorizontal="20dp"
+        android:textColor="#503000"
+        android:gravity="center"
+        android:text="칭찬 14번만 더 하면 칭찬에 익숙해진 고래가 될 고래!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/level_whale" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
