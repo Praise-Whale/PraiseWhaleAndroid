@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg"
+    android:background="@drawable/bg_gradient_rectangle"
     tools:context=".fragment.MainFragment">
 
     <TextView
@@ -81,6 +81,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_negative_round"
+                android:backgroundTint="#efefef"
                 android:fontFamily="@font/noto_sans_regular"
                 android:text="못했어요.."
                 android:textSize="15sp" />
