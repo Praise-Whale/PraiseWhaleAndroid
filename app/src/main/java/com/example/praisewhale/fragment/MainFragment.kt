@@ -55,7 +55,7 @@ class MainFragment : Fragment() {
             MyApplication.mySharedPreferences.setValue(sharedPreferencesKey, 0.toString())
         }
 
-        val call : Call<ResponseCollectionData> = CollectionImpl.service.getPraise()
+        val call : Call<ResponseCollectionData> = CollectionImpl.service.getUsersPraise()
         call.enqueue(object : Callback<ResponseCollectionData> {
             override fun onFailure(call: Call<ResponseCollectionData>, t: Throwable) {
                 Log.d("tag", t.localizedMessage)
@@ -68,8 +68,8 @@ class MainFragment : Fragment() {
                 response.takeIf { it.isSuccessful }
                     ?.body()
                     ?.let { it ->
-                        tv_main_msg.text = it.data.daily_praise
-                        tv_sub_msg.text = it.data.mission_praise
+                        textView_dailyPraise.text = it.data.daily_praise
+                        textView_praiseMission.text = it.data.mission_praise
                         val msgId = it.data.id
                     }
             }

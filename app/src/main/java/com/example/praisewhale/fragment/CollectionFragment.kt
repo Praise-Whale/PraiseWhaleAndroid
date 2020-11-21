@@ -10,6 +10,7 @@ import com.example.praisewhale.CollectionAdapter
 import com.example.praisewhale.R
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.data.PraiseResult
+import com.example.praisewhale.data.PraiseTarget
 import com.example.praisewhale.data.ResponseCardData
 import com.example.praisewhale.data.ResponseCollectionData
 import kotlinx.android.synthetic.main.dialog_positive.*
