@@ -32,4 +32,10 @@ interface RequestInterface {
     fun getCollection(
 
     ): Call<ResponseCardData>
+
+    @Headers("Content-Type:application/json")
+    @GET("level/praise/{userIdx}")
+    fun getuserIdx(
+        @Path("userIdx") userIdx : Int
+    )  : Call<ResponseUserData>
 }
