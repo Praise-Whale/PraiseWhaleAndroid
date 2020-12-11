@@ -45,8 +45,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button_mainPositive.setOnClickListener(fragmentOnClickListener)
-        button_mainNegative.setOnClickListener(fragmentOnClickListener)
+        button_positive.setOnClickListener(fragmentOnClickListener)
+        button_negative.setOnClickListener(fragmentOnClickListener)
 
         val sharedPreferencesValue =
             MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "")
@@ -68,8 +68,8 @@ class MainFragment : Fragment() {
                 response.takeIf { it.isSuccessful }
                     ?.body()
                     ?.let { it ->
-                        textView_dailyPraise.text = it.data.daily_praise
-                        textView_praiseMission.text = it.data.mission_praise
+                        textView_praiseMission.text = it.data.daily_praise
+                        textView_praiseDescription.text = it.data.mission_praise
                         val msgId = it.data.id
                     }
             }
@@ -83,10 +83,10 @@ class MainFragment : Fragment() {
 
     private val fragmentOnClickListener = View.OnClickListener {
         when (it.id) {
-            R.id.button_mainPositive -> {
+            R.id.button_positive -> {
                 showPositiveDialog()
             }
-            R.id.button_mainNegative -> {
+            R.id.button_negative -> {
                 showNegativeDialog()
                 setNegativeDialog()
             }
@@ -215,10 +215,10 @@ class MainFragment : Fragment() {
                     ?.body()
                     ?.let { it ->
                         praiseIndex = it.data.id
-                        textView_dailyPraise?.text = it.data.dailyPraise
-                        textView_praiseMission?.text = it.data.missionPraise
+                        textView_praiseMission?.text = it.data.dailyPraise
+                        textView_praiseDescription?.text = it.data.missionPraise
 
-                        Log.d("tag", textView_dailyPraise.text.toString())
+                        Log.d("tag", textView_praiseMission.text.toString())
                         Log.d("tag", it.toString())
                     }
                 Log.d("tag", "onResponse: success")
