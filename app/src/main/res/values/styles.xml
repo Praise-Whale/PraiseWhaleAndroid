@@ -15,7 +15,14 @@
         <item name="android:spacing">-0.65sp</item>
         <item name="android:textColor">@color/colorBrown</item>
         <item name="android:lineSpacingMultiplier">1.5</item>
-        <item name="lineHeight">17sp</item>
+    </style>
+
+    <style name="noto_sans_regular_13sp_light_gray">
+        <item name="android:fontFamily">@font/notosansregular</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:spacing">-0.65sp</item>
+        <item name="android:textColor">@color/colorLightGray</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
     </style>
 
     <style name="noto_sans_regular_13sp_medium_gray">
@@ -23,7 +30,15 @@
         <item name="android:textSize">13sp</item>
         <item name="android:spacing">-0.65sp</item>
         <item name="android:textColor">@color/colorMediumGray</item>
-        <item name="android:lineSpacingMultiplier">1</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
+    <style name="noto_sans_regular_14sp_medium_gray">
+        <item name="android:fontFamily">@font/notosansregular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:spacing">-0.7sp</item>
+        <item name="android:textColor">@color/colorMediumGray</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
     </style>
 
     <style name="noto_sans_regular_15sp_black">
@@ -42,6 +57,22 @@
         <item name="android:lineSpacingMultiplier">1.5</item>
     </style>
 
+    <style name="noto_sans_medium_18sp_dark_brown">
+        <item name="android:fontFamily">@font/notosansmedium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:spacing">-0.9sp</item>
+        <item name="android:textColor">@color/colorDarkBrown</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
+    <style name="noto_sans_semi_bold_18sp_dark_brown">
+        <item name="android:fontFamily">@font/notosanssemibold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:spacing">-0.9sp</item>
+        <item name="android:textColor">@color/colorDarkBrown</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
     <style name="noto_sans_semi_bold_22sp_dark_brown">
         <item name="android:fontFamily">@font/notosanssemibold</item>
         <item name="android:textSize">22sp</item>
@@ -49,6 +80,7 @@
         <item name="android:textColor">@color/colorDarkBrown</item>
         <item name="android:lineSpacingMultiplier">1.5</item>
     </style>
+
 
     <!-- Text Styles - Gmarket sans -->
     <style name="gmarket_sans_medium_20sp_brown">
