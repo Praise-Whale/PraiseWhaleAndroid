@@ -66,7 +66,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView_userName" />
 
     <ImageView
-        android:id="@+id/imageView_shadow"
+        android:id="@+id/imageView_cardShadow"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
@@ -86,7 +86,7 @@
         android:id="@+id/constraintLayout_mainCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/background_rectangle_radius_15_stroke"
         app:layout_constraintEnd_toEndOf="@+id/button_date"
         app:layout_constraintStart_toStartOf="@+id/view_underline"
@@ -118,6 +118,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="32dp"
+            android:ellipsize="end"
             android:gravity="center"
             android:maxLines="3"
             android:text="네가 내 친구라서 참 좋아"
@@ -168,12 +169,31 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
+        android:id="@+id/imageView_tipBoxShadow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/shadow_rectangle_radius_15"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_dolphin"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_dolphin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_mainCard" />
+
+    <ImageView
         android:id="@+id/imageView_tipBox"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/background_rectangle_radius_20"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/main_box_tip_noshadow"
         android:backgroundTint="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_tipBoxShadow"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout_mainCard"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout_mainCard" />
 
@@ -181,12 +201,12 @@
         android:id="@+id/textView_praiseDescription"
         style="@style/noto_sans_regular_13sp_medium_gray"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="12dp"
         android:ellipsize="end"
         android:gravity="center"
@@ -200,8 +220,8 @@
 
     <ImageView
         android:id="@+id/imageView_dolphin"
-        android:layout_width="110dp"
-        android:layout_height="180dp"
+        android:layout_width="100dp"
+        android:layout_height="148dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
