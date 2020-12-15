@@ -54,7 +54,7 @@
         android:layout_marginRight="28dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/background_rectangle_radius_30"
-        android:backgroundTint="@color/colorYellow"
+        android:backgroundTint="@color/sand_yellow"
         android:text="확인"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

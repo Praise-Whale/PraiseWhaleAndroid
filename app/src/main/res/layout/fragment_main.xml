@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLightYellow"
+    android:background="@color/pale"
     tools:context=".fragment.MainFragment">
 
     <TextView
@@ -33,7 +33,7 @@
         android:id="@+id/view_underline"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:background="@color/colorYellow"
+        android:background="@color/sand_yellow"
         app:layout_constraintEnd_toEndOf="@+id/textView_mainTitle"
         app:layout_constraintStart_toStartOf="@+id/textView_mainTitle"
         app:layout_constraintTop_toBottomOf="@+id/textView_mainTitle" />
@@ -136,7 +136,7 @@
             android:layout_marginRight="6dp"
             android:layout_marginBottom="18dp"
             android:background="@drawable/background_rectangle_radius_30"
-            android:backgroundTint="@color/colorPaleGray"
+            android:backgroundTint="@color/very_light_pink"
             android:gravity="center"
             android:text="못했어요.."
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_mainCard"
@@ -155,7 +155,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="18dp"
             android:background="@drawable/background_rectangle_radius_30"
-            android:backgroundTint="@color/colorYellow"
+            android:backgroundTint="@color/sand_yellow"
             android:gravity="center"
             android:text="했어요!"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_mainCard"

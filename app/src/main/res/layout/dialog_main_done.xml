@@ -57,7 +57,7 @@
         android:id="@+id/view_underline"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:background="@color/colorYellow"
+        android:background="@color/sand_yellow"
         app:layout_constraintEnd_toEndOf="@+id/textView_dialogTitle_03"
         app:layout_constraintStart_toStartOf="@+id/textView_dialogTitle_01"
         app:layout_constraintTop_toBottomOf="@+id/textView_dialogTitle_01" />
@@ -107,7 +107,7 @@
         android:layout_height="32dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/background_rectangle_radius_30"
-        android:backgroundTint="@color/colorLightYellow"
+        android:backgroundTint="@color/pale"
         android:text="김송현"
         app:layout_constraintStart_toStartOf="@+id/textView_recentPraiseTo"
         app:layout_constraintTop_toBottomOf="@+id/textView_recentPraiseTo" />
@@ -120,7 +120,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:background="@drawable/background_rectangle_radius_30"
-        android:backgroundTint="@color/colorLightYellow"
+        android:backgroundTint="@color/pale"
         android:text="최호준"
         app:layout_constraintStart_toEndOf="@+id/button_recentPraiseTo_01"
         app:layout_constraintTop_toTopOf="@+id/button_recentPraiseTo_01" />
@@ -133,7 +133,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:background="@drawable/background_rectangle_radius_30"
-        android:backgroundTint="@color/colorLightYellow"
+        android:backgroundTint="@color/pale"
         android:text="임정은"
         app:layout_constraintStart_toEndOf="@+id/button_recentPraiseTo_02"
         app:layout_constraintTop_toTopOf="@+id/button_recentPraiseTo_02" />
@@ -146,7 +146,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/background_rectangle_radius_30"
-        android:backgroundTint="@color/colorYellow"
+        android:backgroundTint="@color/sand_yellow"
         android:text="확인"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editText_praiseTo"
