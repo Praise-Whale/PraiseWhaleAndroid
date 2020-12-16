@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/textView_userName"
-        style="@style/noto_sans_medium_16sp_dark_brown"
+        style="@style/noto_sans_medium_16sp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/textView_mainTitle"
-        style="@style/noto_sans_semi_bold_22sp_dark_brown"
+        style="@style/noto_sans_semi_bold_22sp_greyish_brown"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -199,7 +199,7 @@
 
     <TextView
         android:id="@+id/textView_praiseDescription"
-        style="@style/noto_sans_regular_13sp_medium_gray"
+        style="@style/noto_sans_regular_13sp_brown_grey"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
