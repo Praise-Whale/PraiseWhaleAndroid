@@ -12,6 +12,6 @@ data class ResponseHomeData(
         @SerializedName("daily_praise")
         val dailyPraise: String,
         @SerializedName("mission_praise")
-        val missionPraise: String
+        val praiseDescription: String
     )
 }

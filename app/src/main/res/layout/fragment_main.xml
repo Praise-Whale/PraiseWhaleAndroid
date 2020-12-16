@@ -108,7 +108,7 @@
             app:layout_constraintTop_toTopOf="@+id/constraintLayout_mainCard" />
 
         <TextView
-            android:id="@+id/textView_praiseMission"
+            android:id="@+id/textView_dailyPraise"
             style="@style/gmarket_sans_medium_20sp_brown"
             android:layout_width="0dp"
             android:layout_height="0dp"
