@@ -3,22 +3,20 @@ package com.example.praisewhale.fragment
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.fragment.app.Fragment
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.R
 import com.example.praisewhale.ResponseHomeData
 import com.example.praisewhale.ResponsePraiseTargetData
-import com.example.praisewhale.data.ResponseCollectionData
+import com.example.praisewhale.databinding.DialogMainDoneBinding
+import com.example.praisewhale.databinding.DialogMainDoneResultBinding
+import com.example.praisewhale.databinding.DialogMainUndoneBinding
+import com.example.praisewhale.databinding.FragmentMainBinding
 import com.example.praisewhale.util.MyApplication
-import kotlinx.android.synthetic.main.dialog_negative.*
-import kotlinx.android.synthetic.main.dialog_negative.view.*
-import kotlinx.android.synthetic.main.dialog_positive.*
-import kotlinx.android.synthetic.main.dialog_positive.view.*
-import kotlinx.android.synthetic.main.dialog_positive_status.view.*
-import kotlinx.android.synthetic.main.fragment_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,184 +25,52 @@ import kotlin.properties.Delegates
 
 class MainFragment : Fragment() {
 
-    private lateinit var positiveAlertDialog: AlertDialog
-    private lateinit var positiveStatusAlertDialog: AlertDialog
-    private lateinit var negativeAlertDialog: AlertDialog
-    private val sharedPreferencesKey = "CountNegative"
+    private var _mainViewBinding: FragmentMainBinding? = null
+    private var _dialogDoneViewBinding: DialogMainDoneBinding? = null
+    private var _dialogDoneResultViewBinding: DialogMainDoneResultBinding? = null
+    private var _dialogUndoneViewBinding: DialogMainUndoneBinding? = null
+
+    private val mainViewBinding get() = _mainViewBinding!!
+    private val dialogDoneViewBinding get() = _dialogDoneViewBinding!!
+    private val dialogDoneResultViewBinding get() = _dialogDoneResultViewBinding!!
+    private val dialogUndoneViewBinding get() = _dialogUndoneViewBinding!!
+
+    private lateinit var dialogDone: AlertDialog
+    private lateinit var dialogDoneResult: AlertDialog
+    private lateinit var dialogUndone: AlertDialog
+
     private var praiseIndex by Delegates.notNull<Int>()
+    private val sharedPreferencesKey = "CountNegative"
+    private lateinit var sharedPreferencesValue: String
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        _mainViewBinding = FragmentMainBinding.inflate(layoutInflater)
+        return mainViewBinding.root
     }
 
     // ui 작업 수행
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button_positive.setOnClickListener(fragmentOnClickListener)
-        button_negative.setOnClickListener(fragmentOnClickListener)
-
-        val sharedPreferencesValue =
-            MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "")
-
-        if (sharedPreferencesValue.isEmpty()) {
-            MyApplication.mySharedPreferences.setValue(sharedPreferencesKey, 0.toString())
-        }
-
-        val call : Call<ResponseCollectionData> = CollectionImpl.service.getUsersPraise()
-        call.enqueue(object : Callback<ResponseCollectionData> {
-            override fun onFailure(call: Call<ResponseCollectionData>, t: Throwable) {
-                Log.d("tag", t.localizedMessage)
-            }
-
-            override fun onResponse(
-                call: Call<ResponseCollectionData>,
-                response: Response<ResponseCollectionData>
-            ) {
-                response.takeIf { it.isSuccessful }
-                    ?.body()
-                    ?.let { it ->
-                        textView_praiseMission.text = it.data.daily_praise
-                        textView_praiseDescription.text = it.data.mission_praise
-                        val msgId = it.data.id
-                    }
-            }
-        })
-    }
-
-    override fun onStart(){
-        super.onStart()
+        setListeners()
         getServerPraiseData()
     }
 
-    private val fragmentOnClickListener = View.OnClickListener {
-        when (it.id) {
-            R.id.button_positive -> {
-                showPositiveDialog()
-            }
-            R.id.button_negative -> {
-                showNegativeDialog()
-                setNegativeDialog()
-            }
-            R.id.button_negativeOk -> {
-                updateSharedPreferences()
-                negativeAlertDialog.dismiss()
-            }
-            R.id.button_positiveOk -> {
-                showPositiveStatusDialog()
-                positiveAlertDialog.dismiss()
-            }
-            R.id.button_positiveStatusOk -> {
-                positiveStatusAlertDialog.dismiss()
-            }
-            R.id.radioButton_dialogRecentPraiseTo_01 -> {
-                positiveAlertDialog.editText_dialogPraiseTo.setText("남궁선규")
-            }
-            R.id.radioButton_dialogRecentPraiseTo_02 -> {
-                positiveAlertDialog.editText_dialogPraiseTo.setText("안나영")
-            }
-            R.id.radioButton_dialogRecentPraiseTo_03 -> {
-                positiveAlertDialog.editText_dialogPraiseTo.setText("최다인")
-            }
-        }
-    }
-
-    private fun showPositiveDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_positive, null)
-        dialogView.button_positiveOk.setOnClickListener(fragmentOnClickListener)
-
-        val alarDialogBuilder = AlertDialog.Builder(context)
-            .setView(dialogView)
-
-        positiveAlertDialog = alarDialogBuilder.create()
-        positiveAlertDialog.show()
-
-        positiveAlertDialog.radioButton_dialogRecentPraiseTo_01.setOnClickListener(fragmentOnClickListener)
-        positiveAlertDialog.radioButton_dialogRecentPraiseTo_02.setOnClickListener(fragmentOnClickListener)
-        positiveAlertDialog.radioButton_dialogRecentPraiseTo_03.setOnClickListener(fragmentOnClickListener)
-
-        savePraise(positiveAlertDialog.editText_dialogPraiseTo.toString())
-    }
-
-    private fun showPositiveStatusDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_positive_status, null)
-        dialogView.button_positiveStatusOk.setOnClickListener(fragmentOnClickListener)
-
-        val alarDialogBuilder = AlertDialog.Builder(context)
-            .setView(dialogView)
-
-        positiveStatusAlertDialog = alarDialogBuilder.create()
-        positiveStatusAlertDialog.show()
-    }
-
-    private fun showNegativeDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_negative, null)
-        dialogView.button_negativeOk.setOnClickListener(fragmentOnClickListener)
-
-        val alarDialogBuilder = AlertDialog.Builder(context)
-            .setView(dialogView)
-
-        negativeAlertDialog = alarDialogBuilder.create()
-        negativeAlertDialog.show()
-    }
-
-    private fun setNegativeDialog() {
-        val sharedPreferencesValue =
-            MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "")
-
-        if (sharedPreferencesValue.toInt() == 0 || sharedPreferencesValue.isEmpty()) {
-            negativeAlertDialog.textView_dialogTitle.text = "내일은 꼭 칭찬해보아요!"
-            negativeAlertDialog.imageView_dialogWhale.setImageResource(R.drawable.no_popup_img_dolphin)
-            Log.d("TAG", "setNegativeDialog_01: $sharedPreferencesValue")
-
-        } else if (sharedPreferencesValue.toInt() == 1) {
-            negativeAlertDialog.textView_dialogTitle.text = "저 내일은 춤추고 싶어요!"
-            negativeAlertDialog.imageView_dialogWhale.setImageResource(R.drawable.no_popup_2_img_dolphin)
-            Log.d("TAG", "setNegativeDialog_02: $sharedPreferencesValue")
-
-        } else if (sharedPreferencesValue.toInt() == 2) {
-            negativeAlertDialog.textView_dialogTitle.text = "자꾸 이런 식이면\n" +
-                    "나 고래고래 소리지를고래애애!"
-            negativeAlertDialog.imageView_dialogWhale.setImageResource(R.drawable.no_popup_3_img_dolphin)
-
-            Log.d("TAG", "setNegativeDialog_03: $sharedPreferencesValue")
-        } else {
-            Log.d("TAG", "checkSharedPreferences: error")
-        }
-    }
-
-    private fun updateSharedPreferences() {
-        val sharedPreferencesValue =
-            MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "")
-
-        if (sharedPreferencesValue.toInt() == 2) {
-            MyApplication.mySharedPreferences.setValue(sharedPreferencesKey, "0")
-            Log.d("TAG", "setNegativeDialog_05: $sharedPreferencesValue")
-        } else {
-            if (sharedPreferencesValue.isNotEmpty()) {
-                MyApplication.mySharedPreferences.setValue(
-                    sharedPreferencesKey,
-                    ((sharedPreferencesValue.toInt() + 1).toString())
-                )
-                Log.d("TAG", "setNegativeDialog_06: $sharedPreferencesValue")
-            } else {
-                MyApplication.mySharedPreferences.setValue(
-                    sharedPreferencesKey, 0.toString()
-                )
-                Log.d("TAG", "setNegativeDialog_07: $sharedPreferencesValue")
-            }
-        }
+    private fun setListeners() {
+        mainViewBinding.buttonPositive.setOnClickListener(fragmentClickListener)
+        mainViewBinding.buttonNegative.setOnClickListener(fragmentClickListener)
     }
 
     private fun getServerPraiseData() {
         val call: Call<ResponseHomeData> = CollectionImpl.service.getPraise()
+
         call.enqueue(object : Callback<ResponseHomeData> {
             override fun onFailure(call: Call<ResponseHomeData>, t: Throwable) {
-                Log.d("tag", t.localizedMessage)
+                Log.d("tag", t.localizedMessage!!)
             }
 
             override fun onResponse(
@@ -213,24 +79,115 @@ class MainFragment : Fragment() {
             ) {
                 response.takeIf { it.isSuccessful }
                     ?.body()
-                    ?.let { it ->
+                    ?.let {
                         praiseIndex = it.data.id
-                        textView_praiseMission?.text = it.data.dailyPraise
-                        textView_praiseDescription?.text = it.data.missionPraise
-
-                        Log.d("tag", textView_praiseMission.text.toString())
-                        Log.d("tag", it.toString())
+                        mainViewBinding.textViewDailyPraise.text = it.data.dailyPraise
+                        mainViewBinding.textViewPraiseDescription.text = it.data.praiseDescription
                     }
                 Log.d("tag", "onResponse: success")
             }
         })
     }
 
-    private fun savePraise(target: String) {
-        val call: Call<ResponsePraiseTargetData> = CollectionImpl.service.postUsers(ResponsePraiseTargetData(praiseIndex, target))
+    private val fragmentClickListener = View.OnClickListener {
+        when (it.id) {
+            mainViewBinding.buttonPositive.id -> {
+                showDialogDone()
+            }
+            mainViewBinding.buttonNegative.id -> {
+                showDialogUndone()
+            }
+        }
+    }
+
+    private fun showDialogDone() {
+        _dialogDoneViewBinding = DialogMainDoneBinding.inflate(layoutInflater)
+        dialogDoneViewBinding.apply {
+            imageButtonClose.setOnClickListener(dialogDoneClickListener)
+            imageButtonDelete.setOnClickListener(dialogDoneClickListener)
+            buttonRecentPraiseTo01.setOnClickListener(dialogDoneClickListener)
+            buttonRecentPraiseTo02.setOnClickListener(dialogDoneClickListener)
+            buttonRecentPraiseTo03.setOnClickListener(dialogDoneClickListener)
+            buttonConfirm.setOnClickListener(dialogDoneClickListener)
+        }
+        val dialogBuilder = AlertDialog.Builder(context)
+        val dialogWidth = resources.getDimensionPixelSize(R.dimen.dialog_main_width)
+
+        dialogDone = dialogBuilder.setView(dialogDoneViewBinding.root).create()
+        dialogDone.apply {
+            show()
+            window!!.setLayout(dialogWidth, WindowManager.LayoutParams.WRAP_CONTENT)
+            window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke)
+        }
+    }
+
+    private fun showDialogDoneResult() {
+        _dialogDoneResultViewBinding = DialogMainDoneResultBinding.inflate(layoutInflater)
+        dialogDoneResultViewBinding.buttonConfirm.setOnClickListener(dialogDoneResultClickListener)
+
+        val dialogBuilder = AlertDialog.Builder(context)
+        val dialogWidth = resources.getDimensionPixelSize(R.dimen.dialog_main_width)
+
+        dialogDoneResult = dialogBuilder.setView(dialogDoneResultViewBinding.root).create()
+        dialogDoneResult.apply {
+            show()
+            window!!.setLayout(dialogWidth, WindowManager.LayoutParams.WRAP_CONTENT)
+            window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke)
+        }
+    }
+
+    private fun showDialogUndone() {
+        _dialogUndoneViewBinding = DialogMainUndoneBinding.inflate(layoutInflater)
+        dialogUndoneViewBinding.buttonConfirm.setOnClickListener(dialogUndoneClickListener)
+
+        sharedPreferencesValue = MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "")
+        setNegativeDialog(sharedPreferencesValue)
+        Log.d("TAG", "sharedPreferences: $sharedPreferencesValue")
+
+        val dialogBuilder = AlertDialog.Builder(context)
+        val dialogWidth = resources.getDimensionPixelSize(R.dimen.dialog_main_width)
+
+        dialogUndone = dialogBuilder.setView(dialogUndoneViewBinding.root).create()
+        dialogUndone.apply {
+            show()
+            window!!.setLayout(dialogWidth, WindowManager.LayoutParams.WRAP_CONTENT)
+            window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke)
+        }
+    }
+
+    private fun setNegativeDialog(sharedPreferencesValue: String) {
+        when (sharedPreferencesValue.toInt()) {
+            0 -> {
+                dialogUndoneViewBinding.apply {
+                    textViewTitle.text = "아쉽고래!"
+                    textViewSubTitle.text = "내일은 꼭 칭찬해요!"
+                    imageViewWhale.setImageResource(R.drawable.no_1_img_whale)
+                }
+            }
+            1 -> {
+                dialogUndoneViewBinding.apply {
+                    textViewTitle.text = "춤추고 싶고래!"
+                    textViewSubTitle.text = "칭찬으로 저를 춤추게 해주세요!"
+                    imageViewWhale.setImageResource(R.drawable.no_2_img_whale)
+                }
+            }
+            2 -> {
+                dialogUndoneViewBinding.apply {
+                    textViewTitle.text = "고래고래 소리지를고래!"
+                    textViewSubTitle.text = "칭찬하는 습관을 가져봐요!"
+                    imageViewWhale.setImageResource(R.drawable.no_3_img_whale)
+                }
+            }
+        }
+    }
+
+    private fun saveServerPraiseData(target: String) {
+        val call: Call<ResponsePraiseTargetData> =
+            CollectionImpl.service.postUsers(ResponsePraiseTargetData(praiseIndex, target))
+
         call.enqueue(object : Callback<ResponsePraiseTargetData> {
             override fun onFailure(call: Call<ResponsePraiseTargetData>, t: Throwable) {
-                Log.d("tag", t.localizedMessage)
+                Log.d("tag", t.localizedMessage!!)
             }
 
             override fun onResponse(
@@ -245,5 +202,80 @@ class MainFragment : Fragment() {
                 Log.d("tag", "onResponse: success")
             }
         })
+    }
+
+    private val dialogDoneClickListener = View.OnClickListener {
+        when (it.id) {
+            dialogDoneViewBinding.imageButtonClose.id -> {
+                dialogDone.dismiss()
+            }
+            dialogDoneViewBinding.imageButtonDelete.id -> {
+                dialogDoneViewBinding.editTextPraiseTo.setText("")
+            }
+            dialogDoneViewBinding.buttonRecentPraiseTo01.id -> {
+                dialogDoneViewBinding.editTextPraiseTo.setText(
+                    dialogDoneViewBinding.buttonRecentPraiseTo01.text
+                )
+            }
+            dialogDoneViewBinding.buttonRecentPraiseTo02.id -> {
+                dialogDoneViewBinding.editTextPraiseTo.setText(
+                    dialogDoneViewBinding.buttonRecentPraiseTo02.text
+                )
+            }
+            dialogDoneViewBinding.buttonRecentPraiseTo03.id -> {
+                dialogDoneViewBinding.editTextPraiseTo.setText(
+                    dialogDoneViewBinding.buttonRecentPraiseTo03.text
+                )
+            }
+            dialogDoneViewBinding.buttonConfirm.id -> {
+                //saveServerPraiseData(dialogDoneViewBinding.editTextPraiseTo.text.toString())
+                showDialogDoneResult()
+                dialogDone.dismiss()
+            }
+        }
+    }
+
+    private val dialogDoneResultClickListener = View.OnClickListener {
+        when (it.id) {
+            dialogDoneResultViewBinding.buttonConfirm.id -> {
+                dialogDoneResult.dismiss()
+            }
+        }
+    }
+
+    private val dialogUndoneClickListener = View.OnClickListener {
+        when (it.id) {
+            dialogUndoneViewBinding.buttonConfirm.id -> {
+                updateSharedPreferences()
+                dialogUndone.dismiss()
+            }
+        }
+    }
+
+    private fun updateSharedPreferences() {
+        when (sharedPreferencesValue.toInt()) {
+            2 -> {
+                MyApplication.mySharedPreferences.setValue(sharedPreferencesKey, "0")
+            }
+            else -> {
+                MyApplication.mySharedPreferences.setValue(
+                    sharedPreferencesKey, ((sharedPreferencesValue.toInt() + 1).toString())
+                )
+                sharedPreferencesValue =
+                    MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "0")
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        setViewBindingNull()
+    }
+
+    private fun setViewBindingNull() {
+        _mainViewBinding = null
+        _dialogDoneViewBinding = null
+        _dialogDoneResultViewBinding = null
+        _dialogUndoneViewBinding = null
     }
 }
