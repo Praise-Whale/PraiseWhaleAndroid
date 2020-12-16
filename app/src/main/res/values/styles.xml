@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
     <!-- Text Styles - Noto sans -->
     <style name="noto_sans_regular_13sp_brown">
         <item name="android:fontFamily">@font/notosansregular</item>
@@ -20,6 +21,13 @@
         <item name="android:fontFamily">@font/notosansregular</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/very_light_pink_two</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
+    <style name="noto_sans_regular_13sp_black">
+        <item name="android:fontFamily">@font/notosansregular</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
