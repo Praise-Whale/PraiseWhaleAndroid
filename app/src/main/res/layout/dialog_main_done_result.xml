@@ -6,14 +6,10 @@
     android:background="@drawable/background_rectangle_radius_15_stroke">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_whale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
+        android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         android:src="@drawable/yes_5_img_whale"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,26 +17,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_title"
         style="@style/noto_sans_semi_bold_18sp_dark_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="16dp"
         android:text="참 잘했고래!"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView_whale"
+        app:layout_constraintStart_toStartOf="@+id/imageView_whale"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_whale" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView_subTitle"
         style="@style/noto_sans_medium_16sp_dark_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="내일도 칭찬해요!"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="@+id/textView_title"
+        app:layout_constraintStart_toStartOf="@+id/textView_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title" />
 
     <Button
         android:id="@+id/button_confirm"
@@ -52,13 +48,13 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/background_rectangle_radius_30"
         android:backgroundTint="@color/sand_yellow"
         android:text="확인"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_subTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
