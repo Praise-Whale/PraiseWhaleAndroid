@@ -1,6 +1,5 @@
 package com.example.praisewhale
 
-import com.example.praisewhale.data.ResponseCardData
 import com.example.praisewhale.data.ResponseCollectionData
 import retrofit2.Call
 import retrofit2.http.*
@@ -26,12 +25,12 @@ interface RequestInterface {
         @Body body: ResponsePraiseTargetData
     ): Call<ResponsePraiseTargetData>
 
-    // 칭찬 컬렉션 조회
+    // 칭찬 컬렉션 전체 조회
     @Headers("Content-Type:application/json")
     @GET("praise/collection")
     fun getCollection(
 
-    ): Call<ResponseCardData>
+    ): Call<ResponseCardBoxData>
 
     @Headers("Content-Type:application/json")
     @GET("level/praise/{userIdx}")
