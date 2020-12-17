@@ -45,21 +45,21 @@ class MainDialogUndoneFragment : DialogFragment() {
         sharedPreferencesValue =
             MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "")
         when (sharedPreferencesValue.toInt()) {
-            0 -> {
+            0, 1 -> {
                 dialogUndoneViewBinding.apply {
                     textViewTitle.text = "아쉽고래!"
                     textViewSubTitle.text = "내일은 꼭 칭찬해요!"
                     imageViewWhale.setImageResource(R.drawable.no_1_img_whale)
                 }
             }
-            1 -> {
+            2, 3 -> {
                 dialogUndoneViewBinding.apply {
                     textViewTitle.text = "춤추고 싶고래!"
                     textViewSubTitle.text = "칭찬으로 저를 춤추게 해주세요!"
                     imageViewWhale.setImageResource(R.drawable.no_2_img_whale)
                 }
             }
-            2 -> {
+            4 -> {
                 dialogUndoneViewBinding.apply {
                     textViewTitle.text = "고래고래 소리지를고래!"
                     textViewSubTitle.text = "칭찬하는 습관을 가져봐요!"
@@ -86,7 +86,7 @@ class MainDialogUndoneFragment : DialogFragment() {
 
     private fun updateSharedPreferences() {
         when (sharedPreferencesValue.toInt()) {
-            2 -> {
+            4 -> {
                 MyApplication.mySharedPreferences.setValue(sharedPreferencesKey, "0")
             }
             else -> {
