@@ -1,11 +1,14 @@
 package com.example.praisewhale.dialog
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.R
@@ -39,11 +42,13 @@ class MainDialogDoneFragment : DialogFragment() {
         setListeners()
         setRecentPraiseTo()
         setDialogBackground()
+        dialogDoneViewBinding.imageButtonDelete.visibility = ImageButton.GONE
     }
 
     private fun setListeners() {
         dialogDoneViewBinding.apply {
             imageButtonClose.setOnClickListener(dialogDoneClickListener)
+            editTextPraiseTo.addTextChangedListener(dialogTextWatcher)
             imageButtonDelete.setOnClickListener(dialogDoneClickListener)
             buttonRecentPraiseTo01.setOnClickListener(dialogDoneClickListener)
             buttonRecentPraiseTo02.setOnClickListener(dialogDoneClickListener)
@@ -128,6 +133,18 @@ class MainDialogDoneFragment : DialogFragment() {
     private fun showDialogResult() {
         val dialogDoneResult = MainDialogDoneResultFragment.CustomDialogBuilder().create()
         dialogDoneResult.show(fragmentManager!!, dialogDoneResult.tag)
+    }
+
+    private val dialogTextWatcher = object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {}
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            if (dialogDoneViewBinding.editTextPraiseTo.text.toString() == "") {
+                dialogDoneViewBinding.imageButtonDelete.visibility = ImageButton.GONE
+            } else {
+                dialogDoneViewBinding.imageButtonDelete.visibility = ImageButton.VISIBLE
+            }
+        }
     }
 
     override fun onDestroyView() {
