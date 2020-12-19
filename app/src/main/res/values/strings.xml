@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">PraiseWhale</string>
+
+    <string name="title">칭찬할고래</string>
+    <string name="title2">에서</string>
+    <string name="title3">"사용할 "</string>
+    <string name="title4">닉네임</string>
+    <string name="title5">을</string>
+    <string name="title6">정해주세요!</string>
+    <string name="title7">님과 함께할</string>
+    <string name="title8">고래의 이름</string>
+    <string name="title9">와 함께</string>
+    <string name="title10">"매일 "</string>
+    <string name="title11">칭찬 한마디,</string>
+    <string name="title12">실천해볼까요?</string>
+
+    <string name="hint_nickname">닉네임을 7자 이내로 입력해주세요.</string>
+    <string name="hint_whale_name">고래의 이름을 7자 이내로 입력해주세요.</string>
+    <string name="check_warning">이미 사용중인 닉네임이에요!</string>
+    <string name="impossible_name_change">고래의 이름은 다시 변경할 수 없어요!</string>
+    <string name="max_length">/7</string>
+    <string name="next">다음</string>
+    <string name="start">시작하기</string>
+
+    <string name="level_info_title">칭찬할고래 레벨</string>
+    <string name="level0">아직은 칭찬이 어색한 고래</string>
+    <string name="level_count_0">5번</string>
+    <string name="level1">칭찬에 흥미가 생긴 고래</string>
+    <string name="level_count_1">10번</string>
+    <string name="level2">칭찬에 익숙해진 고래</string>
+    <string name="level_count_2">15번</string>
+    <string name="level3">슬슬 리듬타기 시작한 고래</string>
+    <string name="level_count_3">20번</string>
+    <string name="level4">신나게 춤추는 고래</string>
+    <string name="level_count_4">100번</string>
+    <string name="level5">춤신 춤왕 만렙 고래</string>
 </resources>
