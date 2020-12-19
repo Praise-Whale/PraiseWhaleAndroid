@@ -14,6 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PraiseWhale"
         android:usesCleartextTraffic="true">
+        <activity android:name=".LevelInfoActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".signup.SignUpActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" >
