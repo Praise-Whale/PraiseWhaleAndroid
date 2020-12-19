@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.R
+import com.example.praisewhale.databinding.ActivityMainBinding.inflate
 import com.example.praisewhale.databinding.DialogMainResultBinding
 import com.example.praisewhale.util.MyApplication
 
@@ -43,7 +44,7 @@ class MainDialogUndoneFragment : DialogFragment() {
 
     private fun setDialogContents() {
         sharedPreferencesValue =
-            MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "")
+            MyApplication.mySharedPreferences.getValue(sharedPreferencesKey, "0")
         when (sharedPreferencesValue.toInt()) {
             0, 1 -> {
                 dialogUndoneViewBinding.apply {
