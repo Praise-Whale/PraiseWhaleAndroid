@@ -48,7 +48,7 @@
         android:textSize="20sp"
         android:textColor="#503000"
         android:background="@drawable/card_ic_card"
-        android:fontFamily="@font/gmarketsans_medium"
+        android:fontFamily="@font/gmarket_sans_medium"
         android:layout_marginHorizontal="18dp"
         android:layout_marginTop="21dp"
         android:layout_marginBottom="94dp"
