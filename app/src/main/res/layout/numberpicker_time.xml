@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/constraintLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:background="@drawable/popup_box_popup_1"
+
+    android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout">
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:background="@drawable/alarm_box_time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/numberPicker"
+            app:layout_constraintStart_toStartOf="@+id/numberPicker"
+            app:layout_constraintTop_toTopOf="@+id/numberPicker" />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:background="@drawable/alarm_box_time"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/numberPicker2"
+            app:layout_constraintStart_toStartOf="@+id/numberPicker2"
+            app:layout_constraintTop_toTopOf="@+id/numberPicker2" />
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+
+            android:background="@drawable/alarm_box_time"
+            app:layout_constraintBottom_toBottomOf="@+id/numberPicker3"
+            app:layout_constraintEnd_toEndOf="@+id/numberPicker3"
+            app:layout_constraintStart_toStartOf="@+id/numberPicker3"
+            app:layout_constraintTop_toTopOf="@+id/numberPicker3" />
+
+        <NumberPicker
+            android:id="@+id/numberPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="132dp"
+
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <NumberPicker
+            android:id="@+id/numberPicker2"
+            android:layout_width="wrap_content"
+            android:layout_height="132dp"
+            app:layout_constraintBottom_toBottomOf="@+id/numberPicker"
+            app:layout_constraintEnd_toStartOf="@+id/numberPicker3"
+            app:layout_constraintStart_toEndOf="@+id/numberPicker"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <NumberPicker
+            android:id="@+id/numberPicker3"
+            android:layout_width="wrap_content"
+            android:layout_height="132dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/numberPicker2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/popup_btn_ok"
+        android:text="설정"
+        android:fontFamily="@font/notosans_regular"
+        android:includeFontPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="36dp"
+        android:includeFontPadding="false"
+
+        android:text="알람 시간"
+        android:fontFamily="@font/noto_sans_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="50dp"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:background="#ffd464"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <Button
+        android:id="@+id/button_alarm"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:background="@drawable/popup_btn_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
