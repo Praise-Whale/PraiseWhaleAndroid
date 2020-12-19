@@ -35,4 +35,8 @@
     <string name="level_count_4">100번</string>
     <string name="level5">춤신 춤왕 만렙 고래</string>
 
+    <string-array name="ampm">
+        <item>오전</item>
+        <item>오후</item>
+    </string-array>
 </resources>

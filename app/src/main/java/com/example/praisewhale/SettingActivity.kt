@@ -130,13 +130,8 @@ class SettingActivity :AppCompatActivity() {
 
 
             developer.setOnClickListener {
-                setContentView(R.layout.developer)
-                developer_close_btn.setOnClickListener {
-                    finish()
-                    val intent= Intent(this,SettingActivity::class.java)
-                    startActivity(intent)
-
-                }
+                val intent= Intent(this,DeveloperActivity::class.java)
+                startActivity(intent)
 
             }
         setting_close_btn.setOnClickListener {

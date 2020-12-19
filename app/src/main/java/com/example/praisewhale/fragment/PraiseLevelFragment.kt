@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.praisewhale.*
+import com.example.praisewhale.util.MyApplication
 import kotlinx.android.synthetic.main.fragment_praise_level.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +33,7 @@ class PraiseLevelFragment : Fragment() {
         setting_btn.setOnClickListener {
 
 
-            val intent= Intent(context,SettingActivity::class.java)
+            val intent= Intent(context,LevelInfoActivity::class.java)
             startActivity(intent)
         }
     }
@@ -40,8 +41,8 @@ class PraiseLevelFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-
-        val call : Call<ResponselevelData> = CollectionImpl.service.getlevelcount("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoyMCwiaWF0IjoxNjA3OTU2ODY0LCJleHAiOjE2MTA1NDg4NjQsImlzcyI6InByYWlzZSJ9.akfo89MHAmHqt1FS11F6A-N7tF0_mbm3hy3UyEA8OtA")
+        val token = MyApplication.mySharedPreferences.getValue("token","")
+        val call : Call<ResponselevelData> = CollectionImpl.service.getlevelcount(token)
         call.enqueue(object : Callback<ResponselevelData> {
             override fun onFailure(call: Call<ResponselevelData>, t: Throwable) {
                 Log.d("tag", t.localizedMessage)
