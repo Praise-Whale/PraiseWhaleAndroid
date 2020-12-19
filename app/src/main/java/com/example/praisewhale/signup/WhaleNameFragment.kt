@@ -16,6 +16,7 @@ import com.example.praisewhale.R
 import com.example.praisewhale.data.RequestSignUp
 import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.FragmentWhaleNameBinding
+import com.example.praisewhale.util.MyApplication
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -85,7 +86,9 @@ class WhaleNameFragment : Fragment() {
                 response.takeIf { it.isSuccessful }
                     ?.body()
                     ?.let {
-                        //TODO save Token & NickName & WhaleName
+                        MyApplication.mySharedPreferences.setValue("nickName", body.nickName)
+                        MyApplication.mySharedPreferences.setValue("whaleName", body.whaleName)
+                        MyApplication.mySharedPreferences.setValue("token", it.data.accessToken)
                         (activity as SignUpActivity).replaceFragment(SignUpFragment())
                     } ?: Toast.makeText(view!!.context, "error", Toast.LENGTH_SHORT).show()
             }

@@ -49,4 +49,10 @@ interface RequestInterface {
     fun signUp(
         @Body body : RequestSignUp
     ) : Call<ResponseToken>
+
+    // 로그인
+    @POST("users/signin")
+    fun signIn(
+        @Body body : RequestSignIn
+    ) : Call<ResponseToken>
 }
