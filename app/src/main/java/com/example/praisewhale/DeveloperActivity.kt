@@ -2,14 +2,14 @@ package com.example.praisewhale
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_level_info.*
+import kotlinx.android.synthetic.main.activity_developer.*
 
-class LevelInfoActivity : AppCompatActivity() {
+class DeveloperActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_level_info)
+        setContentView(R.layout.activity_developer)
 
-        btn_back.setOnClickListener{
+        developer_close_btn.setOnClickListener{
             finish()
         }
     }
