@@ -55,4 +55,11 @@ interface RequestInterface {
     fun signIn(
         @Body body : RequestSignIn
     ) : Call<ResponseToken>
+
+    @Headers("Content-Type:application/json")
+    @GET("users/home")
+    fun getlevelcount(
+        @Header("token") token : String
+
+    ) : Call<ResponselevelData>
 }
