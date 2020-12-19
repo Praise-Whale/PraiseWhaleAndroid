@@ -14,6 +14,7 @@ import com.example.praisewhale.dialog.MainDialogUndoneFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 import kotlin.properties.Delegates
 
 
@@ -37,12 +38,20 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setListeners()
+        setCurrentDate()
         getServerPraiseData()
     }
 
     private fun setListeners() {
         mainViewBinding.buttonPositive.setOnClickListener(fragmentClickListener)
         mainViewBinding.buttonNegative.setOnClickListener(fragmentClickListener)
+    }
+
+    private fun setCurrentDate() {
+        val calendar = Calendar.getInstance()
+        val month = (calendar.get(Calendar.MONTH) + 1).toString()
+        val date = calendar.get(Calendar.DATE).toShort()
+        mainViewBinding.buttonDate.text = month + "월 " + date + "일"
     }
 
     private fun getServerPraiseData() {
