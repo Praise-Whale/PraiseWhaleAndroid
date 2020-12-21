@@ -1,7 +1,6 @@
 package com.example.praisewhale
 
-import com.example.praisewhale.data.ResponseCardData
-import com.example.praisewhale.data.ResponseCollectionData
+import com.example.praisewhale.data.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -38,4 +37,29 @@ interface RequestInterface {
     fun getuserIdx(
         @Path("userIdx") userIdx : Int
     )  : Call<ResponseUserData>
+
+    // 닉네임중복체크
+    @GET("users/check/{nickname}")
+    fun nicknameCheck(
+        @Path("nickname") nickname : String
+    ) : Call<ResponseData>
+
+    // 회원가입
+    @POST("users/signup")
+    fun signUp(
+        @Body body : RequestSignUp
+    ) : Call<ResponseToken>
+
+    // 로그인
+    @POST("users/signin")
+    fun signIn(
+        @Body body : RequestSignIn
+    ) : Call<ResponseToken>
+
+    @Headers("Content-Type:application/json")
+    @GET("users/home")
+    fun getlevelcount(
+        @Header("token") token : String
+
+    ) : Call<ResponselevelData>
 }
