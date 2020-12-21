@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_popup_picker"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/card_picker_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:height="21dp"
+        android:gravity="bottom"
+        android:layout_marginTop="34dp"
+        android:layout_marginLeft="27dp"
+        android:fontFamily="@font/noto_sans_medium"
+        android:includeFontPadding="false"
+        android:text="칭찬 날짜"
+        android:textColor="@color/greyish_brown"
+        android:textSize="18sp"
+        android:letterSpacing="-0.05"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <View
+        android:id="@+id/v_card_picker_div"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/bg_card_div"
+        app:layout_constraintTop_toTopOf="@id/card_picker_title"
+        app:layout_constraintStart_toStartOf="@id/card_picker_title"
+        app:layout_constraintEnd_toEndOf="@id/card_picker_title"/>
+
+    <ImageButton
+        android:id="@+id/btn_card_picker_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="22dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/popup_btn_close"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_card_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@id/v_card_picker_div">
+
+        <View
+            android:layout_width="76dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="49dp"
+            android:background="@drawable/bg_card_month_box"
+            app:layout_constraintStart_toStartOf="@id/card_picker_month"
+            app:layout_constraintEnd_toEndOf="@id/card_picker_month"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:layout_width="76dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="49dp"
+            android:background="@drawable/bg_card_month_box"
+            app:layout_constraintStart_toStartOf="@id/card_picker_year"
+            app:layout_constraintEnd_toEndOf="@id/card_picker_year"
+            app:layout_constraintTop_toTopOf="parent"/>
+        
+        <NumberPicker
+            android:id="@+id/card_picker_year"
+            android:layout_width="wrap_content"
+            android:layout_height="142dp"
+            android:layout_marginRight="9.5dp"
+            android:layout_marginLeft="52dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/card_picker_month"
+            android:theme="@style/NumberPickerCustomText">
+        </NumberPicker>
+
+        <NumberPicker
+            android:id="@+id/card_picker_month"
+            android:layout_width="wrap_content"
+            android:layout_height="142dp"
+            android:layout_marginRight="52dp"
+            android:layout_marginLeft="9.5dp"
+            app:layout_constraintTop_toTopOf="@id/card_picker_year"
+            app:layout_constraintStart_toEndOf="@id/card_picker_year"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:theme="@style/NumberPickerCustomText">
+        </NumberPicker>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btn_card_picker_confirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="27dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
+        android:minHeight="0dp"
+        android:includeFontPadding="false"
+        android:background="@drawable/bg_btn_card_picker"
+        android:text="설정"
+        android:textSize="15sp"
+        android:textColor="@color/colorBlack"
+        android:letterSpacing="-0.05"
+        app:layout_constraintTop_toBottomOf="@id/cl_card_picker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="?android:attr/borderlessButtonStyle"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
