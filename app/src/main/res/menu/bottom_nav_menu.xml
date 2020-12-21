@@ -3,19 +3,14 @@
 
     <item
         android:id="@+id/menu_main"
-        android:icon="@drawable/ic_main_unselected"
-        android:title="메인"
-
-        />
-
+        android:icon="@drawable/navi_ic_compliment"
+        android:title="메인" />
     <item
         android:id="@+id/menu_collection"
-        android:icon="@drawable/ic_collection_unselected"
+        android:icon="@drawable/navi_ic_card"
         android:title="컬렉션" />
-
     <item
         android:id="@+id/menu_praiseLevel"
-        android:icon="@drawable/ic_level_unselected"
+        android:icon="@drawable/navi_ic_whale"
         android:title="칭찬 레벨" />
-
 </menu>
