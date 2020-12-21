@@ -8,16 +8,20 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.praisewhale.util.MyApplication
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.developer.*
 import kotlinx.android.synthetic.main.fragment_praise_level.*
 import kotlinx.android.synthetic.main.namechange.*
+import kotlinx.android.synthetic.main.numberpicker_time.*
 import kotlinx.android.synthetic.main.time_picker.*
 import java.time.LocalDate
 import java.util.*
@@ -38,7 +42,9 @@ class SettingActivity :AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
+        val username = MyApplication.mySharedPreferences.getValue("nickName","")
 
+        textView6.text=username
 
         nickchange.setOnClickListener {
 
@@ -97,7 +103,11 @@ class SettingActivity :AppCompatActivity() {
             val ny1:NumberPicker=mView2.findViewById(R.id.numberPicker2)
             val ny2:NumberPicker=mView2.findViewById(R.id.numberPicker3)
 
-
+            val buttn_close:Button=mView2.findViewById(R.id.button_alarm)
+            buttn_close.setOnClickListener {
+                dialog2.dismiss()
+                dialog2.cancel()
+            }
             val list = resources.getStringArray(R.array.ampm)
 
             ny.minValue=0
@@ -115,13 +125,25 @@ class SettingActivity :AppCompatActivity() {
             ny2.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
             ny1.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
 
+            val button_ok:Button=mView2.findViewById(R.id.button_ok)
 
+            button_ok.setOnClickListener {
+               /* if (ny.value == 0) {
+                    clock.text = years[year.value] + " 전체"
+                } else {
+                    clock.text = years[year.value] + " " + (month.value).toString() + "월"
+                }*/
+
+                clock.text=list[ny.value]+" "+(ny1.value).toString()+":"+(ny2.value).toString()+"분"
+                dialog2.dismiss()
+                dialog2.cancel()
+            }
 
             val color = ColorDrawable(Color.TRANSPARENT)
             // Dialog 크기 설정
             val inset = InsetDrawable(color, 85)
             dialog2.window?.setBackgroundDrawable(inset)
-
+            dialog2.setCancelable(false)
             dialog2.setView(mView2)
             dialog2.show()
 
