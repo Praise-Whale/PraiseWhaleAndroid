@@ -7,22 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.CollectionImpl
-import com.example.praisewhale.ResponseHomeData
+import com.example.praisewhale.data.home.ResponseHomePraise
 import com.example.praisewhale.databinding.*
 import com.example.praisewhale.dialog.MainDialogDoneFragment
 import com.example.praisewhale.dialog.MainDialogUndoneFragment
+import com.example.praisewhale.util.MyApplication
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.properties.Delegates
 
 
 class MainFragment : Fragment() {
 
     private var _mainViewBinding: FragmentMainBinding? = null
     private val mainViewBinding get() = _mainViewBinding!!
-    private var praiseIndex by Delegates.notNull<Int>()
+    lateinit var praiseIndex: String
 
 
     override fun onCreateView(
@@ -37,14 +37,21 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUserInfo()
         setListeners()
         setCurrentDate()
         getServerPraiseData()
     }
 
+    private fun setUserInfo() {
+        val userName = MyApplication.mySharedPreferences.getValue("nickName", "")
+        mainViewBinding.textViewUserName.text = userName + "님을 위한"
+    }
+
     private fun setListeners() {
         mainViewBinding.buttonPositive.setOnClickListener(fragmentClickListener)
         mainViewBinding.buttonNegative.setOnClickListener(fragmentClickListener)
+        mainViewBinding.imageButtonSettings.setOnClickListener(fragmentClickListener)
     }
 
     private fun setCurrentDate() {
@@ -55,28 +62,40 @@ class MainFragment : Fragment() {
     }
 
     private fun getServerPraiseData() {
-        val call: Call<ResponseHomeData> = CollectionImpl.service.getPraise()
-        call.enqueue(object : Callback<ResponseHomeData> {
-
-            override fun onFailure(call: Call<ResponseHomeData>, t: Throwable) {
+        val call: Call<ResponseHomePraise> = CollectionImpl.service.getPraise(
+            MyApplication.mySharedPreferences.getValue("token", "")
+        )
+        call.enqueue(object : Callback<ResponseHomePraise> {
+            override fun onFailure(call: Call<ResponseHomePraise>, t: Throwable) {
                 Log.d("tag", t.localizedMessage!!)
             }
 
             override fun onResponse(
-                call: Call<ResponseHomeData>,
-                response: Response<ResponseHomeData>
+                call: Call<ResponseHomePraise>,
+                response: Response<ResponseHomePraise>
             ) {
-                response.takeIf { it.isSuccessful }
-                    ?.body()
-                    ?.let {
-                        praiseIndex = it.data.id
-                        mainViewBinding.textViewDailyPraise.text = it.data.dailyPraise
-                        mainViewBinding.textViewPraiseDescription.text = it.data.praiseDescription
-                    }
-                praiseIndex = 100 // 다이얼로그로 칭찬 인덱스가 넘어가는지 테스트하기 위한 임시 값
-                Log.d("tag", "onResponse: success")
+                if (response.isSuccessful) {
+                    val praiseData = response.body()!!.data
+                    praiseIndex = praiseData.praiseId.toString()
+                    mainViewBinding.textViewDailyPraise.text = praiseData.dailyPraise
+                    mainViewBinding.textViewPraiseDescription.text = praiseData.praiseDescription
+                } else handlePraiseDataStatusCode(response.body()!!)
             }
         })
+    }
+
+    private fun handlePraiseDataStatusCode(response: ResponseHomePraise) {
+        when (response.status) {
+            400 -> {
+                // todo - 토큰 값 갱신 후 재요청
+                Log.d("TAG", "handleStatusCode: 토큰 값 갱신")
+                getServerPraiseData()
+            }
+            // todo - 각 에러 코드별 처리..
+            else -> {
+                Log.d("TAG", "handleStatusCode: ${response.status}, ${response.message}")
+            }
+        }
     }
 
     private val fragmentClickListener = View.OnClickListener {
@@ -87,6 +106,9 @@ class MainFragment : Fragment() {
             mainViewBinding.buttonNegative.id -> {
                 showDialogUndone()
             }
+            mainViewBinding.imageButtonSettings.id -> {
+                // todo - setting 뷰로 이동
+            }
         }
     }
 
@@ -94,12 +116,12 @@ class MainFragment : Fragment() {
         val dialogDone = MainDialogDoneFragment.CustomDialogBuilder()
             .getPraiseIndex(praiseIndex)
             .create()
-        dialogDone.show(fragmentManager!!, dialogDone.tag)
+        dialogDone.show(parentFragmentManager, dialogDone.tag)
     }
 
     private fun showDialogUndone() {
         val dialogUndone = MainDialogUndoneFragment.CustomDialogBuilder().create()
-        dialogUndone.show(fragmentManager!!, dialogUndone.tag)
+        dialogUndone.show(parentFragmentManager, dialogUndone.tag)
     }
 
     override fun onDestroyView() {
