@@ -2,10 +2,14 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#ffd464</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
     </style>
 
 
@@ -100,6 +104,14 @@
         <item name="android:spacing">0sp</item>
         <item name="android:textColor">@color/brown</item>
         <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
+    <style name="signUpText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/brown</item>
+        <item name="android:lineSpacingExtra">-1sp</item>
     </style>
 
 </resources>

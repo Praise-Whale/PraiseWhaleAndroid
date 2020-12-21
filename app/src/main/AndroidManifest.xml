@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.praisewhale">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,15 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".DeveloperActivity"/>
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+
+        <activity android:name=".DeveloperActivity" />
         <activity
             android:name=".LevelInfoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".signup.SignUpActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
@@ -33,8 +36,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".CircularActivity"/>
-        <activity android:name=".SettingActivity"/>
+        <activity android:name=".CircularActivity" />
+        <activity android:name=".SettingActivity" />
     </application>
 
 </manifest>

@@ -63,7 +63,7 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/popup_btn_ok"
         android:text="변경"
-        android:fontFamily="@font/notosans_regular"
+        android:fontFamily="@font/noto_sans_regular"
         android:includeFontPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:text="2/7"
-        android:fontFamily="@font/notosans_regular"
+        android:fontFamily="@font/noto_sans_regular"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
