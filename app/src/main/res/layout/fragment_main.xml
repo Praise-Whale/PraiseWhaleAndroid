@@ -15,7 +15,7 @@
         android:layout_marginStart="42dp"
         android:layout_marginLeft="42dp"
         android:layout_marginTop="64dp"
-        android:text="선규님을 위한"
+        android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +61,7 @@
         android:background="@drawable/background_rectangle_radius_30"
         android:backgroundTint="@color/colorWhite"
         android:gravity="center"
-        android:text="12월 22일"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView_userName" />
 
@@ -121,7 +121,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="3"
-            android:text="네가 내 친구라서 참 좋아"
+            android:text=""
             app:layout_constraintBottom_toBottomOf="@+id/imageView_mainCardFrame"
             app:layout_constraintEnd_toEndOf="@+id/imageView_mainCardFrame"
             app:layout_constraintStart_toStartOf="@+id/imageView_mainCardFrame"
@@ -211,7 +211,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="3"
-        android:text="항상 내 편인 친구에게 ㅇㅇㅇ고마움을 표현해보세요 :)ㅇㅇ한 줄 더 되겠군요 히히히히히"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/imageView_tipBox"
         app:layout_constraintEnd_toEndOf="@+id/imageView_tipBox"
         app:layout_constraintStart_toStartOf="@+id/imageView_tipBox"

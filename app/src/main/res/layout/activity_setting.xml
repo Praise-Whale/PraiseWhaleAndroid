@@ -86,7 +86,6 @@
         android:layout_marginTop="5dp"
         android:background="#efefef"
         app:layout_constraintEnd_toEndOf="@+id/nickchange"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/nickchange"
         app:layout_constraintTop_toBottomOf="@+id/nickchange" />
 
