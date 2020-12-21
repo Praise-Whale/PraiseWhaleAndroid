@@ -40,6 +40,11 @@ class PraiseLevelFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        val username = MyApplication.mySharedPreferences.getValue("nickName","")
+        val whaleName = MyApplication.mySharedPreferences.getValue("whaleName","")
+
+        level_txt.text=username+"님의"
+        whalename_txt.text=whaleName
 
         val token = MyApplication.mySharedPreferences.getValue("token","")
         val call : Call<ResponselevelData> = CollectionImpl.service.getlevelcount(token)
@@ -60,8 +65,8 @@ class PraiseLevelFragment : Fragment() {
 
                             it ->
 
-                        level_txt.text=it.data.nickName.toString()+"님의"
-                        whalename_txt.text=it.data.whaleName.toString()
+
+
 
                         textView2.text=it.data.praiseCount.toString()+"번"
                         cpb_circlebar.progress = it.data.praiseCount*10
