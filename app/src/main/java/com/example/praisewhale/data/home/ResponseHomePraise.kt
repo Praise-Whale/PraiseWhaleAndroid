@@ -1,17 +1,17 @@
-package com.example.praisewhale
+package com.example.praisewhale.data.home
 
 import com.google.gson.annotations.SerializedName
 
-data class ResponseHomeData(
+data class ResponseHomePraise(
     val status: Int,
     val message: String,
     val data: Data
 ) {
     data class Data(
-        val id: Int,
-        @SerializedName("daily_praise")
+        val praiseId: Int,
+        @SerializedName("today_praise")
         val dailyPraise: String,
-        @SerializedName("mission_praise")
+        @SerializedName("praise_description")
         val praiseDescription: String
     )
 }

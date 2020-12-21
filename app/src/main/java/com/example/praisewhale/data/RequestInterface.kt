@@ -1,29 +1,36 @@
-package com.example.praisewhale
+package com.example.praisewhale.data
 
-import com.example.praisewhale.data.*
+import com.example.praisewhale.ResponseUserData
+import com.example.praisewhale.ResponselevelData
+import com.example.praisewhale.data.home.ResponseHomePraise
+import com.example.praisewhale.data.home.ResponseDonePraise
+import com.example.praisewhale.data.home.ResponseRecentPraiseTo
 import retrofit2.Call
 import retrofit2.http.*
 
 interface RequestInterface {
-    //최근 칭찬 유저 조회
-    @Headers("Content-Type:application/json")
-    @GET("users-praise")
-    fun getUsersPraise(
-
-    ): Call<ResponseCollectionData>
-
     // 홈 화면 조회
     @Headers("Content-Type:application/json")
     @GET("home")
     fun getPraise(
-    ): Call<ResponseHomeData>
+        @Header("token") token : String
+    ): Call<ResponseHomePraise>
+
+    // 최근 칭찬 유저 조회
+    @Headers("Content-Type:application/json")
+    @GET("praise/target")
+    fun getRecentPraiseTo(
+        @Header("token") token : String
+    ): Call<ResponseRecentPraiseTo>
 
     // 칭찬한 사람 추가
     @Headers("Content-Type:application/json")
-    @POST("users/target")
-    fun postUsers(
-        @Body body: ResponsePraiseTargetData
-    ): Call<ResponsePraiseTargetData>
+    @POST("praise/{praiseId}")
+    fun postPraiseDone(
+        @Header("token") token : String,
+        @Path("praiseId") praiseId : String,
+        @Body praisedName: String
+    ): Call<ResponseDonePraise>
 
     // 칭찬 컬렉션 조회
     @Headers("Content-Type:application/json")
