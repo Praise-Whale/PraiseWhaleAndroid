@@ -17,4 +17,13 @@
         <item name="android:textSize">13sp</item>
         <item name="fontFamily">@font/notosans_regular</item>
     </style>
+
+
+    <style name="signUpText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/brown</item>
+        <item name="android:lineSpacingExtra">-1sp</item>
+    </style>
 </resources>
