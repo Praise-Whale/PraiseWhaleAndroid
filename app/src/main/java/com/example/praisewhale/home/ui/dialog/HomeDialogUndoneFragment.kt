@@ -1,21 +1,19 @@
-package com.example.praisewhale.dialog
+package com.example.praisewhale.home.ui.dialog
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.R
-import com.example.praisewhale.databinding.ActivityMainBinding.inflate
-import com.example.praisewhale.databinding.DialogMainResultBinding
+import com.example.praisewhale.databinding.DialogHomeResultBinding
 import com.example.praisewhale.util.MyApplication
 
 
-class MainDialogUndoneFragment : DialogFragment() {
+class HomeDialogUndoneFragment : DialogFragment() {
 
-    private var _dialogUndoneViewBinding: DialogMainResultBinding? = null
+    private var _dialogUndoneViewBinding: DialogHomeResultBinding? = null
     private val dialogUndoneViewBinding get() = _dialogUndoneViewBinding!!
 
     private val sharedPreferencesKey = "CountNegative"
@@ -26,7 +24,7 @@ class MainDialogUndoneFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _dialogUndoneViewBinding = DialogMainResultBinding.inflate(layoutInflater)
+        _dialogUndoneViewBinding = DialogHomeResultBinding.inflate(layoutInflater)
         return dialogUndoneViewBinding.root
     }
 
@@ -104,9 +102,9 @@ class MainDialogUndoneFragment : DialogFragment() {
     }
 
     class CustomDialogBuilder {
-        private val dialog = MainDialogUndoneFragment()
+        private val dialog = HomeDialogUndoneFragment()
 
-        fun create(): MainDialogUndoneFragment {
+        fun create(): HomeDialogUndoneFragment {
             return dialog
         }
     }

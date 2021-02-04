@@ -2,9 +2,9 @@ package com.example.praisewhale.data
 
 import com.example.praisewhale.ResponseUserData
 import com.example.praisewhale.ResponselevelData
-import com.example.praisewhale.data.home.ResponseHomePraise
-import com.example.praisewhale.data.home.ResponseDonePraise
-import com.example.praisewhale.data.home.ResponseRecentPraiseTo
+import com.example.praisewhale.home.data.ResponseHomePraise
+import com.example.praisewhale.home.data.ResponseDonePraise
+import com.example.praisewhale.home.data.ResponseRecentPraiseTo
 import retrofit2.Call
 import retrofit2.http.*
 

@@ -1,4 +1,4 @@
-package com.example.praisewhale.fragment
+package com.example.praisewhale.home.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.CollectionImpl
-import com.example.praisewhale.data.home.ResponseHomePraise
+import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.databinding.*
-import com.example.praisewhale.dialog.MainDialogDoneFragment
-import com.example.praisewhale.dialog.MainDialogUndoneFragment
+import com.example.praisewhale.home.ui.dialog.HomeDialogDoneFragment
+import com.example.praisewhale.home.ui.dialog.HomeDialogUndoneFragment
 import com.example.praisewhale.util.MyApplication
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,9 +18,9 @@ import retrofit2.Response
 import java.util.*
 
 
-class MainFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private var _mainViewBinding: FragmentMainBinding? = null
+    private var _mainViewBinding: FragmentHomeBinding? = null
     private val mainViewBinding get() = _mainViewBinding!!
     lateinit var praiseIndex: String
 
@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _mainViewBinding = FragmentMainBinding.inflate(layoutInflater)
+        _mainViewBinding = FragmentHomeBinding.inflate(layoutInflater)
         return mainViewBinding.root
     }
 
@@ -49,9 +49,11 @@ class MainFragment : Fragment() {
     }
 
     private fun setListeners() {
-        mainViewBinding.buttonPositive.setOnClickListener(fragmentClickListener)
-        mainViewBinding.buttonNegative.setOnClickListener(fragmentClickListener)
-        mainViewBinding.imageButtonSettings.setOnClickListener(fragmentClickListener)
+        mainViewBinding.apply {
+            buttonPositive.setOnClickListener(fragmentClickListener)
+            buttonNegative.setOnClickListener(fragmentClickListener)
+            imageButtonSettings.setOnClickListener(fragmentClickListener)
+        }
     }
 
     private fun setCurrentDate() {
@@ -74,14 +76,19 @@ class MainFragment : Fragment() {
                 call: Call<ResponseHomePraise>,
                 response: Response<ResponseHomePraise>
             ) {
-                if (response.isSuccessful) {
-                    val praiseData = response.body()!!.data
-                    praiseIndex = praiseData.praiseId.toString()
-                    mainViewBinding.textViewDailyPraise.text = praiseData.dailyPraise
-                    mainViewBinding.textViewPraiseDescription.text = praiseData.praiseDescription
-                } else handlePraiseDataStatusCode(response.body()!!)
+                when (response.isSuccessful) {
+                    true -> setPraiseData(response.body()!!.data)
+                    false -> handlePraiseDataStatusCode(response.body()!!)
+                }
             }
         })
+    }
+
+    private fun setPraiseData(praiseData: ResponseHomePraise.Data) {
+        mainViewBinding.apply {
+            textViewDailyPraise.text = praiseData.dailyPraise
+            textViewPraiseDescription.text = praiseData.praiseDescription
+        }
     }
 
     private fun handlePraiseDataStatusCode(response: ResponseHomePraise) {
@@ -99,28 +106,26 @@ class MainFragment : Fragment() {
     }
 
     private val fragmentClickListener = View.OnClickListener {
-        when (it.id) {
-            mainViewBinding.buttonPositive.id -> {
-                showDialogDone()
-            }
-            mainViewBinding.buttonNegative.id -> {
-                showDialogUndone()
-            }
-            mainViewBinding.imageButtonSettings.id -> {
-                // todo - setting 뷰로 이동
+        mainViewBinding.apply {
+            when (it.id) {
+                buttonPositive.id -> showDialogDone()
+                buttonNegative.id -> showDialogUndone()
+                imageButtonSettings.id -> {
+                    // todo - setting 뷰로 이동
+                }
             }
         }
     }
 
     private fun showDialogDone() {
-        val dialogDone = MainDialogDoneFragment.CustomDialogBuilder()
+        val dialogDone = HomeDialogDoneFragment.CustomDialogBuilder()
             .getPraiseIndex(praiseIndex)
             .create()
         dialogDone.show(parentFragmentManager, dialogDone.tag)
     }
 
     private fun showDialogUndone() {
-        val dialogUndone = MainDialogUndoneFragment.CustomDialogBuilder().create()
+        val dialogUndone = HomeDialogUndoneFragment.CustomDialogBuilder().create()
         dialogUndone.show(parentFragmentManager, dialogUndone.tag)
     }
 

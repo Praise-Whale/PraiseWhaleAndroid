@@ -1,4 +1,4 @@
-package com.example.praisewhale.dialog
+package com.example.praisewhale.home.ui.dialog
 
 import android.os.Bundle
 import android.text.Editable
@@ -15,18 +15,18 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.R
-import com.example.praisewhale.data.home.ResponseDonePraise
-import com.example.praisewhale.data.home.ResponseRecentPraiseTo
-import com.example.praisewhale.databinding.DialogMainDoneBinding
+import com.example.praisewhale.databinding.DialogHomeDoneBinding
+import com.example.praisewhale.home.data.ResponseDonePraise
+import com.example.praisewhale.home.data.ResponseRecentPraiseTo
 import com.example.praisewhale.util.MyApplication
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainDialogDoneFragment : DialogFragment() {
+class HomeDialogDoneFragment : DialogFragment() {
 
-    private var _dialogDoneViewBinding: DialogMainDoneBinding? = null
+    private var _dialogDoneViewBinding: DialogHomeDoneBinding? = null
     private val dialogDoneViewBinding get() = _dialogDoneViewBinding!!
 
     lateinit var praiseIndex: String
@@ -36,7 +36,7 @@ class MainDialogDoneFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _dialogDoneViewBinding = DialogMainDoneBinding.inflate(layoutInflater)
+        _dialogDoneViewBinding = DialogHomeDoneBinding.inflate(layoutInflater)
         return dialogDoneViewBinding.root
     }
 
@@ -216,7 +216,7 @@ class MainDialogDoneFragment : DialogFragment() {
     }
 
     private fun showResultDialog() {
-        val dialogDoneResult = MainDialogDoneResultFragment.CustomDialogBuilder().create()
+        val dialogDoneResult = HomeDialogDoneResultFragment.CustomDialogBuilder().create()
         dialogDoneResult.show(parentFragmentManager, dialogDoneResult.tag)
     }
 
@@ -238,14 +238,14 @@ class MainDialogDoneFragment : DialogFragment() {
     }
 
     class CustomDialogBuilder {
-        private val dialog = MainDialogDoneFragment()
+        private val dialog = HomeDialogDoneFragment()
 
         fun getPraiseIndex(praiseIndex: String): CustomDialogBuilder {
             dialog.praiseIndex = praiseIndex
             return this
         }
 
-        fun create(): MainDialogDoneFragment {
+        fun create(): HomeDialogDoneFragment {
             return dialog
         }
     }
