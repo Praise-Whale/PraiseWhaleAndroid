@@ -14,6 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+<<<<<<< HEAD
+=======
+    <style name="NumberPickerCustomText">
+        <item name="android:textSize">13sp</item>
+        <item name="fontFamily">@font/noto_sans_regular</item>
+    </style>
+>>>>>>> 749fe9ffab338f2b2e153c5f2079638571965655
 
     <style name="signUpText">
         <item name="android:layout_width">wrap_content</item>

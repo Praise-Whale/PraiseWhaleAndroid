@@ -43,9 +43,12 @@ class PraiseLevelFragment : Fragment() {
         val username = MyApplication.mySharedPreferences.getValue("nickName","")
         val whaleName = MyApplication.mySharedPreferences.getValue("whaleName","")
 
+<<<<<<< HEAD
         level_txt.text=username+"님의"
         whalename_txt.text=whaleName
 
+=======
+>>>>>>> 749fe9ffab338f2b2e153c5f2079638571965655
         val token = MyApplication.mySharedPreferences.getValue("token","")
         val call : Call<ResponselevelData> = CollectionImpl.service.getlevelcount(token)
         call.enqueue(object : Callback<ResponselevelData> {

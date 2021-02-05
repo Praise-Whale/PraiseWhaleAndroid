@@ -8,9 +8,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
+<<<<<<< HEAD
 import android.provider.ContactsContract
 import android.util.DisplayMetrics
 import android.util.Log
+=======
+>>>>>>> 749fe9ffab338f2b2e153c5f2079638571965655
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -18,6 +21,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.praisewhale.util.MyApplication
 import kotlinx.android.synthetic.main.activity_setting.*
+<<<<<<< HEAD
 import kotlinx.android.synthetic.main.developer.*
 import kotlinx.android.synthetic.main.fragment_praise_level.*
 import kotlinx.android.synthetic.main.namechange.*
@@ -26,6 +30,8 @@ import kotlinx.android.synthetic.main.time_picker.*
 import java.time.LocalDate
 import java.util.*
 import kotlin.math.min
+=======
+>>>>>>> 749fe9ffab338f2b2e153c5f2079638571965655
 
 class SettingActivity :AppCompatActivity() {
 
@@ -151,11 +157,18 @@ class SettingActivity :AppCompatActivity() {
         }
 
 
+<<<<<<< HEAD
             developer.setOnClickListener {
                 val intent= Intent(this,DeveloperActivity::class.java)
                 startActivity(intent)
 
             }
+=======
+        developer.setOnClickListener {
+            val intent= Intent(this, DeveloperActivity::class.java)
+            startActivity(intent)
+        }
+>>>>>>> 749fe9ffab338f2b2e153c5f2079638571965655
         setting_close_btn.setOnClickListener {
             finish()
         }

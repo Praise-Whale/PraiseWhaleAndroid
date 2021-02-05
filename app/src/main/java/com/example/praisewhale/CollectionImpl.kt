@@ -1,6 +1,6 @@
 package com.example.praisewhale
 
-import com.example.praisewhale.RequestInterface
+import com.example.praisewhale.data.RequestInterface
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -11,5 +11,6 @@ object CollectionImpl {
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-    val service : RequestInterface = retrofit.create(RequestInterface::class.java)
+    val service : RequestInterface = retrofit.create(
+        RequestInterface::class.java)
 }

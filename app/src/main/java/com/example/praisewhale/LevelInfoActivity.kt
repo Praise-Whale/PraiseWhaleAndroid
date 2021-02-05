@@ -9,9 +9,15 @@ class LevelInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_level_info)
 
+<<<<<<< HEAD
         btn_back.setOnClickListener {
             finish()
         }
 
+=======
+        btn_back.setOnClickListener{
+            finish()
+        }
+>>>>>>> 749fe9ffab338f2b2e153c5f2079638571965655
     }
 }

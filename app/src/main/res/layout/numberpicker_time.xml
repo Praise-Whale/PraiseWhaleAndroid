@@ -3,7 +3,6 @@
     android:id="@+id/constraintLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:background="@drawable/popup_box_popup_1"
 
@@ -92,7 +91,7 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/popup_btn_ok"
         android:text="설정"
-        android:fontFamily="@font/notosans_regular"
+        android:fontFamily="@font/noto_sans_regular"
         android:includeFontPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -48,7 +48,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_regular"
+            android:fontFamily="@font/noto_sans_regular"
             android:text="닉네임 변경"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_regular"
+            android:fontFamily="@font/noto_sans_regular"
             android:text="나영"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +86,6 @@
         android:layout_marginTop="5dp"
         android:background="#efefef"
         app:layout_constraintEnd_toEndOf="@+id/nickchange"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/nickchange"
         app:layout_constraintTop_toBottomOf="@+id/nickchange" />
 
@@ -104,7 +103,7 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_regular"
+            android:fontFamily="@font/noto_sans_regular"
             android:text="푸시알림"
             android:textSize="18dp"
 
@@ -116,8 +115,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+<<<<<<< HEAD
             android:fontFamily="@font/notosans_regular"
             android:text="오전 9:00"
+=======
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="오전 9:00(기본) >"
+>>>>>>> 749fe9ffab338f2b2e153c5f2079638571965655
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -125,8 +129,6 @@
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:track="@drawable/switch_selector"
-            android:thumb="@drawable/switch_thumb_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -159,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="개발자 정보"
-            android:fontFamily="@font/notosans_regular"
+            android:fontFamily="@font/noto_sans_regular"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

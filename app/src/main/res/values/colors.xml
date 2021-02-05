@@ -7,9 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<<<<<<< HEAD
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
 
+=======
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+
+
+    <!-- App Color -->
+>>>>>>> 749fe9ffab338f2b2e153c5f2079638571965655
     <color name="cool_blue">#3879d6</color>
     <color name="dodger_blue">#4c88f2</color>
     <color name="brown_grey">#9c9c9c</color>
@@ -29,4 +38,8 @@
     <color name="egg_shell">#ffeec3</color>
     <color name="brown_grey_two">#8a7d6d</color>
     <color name="pale_two">#fff1cc</color>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 749fe9ffab338f2b2e153c5f2079638571965655
 </resources>
