@@ -1,5 +1,6 @@
 package com.example.praisewhale.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.CollectionImpl
+import com.example.praisewhale.LevelInfoActivity
+import com.example.praisewhale.SettingActivity
 import com.example.praisewhale.data.home.ResponseHomePraise
 import com.example.praisewhale.databinding.*
 import com.example.praisewhale.dialog.MainDialogDoneFragment
@@ -108,6 +111,8 @@ class MainFragment : Fragment() {
             }
             mainViewBinding.imageButtonSettings.id -> {
                 // todo - setting 뷰로 이동
+                val intent= Intent(context, SettingActivity::class.java)
+                startActivity(intent)
             }
         }
     }
