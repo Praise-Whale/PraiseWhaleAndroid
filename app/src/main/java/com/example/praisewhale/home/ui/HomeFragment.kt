@@ -8,13 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.CollectionImpl
-<<<<<<< HEAD:app/src/main/java/com/example/praisewhale/home/ui/HomeFragment.kt
 import com.example.praisewhale.home.data.ResponseHomePraise
-=======
-import com.example.praisewhale.LevelInfoActivity
 import com.example.praisewhale.SettingActivity
-import com.example.praisewhale.data.home.ResponseHomePraise
->>>>>>> master:app/src/main/java/com/example/praisewhale/fragment/MainFragment.kt
 import com.example.praisewhale.databinding.*
 import com.example.praisewhale.home.ui.dialog.HomeDialogDoneFragment
 import com.example.praisewhale.home.ui.dialog.HomeDialogUndoneFragment
@@ -84,15 +79,16 @@ class HomeFragment : Fragment() {
                 response: Response<ResponseHomePraise>
             ) {
                 when (response.isSuccessful) {
-                    true -> setPraiseData(response.body()!!.data)
+                    true -> getServerPraiseData(response.body()!!.data)
                     false -> handlePraiseDataStatusCode(response.body()!!)
                 }
             }
         })
     }
 
-    private fun setPraiseData(praiseData: ResponseHomePraise.Data) {
+    private fun getServerPraiseData(praiseData: ResponseHomePraise.Data) {
         mainViewBinding.apply {
+            praiseIndex = praiseData.praiseId.toString()
             textViewDailyPraise.text = praiseData.dailyPraise
             textViewPraiseDescription.text = praiseData.praiseDescription
         }
@@ -113,27 +109,11 @@ class HomeFragment : Fragment() {
     }
 
     private val fragmentClickListener = View.OnClickListener {
-<<<<<<< HEAD:app/src/main/java/com/example/praisewhale/home/ui/HomeFragment.kt
         mainViewBinding.apply {
             when (it.id) {
                 buttonPositive.id -> showDialogDone()
                 buttonNegative.id -> showDialogUndone()
-                imageButtonSettings.id -> {
-                    // todo - setting 뷰로 이동
-                }
-=======
-        when (it.id) {
-            mainViewBinding.buttonPositive.id -> {
-                showDialogDone()
-            }
-            mainViewBinding.buttonNegative.id -> {
-                showDialogUndone()
-            }
-            mainViewBinding.imageButtonSettings.id -> {
-                // todo - setting 뷰로 이동
-                val intent= Intent(context, SettingActivity::class.java)
-                startActivity(intent)
->>>>>>> master:app/src/main/java/com/example/praisewhale/fragment/MainFragment.kt
+                imageButtonSettings.id -> setIntentToSettingActivity()
             }
         }
     }
@@ -148,6 +128,11 @@ class HomeFragment : Fragment() {
     private fun showDialogUndone() {
         val dialogUndone = HomeDialogUndoneFragment.CustomDialogBuilder().create()
         dialogUndone.show(parentFragmentManager, dialogUndone.tag)
+    }
+
+    private fun setIntentToSettingActivity() {
+        val intent = Intent(context, SettingActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onDestroyView() {

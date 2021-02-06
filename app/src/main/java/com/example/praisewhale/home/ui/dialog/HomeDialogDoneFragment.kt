@@ -85,7 +85,6 @@ class HomeDialogDoneFragment : DialogFragment() {
             override fun onFailure(call: Call<ResponseRecentPraiseTo>, t: Throwable) {
                 Log.d("tag", t.localizedMessage!!)
             }
-
             override fun onResponse(
                 call: Call<ResponseRecentPraiseTo>,
                 response: Response<ResponseRecentPraiseTo>
@@ -97,6 +96,7 @@ class HomeDialogDoneFragment : DialogFragment() {
     }
 
     private fun setRecentPraiseTo(listRecentPraiseTo: List<ResponseRecentPraiseTo.Name>) {
+        Log.d("TAG", "setRecentPraiseTo: ${listRecentPraiseTo.size}")
         when (listRecentPraiseTo.size) {
             1 -> {
                 dialogDoneViewBinding.apply {
@@ -176,7 +176,6 @@ class HomeDialogDoneFragment : DialogFragment() {
     private fun saveServerPraiseData(target: String) {
         val call: Call<ResponseDonePraise> = CollectionImpl.service.postPraiseDone(
             MyApplication.mySharedPreferences.getValue("token", ""),
-            praiseIndex,
             target
         )
         call.enqueue(object : Callback<ResponseDonePraise> {

@@ -28,7 +28,6 @@ interface RequestInterface {
     @POST("praise/{praiseId}")
     fun postPraiseDone(
         @Header("token") token : String,
-        @Path("praiseId") praiseId : String,
         @Body praisedName: String
     ): Call<ResponseDonePraise>
 
