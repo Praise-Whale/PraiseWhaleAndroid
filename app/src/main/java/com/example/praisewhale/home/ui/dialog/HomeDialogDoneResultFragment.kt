@@ -1,19 +1,18 @@
-package com.example.praisewhale.dialog
+package com.example.praisewhale.home.ui.dialog
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.R
-import com.example.praisewhale.databinding.DialogMainResultBinding
+import com.example.praisewhale.databinding.DialogHomeResultBinding
 
 
-class MainDialogDoneResultFragment : DialogFragment() {
+class HomeDialogDoneResultFragment : DialogFragment() {
 
-    private var _dialogResultViewBinding: DialogMainResultBinding? = null
+    private var _dialogResultViewBinding: DialogHomeResultBinding? = null
     private val dialogResultViewBinding get() = _dialogResultViewBinding!!
 
 
@@ -21,7 +20,7 @@ class MainDialogDoneResultFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _dialogResultViewBinding = DialogMainResultBinding.inflate(layoutInflater)
+        _dialogResultViewBinding = DialogHomeResultBinding.inflate(layoutInflater)
         return dialogResultViewBinding.root
     }
 
@@ -65,9 +64,9 @@ class MainDialogDoneResultFragment : DialogFragment() {
     }
 
     class CustomDialogBuilder {
-        private val dialog = MainDialogDoneResultFragment()
+        private val dialog = HomeDialogDoneResultFragment()
 
-        fun create(): MainDialogDoneResultFragment {
+        fun create(): HomeDialogDoneResultFragment {
             return dialog
         }
     }

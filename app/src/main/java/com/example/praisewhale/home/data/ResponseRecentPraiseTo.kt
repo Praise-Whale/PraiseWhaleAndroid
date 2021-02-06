@@ -1,4 +1,4 @@
-package com.example.praisewhale.data.home
+package com.example.praisewhale.home.data
 
 import com.google.gson.annotations.SerializedName
 
