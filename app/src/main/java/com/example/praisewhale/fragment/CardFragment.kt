@@ -2,8 +2,6 @@ package com.example.praisewhale.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.DatePickerDialog
-import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -11,29 +9,19 @@ import android.graphics.drawable.InsetDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.ImageButton
 import android.widget.NumberPicker
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.praisewhale.*
-import kotlinx.android.synthetic.main.dialog_positive.*
 import kotlinx.android.synthetic.main.fragment_card.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.text.NumberFormat
 import java.time.LocalDate
-import java.util.*
 
 
 class CardFragment : Fragment() {

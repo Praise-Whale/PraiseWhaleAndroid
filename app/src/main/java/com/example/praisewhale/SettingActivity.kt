@@ -8,20 +8,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_setting.*
-import kotlinx.android.synthetic.main.developer.*
-import kotlinx.android.synthetic.main.fragment_praise_level.*
-import kotlinx.android.synthetic.main.namechange.*
-import kotlinx.android.synthetic.main.time_picker.*
-import java.time.LocalDate
-import java.util.*
-import kotlin.math.min
 
 class SettingActivity :AppCompatActivity() {
 
