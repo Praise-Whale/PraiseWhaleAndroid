@@ -188,8 +188,8 @@ class HomeDialogDoneFragment : DialogFragment() {
                 response: Response<ResponseDonePraise>
             ) {
                 // todo - 에러 해결해야함
-//                if (response.isSuccessful) checkLevelUp(response.body()!!.data)
-//                else handleSaveServerPraiseStatusCode(response.body()!!)
+                if (response.isSuccessful) checkLevelUp(response.body()!!.data)
+                else handleSaveServerPraiseStatusCode(response.body()!!)
             }
         })
     }
