@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.DialogHomeDoneBinding
+import com.example.praisewhale.home.data.RequestPraiseDone
 import com.example.praisewhale.home.data.ResponseDonePraise
 import com.example.praisewhale.home.data.ResponseRecentPraiseTo
 import com.example.praisewhale.util.MyApplication
@@ -29,7 +30,7 @@ class HomeDialogDoneFragment : DialogFragment() {
     private var _dialogDoneViewBinding: DialogHomeDoneBinding? = null
     private val dialogDoneViewBinding get() = _dialogDoneViewBinding!!
 
-    lateinit var praiseIndex: String
+    lateinit var praiseId: String
 
 
     override fun onCreateView(
@@ -167,8 +168,6 @@ class HomeDialogDoneFragment : DialogFragment() {
             }
             dialogDoneViewBinding.buttonConfirm.id -> {
                 saveServerPraiseData(dialogDoneViewBinding.editTextPraiseTo.text.toString())
-                showResultDialog()
-                dialog!!.dismiss()
             }
         }
     }
@@ -176,7 +175,8 @@ class HomeDialogDoneFragment : DialogFragment() {
     private fun saveServerPraiseData(target: String) {
         val call: Call<ResponseDonePraise> = CollectionImpl.service.postPraiseDone(
             MyApplication.mySharedPreferences.getValue("token", ""),
-            target
+            praiseId,
+            RequestPraiseDone(target)
         )
         call.enqueue(object : Callback<ResponseDonePraise> {
             override fun onFailure(call: Call<ResponseDonePraise>, t: Throwable) {
@@ -187,9 +187,12 @@ class HomeDialogDoneFragment : DialogFragment() {
                 call: Call<ResponseDonePraise>,
                 response: Response<ResponseDonePraise>
             ) {
-                // todo - 에러 해결해야함
-//                if (response.isSuccessful) checkLevelUp(response.body()!!.data)
-//                else handleSaveServerPraiseStatusCode(response.body()!!)
+                if (response.isSuccessful) {
+                    checkLevelUp(response.body()!!.data)
+                    showResultDialog()
+                    dialog!!.dismiss()
+                }
+                else handleSaveServerPraiseStatusCode(response, target)
             }
         })
     }
@@ -200,16 +203,14 @@ class HomeDialogDoneFragment : DialogFragment() {
         ).show()
     }
 
-    private fun handleSaveServerPraiseStatusCode(response: ResponseDonePraise) {
-        when (response.status) {
+    private fun handleSaveServerPraiseStatusCode(response: Response<ResponseDonePraise>, target: String) {
+        when (response.code()) {
             400 -> {
                 // todo - 토큰 값 갱신 후 재요청
-                Log.d("TAG", "handleStatusCode: 토큰 값 갱신")
-                saveServerPraiseData(dialogDoneViewBinding.editTextPraiseTo.text.toString())
+                // saveServerPraiseData(target)
             }
-            // todo - 각 에러 코드별 처리..
-            else -> {
-                Log.d("TAG", "handleStatusCode: ${response.status}, ${response.message}")
+            else -> { // todo - 각 에러 코드별 처리..
+                Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
             }
         }
     }
@@ -239,8 +240,8 @@ class HomeDialogDoneFragment : DialogFragment() {
     class CustomDialogBuilder {
         private val dialog = HomeDialogDoneFragment()
 
-        fun getPraiseIndex(praiseIndex: String): CustomDialogBuilder {
-            dialog.praiseIndex = praiseIndex
+        fun getPraiseIndex(praiseId: String): CustomDialogBuilder {
+            dialog.praiseId = praiseId
             return this
         }
 
