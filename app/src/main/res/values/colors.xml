@@ -32,5 +32,7 @@
     <color name="egg_shell">#ffeec3</color>
     <color name="brown_grey_two">#8a7d6d</color>
     <color name="pale_two">#fff1cc</color>
+    <color name="pale_three">#fff4d7</color>
+    <color name="dark_cream">#ffe39b</color>
 
 </resources>
