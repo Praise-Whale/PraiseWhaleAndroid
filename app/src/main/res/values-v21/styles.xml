@@ -21,6 +21,7 @@
         <item name="android:textSize">13sp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/dark_peach</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -29,6 +30,7 @@
         <item name="android:textSize">13sp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/brown</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -37,6 +39,7 @@
         <item name="android:textSize">13sp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/very_light_pink_two</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -44,6 +47,7 @@
         <item name="android:fontFamily">@font/noto_sans_regular</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -52,6 +56,7 @@
         <item name="android:textSize">13sp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/brown_grey</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -60,6 +65,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/brown_grey</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -68,6 +74,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -76,6 +83,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/greyish_brown</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -84,6 +92,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/greyish_brown</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -92,6 +101,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/greyish_brown</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -100,6 +110,7 @@
         <item name="android:textSize">22sp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/greyish_brown</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
@@ -110,6 +121,7 @@
         <item name="android:textSize">20sp</item>
         <item name="android:letterSpacing">0</item>
         <item name="android:textColor">@color/brown</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.5</item>
     </style>
 
