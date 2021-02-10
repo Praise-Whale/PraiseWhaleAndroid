@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
 
     private var _mainViewBinding: FragmentHomeBinding? = null
     private val mainViewBinding get() = _mainViewBinding!!
-    lateinit var praiseIndex: String
+    private lateinit var praiseId: String
 
 
     override fun onCreateView(
@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
 
     private fun getServerPraiseData(praiseData: ResponseHomePraise.Data) {
         mainViewBinding.apply {
-            praiseIndex = praiseData.praiseId.toString()
+            praiseId = praiseData.praiseId.toString()
             textViewDailyPraise.text = praiseData.dailyPraise
             textViewPraiseDescription.text = praiseData.praiseDescription
         }
@@ -120,7 +120,7 @@ class HomeFragment : Fragment() {
 
     private fun showDialogDone() {
         val dialogDone = HomeDialogDoneFragment.CustomDialogBuilder()
-            .getPraiseIndex(praiseIndex)
+            .getPraiseIndex(praiseId)
             .create()
         dialogDone.show(parentFragmentManager, dialogDone.tag)
     }
