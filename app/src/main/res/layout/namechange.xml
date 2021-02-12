@@ -42,18 +42,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/editTextTextPersonName"
         android:layout_width="220dp"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/nick_change_box_nickname"
         android:layout_marginRight="40dp"
-        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" >
+
+
+        <EditText
+            android:id="@+id/editnickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="textPersonName"
+            android:hint="닉네임을 7자 이내로 입력해 주세요"
+            android:textSize="12sp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/delete_btn"
+            android:visibility="invisible"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/btn_delete"
+            app:layout_constraintBottom_toBottomOf="@+id/editnickname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editnickname" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/change_btn"
@@ -69,19 +94,6 @@
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
-
-    <Button
-        android:id="@+id/delete_btn"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/btn_delete"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.428" />
-
     <TextView
         android:id="@+id/textcount"
         android:layout_width="wrap_content"
