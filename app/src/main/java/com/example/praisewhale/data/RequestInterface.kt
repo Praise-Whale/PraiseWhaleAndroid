@@ -4,6 +4,7 @@ import com.example.praisewhale.ResponseUserData
 import com.example.praisewhale.ResponselevelData
 import com.example.praisewhale.data.home.ResponseHomePraise
 import com.example.praisewhale.data.home.ResponseDonePraise
+import com.example.praisewhale.data.home.ResponseNickChange
 import com.example.praisewhale.data.home.ResponseRecentPraiseTo
 import retrofit2.Call
 import retrofit2.http.*
@@ -69,4 +70,13 @@ interface RequestInterface {
         @Header("token") token : String
 
     ) : Call<ResponselevelData>
+
+    // 닉네임 변경
+    @Headers("Content-Type:application/json")
+    @PUT("users/nickname")
+    fun nickchange(
+        @Header("token") token : String,
+        @Body body :RequestNickChange
+    ) : Call<ResponseNickChange>
+
 }

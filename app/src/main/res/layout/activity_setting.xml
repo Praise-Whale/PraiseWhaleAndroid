@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:fontFamily="@font/notosans_semibold"
+        android:includeFontPadding="false"
         android:layout_marginStart="42dp"
         android:layout_marginLeft="42dp"
         android:layout_marginTop="107dp"
@@ -49,18 +50,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
             android:text="닉네임 변경"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/setting_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_regular"
             android:text="나영"
-
+            android:textColor="#503000"
+            android:textSize="13sp"
+            android:includeFontPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -105,8 +109,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_regular"
             android:text="푸시알림"
-            android:textSize="18dp"
-
+            android:textSize="18sp"
+            android:includeFontPadding="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,7 +118,8 @@
             android:id="@+id/clock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textColor="#503000"
+            android:includeFontPadding="false"
             android:fontFamily="@font/noto_sans_regular"
             android:text="오전 9:00(기본) >"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -157,7 +162,8 @@
             android:layout_height="wrap_content"
             android:text="개발자 정보"
             android:fontFamily="@font/noto_sans_regular"
-            android:textSize="18dp"
+            android:textSize="18sp"
+            android:includeFontPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

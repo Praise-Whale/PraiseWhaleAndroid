@@ -8,12 +8,26 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import com.example.praisewhale.data.RequestNickChange
+import com.example.praisewhale.data.ResponseData
+import com.example.praisewhale.data.home.ResponseNickChange
+import com.example.praisewhale.databinding.ActivitySettingBinding
+import com.example.praisewhale.signup.SignUpActivity
+import com.example.praisewhale.signup.WhaleNameFragment
+import com.example.praisewhale.util.MyApplication
+import com.example.praisewhale.util.textChangedListener
 import kotlinx.android.synthetic.main.activity_setting.*
+import kotlinx.android.synthetic.main.fragment_praise_level.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SettingActivity :AppCompatActivity() {
 
@@ -27,9 +41,16 @@ class SettingActivity :AppCompatActivity() {
     lateinit var mDisplayedValuesMin    : MutableList<String>
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
+
+
+        val nickname=MyApplication.mySharedPreferences.getValue("nickName","")
+
+
+        setting_nickname.text=nickname
 
 
         nickchange.setOnClickListener {
@@ -43,6 +64,73 @@ class SettingActivity :AppCompatActivity() {
             close.setOnClickListener {
                 dialog.dismiss()
                 dialog.cancel()
+            }
+            val nick_modify: Button = mView.findViewById(R.id.change_btn)
+            val deletebtn: Button = mView.findViewById(R.id.delete_btn)
+
+            val nick_modify_edit: EditText = mView.findViewById(R.id.editnickname)
+
+            nick_modify_edit.textChangedListener {
+                deletebtn.isVisible=true
+            }
+
+            deletebtn.setOnClickListener {
+
+                nick_modify_edit.setText("")
+            }
+            nick_modify.setOnClickListener {
+                /*val call: Call<ResponseData> = CollectionImpl.service.nicknameCheck(signUpViewModel.userName.value!!)
+                call.enqueue(object : Callback<ResponseData> {
+                    override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                        Log.d("response", t.localizedMessage!!)
+                    }
+                    override fun onResponse(
+                        call: Call<ResponseData>,
+                        response: Response<ResponseData>
+                    ) {
+                        Log.d("response", response.body().toString())
+                        response.takeIf { it.isSuccessful }
+                            ?.body()
+                            ?.let {
+                                (activity as SignUpActivity).replaceFragment(WhaleNameFragment())
+                            } ?: signUpViewModel.nameFail()
+                    }
+                })*/
+                val token = MyApplication.mySharedPreferences.getValue("token","")
+
+                val body=RequestNickChange(nickName =nickname ,newNickName = nick_modify_edit.toString())
+                val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token,body)
+                call.enqueue(object : Callback<ResponseNickChange> {
+                    override fun onFailure(call: Call<ResponseNickChange>, t: Throwable) {
+                        Log.d("tag", t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<ResponseNickChange>,
+                        response: Response<ResponseNickChange>
+                    ) {
+
+                        response.takeIf { it.isSuccessful }
+
+                            ?.body()
+                            ?.let {
+
+                                    it ->
+                                Log.d("닉네임변경완료","닉네임변경완료")
+                                //MyApplication.mySharedPreferences.setValue("alarmtime")
+
+
+
+                            }
+                    }
+                })
+
+
+                    setting_nickname.text=nick_modify_edit.text
+                    dialog.dismiss()
+                    dialog.cancel()
+
+
             }
 
             val color = ColorDrawable(Color.TRANSPARENT)
@@ -89,8 +177,21 @@ class SettingActivity :AppCompatActivity() {
             val ny1:NumberPicker=mView2.findViewById(R.id.numberPicker2)
             val ny2:NumberPicker=mView2.findViewById(R.id.numberPicker3)
 
+            val btnok:Button=mView2.findViewById(R.id.button_ok_time)
+            val btnalarmcancel:Button=mView2.findViewById(R.id.button_time_cancel)
+
+            btnalarmcancel.setOnClickListener {
+                dialog2.dismiss()
+                dialog2.cancel()
+            }
+
 
             val list = resources.getStringArray(R.array.ampm)
+
+            ny.removeDivider()
+            ny1.removeDivider()
+            ny2.removeDivider()
+
 
             ny.minValue=0
             ny.maxValue=list.size-1
@@ -108,6 +209,30 @@ class SettingActivity :AppCompatActivity() {
             ny1.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
 
 
+            btnok.setOnClickListener {
+
+                if ((ny2.value.toString()).length < 2) {
+                    if (list[ny.value] == "오전") {
+                        clock.text =list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
+                        MyApplication.mySharedPreferences.setValue("alarmtime",list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString())
+
+                    } else {
+                        val clock_ = ny1.value + 12
+                        clock.text =list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
+
+                    }
+                } else {
+                    if (list[ny.value] == "오후") {
+                        val clock_ = ny1.value + 12
+                        clock.text =list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
+
+                    } else {
+                        clock.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
+
+                    }
+                }
+                dialog2.dismiss()
+            }
 
             val color = ColorDrawable(Color.TRANSPARENT)
             // Dialog 크기 설정
