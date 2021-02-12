@@ -93,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="최근 칭찬한 사림"
+        android:text="최근 칭찬한 사람"
         app:layout_constraintStart_toStartOf="@+id/editText_praiseTo"
         app:layout_constraintTop_toBottomOf="@+id/editText_praiseTo" />
 
