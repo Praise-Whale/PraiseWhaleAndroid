@@ -99,7 +99,7 @@ class SettingActivity :AppCompatActivity() {
                 })*/
                 val token = MyApplication.mySharedPreferences.getValue("token","")
 
-                val body=RequestNickChange(nickName =nickname ,newNickName = nick_modify_edit.toString())
+                val body=RequestNickChange(nickName =nickname ,newNickName = nick_modify_edit.text.toString())
                 val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token,body)
                 call.enqueue(object : Callback<ResponseNickChange> {
                     override fun onFailure(call: Call<ResponseNickChange>, t: Throwable) {
@@ -133,6 +133,7 @@ class SettingActivity :AppCompatActivity() {
                     }
                 })
 
+                MyApplication.mySharedPreferences.setValue("nickName",nick_modify_edit.text.toString())
 
                     setting_nickname.text=nick_modify_edit.text
                     dialog.dismiss()
@@ -259,6 +260,7 @@ class SettingActivity :AppCompatActivity() {
             startActivity(intent)
         }
         setting_close_btn.setOnClickListener {
+            onBackPressed()
             finish()
         }
 
