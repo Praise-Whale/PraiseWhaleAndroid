@@ -89,6 +89,7 @@ class WhaleNameFragment : Fragment() {
                         MyApplication.mySharedPreferences.setValue("nickName", body.nickName)
                         MyApplication.mySharedPreferences.setValue("whaleName", body.whaleName)
                         MyApplication.mySharedPreferences.setValue("token", it.data.accessToken)
+                        MyApplication.mySharedPreferences.setValue("refreshToken", it.data.refreshToken)
                         (activity as SignUpActivity).replaceFragment(SignUpFragment())
                     } ?: Toast.makeText(view!!.context, "error", Toast.LENGTH_SHORT).show()
             }

@@ -61,6 +61,7 @@ class SplashActivity : AppCompatActivity(){
                     ?.body()
                     ?.let {
                         MyApplication.mySharedPreferences.setValue("token", it.data.accessToken)
+                        MyApplication.mySharedPreferences.setValue("refreshToken", it.data.refreshToken)
                         startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                     } ?: Toast.makeText(this@SplashActivity, "error", Toast.LENGTH_SHORT).show()
             }
