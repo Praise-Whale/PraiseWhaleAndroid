@@ -19,6 +19,7 @@ import com.example.praisewhale.data.RequestNickChange
 import com.example.praisewhale.data.ResponseData
 import com.example.praisewhale.data.home.ResponseNickChange
 import com.example.praisewhale.databinding.ActivitySettingBinding
+import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.signup.SignUpActivity
 import com.example.praisewhale.signup.WhaleNameFragment
 import com.example.praisewhale.util.MyApplication
@@ -109,7 +110,12 @@ class SettingActivity :AppCompatActivity() {
                         call: Call<ResponseNickChange>,
                         response: Response<ResponseNickChange>
                     ) {
+                        when (response.body()?.status) {
 
+                            400 ->Toast.makeText(applicationContext,"닉네임이 중복합니다",Toast.LENGTH_SHORT).show()
+
+
+                        }
                         response.takeIf { it.isSuccessful }
 
                             ?.body()
@@ -118,6 +124,8 @@ class SettingActivity :AppCompatActivity() {
                                     it ->
                                 Log.d("닉네임변경완료","닉네임변경완료")
                                 //MyApplication.mySharedPreferences.setValue("alarmtime")
+
+
 
 
 
