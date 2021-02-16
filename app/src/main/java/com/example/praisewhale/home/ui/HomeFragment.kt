@@ -78,10 +78,10 @@ class HomeFragment : Fragment() {
                 call: Call<ResponseHomePraise>,
                 response: Response<ResponseHomePraise>
             ) {
-                when (response.isSuccessful) {
+               /* when (response.isSuccessful) {
                     true -> getServerPraiseData(response.body()!!.data)
                     false -> handlePraiseDataStatusCode(response.body()!!)
-                }
+                }*/
             }
         })
     }
