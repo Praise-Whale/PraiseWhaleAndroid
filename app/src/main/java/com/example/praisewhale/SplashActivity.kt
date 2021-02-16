@@ -11,17 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.praisewhale.data.RequestSignIn
-import com.example.praisewhale.data.RequestSignUp
 import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.signup.SignUpActivity
-import com.example.praisewhale.signup.SignUpFragment
 import com.example.praisewhale.util.MyApplication
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
-
-import javax.xml.datatype.DatatypeConstants.DURATION
 
 class SplashActivity : AppCompatActivity(){
 
@@ -63,6 +58,7 @@ class SplashActivity : AppCompatActivity(){
                         MyApplication.mySharedPreferences.setValue("token", it.data.accessToken)
                         MyApplication.mySharedPreferences.setValue("refreshToken", it.data.refreshToken)
                         startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                        finish()
                     } ?: Toast.makeText(this@SplashActivity, "error", Toast.LENGTH_SHORT).show()
             }
         })
