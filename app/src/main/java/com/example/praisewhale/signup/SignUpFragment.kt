@@ -1,19 +1,17 @@
 package com.example.praisewhale.signup
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.praisewhale.MainActivity
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.FragmentSignUpBinding
-import com.example.praisewhale.databinding.FragmentUserNameBinding
 
 class SignUpFragment : Fragment() {
 
@@ -37,6 +35,7 @@ class SignUpFragment : Fragment() {
         binding.btnNext.setOnClickListener{
             val intent = Intent(requireActivity(), MainActivity::class.java)
             startActivity(intent)
+            requireActivity().finish()
         }
     }
 }
