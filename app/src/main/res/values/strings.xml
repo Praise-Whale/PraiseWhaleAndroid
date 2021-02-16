@@ -34,6 +34,8 @@
     <string name="level4">신나게 춤추는 고래</string>
     <string name="level_count_4">100번</string>
     <string name="level5">춤신 춤왕 만렙 고래</string>
+    <string name="alarm_content">지금 바로 오늘의 칭찬을 확인하고, 실천해보세요!</string>
+    <string name="alarm_title">오늘의 칭찬이 도착했어요</string>
 
     <string-array name="ampm">
         <item>오전</item>
