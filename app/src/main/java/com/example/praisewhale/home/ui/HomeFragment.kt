@@ -35,15 +35,23 @@ class HomeFragment : Fragment() {
         return mainViewBinding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        setUserInfo()
+        setListeners()
+        setCurrentDate()
+        getServerPraiseData()
+    }
+
     // ui 작업 수행
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+   /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setUserInfo()
         setListeners()
         setCurrentDate()
         getServerPraiseData()
-    }
+    }*/
 
     private fun setUserInfo() {
         val userName = MyApplication.mySharedPreferences.getValue("nickName", "")
@@ -78,10 +86,10 @@ class HomeFragment : Fragment() {
                 call: Call<ResponseHomePraise>,
                 response: Response<ResponseHomePraise>
             ) {
-                when (response.isSuccessful) {
+               /* when (response.isSuccessful) {
                     true -> getServerPraiseData(response.body()!!.data)
                     false -> handlePraiseDataStatusCode(response.body()!!)
-                }
+                }*/
             }
         })
     }
