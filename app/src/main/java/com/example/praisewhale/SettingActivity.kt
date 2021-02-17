@@ -260,6 +260,14 @@ class SettingActivity :AppCompatActivity() {
             finish()
         }
 
+        layout_ask.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.email_receiver)))
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_title))
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_content))
+            intent.type = "message/rfc822"
+            startActivity(intent)
+        }
         }
 
 
