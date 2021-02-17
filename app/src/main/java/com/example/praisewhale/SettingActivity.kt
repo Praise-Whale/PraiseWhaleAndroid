@@ -251,7 +251,7 @@ class SettingActivity :AppCompatActivity() {
         }
 
 
-        btn_developer.setOnClickListener {
+        layout_developer.setOnClickListener {
             val intent= Intent(this, DeveloperActivity::class.java)
             startActivity(intent)
         }
