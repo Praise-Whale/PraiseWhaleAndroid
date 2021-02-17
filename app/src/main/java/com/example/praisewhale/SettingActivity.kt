@@ -1,7 +1,6 @@
 package com.example.praisewhale
 
 import android.app.AlertDialog
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
@@ -12,20 +11,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.NumberPicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.praisewhale.data.RequestNickChange
-import com.example.praisewhale.data.ResponseData
 import com.example.praisewhale.data.home.ResponseNickChange
-import com.example.praisewhale.databinding.ActivitySettingBinding
-import com.example.praisewhale.home.data.ResponseHomePraise
-import com.example.praisewhale.signup.SignUpActivity
-import com.example.praisewhale.signup.WhaleNameFragment
 import com.example.praisewhale.util.MyApplication
 import com.example.praisewhale.util.textChangedListener
 import kotlinx.android.synthetic.main.activity_setting.*
-import kotlinx.android.synthetic.main.fragment_praise_level.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,10 +47,10 @@ class SettingActivity :AppCompatActivity() {
         val nickname=MyApplication.mySharedPreferences.getValue("nickName","")
 
 
-        setting_nickname.text=nickname
+        tv_nickname.text=nickname
 
 
-        nickchange.setOnClickListener {
+        layout_change_nickname.setOnClickListener {
 
            /* val dlg = NicknameDialog(this)
             dlg.start()*/
@@ -135,7 +131,7 @@ class SettingActivity :AppCompatActivity() {
 
                 MyApplication.mySharedPreferences.setValue("nickName",nick_modify_edit.text.toString())
 
-                    setting_nickname.text=nick_modify_edit.text
+                    tv_nickname.text=nick_modify_edit.text
                     dialog.dismiss()
                     dialog.cancel()
 
@@ -171,7 +167,7 @@ class SettingActivity :AppCompatActivity() {
                 .show()*/
         }
 
-        alarm.setOnClickListener {
+        layout_alarm.setOnClickListener {
 
          /* val tdlg=TimepickerDialog2(this)
             tdlg.start()*/
@@ -222,21 +218,21 @@ class SettingActivity :AppCompatActivity() {
 
                 if ((ny2.value.toString()).length < 2) {
                     if (list[ny.value] == "오전") {
-                        clock.text =list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
+                        tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
                         MyApplication.mySharedPreferences.setValue("alarmtime",list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString())
 
                     } else {
                         val clock_ = ny1.value + 12
-                        clock.text =list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
+                        tv_alarm_time.text =list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
 
                     }
                 } else {
                     if (list[ny.value] == "오후") {
                         val clock_ = ny1.value + 12
-                        clock.text =list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
+                        tv_alarm_time.text =list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
 
                     } else {
-                        clock.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
+                        tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
 
                     }
                 }
@@ -255,11 +251,11 @@ class SettingActivity :AppCompatActivity() {
         }
 
 
-        developer.setOnClickListener {
+        btn_developer.setOnClickListener {
             val intent= Intent(this, DeveloperActivity::class.java)
             startActivity(intent)
         }
-        setting_close_btn.setOnClickListener {
+        btn_close.setOnClickListener {
             onBackPressed()
             finish()
         }

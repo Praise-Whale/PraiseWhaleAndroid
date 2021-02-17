@@ -37,6 +37,14 @@
     <string name="alarm_content">지금 바로 오늘의 칭찬을 확인하고, 실천해보세요!</string>
     <string name="alarm_title">오늘의 칭찬이 도착했어요</string>
 
+    <string name="setting_title">설정</string>
+    <string name="setting_nickname_change">닉네임 변경</string>
+    <string name="setting_push_alarm">푸시알림</string>
+    <string name="setting_asking">문의하기</string>
+    <string name="setting_personal_information">개인정보 처리방침</string>
+    <string name="setting_service">서비스 이용약관</string>
+    <string name="setting_developer_information">개발자 정보</string>
+
     <string-array name="ampm">
         <item>오전</item>
         <item>오후</item>
