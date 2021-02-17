@@ -45,6 +45,14 @@
     <string name="setting_service">서비스 이용약관</string>
     <string name="setting_developer_information">개발자 정보</string>
 
+    <string name="email_title">칭찬할고래 문의</string>
+    <string name="email_content">
+        1. 문의 유형 ( 문의, 버그 제보, 탈퇴하기, 기타) :\n
+        2. 회원 닉네임 (필요시 기입) :\n
+        3. 문의 내용 :\n
+        문의하신 사항은 칭찬할고래팀이 신속하게 처리하겠습니다. 감사합니다 :)</string>
+    <string name="email_receiver">Co.Goraedan@gmail.com</string>
+
     <string-array name="ampm">
         <item>오전</item>
         <item>오후</item>
