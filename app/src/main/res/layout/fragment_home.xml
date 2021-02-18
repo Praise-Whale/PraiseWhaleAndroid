@@ -9,19 +9,17 @@
 
     <TextView
         android:id="@+id/textView_userName"
-        style="@style/noto_sans_medium_16sp_greyish_brown"
+        style="@style/noto_sans_medium_16dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="64dp"
-        android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/button_date"
+        tools:text="선규님을 위한" />
 
     <TextView
-        android:id="@+id/textView_mainTitle"
-        style="@style/noto_sans_semi_bold_22sp_greyish_brown"
+        android:id="@+id/textView_homeTitle"
+        style="@style/noto_sans_semi_bold_22dp_greyish_brown"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -33,10 +31,11 @@
         android:id="@+id/view_underline"
         android:layout_width="0dp"
         android:layout_height="2dp"
+        android:layout_marginTop="4dp"
         android:background="@color/sand_yellow"
-        app:layout_constraintEnd_toEndOf="@+id/textView_mainTitle"
-        app:layout_constraintStart_toStartOf="@+id/textView_mainTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textView_mainTitle" />
+        app:layout_constraintEnd_toEndOf="@+id/textView_homeTitle"
+        app:layout_constraintStart_toStartOf="@+id/textView_homeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textView_homeTitle" />
 
     <ImageButton
         android:id="@+id/imageButton_settings"
@@ -53,118 +52,141 @@
 
     <Button
         android:id="@+id/button_date"
-        style="@style/noto_sans_regular_13sp_brown"
+        style="@style/noto_sans_regular_13dp_brown"
         android:layout_width="78dp"
         android:layout_height="32dp"
         android:layout_marginEnd="42dp"
-        android:layout_marginRight="42dp"
         android:background="@drawable/background_rectangle_radius_30"
         android:backgroundTint="@color/colorWhite"
         android:gravity="center"
-        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_userName" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_settings"
+        tools:text="12월 22일" />
 
+    <!-- 칭찬 카드 영역 -->
     <ImageView
         android:id="@+id/imageView_cardShadow"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginVertical="20dp"
         android:background="@drawable/shadow_rectangle_radius_15"
-        app:layout_constraintBottom_toTopOf="@+id/imageView_tipBox"
+        app:layout_constraintBottom_toTopOf="@+id/imageView_dolphin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_underline" />
 
-    <!-- 칭찬 카드 영역 -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout_mainCard"
+        android:id="@+id/imageView_cardBackground"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/background_rectangle_radius_15_stroke"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_cardShadow"
         app:layout_constraintEnd_toEndOf="@+id/button_date"
         app:layout_constraintStart_toStartOf="@+id/view_underline"
-        app:layout_constraintTop_toBottomOf="@+id/view_underline">
+        app:layout_constraintTop_toTopOf="@+id/imageView_cardShadow">
 
         <ImageView
-            android:id="@+id/imageView_mainCardFrame"
+            android:id="@+id/imageView_cardFrame"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginHorizontal="18dp"
             android:layout_marginTop="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginRight="18dp"
-            android:background="@drawable/main_img_card"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout_mainCard"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout_mainCard"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout_mainCard" />
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/background_rectangle_radius_12_stroke_3"
+            app:layout_constraintBottom_toTopOf="@+id/button_negative"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_cardBackground"
+            app:layout_constraintStart_toStartOf="@+id/imageView_cardBackground"
+            app:layout_constraintTop_toTopOf="@+id/imageView_cardBackground" />
+
+        <ImageView
+            android:id="@+id/imageView_cardFrameOval_01"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/background_oval"
+            app:layout_constraintStart_toStartOf="@id/imageView_cardFrame"
+            app:layout_constraintTop_toTopOf="@id/imageView_cardFrame" />
+
+        <ImageView
+            android:id="@+id/imageView_cardFrameOval_02"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/background_oval"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame"
+            app:layout_constraintTop_toTopOf="@id/imageView_cardFrame" />
+
+        <ImageView
+            android:id="@+id/imageView_cardFrameOval_03"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/background_oval"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView_cardFrame"
+            app:layout_constraintStart_toStartOf="@id/imageView_cardFrame" />
+
+        <ImageView
+            android:id="@+id/imageView_cardFrameOval_04"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/background_oval"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView_cardFrame"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame" />
 
         <TextView
             android:id="@+id/textView_dailyPraise"
-            style="@style/gmarket_sans_medium_20sp_brown"
+            style="@style/gmarket_sans_medium_20dp_brown"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_margin="32dp"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="3"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="@+id/imageView_mainCardFrame"
-            app:layout_constraintEnd_toEndOf="@+id/imageView_mainCardFrame"
-            app:layout_constraintStart_toStartOf="@+id/imageView_mainCardFrame"
-            app:layout_constraintTop_toTopOf="@+id/imageView_mainCardFrame" />
+            app:layout_constraintBottom_toBottomOf="@+id/imageView_cardFrame"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame"
+            app:layout_constraintStart_toStartOf="@+id/imageView_cardFrame"
+            app:layout_constraintTop_toTopOf="@+id/imageView_cardFrame"
+            tools:text="네가 내 친구라서 참 좋아" />
 
         <Button
             android:id="@+id/button_negative"
-            style="@style/noto_sans_regular_15sp_black"
+            style="@style/noto_sans_regular_15dp_black"
             android:layout_width="0dp"
             android:layout_height="44dp"
-            android:layout_marginTop="14dp"
             android:layout_marginEnd="6dp"
-            android:layout_marginRight="6dp"
             android:layout_marginBottom="18dp"
             android:background="@drawable/background_rectangle_radius_30"
             android:backgroundTint="@color/very_light_pink"
             android:gravity="center"
             android:text="못했어요.."
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_mainCard"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView_cardBackground"
             app:layout_constraintEnd_toStartOf="@+id/button_positive"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@+id/imageView_mainCardFrame"
-            app:layout_constraintTop_toBottomOf="@+id/imageView_mainCardFrame" />
+            app:layout_constraintStart_toStartOf="@+id/imageView_cardFrame" />
 
         <Button
             android:id="@+id/button_positive"
-            style="@style/noto_sans_regular_15sp_black"
+            style="@style/noto_sans_regular_15dp_black"
             android:layout_width="0dp"
             android:layout_height="44dp"
             android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginBottom="18dp"
             android:background="@drawable/background_rectangle_radius_30"
             android:backgroundTint="@color/sand_yellow"
             android:gravity="center"
             android:text="했어요!"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_mainCard"
-            app:layout_constraintEnd_toEndOf="@+id/imageView_mainCardFrame"
+            app:layout_constraintBottom_toBottomOf="@+id/button_negative"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/button_negative"
-            app:layout_constraintTop_toBottomOf="@+id/imageView_mainCardFrame"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/button_negative" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -172,62 +194,52 @@
         android:id="@+id/imageView_tipBoxShadow"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/shadow_rectangle_radius_15"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_dolphin"
-        app:layout_constraintEnd_toEndOf="@+id/imageView_dolphin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_mainCard" />
+        app:layout_constraintDimensionRatio="2.5:1"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_dolphin"
+        app:layout_constraintStart_toStartOf="@+id/imageView_cardShadow"
+        app:layout_constraintTop_toTopOf="@+id/imageView_dolphin" />
 
     <ImageView
         android:id="@+id/imageView_tipBox"
         android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/main_box_tip_noshadow"
-        android:backgroundTint="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_tipBoxShadow"
         app:layout_constraintEnd_toEndOf="@+id/imageView_tipBoxShadow"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout_mainCard"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_mainCard" />
+        app:layout_constraintStart_toStartOf="@+id/imageView_cardBackground"
+        app:layout_constraintTop_toTopOf="@+id/imageView_tipBoxShadow" />
 
     <TextView
         android:id="@+id/textView_praiseDescription"
-        style="@style/noto_sans_regular_13sp_brown_grey"
+        style="@style/noto_sans_regular_13dp_brown_grey"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="3"
-        android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/imageView_tipBox"
         app:layout_constraintEnd_toEndOf="@+id/imageView_tipBox"
         app:layout_constraintStart_toStartOf="@+id/imageView_tipBox"
-        app:layout_constraintTop_toTopOf="@+id/imageView_tipBox" />
-
+        app:layout_constraintTop_toTopOf="@+id/imageView_tipBox"
+        tools:text="항상 내 편인 친구에게 ㅇㅇㅇ 고마움을 표현해보세요 :)ㅇㅇ 한 줄 더 되겠군요 히히히히히" />
 
     <ImageView
         android:id="@+id/imageView_dolphin"
         android:layout_width="100dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/main_img_dolphin"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_mainCard" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_cardShadow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

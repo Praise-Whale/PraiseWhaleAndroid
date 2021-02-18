@@ -91,7 +91,7 @@ class HomeDialogDoneFragment : DialogFragment() {
                 response: Response<ResponseRecentPraiseTo>
             ) {
                 if (response.isSuccessful) setRecentPraiseTo(response.body()!!.data)
-                else handleRecentPraiseToStatusCode(response.body()!!)
+                else handleRecentPraiseToStatusCode(response)
             }
         })
     }
@@ -129,8 +129,8 @@ class HomeDialogDoneFragment : DialogFragment() {
         }
     }
 
-    private fun handleRecentPraiseToStatusCode(response: ResponseRecentPraiseTo) {
-        when (response.status) {
+    private fun handleRecentPraiseToStatusCode(response: Response<ResponseRecentPraiseTo>) {
+        when (response.code()) {
             400 -> {
                 // todo - 토큰 값 갱신 후 재요청
                 Log.d("TAG", "handleStatusCode: 토큰 값 갱신")
@@ -138,7 +138,7 @@ class HomeDialogDoneFragment : DialogFragment() {
             }
             // todo - 각 에러 코드별 처리..
             else -> {
-                Log.d("TAG", "handleStatusCode: ${response.status}, ${response.message}")
+                Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
             }
         }
     }
