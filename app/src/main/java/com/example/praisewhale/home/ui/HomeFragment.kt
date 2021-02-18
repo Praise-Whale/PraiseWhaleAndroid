@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.CollectionImpl
-import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.SettingActivity
-import com.example.praisewhale.databinding.*
+import com.example.praisewhale.databinding.FragmentHomeBinding
+import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.home.ui.dialog.HomeDialogDoneFragment
 import com.example.praisewhale.home.ui.dialog.HomeDialogUndoneFragment
 import com.example.praisewhale.util.MyApplication
@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
             ) {
                 when (response.isSuccessful) {
                     true -> getServerPraiseData(response.body()!!.data)
-                    false -> handlePraiseDataStatusCode(response.body()!!)
+                    false -> handlePraiseDataStatusCode(response)
                 }
             }
         })
@@ -94,8 +94,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun handlePraiseDataStatusCode(response: ResponseHomePraise) {
-        when (response.status) {
+    private fun handlePraiseDataStatusCode(response: Response<ResponseHomePraise>) {
+        when (response.code()) {
             400 -> {
                 // todo - 토큰 값 갱신 후 재요청
                 Log.d("TAG", "handleStatusCode: 토큰 값 갱신")
@@ -103,7 +103,7 @@ class HomeFragment : Fragment() {
             }
             // todo - 각 에러 코드별 처리..
             else -> {
-                Log.d("TAG", "handleStatusCode: ${response.status}, ${response.message}")
+                Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
             }
         }
     }
