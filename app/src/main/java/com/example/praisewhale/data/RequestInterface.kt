@@ -35,7 +35,7 @@ interface RequestInterface {
     @POST("praise/{praiseId}")
     fun postPraiseDone(
         @Header("token") token: String,
-        @Path("praiseId") praiseId: String,
+        @Path("praiseId") praiseId: Int,
         @Body body: RequestPraiseDone
     ): Call<ResponseDonePraise>
 

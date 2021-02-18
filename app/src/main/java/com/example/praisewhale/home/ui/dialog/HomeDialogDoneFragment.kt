@@ -29,8 +29,7 @@ class HomeDialogDoneFragment : DialogFragment() {
 
     private var _dialogDoneViewBinding: DialogHomeDoneBinding? = null
     private val dialogDoneViewBinding get() = _dialogDoneViewBinding!!
-
-    lateinit var praiseId: String
+    private var praiseId: Int = 0
 
 
     override fun onCreateView(
@@ -47,7 +46,7 @@ class HomeDialogDoneFragment : DialogFragment() {
         setListeners()
         setDialogBackground()
         setDefaultVisibility()
-        getServerRecentPraiseTo()
+//        getServerRecentPraiseTo()
     }
 
     private fun setListeners() {
@@ -86,12 +85,15 @@ class HomeDialogDoneFragment : DialogFragment() {
             override fun onFailure(call: Call<ResponseRecentPraiseTo>, t: Throwable) {
                 Log.d("tag", t.localizedMessage!!)
             }
+
             override fun onResponse(
                 call: Call<ResponseRecentPraiseTo>,
                 response: Response<ResponseRecentPraiseTo>
             ) {
-                if (response.isSuccessful) setRecentPraiseTo(response.body()!!.data)
-                else handleRecentPraiseToStatusCode(response)
+                when (response.isSuccessful) {
+                    true -> setRecentPraiseTo(response.body()!!.data)
+                    false -> handleRecentPraiseToStatusCode(response)
+                }
             }
         })
     }
@@ -167,7 +169,9 @@ class HomeDialogDoneFragment : DialogFragment() {
                 )
             }
             dialogDoneViewBinding.buttonConfirm.id -> {
-                saveServerPraiseData(dialogDoneViewBinding.editTextPraiseTo.text.toString())
+//                saveServerPraiseData(dialogDoneViewBinding.editTextPraiseTo.text.toString())
+                showResultDialog(true)
+                dialog!!.dismiss()
             }
         }
     }
@@ -187,23 +191,21 @@ class HomeDialogDoneFragment : DialogFragment() {
                 call: Call<ResponseDonePraise>,
                 response: Response<ResponseDonePraise>
             ) {
-                if (response.isSuccessful) {
-                    checkLevelUp(response.body()!!.data)
-                    showResultDialog()
-                    dialog!!.dismiss()
+                when (response.isSuccessful) {
+                    true -> {
+                        showResultDialog(true)
+                        dialog!!.dismiss()
+                    }
+                    false -> handleSaveServerPraiseStatusCode(response, target)
                 }
-                else handleSaveServerPraiseStatusCode(response, target)
             }
         })
     }
 
-    private fun checkLevelUp(response: ResponseDonePraise.Data) {
-        if (response.isLevelUp) Toast.makeText(
-            requireContext(), "레벨업 되었어요! 고래를 확인해보세요!", Toast.LENGTH_SHORT
-        ).show()
-    }
-
-    private fun handleSaveServerPraiseStatusCode(response: Response<ResponseDonePraise>, target: String) {
+    private fun handleSaveServerPraiseStatusCode(
+        response: Response<ResponseDonePraise>,
+        target: String
+    ) {
         when (response.code()) {
             400 -> {
                 // todo - 토큰 값 갱신 후 재요청
@@ -215,8 +217,10 @@ class HomeDialogDoneFragment : DialogFragment() {
         }
     }
 
-    private fun showResultDialog() {
-        val dialogDoneResult = HomeDialogDoneResultFragment.CustomDialogBuilder().create()
+    private fun showResultDialog(isLevelUp: Boolean) {
+        val dialogDoneResult = HomeDialogDoneResultFragment.CustomDialogBuilder()
+            .getLevelUpStatus(isLevelUp)
+            .create()
         dialogDoneResult.show(parentFragmentManager, dialogDoneResult.tag)
     }
 
@@ -240,7 +244,7 @@ class HomeDialogDoneFragment : DialogFragment() {
     class CustomDialogBuilder {
         private val dialog = HomeDialogDoneFragment()
 
-        fun getPraiseIndex(praiseId: String): CustomDialogBuilder {
+        fun getPraiseIndex(praiseId: Int): CustomDialogBuilder {
             dialog.praiseId = praiseId
             return this
         }

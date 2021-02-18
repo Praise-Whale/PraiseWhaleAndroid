@@ -1,19 +1,19 @@
 package com.example.praisewhale.home.ui.dialog
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.DialogHomeResultBinding
+import kotlinx.android.synthetic.main.custom_toast_home.*
 
 
 class HomeDialogDoneResultFragment : DialogFragment() {
 
     private var _dialogResultViewBinding: DialogHomeResultBinding? = null
     private val dialogResultViewBinding get() = _dialogResultViewBinding!!
+    private var isLevelUp = false
 
 
     override fun onCreateView(
@@ -26,7 +26,6 @@ class HomeDialogDoneResultFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setListeners()
         setDialogContents()
         setDialogBackground()
@@ -54,6 +53,21 @@ class HomeDialogDoneResultFragment : DialogFragment() {
         when (it.id) {
             dialogResultViewBinding.buttonConfirm.id -> {
                 dialog!!.dismiss()
+                showLevelUpToast(isLevelUp)
+            }
+        }
+    }
+
+    private fun showLevelUpToast(isLevelUp: Boolean) {
+        if (isLevelUp) {
+            val toastContainer = layoutInflater.inflate(
+                R.layout.custom_toast_home,
+                constraintLayout_toastContainer
+            )
+            Toast(requireContext()).apply {
+                view = toastContainer
+                duration = Toast.LENGTH_LONG
+                show()
             }
         }
     }
@@ -65,6 +79,11 @@ class HomeDialogDoneResultFragment : DialogFragment() {
 
     class CustomDialogBuilder {
         private val dialog = HomeDialogDoneResultFragment()
+
+        fun getLevelUpStatus(isLevelUp: Boolean): CustomDialogBuilder {
+            dialog.isLevelUp = isLevelUp
+            return this
+        }
 
         fun create(): HomeDialogDoneResultFragment {
             return dialog

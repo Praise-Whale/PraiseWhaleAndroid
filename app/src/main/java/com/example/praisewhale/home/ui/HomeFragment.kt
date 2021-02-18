@@ -35,14 +35,6 @@ class HomeFragment : Fragment() {
         return mainViewBinding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        setUserInfo()
-        setListeners()
-        setCurrentDate()
-        getServerPraiseData()
-    }
-
     // ui 작업 수행
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -95,6 +87,7 @@ class HomeFragment : Fragment() {
 
     private fun getServerPraiseData(praiseData: ResponseHomePraise.Data) {
         mainViewBinding.apply {
+            Log.d("TAG", "getServerPraiseData: ${praiseData.praiseId}")
             praiseId = praiseData.praiseId.toString()
             textViewDailyPraise.text = praiseData.dailyPraise
             textViewPraiseDescription.text = praiseData.praiseDescription
@@ -127,7 +120,7 @@ class HomeFragment : Fragment() {
 
     private fun showDialogDone() {
         val dialogDone = HomeDialogDoneFragment.CustomDialogBuilder()
-            .getPraiseIndex(praiseId)
+            .getPraiseIndex(0)
             .create()
         dialogDone.show(parentFragmentManager, dialogDone.tag)
     }
