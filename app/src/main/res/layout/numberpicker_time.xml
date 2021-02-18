@@ -85,7 +85,7 @@
 
 
     <Button
-        android:id="@+id/button_ok"
+        android:id="@+id/button_ok_time"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
@@ -124,7 +124,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
-        android:id="@+id/button_alarm"
+        android:id="@+id/button_time_cancel"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="29dp"

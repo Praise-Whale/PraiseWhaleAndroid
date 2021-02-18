@@ -3,8 +3,6 @@ package com.example.praisewhale
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
-import android.os.Bundle
-import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
@@ -90,7 +88,7 @@ class TimepickerDialog2(context: Context): DialogFragment(),TimePickerDialog.OnT
 
      override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
          TODO("Not yet implemented")
-         clock.text = "${p1}시 ${p2}분"
+         tv_alarm_time.text = "${p1}시 ${p2}분"
 
      }
 }

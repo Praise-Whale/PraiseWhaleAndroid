@@ -67,6 +67,7 @@ class PraiseLevelFragment : Fragment() {
                         cpb_circlebar.progress = it.data.praiseCount*10
 
 
+                        Log.d("세번째", "세번째")
 
 
 
