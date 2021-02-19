@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.CollectionImpl
-import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.SettingActivity
-import com.example.praisewhale.databinding.*
+import com.example.praisewhale.databinding.FragmentHomeBinding
+import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.home.ui.dialog.HomeDialogDoneFragment
 import com.example.praisewhale.home.ui.dialog.HomeDialogUndoneFragment
 import com.example.praisewhale.util.MyApplication
@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
 
     private var _mainViewBinding: FragmentHomeBinding? = null
     private val mainViewBinding get() = _mainViewBinding!!
-    lateinit var praiseIndex: String
+    private lateinit var praiseId: String
 
 
     override fun onCreateView(
@@ -38,7 +38,6 @@ class HomeFragment : Fragment() {
     // ui 작업 수행
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setUserInfo()
         setListeners()
         setCurrentDate()
@@ -80,7 +79,7 @@ class HomeFragment : Fragment() {
             ) {
                 when (response.isSuccessful) {
                     true -> getServerPraiseData(response.body()!!.data)
-                    false -> handlePraiseDataStatusCode(response.body()!!)
+                    false -> handlePraiseDataStatusCode(response)
                 }
             }
         })
@@ -88,14 +87,15 @@ class HomeFragment : Fragment() {
 
     private fun getServerPraiseData(praiseData: ResponseHomePraise.Data) {
         mainViewBinding.apply {
-            praiseIndex = praiseData.praiseId.toString()
+            Log.d("TAG", "getServerPraiseData: ${praiseData.praiseId}")
+            praiseId = praiseData.praiseId.toString()
             textViewDailyPraise.text = praiseData.dailyPraise
             textViewPraiseDescription.text = praiseData.praiseDescription
         }
     }
 
-    private fun handlePraiseDataStatusCode(response: ResponseHomePraise) {
-        when (response.status) {
+    private fun handlePraiseDataStatusCode(response: Response<ResponseHomePraise>) {
+        when (response.code()) {
             400 -> {
                 // todo - 토큰 값 갱신 후 재요청
                 Log.d("TAG", "handleStatusCode: 토큰 값 갱신")
@@ -103,7 +103,7 @@ class HomeFragment : Fragment() {
             }
             // todo - 각 에러 코드별 처리..
             else -> {
-                Log.d("TAG", "handleStatusCode: ${response.status}, ${response.message}")
+                Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
             }
         }
     }
@@ -120,7 +120,7 @@ class HomeFragment : Fragment() {
 
     private fun showDialogDone() {
         val dialogDone = HomeDialogDoneFragment.CustomDialogBuilder()
-            .getPraiseIndex(praiseIndex)
+            .getPraiseIndex(0)
             .create()
         dialogDone.show(parentFragmentManager, dialogDone.tag)
     }

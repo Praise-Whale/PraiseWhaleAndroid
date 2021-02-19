@@ -1,19 +1,30 @@
 package com.example.praisewhale
 
 import android.app.AlertDialog
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.NumberPicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import com.example.praisewhale.data.RequestNickChange
+import com.example.praisewhale.data.home.ResponseNickChange
+import com.example.praisewhale.util.MyApplication
+import com.example.praisewhale.util.textChangedListener
 import kotlinx.android.synthetic.main.activity_setting.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SettingActivity :AppCompatActivity() {
 
@@ -27,12 +38,19 @@ class SettingActivity :AppCompatActivity() {
     lateinit var mDisplayedValuesMin    : MutableList<String>
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
 
 
-        nickchange.setOnClickListener {
+        val nickname=MyApplication.mySharedPreferences.getValue("nickName","")
+
+
+        tv_nickname.text=nickname
+
+
+        layout_change_nickname.setOnClickListener {
 
            /* val dlg = NicknameDialog(this)
             dlg.start()*/
@@ -43,6 +61,81 @@ class SettingActivity :AppCompatActivity() {
             close.setOnClickListener {
                 dialog.dismiss()
                 dialog.cancel()
+            }
+            val nick_modify: Button = mView.findViewById(R.id.change_btn)
+            val deletebtn: Button = mView.findViewById(R.id.delete_btn)
+
+            val nick_modify_edit: EditText = mView.findViewById(R.id.editnickname)
+
+            nick_modify_edit.textChangedListener {
+                deletebtn.isVisible=true
+            }
+
+            deletebtn.setOnClickListener {
+
+                nick_modify_edit.setText("")
+            }
+            nick_modify.setOnClickListener {
+                /*val call: Call<ResponseData> = CollectionImpl.service.nicknameCheck(signUpViewModel.userName.value!!)
+                call.enqueue(object : Callback<ResponseData> {
+                    override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                        Log.d("response", t.localizedMessage!!)
+                    }
+                    override fun onResponse(
+                        call: Call<ResponseData>,
+                        response: Response<ResponseData>
+                    ) {
+                        Log.d("response", response.body().toString())
+                        response.takeIf { it.isSuccessful }
+                            ?.body()
+                            ?.let {
+                                (activity as SignUpActivity).replaceFragment(WhaleNameFragment())
+                            } ?: signUpViewModel.nameFail()
+                    }
+                })*/
+                val token = MyApplication.mySharedPreferences.getValue("token","")
+
+                val body=RequestNickChange(nickName =nickname ,newNickName = nick_modify_edit.text.toString())
+                val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token,body)
+                call.enqueue(object : Callback<ResponseNickChange> {
+                    override fun onFailure(call: Call<ResponseNickChange>, t: Throwable) {
+                        Log.d("tag", t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<ResponseNickChange>,
+                        response: Response<ResponseNickChange>
+                    ) {
+                        when (response.body()?.status) {
+
+                            400 ->Toast.makeText(applicationContext,"닉네임이 중복합니다",Toast.LENGTH_SHORT).show()
+
+
+                        }
+                        response.takeIf { it.isSuccessful }
+
+                            ?.body()
+                            ?.let {
+
+                                    it ->
+                                Log.d("닉네임변경완료","닉네임변경완료")
+                                //MyApplication.mySharedPreferences.setValue("alarmtime")
+
+
+
+
+
+                            }
+                    }
+                })
+
+                MyApplication.mySharedPreferences.setValue("nickName",nick_modify_edit.text.toString())
+
+                    tv_nickname.text=nick_modify_edit.text
+                    dialog.dismiss()
+                    dialog.cancel()
+
+
             }
 
             val color = ColorDrawable(Color.TRANSPARENT)
@@ -74,7 +167,7 @@ class SettingActivity :AppCompatActivity() {
                 .show()*/
         }
 
-        alarm.setOnClickListener {
+        layout_alarm.setOnClickListener {
 
          /* val tdlg=TimepickerDialog2(this)
             tdlg.start()*/
@@ -89,8 +182,21 @@ class SettingActivity :AppCompatActivity() {
             val ny1:NumberPicker=mView2.findViewById(R.id.numberPicker2)
             val ny2:NumberPicker=mView2.findViewById(R.id.numberPicker3)
 
+            val btnok:Button=mView2.findViewById(R.id.button_ok_time)
+            val btnalarmcancel:Button=mView2.findViewById(R.id.button_time_cancel)
+
+            btnalarmcancel.setOnClickListener {
+                dialog2.dismiss()
+                dialog2.cancel()
+            }
+
 
             val list = resources.getStringArray(R.array.ampm)
+
+            ny.removeDivider()
+            ny1.removeDivider()
+            ny2.removeDivider()
+
 
             ny.minValue=0
             ny.maxValue=list.size-1
@@ -108,6 +214,30 @@ class SettingActivity :AppCompatActivity() {
             ny1.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
 
 
+            btnok.setOnClickListener {
+
+                if ((ny2.value.toString()).length < 2) {
+                    if (list[ny.value] == "오전") {
+                        tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
+                        MyApplication.mySharedPreferences.setValue("alarmtime",list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString())
+
+                    } else {
+                        val clock_ = ny1.value + 12
+                        tv_alarm_time.text =list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
+
+                    }
+                } else {
+                    if (list[ny.value] == "오후") {
+                        val clock_ = ny1.value + 12
+                        tv_alarm_time.text =list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
+
+                    } else {
+                        tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
+
+                    }
+                }
+                dialog2.dismiss()
+            }
 
             val color = ColorDrawable(Color.TRANSPARENT)
             // Dialog 크기 설정
@@ -121,14 +251,23 @@ class SettingActivity :AppCompatActivity() {
         }
 
 
-        developer.setOnClickListener {
+        layout_developer.setOnClickListener {
             val intent= Intent(this, DeveloperActivity::class.java)
             startActivity(intent)
         }
-        setting_close_btn.setOnClickListener {
+        btn_close.setOnClickListener {
+            onBackPressed()
             finish()
         }
 
+        layout_ask.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.email_receiver)))
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_title))
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_content))
+            intent.type = "message/rfc822"
+            startActivity(intent)
+        }
         }
 
 

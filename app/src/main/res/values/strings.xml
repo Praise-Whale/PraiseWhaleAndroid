@@ -34,6 +34,24 @@
     <string name="level4">신나게 춤추는 고래</string>
     <string name="level_count_4">100번</string>
     <string name="level5">춤신 춤왕 만렙 고래</string>
+    <string name="alarm_content">지금 바로 오늘의 칭찬을 확인하고, 실천해보세요!</string>
+    <string name="alarm_title">오늘의 칭찬이 도착했어요</string>
+
+    <string name="setting_title">설정</string>
+    <string name="setting_nickname_change">닉네임 변경</string>
+    <string name="setting_push_alarm">푸시알림</string>
+    <string name="setting_asking">문의하기</string>
+    <string name="setting_personal_information">개인정보 처리방침</string>
+    <string name="setting_service">서비스 이용약관</string>
+    <string name="setting_developer_information">개발자 정보</string>
+
+    <string name="email_title">칭찬할고래 문의</string>
+    <string name="email_content">
+        1. 문의 유형 (문의, 버그 제보, 회원 탈퇴, 기타) :\n
+        2. 회원 닉네임 (필요시 기입) :\n
+        3. 문의 내용 :\n
+        문의하신 사항은 칭찬할고래팀이 신속하게 처리하겠습니다. 감사합니다 :)</string>
+    <string name="email_receiver">Co.Goraedan@gmail.com</string>
 
     <string-array name="ampm">
         <item>오전</item>
