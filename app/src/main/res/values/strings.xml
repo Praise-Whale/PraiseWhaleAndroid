@@ -68,6 +68,18 @@
     <string name="on_boarding3">해요</string>
     <string name="on_boarding4">매일 매일 다른 칭찬 미션을\n하나씩 보내드릴게요!</string>
     <string name="on_boarding5">원하는 시간에 리마인드 알림도 받을 수 있어요:)</string>
+    <string name="on_boarding6">나만의 고래</string>
+    <string name="on_boarding7">를</string>
+    <string name="on_boarding8">춤 추게</string>
+    <string name="on_boarding9">해요</string>
+    <string name="on_boarding10">칭찬을 할 때 마다\n나의 고래가 춤을 춰요!</string>
+    <string name="on_boarding11">칭찬 횟수에 따라 고래의 레벨이 높아져요:)</string>
+    <string name="on_boarding12">칭찬을</string>
+    <string name="on_boarding13">" 모아보고"</string>
+    <string name="on_boarding14">칭찬랭킹</string>
+    <string name="on_boarding15">을 확인해요</string>
+    <string name="on_boarding16">내가 한 칭찬을 모아보고\n칭찬 대상에 대한 랭킹도 확인해요!</string>
+    <string name="on_boarding17">누구에게 언제 어떤 칭찬을 했는지 한 번에 확인해요:)</string>
 
     <string-array name="ampm">
         <item>오전</item>
