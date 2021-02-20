@@ -3,7 +3,7 @@ package com.example.praisewhale
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.praisewhale.fragment.CardFragment
+import com.example.praisewhale.card.CardFragment
 import com.example.praisewhale.home.ui.HomeFragment
 import com.example.praisewhale.fragment.PraiseLevelFragment
 import kotlinx.android.synthetic.main.activity_main.*

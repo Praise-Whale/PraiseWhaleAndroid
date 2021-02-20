@@ -34,6 +34,7 @@
     <string name="level4">신나게 춤추는 고래</string>
     <string name="level_count_4">100번</string>
     <string name="level5">춤신 춤왕 만렙 고래</string>
+
     <string name="alarm_content">지금 바로 오늘의 칭찬을 확인하고, 실천해보세요!</string>
     <string name="alarm_title">오늘의 칭찬이 도착했어요</string>
 
@@ -52,6 +53,15 @@
         3. 문의 내용 :\n
         문의하신 사항은 칭찬할고래팀이 신속하게 처리하겠습니다. 감사합니다 :)</string>
     <string name="email_receiver">Co.Goraedan@gmail.com</string>
+
+    <string name="terms_of_service">이용약관</string>
+    <string name="terms_of_service3">을 읽고</string>
+    <string name="terms_of_service2">의</string>
+    <string name="terms_of_service4">동의해주세요!</string>
+    <string name="agree_all">모든 약관을 확인하였으며, 이에 동의해요</string>
+    <string name="agree_personal_information">[필수] 개인정보 처리방침 동의</string>
+    <string name="agree_service">[필수] 서비스 이용약관 동의</string>
+    <string name="agree_warning">약관에 동의하지 않을 경우,\n 칭찬할고래를 이용할 수 없어요!</string>
 
     <string-array name="ampm">
         <item>오전</item>
