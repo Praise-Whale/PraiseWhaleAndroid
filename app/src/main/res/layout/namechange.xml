@@ -63,6 +63,7 @@
             android:inputType="textPersonName"
             android:hint="닉네임을 7자 이내로 입력해 주세요"
             android:textSize="12sp"
+            android:maxLength="7"
             android:layout_marginStart="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,13 +95,24 @@
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <TextView
+        android:id="@+id/textcount7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/noto_sans_regular"
+        android:text="/7"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
     <TextView
         android:id="@+id/textcount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:text="2/7"
         android:fontFamily="@font/noto_sans_regular"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        android:text="0"
+        app:layout_constraintEnd_toStartOf="@+id/textcount7"
+        app:layout_constraintTop_toTopOf="@+id/textcount7" />
 </androidx.constraintlayout.widget.ConstraintLayout>
