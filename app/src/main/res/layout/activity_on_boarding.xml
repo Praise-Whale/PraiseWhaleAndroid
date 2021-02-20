@@ -10,22 +10,10 @@
         android:background="@drawable/onboarding_bg"
         tools:context=".onboarding.OnBoardingActivity">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp_on_boarding"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="103dp"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tab_on_boarding"/>
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_on_boarding"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="33dp"
             app:tabBackground="@drawable/on_boarding_indicator_selector"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp"
@@ -34,6 +22,15 @@
             app:layout_constraintBottom_toTopOf="@id/btn_on_boarding_next"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_on_boarding"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tab_on_boarding"/>
 
         <Button
             android:id="@+id/btn_on_boarding_next"
