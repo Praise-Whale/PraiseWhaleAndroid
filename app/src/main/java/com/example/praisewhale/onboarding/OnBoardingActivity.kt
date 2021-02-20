@@ -52,8 +52,12 @@ class OnBoardingActivity : AppCompatActivity() {
                     binding.btnOnBoardingNext.text = getString(R.string.next)
                     binding.layoutOnBoarding.setBackgroundResource(R.drawable.onboarding_bg)
                 }
+                binding.btnOnBoardingNext.alpha = 0f
+                binding.btnOnBoardingNext.animate().apply {
+                    duration = 2000
+                    alpha(1f)
+                }.start()
             }
-
         })
     }
 }

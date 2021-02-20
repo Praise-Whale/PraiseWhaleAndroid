@@ -11,7 +11,7 @@
         android:layout_width="28dp"
         android:layout_height="2dp"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="103dp"
+        android:layout_marginTop="83dp"
         android:background="@color/sand_yellow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
