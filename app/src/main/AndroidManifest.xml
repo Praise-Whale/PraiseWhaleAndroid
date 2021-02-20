@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-
+        <activity android:name=".onboarding.OnBoardingActivity"/>
         <activity android:name=".DeveloperActivity" />
         <activity
             android:name=".LevelInfoActivity"

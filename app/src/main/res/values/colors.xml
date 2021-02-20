@@ -17,6 +17,7 @@
     <color name="dodger_blue">#4c88f2</color>
     <color name="brown_grey">#9c9c9c</color>
     <color name="greyish_brown">#3d352c</color>
+    <color name="greyish_brown_indicator">#173d352c</color>
     <color name="sand_yellow">#ffd464</color>
     <color name="pale">#fff5da</color>
     <color name="light_tan">#fbe2a3</color>
