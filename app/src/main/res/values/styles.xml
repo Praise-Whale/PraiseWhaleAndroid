@@ -111,4 +111,26 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingMultiplier">1.5</item>
     </style>
+
+    <style name="switch_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/cool_blue</item>
+        <item name="fontFamily">@font/noto_sans_regular</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="ImageButton">
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="ImageButton.size48">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="ImageButton.size48.icon14">
+        <item name="android:padding">17dp</item>
+    </style>
 </resources>

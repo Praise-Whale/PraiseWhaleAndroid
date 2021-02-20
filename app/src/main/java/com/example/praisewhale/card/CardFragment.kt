@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CompoundButton
 import android.widget.ImageButton
 import android.widget.NumberPicker
 import androidx.core.view.isVisible
@@ -44,6 +45,7 @@ class CardFragment : Fragment() {
         setUserInfo()
         setCardBox()
         setCardPicker()
+        configureSwitch()
     }
 
     private fun setUserInfo() {
@@ -77,7 +79,7 @@ class CardFragment : Fragment() {
             month.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
 
             // 값 설정
-            val years = Array(thisYear - 2020 + 3) { i -> (thisYear+i).toString()+"년" }
+            val years = Array(thisYear - 2020) { i -> (2021 + i).toString()+"년" }
             val months = arrayOfNulls<String>(13)
             months[0] = "전체"
             for (i in 1 .. 12){
@@ -190,4 +192,19 @@ class CardFragment : Fragment() {
             }
         })
     }
-}
+
+    private fun configureSwitch() {
+       binding.cardSwitch.setOnCheckedChangeListener(object: CompoundButton.OnCheckedChangeListener{
+           override fun onCheckedChanged(switch: CompoundButton?, isChecked: Boolean) {
+               if (isChecked) {
+                   binding.tvCollection.isVisible = true
+                   binding.tvRanking.isVisible = false
+
+               } else {
+                       binding.tvCollection.isVisible = false
+                       binding.tvRanking.isVisible = true
+               }
+           }
+       })
+       }
+    }
