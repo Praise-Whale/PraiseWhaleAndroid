@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/textView_title"
-        style="@style/noto_sans_semi_bold_18sp_greyish_brown"
+        style="@style/noto_sans_semi_bold_18dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/textView_subTitle"
-        style="@style/noto_sans_medium_16sp_greyish_brown"
+        style="@style/noto_sans_medium_16dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="내일도 칭찬해요!"
@@ -38,7 +38,7 @@
 
     <Button
         android:id="@+id/button_confirm"
-        style="@style/noto_sans_regular_15sp_black"
+        style="@style/noto_sans_regular_15dp_black"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginStart="28dp"

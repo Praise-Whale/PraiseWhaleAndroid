@@ -7,6 +7,7 @@ import com.example.praisewhale.ResponselevelData
 import com.example.praisewhale.data.home.ResponseNickChange
 import com.example.praisewhale.home.data.RequestPraiseDone
 import com.example.praisewhale.home.data.ResponseDonePraise
+import com.example.praisewhale.card.data.ResponseCardData
 import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.home.data.ResponseRecentPraiseTo
 
@@ -35,17 +36,18 @@ interface RequestInterface {
     @POST("praise/{praiseId}")
     fun postPraiseDone(
         @Header("token") token: String,
-        @Path("praiseId") praiseId: String,
+        @Path("praiseId") praiseId: Int,
         @Body body: RequestPraiseDone
     ): Call<ResponseDonePraise>
 
-
-    // 칭찬 컬렉션 전체 조회
+    // CardFragment.kt - 칭찬 카드 조회
     @Headers("Content-Type:application/json")
-    @GET("praise/collection")
-    fun getCollection(
-
-    ): Call<ResponseCardBoxData>
+    @GET("praise/{year}/{month}")
+    fun getPraiseCard(
+        @Path("year") year : Int,
+        @Path("month") month: Int,
+        @Header("token") token : String
+    ): Call<ResponseCardData>
 
     @Headers("Content-Type:application/json")
     @GET("level/praise/{userIdx}")
