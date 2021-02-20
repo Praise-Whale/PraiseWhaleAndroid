@@ -61,7 +61,13 @@
     <string name="agree_all">모든 약관을 확인하였으며, 이에 동의해요</string>
     <string name="agree_personal_information">[필수] 개인정보 처리방침 동의</string>
     <string name="agree_service">[필수] 서비스 이용약관 동의</string>
-    <string name="agree_warning">약관에 동의하지 않을 경우,\n 칭찬할고래를 이용할 수 없어요!</string>
+    <string name="agree_warning">약관에 동의하지 않을 경우,\n칭찬할고래를 이용할 수 없어요!</string>
+
+    <string name="on_boarding1">하루에 한 번씩</string>
+    <string name="on_boarding2">칭찬</string>
+    <string name="on_boarding3">해요</string>
+    <string name="on_boarding4">매일 매일 다른 칭찬 미션을\n하나씩 보내드릴게요!</string>
+    <string name="on_boarding5">원하는 시간에 리마인드 알림도 받을 수 있어요:)</string>
 
     <string-array name="ampm">
         <item>오전</item>
