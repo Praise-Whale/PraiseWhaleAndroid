@@ -4,17 +4,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".onboarding.SecondOnBoardingFragment">
+
+    <View
+        android:id="@+id/underline"
+        android:layout_width="28dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="103dp"
+        android:background="@color/sand_yellow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_on_boarding_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:fontFamily="@font/noto_sans_semibold"
+        android:includeFontPadding="false"
+        android:text="나만의 고래"
+        android:textColor="@color/greyish_brown"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="@id/underline"
+        app:layout_constraintTop_toBottomOf="@id/underline" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="second"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:fontFamily="@font/noto_sans_regular"
+        android:includeFontPadding="false"
+        android:text="를"
+        android:textColor="@color/greyish_brown"
+        android:textSize="26sp"
+        app:layout_constraintStart_toEndOf="@id/tv_on_boarding_title"
+        app:layout_constraintTop_toTopOf="@id/tv_on_boarding_title"
+        app:layout_constraintBottom_toBottomOf="@id/tv_on_boarding_title"/>
 
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_semibold"
+        android:includeFontPadding="false"
+        android:text="춤 추게"
+        android:textColor="@color/greyish_brown"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="@id/tv_on_boarding_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_on_boarding_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_regular"
+        android:includeFontPadding="false"
+        android:text="해요"
+        android:textColor="@color/greyish_brown"
+        android:textSize="26sp"
+        app:layout_constraintStart_toEndOf="@id/tv_content"
+        app:layout_constraintTop_toTopOf="@id/tv_content"
+        app:layout_constraintBottom_toBottomOf="@id/tv_content"/>
+
+    <TextView
+        android:id="@+id/tv_dancing_whale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/noto_sans_regular"
+        android:includeFontPadding="false"
+        android:text="칭찬을 할 때 마다\n나의 고래가 춤을 춰요!"
+        android:textColor="@color/greyish_brown"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/tv_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_content" />
+
+    <TextView
+        android:id="@+id/tv_content_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/noto_sans_regular"
+        android:includeFontPadding="false"
+        android:text="칭찬 횟수에 따라 고래의 레벨이 높아져요:)"
+        android:textColor="@color/brown_grey"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@id/tv_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_dancing_whale" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/onboarding_2_img_whale"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_content_level"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
