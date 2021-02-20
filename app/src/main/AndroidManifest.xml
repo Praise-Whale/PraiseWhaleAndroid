@@ -38,6 +38,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".CircularActivity" />
         <activity android:name=".SettingActivity" />
+        <activity android:name=".InfoActivity"/>
+        <activity android:name=".InfoUserActivity"/>
     </application>
 
 </manifest>

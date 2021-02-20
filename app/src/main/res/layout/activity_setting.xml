@@ -130,7 +130,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
-            android:text="오전 9:00 (기본) >"
+            android:text="오전 9:00 (기본)"
             android:textColor="@color/brown"
             android:textSize="13sp"
             app:layout_constraintTop_toBottomOf="@id/tv_push_alarm"
