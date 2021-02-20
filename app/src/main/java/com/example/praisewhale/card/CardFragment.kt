@@ -16,6 +16,8 @@ import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.ImageButton
 import android.widget.NumberPicker
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -36,7 +38,11 @@ class CardFragment : Fragment() {
     private val cal: Calendar = Calendar.getInstance()
     private val thisYear = cal.get(Calendar.YEAR)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentCardBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -45,21 +51,22 @@ class CardFragment : Fragment() {
         setUserInfo()
         setCardBox()
         setCardPicker()
-        configureSwitch()
+        configureTab()
     }
 
     private fun setUserInfo() {
         val userName = MyApplication.mySharedPreferences.getValue("nickName", "")
-        binding.tvCardTitleName.text = userName+"님의"
+        binding.tvCardTitleName.text = userName + "님의"
     }
 
     private fun setCardBox() {
         cardBoxAdapter = CardBoxAdapter(requireContext())
         binding.rvCardBox.adapter = cardBoxAdapter
-        binding.rvCardBox.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvCardBox.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         LinearSnapHelper().attachToRecyclerView(binding.rvCardBox)
 
-        binding.btnCardPicker.text = thisYear.toString()+"년 전체"
+        binding.btnCardPicker.text = thisYear.toString() + "년 전체"
         getServerCardData(thisYear, 0)
     }
 
@@ -79,10 +86,10 @@ class CardFragment : Fragment() {
             month.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
 
             // 값 설정
-            val years = Array(thisYear - 2020) { i -> (2021 + i).toString()+"년" }
+            val years = Array(thisYear - 2020) { i -> (2021 + i).toString() + "년" }
             val months = arrayOfNulls<String>(13)
             months[0] = "전체"
-            for (i in 1 .. 12){
+            for (i in 1..12) {
                 months[i] = (month.minValue + i).toString() + "월"
             }
 
@@ -141,8 +148,8 @@ class CardFragment : Fragment() {
     // NumberPicker 라인 제거 함수
     private fun NumberPicker.removeDivider() {
         val pickerFields = NumberPicker::class.java.declaredFields
-        for (pf in pickerFields){
-            if (pf.name == "mSelectionDivider"){
+        for (pf in pickerFields) {
+            if (pf.name == "mSelectionDivider") {
                 pf.isAccessible = true
                 try {
                     val colorDrawable = ColorDrawable(Color.TRANSPARENT)
@@ -193,18 +200,19 @@ class CardFragment : Fragment() {
         })
     }
 
-    private fun configureSwitch() {
-       binding.cardSwitch.setOnCheckedChangeListener(object: CompoundButton.OnCheckedChangeListener{
-           override fun onCheckedChanged(switch: CompoundButton?, isChecked: Boolean) {
-               if (isChecked) {
-                   binding.tvCollection.isVisible = true
-                   binding.tvRanking.isVisible = false
-
-               } else {
-                       binding.tvCollection.isVisible = false
-                       binding.tvRanking.isVisible = true
-               }
-           }
-       })
-       }
+    private fun configureTab() {
+        binding.tabLeft.isSelected = true
+        binding.tabLeft.setOnClickListener {
+            binding.tabLeft.isSelected = true
+            binding.tvTabLeft.setTextColor(Color.BLACK)
+            binding.tabRight.isSelected = false
+            binding.tvTabRight.setTextColor(ResourcesCompat.getColor(resources, R.color.brown_grey, null))
+        }
+        binding.tabRight.setOnClickListener {
+            binding.tabRight.isSelected = true
+            binding.tvTabRight.setTextColor(Color.BLACK)
+            binding.tabLeft.isSelected = false
+            binding.tvTabLeft.setTextColor(ResourcesCompat.getColor(resources, R.color.brown_grey, null))
+        }
     }
+}
