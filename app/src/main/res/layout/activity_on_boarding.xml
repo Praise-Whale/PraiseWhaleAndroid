@@ -7,7 +7,6 @@
         android:id="@+id/layout_on_boarding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/onboarding_bg"
         tools:context=".onboarding.OnBoardingActivity">
 
         <com.google.android.material.tabs.TabLayout
@@ -43,7 +42,6 @@
             android:letterSpacing="-0.05"
             android:lineSpacingExtra="-2sp"
             android:paddingVertical="18dp"
-            android:text="@string/next"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"

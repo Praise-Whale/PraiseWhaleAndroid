@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.ActivityOnBoardingBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -18,6 +19,7 @@ class OnBoardingActivity : AppCompatActivity() {
 
         setViewPagerAdapter(binding)
         setIndicator(binding)
+        setViewPagerCallBack(binding)
     }
 
     private fun setViewPagerAdapter(binding: ActivityOnBoardingBinding) {
@@ -37,5 +39,21 @@ class OnBoardingActivity : AppCompatActivity() {
 
     private fun setIndicator(binding: ActivityOnBoardingBinding) {
         TabLayoutMediator(binding.tabOnBoarding, binding.vpOnBoarding) { tab, position -> }.attach()
+    }
+
+    private fun setViewPagerCallBack(binding: ActivityOnBoardingBinding) {
+        binding.vpOnBoarding.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if(position == 3) {
+                    binding.btnOnBoardingNext.text = getString(R.string.start)
+                    binding.layoutOnBoarding.setBackgroundResource(R.drawable.onboarding_4_bg)
+                } else {
+                    binding.btnOnBoardingNext.text = getString(R.string.next)
+                    binding.layoutOnBoarding.setBackgroundResource(R.drawable.onboarding_bg)
+                }
+            }
+
+        })
     }
 }
