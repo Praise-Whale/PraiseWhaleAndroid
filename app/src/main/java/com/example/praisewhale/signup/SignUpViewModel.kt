@@ -13,6 +13,10 @@ class SignUpViewModel : ViewModel() {
     val isValid : LiveData<Boolean>
         get() = _isValid
 
+    private val _isAgree = MutableLiveData<Boolean>(false)
+    val isAgree : LiveData<Boolean>
+        get() = _isAgree
+
     fun resetUserName() {
         userName.value = ""
     }
@@ -27,5 +31,9 @@ class SignUpViewModel : ViewModel() {
 
     fun validReset() {
         _isValid.value = true
+    }
+
+    fun allAgreeCheck() {
+        _isAgree.value = !_isAgree.value!!
     }
 }
