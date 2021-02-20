@@ -249,28 +249,69 @@ class SettingActivity :AppCompatActivity() {
 
 
             btnok.setOnClickListener {
-
+                val switch:Switch=findViewById(R.id.switch_alarm)
                 if ((ny2.value.toString()).length < 2) {
                     if (list[ny.value] == "오전") {
                         tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
                         MyApplication.mySharedPreferences.setValue(
-                            "alarmtime",
-                            list[ny.value] + ny1.value.toString() + ":0" + ny2.value.toString()
+                            "alarm_hour",
+                            ny1.value.toString()
+                        )
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_minute",
+                             ny2.value.toString()
+                        )
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_onoff",
+                            switch.isChecked.toString()
                         )
 
                     } else {
                         val clock_ = ny1.value + 12
                         tv_alarm_time.text =list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
-
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_hour",
+                            ny1.value.toString()
+                        )
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_minute",
+                            ny2.value.toString()
+                        )
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_onoff",
+                            switch.isChecked.toString()
+                        )
                     }
                 } else {
                     if (list[ny.value] == "오후") {
                         val clock_ = ny1.value + 12
                         tv_alarm_time.text =list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
-
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_hour",
+                            ny1.value.toString()
+                        )
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_minute",
+                            ny2.value.toString()
+                        )
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_onoff",
+                            switch.isChecked.toString()
+                        )
                     } else {
                         tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
-
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_hour",
+                            ny1.value.toString()
+                        )
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_minute",
+                            ny2.value.toString()
+                        )
+                        MyApplication.mySharedPreferences.setValue(
+                            "alarm_onoff",
+                            switch.isChecked.toString()
+                        )
                     }
                 }
                 dialog2.dismiss()
