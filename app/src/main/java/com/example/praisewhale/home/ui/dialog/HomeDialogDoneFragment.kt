@@ -34,7 +34,6 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     private var _dialogDoneViewBinding: DialogHomeDoneBinding? = null
     private val dialogDoneViewBinding get() = _dialogDoneViewBinding!!
     private var praiseId: Int = 0
-    private lateinit var recentPraiseToList: List<ResponseRecentPraiseTo.Name>
 
 
     override fun onCreateView(
@@ -50,8 +49,6 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         setListeners()
         setDialogBackground()
         getServerRecentPraiseTo()
-        setDefaultVisibility()
-        setRecyclerView()
     }
 
     private fun setListeners() {
@@ -69,13 +66,6 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke)
     }
 
-    private fun setRecyclerView() {
-        dialogDoneViewBinding.recyclerViewRecentPraiseTo.apply {
-            adapter = RecentPraiseToAdapter(recentPraiseToList, this@HomeDialogDoneFragment)
-            addOnScrollListener(dialogDoneScrollListener)
-        }
-    }
-
     private fun getServerRecentPraiseTo() {
         val call: Call<ResponseRecentPraiseTo> = CollectionImpl.service.getRecentPraiseTo(
             MyApplication.mySharedPreferences.getValue("token", "")
@@ -90,41 +80,37 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
                 response: Response<ResponseRecentPraiseTo>
             ) {
                 when (response.isSuccessful) {
-                    true -> recentPraiseToList = response.body()!!.data
+                    true -> {
+                        setDefaultVisibility(response.body()!!.data)
+                        setRecyclerView(response.body()!!.data)
+                    }
                     false -> handleRecentPraiseToStatusCode(response)
                 }
             }
         })
     }
 
-    private fun handleRecentPraiseToStatusCode(response: Response<ResponseRecentPraiseTo>) {
-        when (response.code()) {
-            400 -> {
-                // todo - 토큰 값 갱신 후 재요청
-                Log.d("TAG", "handleStatusCode: 토큰 값 갱신")
-                getServerRecentPraiseTo()
-            }
-            // todo - 각 에러 코드별 처리..
-            else -> {
-                Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
+    private fun setDefaultVisibility(recentPraiseToList: List<ResponseRecentPraiseTo.Name>) {
+        dialogDoneViewBinding.apply {
+            imageButtonDelete.visibility = ImageButton.GONE
+            textViewRecentPraiseToTitle.visibility = when (recentPraiseToList.size) {
+                0 -> TextView.INVISIBLE
+                else -> TextView.VISIBLE
             }
         }
     }
 
-    private fun setDefaultVisibility() {
-        recentPraiseToList = listOf(
-            ResponseRecentPraiseTo.Name("김송현"),
-            ResponseRecentPraiseTo.Name("남궁선규남궁"),
-            ResponseRecentPraiseTo.Name("최윤소")
-        )
+    private fun setRecyclerView(recentPraiseToList: List<ResponseRecentPraiseTo.Name>) {
+        dialogDoneViewBinding.recyclerViewRecentPraiseTo.apply {
+            adapter = RecentPraiseToAdapter(recentPraiseToList, this@HomeDialogDoneFragment)
+            addOnScrollListener(dialogDoneScrollListener)
+        }
+    }
 
-
-        dialogDoneViewBinding.apply {
-            imageButtonDelete.visibility = ImageButton.GONE
-            textViewRecentPraiseToTitle.visibility = when (recentPraiseToList.size) {
-                0 -> TextView.GONE
-                else -> TextView.VISIBLE
-            }
+    private fun handleRecentPraiseToStatusCode(response: Response<ResponseRecentPraiseTo>) {
+        when (response.code()) {
+//            401 -> getServerRecentPraiseTo() todo - 토큰 값 갱신 후 재요청
+            else -> Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
         }
     }
 
@@ -137,11 +123,53 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
                 dialogDoneViewBinding.editTextPraiseTo.setText("")
             }
             dialogDoneViewBinding.buttonConfirm.id -> {
-//                saveServerPraiseData(dialogDoneViewBinding.editTextPraiseTo.text.toString())
+                saveServerPraiseData(dialogDoneViewBinding.editTextPraiseTo.text.toString())
                 showResultDialog(true)
                 dialog!!.dismiss()
             }
         }
+    }
+
+    private fun saveServerPraiseData(target: String) {
+        val call: Call<ResponseDonePraise> = CollectionImpl.service.postPraiseDone(
+            MyApplication.mySharedPreferences.getValue("token", ""),
+            praiseId,
+            RequestPraiseDone(target)
+        )
+        call.enqueue(object : Callback<ResponseDonePraise> {
+            override fun onFailure(call: Call<ResponseDonePraise>, t: Throwable) {
+                Log.d("tag", t.localizedMessage!!)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseDonePraise>,
+                response: Response<ResponseDonePraise>
+            ) {
+                when (response.isSuccessful) {
+                    true -> {
+                        showResultDialog(response.body()!!.data.isLevelUp)
+                        dialog!!.dismiss()
+                    }
+                    false -> handleSaveServerPraiseStatusCode(response, target)
+                }
+            }
+        })
+    }
+
+    private fun handleSaveServerPraiseStatusCode(response: Response<ResponseDonePraise>, target: String) {
+        when (response.code()) {
+//            401 -> saveServerPraiseData(target) todo - 토큰 값 갱신 후 재요청
+            else -> { // todo - 각 에러 코드별 처리..
+                Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
+            }
+        }
+    }
+
+    private fun showResultDialog(isLevelUp: Boolean) {
+        val dialogDoneResult = HomeDialogDoneResultFragment.CustomDialogBuilder()
+            .getLevelUpStatus(isLevelUp)
+            .create()
+        dialogDoneResult.show(parentFragmentManager, dialogDoneResult.tag)
     }
 
     private val dialogDoneScrollListener = object : RecyclerView.OnScrollListener() {
@@ -191,54 +219,6 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
                     }
                 })
         }
-    }
-
-    private fun saveServerPraiseData(target: String) {
-        val call: Call<ResponseDonePraise> = CollectionImpl.service.postPraiseDone(
-            MyApplication.mySharedPreferences.getValue("token", ""),
-            praiseId,
-            RequestPraiseDone(target)
-        )
-        call.enqueue(object : Callback<ResponseDonePraise> {
-            override fun onFailure(call: Call<ResponseDonePraise>, t: Throwable) {
-                Log.d("tag", t.localizedMessage!!)
-            }
-
-            override fun onResponse(
-                call: Call<ResponseDonePraise>,
-                response: Response<ResponseDonePraise>
-            ) {
-                when (response.isSuccessful) {
-                    true -> {
-                        showResultDialog(true)
-                        dialog!!.dismiss()
-                    }
-                    false -> handleSaveServerPraiseStatusCode(response, target)
-                }
-            }
-        })
-    }
-
-    private fun handleSaveServerPraiseStatusCode(
-        response: Response<ResponseDonePraise>,
-        target: String
-    ) {
-        when (response.code()) {
-            400 -> {
-                // todo - 토큰 값 갱신 후 재요청
-                // saveServerPraiseData(target)
-            }
-            else -> { // todo - 각 에러 코드별 처리..
-                Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
-            }
-        }
-    }
-
-    private fun showResultDialog(isLevelUp: Boolean) {
-        val dialogDoneResult = HomeDialogDoneResultFragment.CustomDialogBuilder()
-            .getLevelUpStatus(isLevelUp)
-            .create()
-        dialogDoneResult.show(parentFragmentManager, dialogDoneResult.tag)
     }
 
     private val dialogTextWatcher = object : TextWatcher {

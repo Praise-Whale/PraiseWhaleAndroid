@@ -101,7 +101,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_recentPraiseTo"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_marginTop="12dp"
         android:orientation="horizontal"
         android:overScrollMode="never"
