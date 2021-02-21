@@ -278,7 +278,7 @@
             app:layout_constraintTop_toBottomOf="@id/layout_agree" />
 
         <Button
-            android:id="@+id/btn_check"
+            android:id="@+id/btn_agree_next"
             style="?android:attr/borderlessButtonStyle"
             agreeNextButton="@{signUpViewModel.isAgree}"
             android:layout_width="0dp"
