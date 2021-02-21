@@ -13,10 +13,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CompoundButton
 import android.widget.ImageButton
 import android.widget.NumberPicker
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +34,11 @@ class CardFragment : Fragment() {
     private lateinit var cardBoxAdapter: CardBoxAdapter
 
     private val cal: Calendar = Calendar.getInstance()
-    private val thisYear = cal.get(Calendar.YEAR)
+    //private val thisYear = cal.get(Calendar.YEAR)
+    private val thisMonth = cal.get(Calendar.MONTH) + 1
+    private val thisYear = 2023
+    private var firstYear = 2021
+    private var firstMonth = 5
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,10 +50,24 @@ class CardFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        lookUpFirstCard()
         setUserInfo()
         setCardBox()
         setCardPicker()
         configureTab()
+    }
+
+    private fun lookUpFirstCard() {
+//        for (year in 2021..thisYear) {
+//            if (getServerCardData(year, 0).first != 0) {
+//                firstYear = year
+//                firstMonth = getServerCardData(year, 0).second
+//                break
+//            }
+//        }
+        if (firstYear == 0) {
+            firstYear = thisYear
+        }
     }
 
     private fun setUserInfo() {
@@ -86,28 +102,61 @@ class CardFragment : Fragment() {
             month.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
 
             // 값 설정
-            val years = Array(thisYear - 2020) { i -> (2021 + i).toString() + "년" }
-            val months = arrayOfNulls<String>(13)
-            months[0] = "전체"
+            val years = Array(thisYear - firstYear + 1) { i -> (firstYear + i).toString() + "년" }
+            val monthsDefault = arrayOfNulls<String>(13)
+            monthsDefault[0] = "전체"
             for (i in 1..12) {
-                months[i] = (month.minValue + i).toString() + "월"
+                monthsDefault[i] = (month.minValue + i).toString() + "월"
+            }
+            val monthsOfFirstYear = arrayOfNulls<String>(14 - firstMonth)
+            monthsOfFirstYear[0] = "전체"
+            for (i in 1 until monthsOfFirstYear.size) {
+                monthsOfFirstYear[i] = (firstMonth - 1 + i).toString() + "월"
+            }
+            val monthsOfThisYear = arrayOfNulls<String>(thisMonth + 1)
+            monthsOfThisYear[0] = "전체"
+            for (i in 1..thisMonth) {
+                monthsOfThisYear[i] = (month.minValue + i).toString() + "월"
             }
 
             year.displayedValues = years
-            month.displayedValues = months
-
             year.minValue = 0
             year.maxValue = years.size - 1
+
+            if (thisYear == firstYear) {
+                month.displayedValues = monthsOfFirstYear
+                month.maxValue = monthsOfFirstYear.size - 1
+            } else {
+                month.displayedValues = monthsOfThisYear
+                month.maxValue = thisMonth
+            }
             month.minValue = 0
-            month.maxValue = 12
+
+            // 각 year 마다 다른 month 적용
+            year.setOnValueChangedListener { picker, oldVal, newVal ->
+                when (newVal) {
+                    picker.maxValue -> {
+                        month.maxValue = thisMonth
+                        month.displayedValues = monthsOfThisYear
+                    }
+                    0 -> {
+                        month.maxValue = monthsOfFirstYear.size - 1
+                        month.displayedValues = monthsOfFirstYear
+                    }
+                    else -> {
+                        month.displayedValues= monthsDefault
+                        month.maxValue = 12
+                    }
+                }
+            }
 
             for (i in years.indices) {
                 if (binding.btnCardPicker.text.split(" ")[0] == years[i])
                     year.value = i
             }
 
-            for (i in months.indices) {
-                if (binding.btnCardPicker.text.split(" ")[1] == months[i])
+            for (i in monthsOfThisYear.indices) {
+                if (binding.btnCardPicker.text.split(" ")[1] == monthsOfThisYear[i])
                     month.value = i
             }
 
@@ -128,7 +177,7 @@ class CardFragment : Fragment() {
                 if (month.value == 0) {
                     binding.btnCardPicker.text = years[year.value] + " 전체"
                 } else {
-                    binding.btnCardPicker.text = years[year.value] + " " + months[month.value]
+                    binding.btnCardPicker.text = years[year.value] + " " + monthsOfThisYear[month.value]
                 }
 
                 dialog.dismiss()
@@ -166,9 +215,11 @@ class CardFragment : Fragment() {
         }
     }
 
-    private fun getServerCardData(year: Int, month: Int) {
+    private fun getServerCardData(year: Int, month: Int): Pair<Int, Int> {
         val visibleView = listOf(binding.cardCount, binding.cardCount2, binding.rvCardBox)
         val invisibleView = listOf(binding.emptyImg, binding.tvEmpty1, binding.tvEmpty2)
+        var praiseCount = 0
+        var firstMonth = 0
 
         CollectionImpl.service.getPraiseCard(
             year = year, month = month,
@@ -184,12 +235,15 @@ class CardFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        if (it.data.praiseCount == 0) {
+                        praiseCount = it.data.praiseCount
+
+                        if (praiseCount == 0) {
                             visibleView.forEach { view -> view.isVisible = false }
                             invisibleView.forEach { view -> view.isVisible = true }
                         } else {
                             visibleView.forEach { view -> view.isVisible = true }
                             invisibleView.forEach { view -> view.isVisible = false }
+                            firstMonth = it.data.collectionPraise[0].created_at.substring(5,6).toInt()
                             binding.cardCount.text = it.data.praiseCount.toString() + "번"
                             cardBoxAdapter.data = it.data.collectionPraise
                             cardBoxAdapter.notifyDataSetChanged()
@@ -198,6 +252,7 @@ class CardFragment : Fragment() {
                 }
             }
         })
+        return Pair(praiseCount, firstMonth)
     }
 
     private fun configureTab() {
