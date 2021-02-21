@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.databinding.ItemRecentPraiseToBinding
 import com.example.praisewhale.home.data.ResponseRecentPraiseTo
+import com.example.praisewhale.util.RecentPraiseToClickListener
 
 
 class RecentPraiseToAdapter(
-    private val recentPraiseToList: List<ResponseRecentPraiseTo.Name>
+    private val recentPraiseToList: List<ResponseRecentPraiseTo.Name>,
+    private val recentPraiseToClickListener: RecentPraiseToClickListener
 ) : RecyclerView.Adapter<RecentPraiseToViewHolder>() {
 
     private var _binding: ItemRecentPraiseToBinding? = null
@@ -23,5 +25,8 @@ class RecentPraiseToAdapter(
 
     override fun onBindViewHolder(holder: RecentPraiseToViewHolder, position: Int) {
         holder.onBind(recentPraiseToList.size, position, recentPraiseToList[position].name)
+        holder.itemView.setOnClickListener {
+            recentPraiseToClickListener.onClickRecentPraiseToItem(recentPraiseToList[position].name)
+        }
     }
 }

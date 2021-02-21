@@ -23,12 +23,13 @@ import com.example.praisewhale.home.data.RequestPraiseDone
 import com.example.praisewhale.home.data.ResponseDonePraise
 import com.example.praisewhale.home.data.ResponseRecentPraiseTo
 import com.example.praisewhale.util.MyApplication
+import com.example.praisewhale.util.RecentPraiseToClickListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class HomeDialogDoneFragment : DialogFragment() {
+class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
 
     private var _dialogDoneViewBinding: DialogHomeDoneBinding? = null
     private val dialogDoneViewBinding get() = _dialogDoneViewBinding!!
@@ -70,7 +71,7 @@ class HomeDialogDoneFragment : DialogFragment() {
 
     private fun setRecyclerView() {
         dialogDoneViewBinding.recyclerViewRecentPraiseTo.apply {
-            adapter = RecentPraiseToAdapter(recentPraiseToList)
+            adapter = RecentPraiseToAdapter(recentPraiseToList, this@HomeDialogDoneFragment)
             addOnScrollListener(dialogDoneScrollListener)
         }
     }
@@ -256,6 +257,11 @@ class HomeDialogDoneFragment : DialogFragment() {
         super.onDestroyView()
         _dialogDoneViewBinding = null
     }
+
+    override fun onClickRecentPraiseToItem(recentPraiseTo: String) {
+        dialogDoneViewBinding.editTextPraiseTo.setText(recentPraiseTo)
+    }
+
 
     class CustomDialogBuilder {
         private val dialog = HomeDialogDoneFragment()
