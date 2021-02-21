@@ -1,5 +1,7 @@
 package com.example.praisewhale.home.ui.dialog
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,14 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.DialogHomeDoneBinding
+import com.example.praisewhale.home.adapter.RecentPraiseToAdapter
 import com.example.praisewhale.home.data.RequestPraiseDone
 import com.example.praisewhale.home.data.ResponseDonePraise
 import com.example.praisewhale.home.data.ResponseRecentPraiseTo
@@ -30,6 +33,7 @@ class HomeDialogDoneFragment : DialogFragment() {
     private var _dialogDoneViewBinding: DialogHomeDoneBinding? = null
     private val dialogDoneViewBinding get() = _dialogDoneViewBinding!!
     private var praiseId: Int = 0
+    private lateinit var recentPraiseToList: List<ResponseRecentPraiseTo.Name>
 
 
     override fun onCreateView(
@@ -42,11 +46,11 @@ class HomeDialogDoneFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setListeners()
         setDialogBackground()
+        getServerRecentPraiseTo()
         setDefaultVisibility()
-//        getServerRecentPraiseTo()
+        setRecyclerView()
     }
 
     private fun setListeners() {
@@ -54,9 +58,6 @@ class HomeDialogDoneFragment : DialogFragment() {
             imageButtonClose.setOnClickListener(dialogDoneClickListener)
             editTextPraiseTo.addTextChangedListener(dialogTextWatcher)
             imageButtonDelete.setOnClickListener(dialogDoneClickListener)
-            buttonRecentPraiseTo01.setOnClickListener(dialogDoneClickListener)
-            buttonRecentPraiseTo02.setOnClickListener(dialogDoneClickListener)
-            buttonRecentPraiseTo03.setOnClickListener(dialogDoneClickListener)
             buttonConfirm.setOnClickListener(dialogDoneClickListener)
         }
     }
@@ -67,13 +68,10 @@ class HomeDialogDoneFragment : DialogFragment() {
         dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke)
     }
 
-    private fun setDefaultVisibility() {
-        dialogDoneViewBinding.apply {
-            imageButtonDelete.visibility = ImageButton.GONE
-            textViewRecentPraiseTo.visibility = TextView.GONE
-            buttonRecentPraiseTo01.visibility = Button.GONE
-            buttonRecentPraiseTo02.visibility = Button.GONE
-            buttonRecentPraiseTo03.visibility = Button.GONE
+    private fun setRecyclerView() {
+        dialogDoneViewBinding.recyclerViewRecentPraiseTo.apply {
+            adapter = RecentPraiseToAdapter(recentPraiseToList)
+            addOnScrollListener(dialogDoneScrollListener)
         }
     }
 
@@ -91,44 +89,11 @@ class HomeDialogDoneFragment : DialogFragment() {
                 response: Response<ResponseRecentPraiseTo>
             ) {
                 when (response.isSuccessful) {
-                    true -> setRecentPraiseTo(response.body()!!.data)
+                    true -> recentPraiseToList = response.body()!!.data
                     false -> handleRecentPraiseToStatusCode(response)
                 }
             }
         })
-    }
-
-    private fun setRecentPraiseTo(listRecentPraiseTo: List<ResponseRecentPraiseTo.Name>) {
-        Log.d("TAG", "setRecentPraiseTo: ${listRecentPraiseTo.size}")
-        when (listRecentPraiseTo.size) {
-            1 -> {
-                dialogDoneViewBinding.apply {
-                    textViewRecentPraiseTo.visibility = TextView.VISIBLE
-                    buttonRecentPraiseTo01.visibility = Button.VISIBLE
-                    buttonRecentPraiseTo01.text = listRecentPraiseTo[0].name
-                }
-            }
-            2 -> {
-                dialogDoneViewBinding.apply {
-                    textViewRecentPraiseTo.visibility = TextView.VISIBLE
-                    buttonRecentPraiseTo01.visibility = Button.VISIBLE
-                    buttonRecentPraiseTo01.text = listRecentPraiseTo[0].name
-                    buttonRecentPraiseTo02.visibility = Button.VISIBLE
-                    buttonRecentPraiseTo02.text = listRecentPraiseTo[1].name
-                }
-            }
-            3 -> {
-                dialogDoneViewBinding.apply {
-                    textViewRecentPraiseTo.visibility = TextView.VISIBLE
-                    buttonRecentPraiseTo01.visibility = Button.VISIBLE
-                    buttonRecentPraiseTo01.text = listRecentPraiseTo[0].name
-                    buttonRecentPraiseTo02.visibility = Button.VISIBLE
-                    buttonRecentPraiseTo02.text = listRecentPraiseTo[1].name
-                    buttonRecentPraiseTo03.visibility = Button.VISIBLE
-                    buttonRecentPraiseTo03.text = listRecentPraiseTo[2].name
-                }
-            }
-        }
     }
 
     private fun handleRecentPraiseToStatusCode(response: Response<ResponseRecentPraiseTo>) {
@@ -145,6 +110,23 @@ class HomeDialogDoneFragment : DialogFragment() {
         }
     }
 
+    private fun setDefaultVisibility() {
+        recentPraiseToList = listOf(
+            ResponseRecentPraiseTo.Name("김송현"),
+            ResponseRecentPraiseTo.Name("남궁선규남궁"),
+            ResponseRecentPraiseTo.Name("최윤소")
+        )
+
+
+        dialogDoneViewBinding.apply {
+            imageButtonDelete.visibility = ImageButton.GONE
+            textViewRecentPraiseToTitle.visibility = when (recentPraiseToList.size) {
+                0 -> TextView.GONE
+                else -> TextView.VISIBLE
+            }
+        }
+    }
+
     private val dialogDoneClickListener = View.OnClickListener {
         when (it.id) {
             dialogDoneViewBinding.imageButtonClose.id -> {
@@ -153,26 +135,60 @@ class HomeDialogDoneFragment : DialogFragment() {
             dialogDoneViewBinding.imageButtonDelete.id -> {
                 dialogDoneViewBinding.editTextPraiseTo.setText("")
             }
-            dialogDoneViewBinding.buttonRecentPraiseTo01.id -> {
-                dialogDoneViewBinding.editTextPraiseTo.setText(
-                    dialogDoneViewBinding.buttonRecentPraiseTo01.text
-                )
-            }
-            dialogDoneViewBinding.buttonRecentPraiseTo02.id -> {
-                dialogDoneViewBinding.editTextPraiseTo.setText(
-                    dialogDoneViewBinding.buttonRecentPraiseTo02.text
-                )
-            }
-            dialogDoneViewBinding.buttonRecentPraiseTo03.id -> {
-                dialogDoneViewBinding.editTextPraiseTo.setText(
-                    dialogDoneViewBinding.buttonRecentPraiseTo03.text
-                )
-            }
             dialogDoneViewBinding.buttonConfirm.id -> {
 //                saveServerPraiseData(dialogDoneViewBinding.editTextPraiseTo.text.toString())
                 showResultDialog(true)
                 dialog!!.dismiss()
             }
+        }
+    }
+
+    private val dialogDoneScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val firstVisibleItemPosition = layoutManager.findFirstCompletelyVisibleItemPosition()
+            val lastVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition()
+            updateBlurBox(firstVisibleItemPosition, lastVisibleItemPosition)
+        }
+    }
+
+    private fun updateBlurBox(firstVisibleItemPosition: Int, lastVisibleItemPosition: Int) {
+        if (firstVisibleItemPosition == 0) {
+            dialogDoneViewBinding.imageViewBlurBoxLeft.fadeOut()
+            dialogDoneViewBinding.imageViewBlurBoxRight.fadeIn()
+        }
+        if (lastVisibleItemPosition == 2) {
+            dialogDoneViewBinding.imageViewBlurBoxLeft.fadeIn()
+            dialogDoneViewBinding.imageViewBlurBoxRight.fadeOut()
+        } else {
+            dialogDoneViewBinding.imageViewBlurBoxLeft.fadeIn()
+            dialogDoneViewBinding.imageViewBlurBoxRight.fadeIn()
+        }
+    }
+
+    private fun View.fadeIn() {
+        if (visibility == View.INVISIBLE) {
+            visibility = View.VISIBLE
+            alpha = 0f
+            animate()
+                .alpha(1f)
+                .setDuration(resources.getInteger(android.R.integer.config_shortAnimTime).toLong())
+                .setListener(null)
+        }
+    }
+
+    private fun View.fadeOut() {
+        if (visibility == View.VISIBLE) {
+            alpha = 1f
+            animate()
+                .alpha(0f)
+                .setDuration(resources.getInteger(android.R.integer.config_shortAnimTime).toLong())
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        visibility = View.INVISIBLE
+                    }
+                })
         }
     }
 
