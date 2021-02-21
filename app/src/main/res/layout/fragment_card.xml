@@ -7,17 +7,16 @@
     android:background="@color/pale"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.CardFragment">
+    tools:context=".card.CardFragment">
 
     <TextView
         android:id="@+id/tv_card_title_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="67dp"
-        android:height="18dp"
         android:fontFamily="@font/noto_sans_medium"
         android:includeFontPadding="false"
-        android:text="선규님의"
+        android:text="닉네임님의"
         android:textSize="16sp"
         android:textColor="@color/greyish_brown"
         android:letterSpacing="-0.05"
@@ -29,53 +28,123 @@
         android:id="@+id/tv_card_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:height="25.5dp"
-        android:gravity="bottom"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/noto_sans_semibold"
+        android:gravity="bottom"
         android:includeFontPadding="false"
-        android:text="칭찬 카드"
-        android:textSize="22sp"
-        android:textColor="@color/greyish_brown"
         android:letterSpacing="-0.05"
-        app:layout_constraintTop_toBottomOf="@id/tv_card_title_name"
+        android:text="칭찬 카드"
+        android:textColor="@color/greyish_brown"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@id/tv_card_title_name"
         app:layout_constraintStart_toStartOf="@id/tv_card_title_name"
-        app:layout_constraintEnd_toEndOf="@id/tv_card_title_name"/>
-    
+        app:layout_constraintTop_toBottomOf="@id/tv_card_title_name" />
+
     <View
         android:id="@+id/v_card_title_div"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/bg_card_div"
-        app:layout_constraintTop_toBottomOf="@id/tv_card_title_name"
+        app:layout_constraintEnd_toEndOf="@id/tv_card_title"
         app:layout_constraintStart_toStartOf="@id/tv_card_title"
-        app:layout_constraintEnd_toEndOf="@id/tv_card_title"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_card_title" />
+
+    <View
+        android:id="@+id/switch_track"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="23dp"
+
+        android:background="@drawable/background_rectangle_radius_30_stroke_2"
+        app:layout_constraintWidth_percent="0.62"
+        app:layout_constraintDimensionRatio="222:51"
+        app:layout_constraintTop_toBottomOf="@id/v_card_title_div"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <View
+        android:id="@+id/tab_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/card_tab_bg_selector"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintDimensionRatio="107:43"
+        app:layout_constraintTop_toTopOf="@id/switch_track"
+        app:layout_constraintBottom_toBottomOf="@id/switch_track"
+        app:layout_constraintLeft_toLeftOf="@id/switch_track" />
+
+    <TextView
+        android:id="@+id/tv_tab_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_regular"
+        android:text="카드서랍"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.05"
+        app:layout_constraintTop_toTopOf="@id/tab_left"
+        app:layout_constraintBottom_toBottomOf="@id/tab_left"
+        app:layout_constraintLeft_toLeftOf="@id/tab_left"
+        app:layout_constraintRight_toRightOf="@id/tab_left"/>
+
+    <View
+        android:id="@+id/tab_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/card_tab_bg_selector"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintDimensionRatio="107:43"
+        app:layout_constraintTop_toTopOf="@id/switch_track"
+        app:layout_constraintBottom_toBottomOf="@id/switch_track"
+        app:layout_constraintRight_toRightOf="@id/switch_track" />
+
+    <TextView
+        android:id="@+id/tv_tab_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_regular"
+        android:text="칭찬랭킹"
+        android:textSize="15sp"
+        android:textColor="@color/brown_grey"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.05"
+        app:layout_constraintTop_toTopOf="@id/tab_right"
+        app:layout_constraintBottom_toBottomOf="@id/tab_right"
+        app:layout_constraintLeft_toLeftOf="@id/tab_right"
+        app:layout_constraintRight_toRightOf="@id/tab_right"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/card_box_bg"
-        app:layout_constraintTop_toBottomOf="@id/v_card_title_div"
+        app:layout_constraintTop_toBottomOf="@id/switch_track"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
-            android:id="@+id/tv_card_count"
+            android:id="@+id/card_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:layout_marginLeft="42dp"
             android:fontFamily="@font/noto_sans_semibold"
             android:includeFontPadding="false"
-            android:text="38번"
+            android:text="n번"
             android:textSize="20sp"
             android:textColor="@color/brown"
             android:letterSpacing="-0.05"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
 
         <TextView
+            android:id="@+id/card_count2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_medium"
@@ -84,11 +153,13 @@
             android:textSize="20sp"
             android:textColor="@color/brown"
             android:letterSpacing="-0.05"
-            app:layout_constraintTop_toTopOf="@id/tv_card_count"
-            app:layout_constraintStart_toEndOf="@id/tv_card_count"/>
+            app:layout_constraintTop_toTopOf="@id/card_count"
+            app:layout_constraintStart_toEndOf="@id/card_count"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
 
         <Button
-            android:id="@+id/btn_card_month"
+            android:id="@+id/btn_card_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -99,14 +170,14 @@
             android:elevation="2dp"
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
-            android:text="전체"
+            android:text="0000년 선택"
             android:textSize="13dp"
             android:textColor="@color/brown"
             android:letterSpacing="-0.05"
             android:drawableRight="@drawable/card_ic_month"
             android:drawablePadding="1dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_card_box"
@@ -117,12 +188,65 @@
             android:paddingTop="27dp"
             android:clipToPadding="false"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/btn_card_month"
+            app:layout_constraintTop_toBottomOf="@id/btn_card_picker"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_card_box_card" />
+            tools:listitem="@layout/item_card_box_card"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/empty_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="119dp"
+            app:layout_constraintWidth_percent="0.35"
+            app:layout_constraintDimensionRatio="125:107"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:src="@drawable/empty_img_whale"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/tv_empty1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/noto_sans_semibold"
+            android:textSize="18sp"
+            android:textColor="@color/greyish_brown"
+            android:alpha="0.7"
+            android:letterSpacing="-0.05"
+            android:includeFontPadding="false"
+            android:text="아직 칭찬을 하지 않았어요!"
+            app:layout_constraintLeft_toLeftOf="@id/empty_img"
+            app:layout_constraintRight_toRightOf="@id/empty_img"
+            app:layout_constraintTop_toBottomOf="@id/empty_img"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/tv_empty2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/noto_sans_medium"
+            android:textSize="16sp"
+            android:textColor="@color/greyish_brown"
+            android:alpha="0.7"
+            android:letterSpacing="-0.05"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="-2sp"
+            android:text="칭찬 미션을 완료하고,\n칭찬 카드를 모아봐요!"
+            app:layout_constraintLeft_toLeftOf="@id/tv_empty1"
+            app:layout_constraintRight_toRightOf="@id/tv_empty1"
+            app:layout_constraintTop_toBottomOf="@id/tv_empty1"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
