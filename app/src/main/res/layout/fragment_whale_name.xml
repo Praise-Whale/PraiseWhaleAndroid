@@ -32,50 +32,81 @@
 
         <TextView
             android:id="@+id/tv_whale_name"
-            style="@style/signUpText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
+            android:fontFamily="@font/noto_sans_semibold"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
             android:text="@{signUpViewModel.userName}"
-            android:textStyle="bold"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/btn_back"
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
         <TextView
             android:id="@+id/tv_title"
-            style="@style/signUpText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
             android:text="@string/title7"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@id/tv_whale_name"
             app:layout_constraintTop_toTopOf="@id/tv_whale_name" />
 
         <TextView
             android:id="@+id/tv_title2"
-            style="@style/signUpText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans_semibold"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
             android:text="@string/title8"
-            android:textStyle="bold"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_whale_name"
             app:layout_constraintTop_toBottomOf="@id/tv_whale_name" />
 
         <View
             android:id="@+id/underline"
             android:layout_width="0dp"
-            android:layout_height="3dp"
+            android:layout_height="2dp"
             android:background="@color/sand_yellow"
             app:layout_constraintEnd_toEndOf="@id/tv_title2"
             app:layout_constraintStart_toStartOf="@id/tv_title2"
             app:layout_constraintTop_toBottomOf="@id/tv_title2" />
 
         <TextView
-            android:id="@+id/tv_title5"
-            style="@style/signUpText"
+            android:id="@+id/tv_title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
             android:text="@string/title5"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_title2"
             app:layout_constraintStart_toEndOf="@id/tv_title2"
             app:layout_constraintTop_toTopOf="@id/tv_title2" />
 
         <TextView
-            android:id="@+id/tv_title6"
-            style="@style/signUpText"
+            android:id="@+id/tv_title4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
             android:text="@string/title6"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_title2"
-            app:layout_constraintTop_toBottomOf="@id/underline" />
+            app:layout_constraintTop_toBottomOf="@id/tv_title2" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -122,8 +153,13 @@
                     android:id="@+id/tv_warning"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="1sp"
                     android:text="@string/impossible_name_change"
                     android:textColor="@color/brown_grey"
+                    android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -147,12 +183,17 @@
                     android:layout_marginHorizontal="51dp"
                     android:layout_marginTop="105dp"
                     android:background="@drawable/background_edit_text_focused"
+                    android:fontFamily="@font/noto_sans_regular"
                     android:hint="@string/hint_whale_name"
                     android:importantForAutofill="no"
+                    android:includeFontPadding="false"
                     android:inputType="text"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="-1sp"
                     android:maxLength="7"
                     android:padding="16dp"
                     android:text="@={signUpViewModel.whaleName}"
+                    android:textColor="@color/black"
                     android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -178,6 +219,9 @@
                     nickNameCount="@{signUpViewModel.whaleName}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="-3sp"
                     android:textColor="@color/brown"
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_max_length"
@@ -188,6 +232,9 @@
                     android:id="@+id/tv_max_length"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="-3sp"
                     android:text="@string/max_length"
                     android:textColor="@color/brown_grey"
                     android:textSize="13sp"
@@ -203,6 +250,8 @@
                     android:layout_marginTop="23dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/btn_next"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
                     android:letterSpacing="-0.05"
                     android:lineSpacingExtra="-2sp"
                     android:paddingVertical="18dp"
@@ -213,7 +262,6 @@
                     app:layout_constraintEnd_toEndOf="@id/et_whale_name"
                     app:layout_constraintStart_toStartOf="@id/et_whale_name"
                     app:layout_constraintTop_toBottomOf="@id/tv_max_length" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
