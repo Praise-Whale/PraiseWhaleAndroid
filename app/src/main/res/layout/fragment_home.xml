@@ -69,7 +69,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginTop="26dp"
         android:background="@drawable/shadow_rectangle_radius_15"
         app:layout_constraintBottom_toTopOf="@+id/imageView_dolphin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -193,12 +193,11 @@
     <ImageView
         android:id="@+id/imageView_tipBoxShadow"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/shadow_rectangle_radius_15"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_dolphin"
-        app:layout_constraintDimensionRatio="2.5:1"
-        app:layout_constraintEnd_toStartOf="@+id/imageView_dolphin"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_tipBox"
         app:layout_constraintStart_toStartOf="@+id/imageView_cardShadow"
         app:layout_constraintTop_toTopOf="@+id/imageView_dolphin" />
 
@@ -207,10 +206,11 @@
         android:layout_width="0dp"
         android:layout_height="88dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="136dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/main_box_tip_noshadow"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_tipBoxShadow"
-        app:layout_constraintEnd_toEndOf="@+id/imageView_tipBoxShadow"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView_cardBackground"
         app:layout_constraintTop_toTopOf="@+id/imageView_tipBoxShadow" />
 
@@ -235,11 +235,11 @@
 
     <ImageView
         android:id="@+id/imageView_dolphin"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/main_img_dolphin"
+        android:layout_width="160dp"
+        android:layout_height="192dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/main_img_whale"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView_cardShadow" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
