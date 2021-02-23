@@ -62,6 +62,7 @@
         <View
             android:layout_width="0dp"
             android:layout_height="2dp"
+            android:layout_marginTop="1.6dp"
             android:background="@color/sand_yellow"
             app:layout_constraintEnd_toEndOf="@id/tv_terms_of_service"
             app:layout_constraintStart_toStartOf="@id/tv_terms_of_service"
