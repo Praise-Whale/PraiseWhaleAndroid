@@ -239,7 +239,8 @@
                 <Button
                     android:id="@+id/btn_check"
                     style="?android:attr/borderlessButtonStyle"
-                    validation="@{signUpViewModel.userName}"
+                    emptyText="@{signUpViewModel.userName}"
+                    userNameValid="@{signUpViewModel.isValid}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="23dp"
