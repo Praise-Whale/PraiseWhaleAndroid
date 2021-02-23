@@ -188,6 +188,43 @@
             app:layout_constraintStart_toEndOf="@+id/button_negative"
             app:layout_constraintTop_toTopOf="@+id/button_negative" />
 
+        <Button
+            android:id="@+id/button_praiseStatus"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="18dp"
+            android:stateListAnimator="@null"
+            android:background="@drawable/background_rectangle_radius_12"
+            android:backgroundTint="@color/dodger_blue_13"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame"
+            app:layout_constraintStart_toStartOf="@+id/imageView_cardFrame" />
+
+        <TextView
+            android:id="@+id/textView_praiseStatusDescription"
+            style="@style/noto_sans_regular_15dp_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:text="오늘의 칭찬"
+            app:layout_constraintBottom_toBottomOf="@+id/button_praiseStatus"
+            app:layout_constraintEnd_toStartOf="@id/textView_praiseStatus"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/button_praiseStatus"
+            app:layout_constraintTop_toTopOf="@+id/button_praiseStatus" />
+
+        <TextView
+            android:id="@+id/textView_praiseStatus"
+            style="@style/noto_sans_semi_bold_15dp_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="완료"
+            app:layout_constraintBottom_toBottomOf="@+id/button_praiseStatus"
+            app:layout_constraintEnd_toEndOf="@+id/button_praiseStatus"
+            app:layout_constraintStart_toEndOf="@id/textView_praiseStatusDescription"
+            app:layout_constraintTop_toTopOf="@+id/button_praiseStatus" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
@@ -206,7 +243,7 @@
         android:layout_width="0dp"
         android:layout_height="88dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="136dp"
+        android:layout_marginEnd="148dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/main_box_tip_noshadow"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_tipBoxShadow"
@@ -238,7 +275,7 @@
         android:layout_width="160dp"
         android:layout_height="192dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/main_img_whale"
+        android:src="@drawable/main_img_whale"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
