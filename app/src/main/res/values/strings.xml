@@ -71,7 +71,7 @@
     <string name="on_boarding6">나만의 고래</string>
     <string name="on_boarding7">를</string>
     <string name="on_boarding8">춤 추게</string>
-    <string name="on_boarding9">해요</string>
+    <string name="on_boarding9">" 해요"</string>
     <string name="on_boarding10">칭찬을 할 때 마다\n나의 고래가 춤을 춰요!</string>
     <string name="on_boarding11">칭찬 횟수에 따라 고래의 레벨이 높아져요:)</string>
     <string name="on_boarding12">칭찬을</string>
