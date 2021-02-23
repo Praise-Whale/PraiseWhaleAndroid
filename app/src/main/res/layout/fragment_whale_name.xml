@@ -75,6 +75,7 @@
             android:id="@+id/underline"
             android:layout_width="0dp"
             android:layout_height="2dp"
+            android:layout_marginTop="1.6dp"
             android:background="@color/sand_yellow"
             app:layout_constraintEnd_toEndOf="@id/tv_title2"
             app:layout_constraintStart_toStartOf="@id/tv_title2"
