@@ -54,7 +54,7 @@
             android:id="@+id/tv_info_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_semibold"
+            android:fontFamily="@font/noto_sans_semi_bold"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:lineSpacingExtra="-1sp"
@@ -124,7 +124,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_semibold"
+            android:fontFamily="@font/noto_sans_semi_bold"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:lineSpacingExtra="-2sp"
@@ -206,7 +206,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_semibold"
+            android:fontFamily="@font/noto_sans_semi_bold"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:lineSpacingExtra="-2sp"
@@ -288,7 +288,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_semibold"
+            android:fontFamily="@font/noto_sans_semi_bold"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:lineSpacingExtra="-2sp"
@@ -415,7 +415,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_semibold"
+            android:fontFamily="@font/noto_sans_semi_bold"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:lineSpacingExtra="-2sp"
@@ -497,7 +497,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_semibold"
+            android:fontFamily="@font/noto_sans_semi_bold"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:lineSpacingExtra="-2sp"
