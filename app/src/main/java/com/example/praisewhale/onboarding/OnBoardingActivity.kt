@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.ActivityOnBoardingBinding
 import com.example.praisewhale.signup.SignUpActivity
+import com.example.praisewhale.util.MyApplication
 import com.google.android.material.tabs.TabLayoutMediator
 
 class OnBoardingActivity : AppCompatActivity() {
@@ -67,8 +68,8 @@ class OnBoardingActivity : AppCompatActivity() {
     private fun setButtonClick(binding: ActivityOnBoardingBinding, position: Int) {
         binding.btnOnBoardingNext.setOnClickListener {
             if (position == 3) {
-                val intent = Intent(this, SignUpActivity::class.java)
-                startActivity(intent)
+                MyApplication.mySharedPreferences.setBooleanValue("onBoarding", true)
+                startActivity(Intent(this@OnBoardingActivity, SignUpActivity::class.java))
                 finish()
             } else {
                 binding.vpOnBoarding.currentItem += 1
