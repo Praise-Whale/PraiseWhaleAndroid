@@ -19,6 +19,7 @@ import com.example.praisewhale.data.RequestSignUp
 import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.FragmentWhaleNameBinding
 import com.example.praisewhale.util.MyApplication
+import com.example.praisewhale.util.Vibrate
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -71,7 +72,11 @@ class WhaleNameFragment : Fragment() {
 
     private fun setNextClickListener(binding: FragmentWhaleNameBinding) {
         binding.btnCheck.setOnClickListener {
-            if (!(signUpViewModel.userName.value.isNullOrEmpty())) signUp()
+            if (!(signUpViewModel.whaleName.value.isNullOrEmpty())) {
+                signUp()
+            } else {
+                Vibrate.startVibrate(requireContext())
+            }
         }
     }
 
