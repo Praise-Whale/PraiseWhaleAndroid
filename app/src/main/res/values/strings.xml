@@ -67,7 +67,7 @@
 
     <!-- alarm -->
     <string name="alarm_content">지금 바로 오늘의 칭찬을 확인하고, 실천해보세요!</string>
-    <string name="alarm_title">오늘의 칭찬이 도착했어요</string>
+    <string name="alarm_title">오늘의 칭찬이 도착했어요!</string>
     <string name="alarm_head_up_title">오늘의 칭찬</string>
     <string name="alarm_head_up_content">이 도착했어요!</string>
 
