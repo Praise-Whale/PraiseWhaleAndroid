@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
         android:layout_marginTop="18dp"
-        android:fontFamily="@font/notosans_semibold"
+        android:fontFamily="@font/noto_sans_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/setting_title"
         android:textColor="@color/greyish_brown"

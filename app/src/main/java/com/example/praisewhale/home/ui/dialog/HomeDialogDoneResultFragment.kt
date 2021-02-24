@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.example.praisewhale.MainActivity
 import com.example.praisewhale.R
+import com.example.praisewhale.databinding.CustomToastHomeBinding
 import com.example.praisewhale.databinding.DialogHomeResultBinding
-import kotlinx.android.synthetic.main.custom_toast_home.*
+import com.example.praisewhale.home.ui.HomeFragment
 
 
 class HomeDialogDoneResultFragment : DialogFragment() {
 
-    private var _dialogResultViewBinding: DialogHomeResultBinding? = null
-    private val dialogResultViewBinding get() = _dialogResultViewBinding!!
+    private var _viewBinding: DialogHomeResultBinding? = null
+    private val viewBinding get() = _viewBinding!!
+
     private var isLevelUp = false
 
 
@@ -20,8 +23,8 @@ class HomeDialogDoneResultFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _dialogResultViewBinding = DialogHomeResultBinding.inflate(layoutInflater)
-        return dialogResultViewBinding.root
+        _viewBinding = DialogHomeResultBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,11 +35,11 @@ class HomeDialogDoneResultFragment : DialogFragment() {
     }
 
     private fun setListeners() {
-        dialogResultViewBinding.buttonConfirm.setOnClickListener(dialogDoneClickListener)
+        viewBinding.buttonConfirm.setOnClickListener(dialogDoneClickListener)
     }
 
     private fun setDialogContents() {
-        dialogResultViewBinding.apply {
+        viewBinding.apply {
             imageViewWhale.setImageResource(R.drawable.yes_5_img_whale)
             textViewTitle.text = "참 잘했고래!"
             textViewSubTitle.text = "내일도 칭찬해요!"
@@ -44,15 +47,14 @@ class HomeDialogDoneResultFragment : DialogFragment() {
     }
 
     private fun setDialogBackground() {
-        val dialogWidth = resources.getDimensionPixelSize(R.dimen.dialog_main_width)
-        dialog!!.window!!.setLayout(dialogWidth, WindowManager.LayoutParams.WRAP_CONTENT)
         dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke)
     }
 
     private val dialogDoneClickListener = View.OnClickListener {
         when (it.id) {
-            dialogResultViewBinding.buttonConfirm.id -> {
+            viewBinding.buttonConfirm.id -> {
                 dialog!!.dismiss()
+                (activity as MainActivity).changeFragment(HomeFragment())
                 showLevelUpToast(isLevelUp)
             }
         }
@@ -60,13 +62,12 @@ class HomeDialogDoneResultFragment : DialogFragment() {
 
     private fun showLevelUpToast(isLevelUp: Boolean) {
         if (isLevelUp) {
-            val toastContainer = layoutInflater.inflate(
-                R.layout.custom_toast_home,
-                constraintLayout_toastContainer
-            )
+            val toastViewBinding = CustomToastHomeBinding.inflate(layoutInflater)
             Toast(requireContext()).apply {
-                view = toastContainer
+                view = toastViewBinding.constraintLayoutToastContainer
+                toastViewBinding.textViewToastMessage.text = "레벨업 되었어요! 고래를 확인해보세요!"
                 duration = Toast.LENGTH_LONG
+                setGravity(Gravity.BOTTOM, 0, 250)
                 show()
             }
         }
@@ -74,7 +75,7 @@ class HomeDialogDoneResultFragment : DialogFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _dialogResultViewBinding = null
+        _viewBinding = null
     }
 
     class CustomDialogBuilder {

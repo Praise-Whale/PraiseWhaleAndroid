@@ -1,91 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".onboarding.FirstOnBoardingFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <View
-        android:id="@+id/underline"
-        android:layout_width="28dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="103dp"
-        android:background="@color/sand_yellow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".onboarding.FirstOnBoardingFragment">
 
-    <TextView
-        android:id="@+id/tv_on_boarding_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:fontFamily="@font/noto_sans_semibold"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding1"
-        android:textColor="@color/greyish_brown"
-        android:textSize="26sp"
-        app:layout_constraintStart_toStartOf="@id/underline"
-        app:layout_constraintTop_toBottomOf="@id/underline" />
+        <View
+            android:id="@+id/underline"
+            android:layout_width="28dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="83dp"
+            android:background="@color/sand_yellow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_praise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_semibold"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding2"
-        android:textColor="@color/greyish_brown"
-        android:textSize="26sp"
-        app:layout_constraintStart_toStartOf="@id/tv_on_boarding_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_on_boarding_title" />
+        <LinearLayout
+            android:id="@+id/layout_first_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/underline"
+            app:layout_constraintTop_toBottomOf="@id/underline">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding3"
-        android:textColor="@color/greyish_brown"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="@id/tv_praise"
-        app:layout_constraintStart_toEndOf="@id/tv_praise"
-        app:layout_constraintTop_toTopOf="@id/tv_praise" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_semi_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.05"
+                android:text="@string/on_boarding1"
+                android:textColor="@color/greyish_brown"
+                android:textSize="26sp" />
 
-    <TextView
-        android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding4"
-        android:textColor="@color/greyish_brown"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/tv_praise"
-        app:layout_constraintTop_toBottomOf="@id/tv_praise" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-2dp"
+                android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_content_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding5"
-        android:textColor="@color/brown_grey"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@id/tv_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_semi_bold"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/on_boarding2"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="26sp" />
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/onboarding_1_img_whale"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_content_alarm"
-        tools:ignore="ContentDescription" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/on_boarding3"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="26sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_different_praise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/on_boarding4"
+            android:textColor="@color/greyish_brown"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/layout_first_title"
+            app:layout_constraintTop_toBottomOf="@id/layout_first_title" />
+
+        <TextView
+            android:id="@+id/tv_content_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/on_boarding5"
+            android:textColor="@color/brown_grey"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/tv_different_praise"
+            app:layout_constraintTop_toBottomOf="@id/tv_different_praise" />
+
+        <ImageView
+            android:id="@+id/img_first_on_boarding"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/onboarding_1_img_whale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_content_alarm"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

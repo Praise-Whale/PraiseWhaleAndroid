@@ -29,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_bold"
+        android:layout_marginTop="4dp"
         android:gravity="bottom"
         android:includeFontPadding="false"
         android:letterSpacing="-0.05"
