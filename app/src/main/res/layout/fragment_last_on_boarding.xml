@@ -45,7 +45,7 @@
                         android:id="@+id/tv_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_sans_semibold"
+                        android:fontFamily="@font/noto_sans_semi_bold"
                         android:includeFontPadding="false"
                         android:letterSpacing="-0.05"
                         android:text="@string/title"
@@ -96,7 +96,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/noto_sans_semibold"
+                    android:fontFamily="@font/noto_sans_semi_bold"
                     android:includeFontPadding="false"
                     android:letterSpacing="-0.05"
                     android:text="@string/title11"

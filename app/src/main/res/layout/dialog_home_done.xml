@@ -90,14 +90,35 @@
         app:layout_constraintTop_toTopOf="@+id/editText_praiseTo" />
 
     <TextView
+        android:id="@+id/textView_currentLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        style="@style/noto_sans_regular_13dp_brown_grey"
+        app:layout_constraintBottom_toBottomOf="@id/textView_maxLength"
+        app:layout_constraintEnd_toStartOf="@id/textView_maxLength"
+        app:layout_constraintTop_toTopOf="@id/textView_maxLength" />
+
+    <TextView
+        android:id="@+id/textView_maxLength"
+        style="@style/noto_sans_regular_13dp_brown_grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="/6"
+        app:layout_constraintEnd_toEndOf="@id/editText_praiseTo"
+        app:layout_constraintTop_toBottomOf="@id/editText_praiseTo" />
+
+
+    <TextView
         android:id="@+id/textView_recentPraiseToTitle"
         style="@style/noto_sans_regular_14dp_brown_grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="6dp"
         android:text="최근 칭찬한 사람"
         app:layout_constraintStart_toStartOf="@+id/editText_praiseTo"
-        app:layout_constraintTop_toBottomOf="@+id/editText_praiseTo" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_currentLength" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_recentPraiseTo"

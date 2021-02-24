@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
     private var currentDate = Calendar.getInstance().get(Calendar.DATE).toString()
     private var currentYMD = currentYear + currentMonth + currentDate
 
-    private var praiseId = 0
     private val sharedPreferences = MyApplication.mySharedPreferences
 
 
@@ -171,12 +170,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun saveLastGetPraiseData(praiseData: ResponseHomePraise.Data) {
-        praiseId = praiseData.praiseId
         sharedPreferences.apply {
-            setValue(LAST_PRAISE_STATUS, "")
             setValue(LAST_PRAISE_DATE, currentYMD)
-            setValue(LAST_PRAISE_INDEX, praiseId.toString())
             setValue(LAST_PRAISE, praiseData.dailyPraise)
+            setValue(LAST_PRAISE_STATUS, "")
+            setValue(LAST_PRAISE_INDEX, praiseData.praiseId.toString())
             setValue(LAST_PRAISE_DESCRIPTION, praiseData.praiseDescription)
         }
     }
