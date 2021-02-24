@@ -86,6 +86,22 @@
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
+    <style name="noto_sans_semi_bold_15dp_black">
+        <item name="android:fontFamily">@font/noto_sans_semibold</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
+    <style name="noto_sans_semi_bold_15dp_dodger_blue">
+        <item name="android:fontFamily">@font/noto_sans_semibold</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/dodger_blue</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
     <style name="noto_sans_semi_bold_18dp_greyish_brown">
         <item name="android:fontFamily">@font/noto_sans_semibold</item>
         <item name="android:textSize">18dp</item>
