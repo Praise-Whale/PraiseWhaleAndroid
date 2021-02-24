@@ -45,7 +45,7 @@
     <string name="title12">실천해볼까요?</string>
     <string name="hint_nickname">닉네임을 7자 이내로 입력해주세요.</string>
     <string name="hint_whale_name">고래의 이름을 7자 이내로 입력해주세요.</string>
-    <string name="check_warning">이미 사용중인 닉네임이에요!</string>
+    <string name="check_warning">이미 사용 중인 닉네임이에요!</string>
     <string name="impossible_name_change">고래의 이름은 다시 변경할 수 없어요!</string>
     <string name="max_length">/7</string>
     <string name="next">다음</string>
