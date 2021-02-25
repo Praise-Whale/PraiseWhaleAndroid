@@ -332,6 +332,7 @@ class SettingActivity :AppCompatActivity() {
 
 
         }
+
         layout_service.setOnClickListener {
             val intent= Intent(this, InfoUserActivity::class.java)
             startActivity(intent)
