@@ -28,6 +28,79 @@ class PraiseLevelFragment : Fragment() {
         return View
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val token = MyApplication.mySharedPreferences.getValue("token", "")
+        val call: Call<ResponselevelData> = CollectionImpl.service.getlevelcount(token)
+        call.enqueue(object : Callback<ResponselevelData> {
+            override fun onFailure(call: Call<ResponselevelData>, t: Throwable) {
+                Log.d("tag", t.localizedMessage)
+            }
+
+            override fun onResponse(
+                call: Call<ResponselevelData>,
+                response: Response<ResponselevelData>
+            ) {
+
+                response.takeIf { it.isSuccessful }
+
+                    ?.body()
+                    ?.let {
+
+                            it ->
+
+                        level_txt.text = it.data.nickName.toString() + "님의"
+                        whalename_txt.text = it.data.whaleName.toString()
+
+                        textView2.text = it.data.praiseCount.toString() + "번"
+                        cpb_circlebar.progress = it.data.praiseCount * 10
+
+
+                        Log.d("세번째", "세번째")
+
+
+
+                        when (it.data.userLevel) {
+                            0 -> {
+                                level_whale.setImageResource(R.drawable.lv_0_img_whale)
+                                detail_txt.text = "아직은 칭찬이 어색한 고래"
+                            }
+                            1 -> {
+                                level_whale.setImageResource(R.drawable.lv_1_img_whale)
+                                detail_txt.text = "칭찬에 흥미가 생긴 고래"
+                            }
+                            2 -> {
+                                level_whale.setImageResource(R.drawable.lv_2_img_whale)
+                                detail_txt.text = "칭찬에 익숙해진 고래"
+                            }
+                            3 -> {
+                                level_whale.setImageResource(R.drawable.lv_3_img_whale)
+                                detail_txt.text = "슬슬 리듬타기 시작한 고래"
+                            }
+                            4 -> {
+                                level_whale.setImageResource(R.drawable.lv_4_img_whale)
+                                detail_txt.text = "신나게 춤추는 고래"
+                            }
+                            5 -> {
+                                level_whale.setImageResource(R.drawable.lv_5_img_whale)
+                                detail_txt.text = "춤신 춤왕 만렙 고래"
+                            }
+
+                        }
+                        textView3.text = it.data.levelUpNeedCount.toString() + "번 달성시 다음레벨"
+                        //level_txt.text = it.data.userLevel.toString()
+
+                        //level_txt.text="칭찬 고래 "+it.data.userLevel.toString()+" 단계"
+
+                        //detail_txt.text = "칭찬 "+it.data.needLikeCount.toString()+"번만 더 하면 춤추는 고래!"
+
+
+                    }
+            }
+        })
+
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setting_btn.setOnClickListener {
