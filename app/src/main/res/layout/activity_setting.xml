@@ -156,6 +156,8 @@
 
         <Switch
             android:id="@+id/switch_alarm"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
