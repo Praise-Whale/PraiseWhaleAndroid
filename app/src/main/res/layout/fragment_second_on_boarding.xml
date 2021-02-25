@@ -35,7 +35,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_semi_bold"
+                    android:fontFamily="@font/noto_sans_bold"
                     android:includeFontPadding="false"
                     android:letterSpacing="-0.05"
                     android:text="@string/on_boarding6"
@@ -56,13 +56,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-2dp"
+                android:layout_marginTop="-5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_semi_bold"
+                    android:fontFamily="@font/noto_sans_bold"
                     android:includeFontPadding="false"
                     android:letterSpacing="-0.05"
                     android:text="@string/on_boarding8"
@@ -85,7 +85,7 @@
             android:id="@+id/tv_dancing_whale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
@@ -99,7 +99,7 @@
             android:id="@+id/tv_content_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
@@ -113,7 +113,7 @@
             android:id="@+id/img_second_on_boarding"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="9dp"
             android:src="@drawable/onboarding_2_img_whale"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
