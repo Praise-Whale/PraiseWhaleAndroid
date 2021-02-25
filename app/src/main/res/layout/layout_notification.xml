@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingVertical="16dp">
+    android:paddingVertical="13dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -26,15 +25,24 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="4dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
             android:text="@string/title"
-            android:textColor="#4c88fe" />
+            android:textColor="@color/dodger_blue"
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="7dp"
-            android:text="오전 09:00" />
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="오전 09:00"
+            android:textColor="@color/brown_grey"
+            android:textSize="13sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,32 +54,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="3dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.05"
                 android:text="@string/alarm_title"
-                android:textColor="#000000"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tv_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.05"
                 android:text="@string/alarm_content"
-                android:textColor="#000000"
+                android:textColor="@color/greyish_brown"
                 android:textSize="13sp" />
         </LinearLayout>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_vertical"
             android:layout_marginStart="42dp"
             android:src="@drawable/push_img_whale"
             tools:ignore="ContentDescription" />

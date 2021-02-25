@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:id="@+id/img_head_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/push_ic_icon"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_head_up_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="@font/noto_sans_regular"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.05"
+        android:text="@string/alarm_head_up_title"
+        android:textColor="@color/cool_blue"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="@font/noto_sans_regular"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.05"
+        android:text="@string/alarm_head_up_content"
+        android:textColor="@color/black"
+        android:textSize="13sp" />
+</LinearLayout>

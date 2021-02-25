@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.NumberPicker
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -34,30 +35,56 @@ class CardFragment : Fragment() {
 
     private val cal: Calendar = Calendar.getInstance()
     private val thisYear = cal.get(Calendar.YEAR)
+    private var firstYear = 2021
+    private var isEmpty = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentCardBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        lookUpFirstCard()
         setUserInfo()
         setCardBox()
         setCardPicker()
+        configureTab()
+        configureEmptyView()
+    }
+
+    private val visibleView
+        get() = listOf(binding.cardCount, binding.cardCount2, binding.rvCardBox)
+
+    private val emptyView
+        get() = listOf(binding.emptyImg, binding.tvEmpty1, binding.tvEmpty2)
+
+    private fun lookUpFirstCard() {
+        for (year in 2021..thisYear) {
+            if (getServerCardData(year, 0) != 0) {
+                firstYear = year
+                isEmpty = false
+                break
+            } else isEmpty = true
+        }
     }
 
     private fun setUserInfo() {
         val userName = MyApplication.mySharedPreferences.getValue("nickName", "")
-        binding.tvCardTitleName.text = userName+"님의"
+        binding.tvCardTitleName.text = userName + "님의"
     }
 
     private fun setCardBox() {
         cardBoxAdapter = CardBoxAdapter(requireContext())
         binding.rvCardBox.adapter = cardBoxAdapter
-        binding.rvCardBox.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvCardBox.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         LinearSnapHelper().attachToRecyclerView(binding.rvCardBox)
 
-        binding.btnCardPicker.text = thisYear.toString()+"년 전체"
+        binding.btnCardPicker.text = thisYear.toString() + "년 전체"
         getServerCardData(thisYear, 0)
     }
 
@@ -75,12 +102,13 @@ class CardFragment : Fragment() {
             // editText 설정 해제
             year.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
             month.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+            year.wrapSelectorWheel = false
 
             // 값 설정
-            val years = Array(thisYear - 2020 + 3) { i -> (thisYear+i).toString()+"년" }
+            val years = Array(thisYear - firstYear + 1) { i -> (firstYear + i).toString() + "년" }
             val months = arrayOfNulls<String>(13)
             months[0] = "전체"
-            for (i in 1 .. 12){
+            for (i in 1..12) {
                 months[i] = (month.minValue + i).toString() + "월"
             }
 
@@ -139,8 +167,8 @@ class CardFragment : Fragment() {
     // NumberPicker 라인 제거 함수
     private fun NumberPicker.removeDivider() {
         val pickerFields = NumberPicker::class.java.declaredFields
-        for (pf in pickerFields){
-            if (pf.name == "mSelectionDivider"){
+        for (pf in pickerFields) {
+            if (pf.name == "mSelectionDivider") {
                 pf.isAccessible = true
                 try {
                     val colorDrawable = ColorDrawable(Color.TRANSPARENT)
@@ -157,9 +185,8 @@ class CardFragment : Fragment() {
         }
     }
 
-    private fun getServerCardData(year: Int, month: Int) {
-        val visibleView = listOf(binding.cardCount, binding.cardCount2, binding.rvCardBox)
-        val invisibleView = listOf(binding.emptyImg, binding.tvEmpty1, binding.tvEmpty2)
+    private fun getServerCardData(year: Int, month: Int): Int {
+        var praiseCount = 0
 
         CollectionImpl.service.getPraiseCard(
             year = year, month = month,
@@ -175,12 +202,16 @@ class CardFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        if (it.data.praiseCount == 0) {
+                        praiseCount = it.data.praiseCount
+
+                        if (praiseCount == 0 && !isEmpty) {
                             visibleView.forEach { view -> view.isVisible = false }
-                            invisibleView.forEach { view -> view.isVisible = true }
-                        } else {
+                            emptyView.forEach { view -> view.isVisible = true }
+                            binding.btnCardPicker.isVisible = true
+                        } else if (praiseCount != 0){
                             visibleView.forEach { view -> view.isVisible = true }
-                            invisibleView.forEach { view -> view.isVisible = false }
+                            emptyView.forEach { view -> view.isVisible = false }
+                            binding.btnCardPicker.isVisible = true
                             binding.cardCount.text = it.data.praiseCount.toString() + "번"
                             cardBoxAdapter.data = it.data.collectionPraise
                             cardBoxAdapter.notifyDataSetChanged()
@@ -189,5 +220,36 @@ class CardFragment : Fragment() {
                 }
             }
         })
+        return praiseCount
+    }
+
+    private fun configureTab() {
+        binding.tabLeft.isSelected = true
+        binding.tabLeft.setOnClickListener {
+            binding.tabLeft.isSelected = true
+            binding.tvTabLeft.setTextColor(Color.BLACK)
+            binding.tabRight.isSelected = false
+            binding.tvTabRight.setTextColor(ResourcesCompat.getColor(resources, R.color.brown_grey, null))
+        }
+        binding.tabRight.setOnClickListener {
+            binding.tabRight.isSelected = true
+            binding.tvTabRight.setTextColor(Color.BLACK)
+            binding.tabLeft.isSelected = false
+            binding.tvTabLeft.setTextColor(ResourcesCompat.getColor(resources, R.color.brown_grey, null))
+        }
+    }
+
+    private fun configureEmptyView() {
+        if (isEmpty) {
+            visibleView.forEach { view -> view.isVisible = false }
+            emptyView.forEach { view -> view.isVisible = true }
+            binding.btnCardPicker.isVisible = false
+
+            binding.tvEmpty1.text = "아직 칭찬을 하지 않았어요!"
+            binding.tvEmpty2.text = "칭찬 미션을 완료하고,\n칭찬 카드를 모아봐요!"
+        } else {
+            binding.tvEmpty1.text = "이 달에 완료한 칭찬이 없어요!"
+            binding.tvEmpty2.text = "앞으로 더 꾸준한\n칭찬 습관을 길러봐요!"
+        }
     }
 }

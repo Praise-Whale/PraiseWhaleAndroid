@@ -31,9 +31,19 @@ object SignUpBinding {
         }
     }
 
-    @BindingAdapter("validation")
+    @BindingAdapter("emptyText", "userNameValid")
     @JvmStatic
-    fun validation(btnNext: Button, name: String) {
+    fun userNameValid(btnNext: Button, name: String, isValid: Boolean) {
+        if (name.isEmpty() || !isValid) {
+            btnNext.setBackgroundResource(R.drawable.btn_next)
+        } else {
+            btnNext.setBackgroundResource(R.drawable.btn_next_actived)
+        }
+    }
+
+    @BindingAdapter("whaleNameValid")
+    @JvmStatic
+    fun whaleNameValid(btnNext: Button, name: String) {
         if (name.isEmpty()) {
             btnNext.setBackgroundResource(R.drawable.btn_next)
         } else {

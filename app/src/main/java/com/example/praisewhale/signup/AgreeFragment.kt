@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.FragmentAgreeBinding
+import com.example.praisewhale.util.Vibrate
 
 class AgreeFragment : Fragment() {
 
@@ -18,9 +19,22 @@ class AgreeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentAgreeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_agree, container, false)
+        val binding: FragmentAgreeBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_agree, container, false)
         binding.signUpViewModel = signUpViewModel
         binding.lifecycleOwner = this@AgreeFragment
+
+        setNextButtonClick(binding)
         return binding.root
+    }
+
+    private fun setNextButtonClick(binding: FragmentAgreeBinding) {
+        binding.btnAgreeNext.setOnClickListener {
+            if (signUpViewModel.isAgree.value!!) {
+                (activity as SignUpActivity).replaceFragment(UserNameFragment())
+            } else {
+                Vibrate.startVibrate(requireContext())
+            }
+        }
     }
 }
