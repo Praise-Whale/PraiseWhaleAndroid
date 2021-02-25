@@ -19,9 +19,10 @@ interface RequestInterface {
 
     // HomeFragment.kt - 홈 화면 조회
     @Headers("Content-Type:application/json")
-    @GET("home")
+    @GET("home/{praiseId}")
     fun getPraise(
-        @Header("token") token: String
+        @Header("token") token: String,
+        @Path("praiseId") praiseId: Int
     ): Call<ResponseHomePraise>
 
     // HomeDialogDoneFragment.kt - 최근 칭찬 유저 조회

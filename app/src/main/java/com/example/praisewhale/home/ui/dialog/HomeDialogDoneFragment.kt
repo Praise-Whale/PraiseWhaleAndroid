@@ -87,14 +87,9 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     }
 
     private fun setRecentPraiseToView(recentPraiseToList: List<ResponseRecentPraiseTo.Name>) {
-        val testList = listOf(
-            ResponseRecentPraiseTo.Name("김송현"),
-            ResponseRecentPraiseTo.Name("남궁선규"),
-            ResponseRecentPraiseTo.Name("최윤소")
-        )
         viewBinding.apply {
-            recyclerViewRecentPraiseTo.adapter = RecentPraiseToAdapter(testList, this@HomeDialogDoneFragment)
-            when (testList.size) {
+            recyclerViewRecentPraiseTo.adapter = RecentPraiseToAdapter(recentPraiseToList, this@HomeDialogDoneFragment)
+            when (recentPraiseToList.size) {
                 0 -> textViewRecentPraiseToTitle.setInvisible()
                 else -> textViewRecentPraiseToTitle.setVisible()
             }
@@ -106,52 +101,6 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
 //            401 -> getServerRecentPraiseTo() todo - 토큰 값 갱신 후 재요청
             else -> Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
         }
-    }
-
-    private fun saveServerPraiseData(target: String) {
-        val call: Call<ResponseDonePraise> = CollectionImpl.service.postPraiseDone(
-            sharedPreferences.getValue("token", ""),
-            praiseId,
-            RequestPraiseDone(target)
-        )
-        call.enqueue(object : Callback<ResponseDonePraise> {
-            override fun onFailure(call: Call<ResponseDonePraise>, t: Throwable) {
-                Log.d("tag", t.localizedMessage!!)
-            }
-
-            override fun onResponse(
-                call: Call<ResponseDonePraise>,
-                response: Response<ResponseDonePraise>
-            ) {
-                when (response.isSuccessful) {
-                    true -> {
-                        showResultDialog(response.body()!!.data.isLevelUp)
-                        dialog!!.dismiss()
-                    }
-                    false -> handleSaveServerPraiseStatusCode(response, target)
-                }
-            }
-        })
-    }
-
-    private fun handleSaveServerPraiseStatusCode(
-        response: Response<ResponseDonePraise>,
-        target: String
-    ) {
-        when (response.code()) {
-//            401 -> saveServerPraiseData(target) todo - 토큰 값 갱신 후 재요청
-            else -> { // todo - 각 에러 코드별 처리..
-                Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
-            }
-        }
-    }
-
-    private fun showResultDialog(isLevelUp: Boolean) {
-        val dialogDoneResult = HomeDialogDoneResultFragment.CustomDialogBuilder()
-            .getLevelUpStatus(isLevelUp)
-            .create()
-        dialogDoneResult.show(parentFragmentManager, dialogDoneResult.tag)
-        sharedPreferences.setValue(LAST_PRAISE_STATUS, "done")
     }
 
     private val dialogDoneScrollListener = object : RecyclerView.OnScrollListener() {
@@ -190,15 +139,58 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
             when (it.id) {
                 imageButtonClose.id -> dialog!!.dismiss()
                 imageButtonDelete.id -> editTextPraiseTo.setText("")
-                buttonConfirm.id -> {
-                    saveServerPraiseData(editTextPraiseTo.text.toString())
-                    showResultDialog(true)
-                    dialog!!.dismiss()
-                    (activity as MainActivity).changeFragment(HomeFragment())
-                }
+                buttonConfirm.id -> saveServerPraiseData(editTextPraiseTo.text.toString())
             }
         }
     }
+
+    private fun saveServerPraiseData(target: String) {
+        val call: Call<ResponseDonePraise> = CollectionImpl.service.postPraiseDone(
+            sharedPreferences.getValue("token", ""),
+            praiseId,
+            RequestPraiseDone(target)
+        )
+        call.enqueue(object : Callback<ResponseDonePraise> {
+            override fun onFailure(call: Call<ResponseDonePraise>, t: Throwable) {
+                Log.d("tag", t.localizedMessage!!)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseDonePraise>,
+                response: Response<ResponseDonePraise>
+            ) {
+                when (response.isSuccessful) {
+                    true -> {
+                        dialog!!.dismiss()
+                        (activity as MainActivity).changeFragment(HomeFragment())
+                        showResultDialog(response.body()!!.data.isLevelUp)
+                    }
+                    false -> handleSaveServerPraiseStatusCode(response, target)
+                }
+            }
+        })
+    }
+
+    private fun handleSaveServerPraiseStatusCode(
+        response: Response<ResponseDonePraise>,
+        target: String
+    ) {
+        when (response.code()) {
+//            401 -> saveServerPraiseData(target) todo - 토큰 값 갱신 후 재요청
+            else -> { // todo - 각 에러 코드별 처리..
+                Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
+            }
+        }
+    }
+
+    private fun showResultDialog(isLevelUp: Boolean) {
+        val dialogDoneResult = HomeDialogDoneResultFragment.CustomDialogBuilder()
+            .getLevelUpStatus(isLevelUp)
+            .create()
+        dialogDoneResult.show(parentFragmentManager, dialogDoneResult.tag)
+        sharedPreferences.setValue(LAST_PRAISE_STATUS, "done")
+    }
+
 
     private val dialogTextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
