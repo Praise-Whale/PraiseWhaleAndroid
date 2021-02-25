@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/textView_dialogTitle_01"
-        style="@style/noto_sans_medium_18dp_greyish_brown"
+        style="@style/noto_sans_regular_18dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/textView_dialogTitle_02"
-        style="@style/noto_sans_semi_bold_18dp_greyish_brown"
+        style="@style/noto_sans_bold_18dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/textView_dialogTitle_03"
-        style="@style/noto_sans_medium_18dp_greyish_brown"
+        style="@style/noto_sans_regular_18dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="했나요?"
