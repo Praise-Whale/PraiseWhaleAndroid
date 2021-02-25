@@ -201,10 +201,12 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     }
 
     private val dialogTextWatcher = object : TextWatcher {
-        override fun afterTextChanged(s: Editable?) {}
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             updateDeleteButtonVisibility()
+        }
+        override fun afterTextChanged(s: Editable?) {
+            updateEditTextCurrentLength(s!!)
         }
     }
 
@@ -213,6 +215,16 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
             when (editTextPraiseTo.text.toString()) {
                 "" -> imageButtonDelete.setInvisible()
                 else -> imageButtonDelete.setVisible()
+            }
+        }
+    }
+
+    private fun updateEditTextCurrentLength(praiseTo: Editable) {
+        viewBinding.textViewCurrentLength.apply {
+            text = praiseTo.length.toString()
+            when (praiseTo.length) {
+                0 -> setContextCompatTextColor(R.color.brown_grey)
+                else -> setContextCompatTextColor(R.color.brown)
             }
         }
     }
