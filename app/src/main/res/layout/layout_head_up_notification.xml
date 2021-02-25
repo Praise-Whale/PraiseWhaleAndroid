@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:fontFamily="@font/noto_sans_medium"
+        android:fontFamily="@font/noto_sans_regular"
         android:includeFontPadding="false"
         android:letterSpacing="-0.05"
         android:text="@string/alarm_head_up_title"
