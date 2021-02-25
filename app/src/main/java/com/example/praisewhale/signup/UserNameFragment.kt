@@ -15,6 +15,7 @@ import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.R
 import com.example.praisewhale.data.ResponseData
 import com.example.praisewhale.databinding.FragmentUserNameBinding
+import com.example.praisewhale.util.Vibrate
 import com.example.praisewhale.util.textChangedListener
 import retrofit2.Call
 import retrofit2.Callback
@@ -57,7 +58,11 @@ class UserNameFragment : Fragment() {
 
     private fun setNextClickListener(binding: FragmentUserNameBinding) {
         binding.btnCheck.setOnClickListener {
-            if (!(signUpViewModel.userName.value.isNullOrEmpty())) nicknameCheck()
+            if (!(signUpViewModel.userName.value.isNullOrEmpty()) && signUpViewModel.isValid.value!!) {
+                nicknameCheck()
+            } else {
+                Vibrate.startVibrate(requireContext())
+            }
         }
     }
 

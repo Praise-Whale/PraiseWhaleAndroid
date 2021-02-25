@@ -1,105 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".onboarding.SecondOnBoardingFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <View
-        android:id="@+id/underline"
-        android:layout_width="28dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="83dp"
-        android:background="@color/sand_yellow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_on_boarding_title"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:fontFamily="@font/noto_sans_semibold"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding6"
-        android:textColor="@color/greyish_brown"
-        android:textSize="26sp"
-        app:layout_constraintStart_toStartOf="@id/underline"
-        app:layout_constraintTop_toBottomOf="@id/underline" />
+        tools:context=".onboarding.SecondOnBoardingFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding7"
-        android:textColor="@color/greyish_brown"
-        android:textSize="26sp"
-        app:layout_constraintStart_toEndOf="@id/tv_on_boarding_title"
-        app:layout_constraintTop_toTopOf="@id/tv_on_boarding_title"
-        app:layout_constraintBottom_toBottomOf="@id/tv_on_boarding_title"/>
+        <View
+            android:id="@+id/underline"
+            android:layout_width="28dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="83dp"
+            android:background="@color/sand_yellow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_semibold"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding8"
-        android:textColor="@color/greyish_brown"
-        android:textSize="26sp"
-        app:layout_constraintStart_toStartOf="@id/tv_on_boarding_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_on_boarding_title" />
+        <LinearLayout
+            android:id="@+id/layout_second_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/underline"
+            app:layout_constraintTop_toBottomOf="@id/underline">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding9"
-        android:textColor="@color/greyish_brown"
-        android:textSize="26sp"
-        app:layout_constraintStart_toEndOf="@id/tv_content"
-        app:layout_constraintTop_toTopOf="@id/tv_content"
-        app:layout_constraintBottom_toBottomOf="@id/tv_content"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_dancing_whale"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding10"
-        android:textColor="@color/greyish_brown"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/tv_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/on_boarding6"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="26sp" />
 
-    <TextView
-        android:id="@+id/tv_content_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:text="@string/on_boarding11"
-        android:textColor="@color/brown_grey"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@id/tv_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_dancing_whale" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/on_boarding7"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="26sp" />
+            </LinearLayout>
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/onboarding_2_img_whale"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_content_level"
-        tools:ignore="ContentDescription" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/on_boarding8"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/on_boarding9"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="26sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_dancing_whale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/on_boarding10"
+            android:textColor="@color/greyish_brown"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/layout_second_title"
+            app:layout_constraintTop_toBottomOf="@id/layout_second_title" />
+
+        <TextView
+            android:id="@+id/tv_content_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/on_boarding11"
+            android:textColor="@color/brown_grey"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/tv_dancing_whale"
+            app:layout_constraintTop_toBottomOf="@id/tv_dancing_whale" />
+
+        <ImageView
+            android:id="@+id/img_second_on_boarding"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:src="@drawable/onboarding_2_img_whale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_content_level"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

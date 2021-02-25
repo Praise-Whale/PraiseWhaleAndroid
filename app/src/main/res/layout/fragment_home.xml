@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/textView_userName"
-        style="@style/noto_sans_medium_16dp_greyish_brown"
+        style="@style/noto_sans_regular_16dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
@@ -19,11 +19,11 @@
 
     <TextView
         android:id="@+id/textView_homeTitle"
-        style="@style/noto_sans_semi_bold_22dp_greyish_brown"
+        style="@style/noto_sans_bold_22dp_greyish_brown"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="오늘의 칭찬 한마디"
+        android:text="오늘의 칭찬 한 마디"
         app:layout_constraintStart_toStartOf="@+id/textView_userName"
         app:layout_constraintTop_toBottomOf="@+id/textView_userName" />
 
@@ -69,7 +69,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginTop="26dp"
         android:background="@drawable/shadow_rectangle_radius_15"
         app:layout_constraintBottom_toTopOf="@+id/imageView_dolphin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -188,17 +188,53 @@
             app:layout_constraintStart_toEndOf="@+id/button_negative"
             app:layout_constraintTop_toTopOf="@+id/button_negative" />
 
+        <Button
+            android:id="@+id/button_praiseStatus"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="18dp"
+            android:stateListAnimator="@null"
+            android:background="@drawable/background_rectangle_radius_12"
+            android:backgroundTint="@color/dodger_blue_13"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame"
+            app:layout_constraintStart_toStartOf="@+id/imageView_cardFrame" />
+
+        <TextView
+            android:id="@+id/textView_praiseStatusDescription"
+            style="@style/noto_sans_regular_15dp_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:text="오늘의 칭찬"
+            app:layout_constraintBottom_toBottomOf="@+id/button_praiseStatus"
+            app:layout_constraintEnd_toStartOf="@id/textView_praiseStatus"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/button_praiseStatus"
+            app:layout_constraintTop_toTopOf="@+id/button_praiseStatus" />
+
+        <TextView
+            android:id="@+id/textView_praiseStatus"
+            style="@style/noto_sans_bold_15dp_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="완료"
+            app:layout_constraintBottom_toBottomOf="@+id/button_praiseStatus"
+            app:layout_constraintEnd_toEndOf="@+id/button_praiseStatus"
+            app:layout_constraintStart_toEndOf="@id/textView_praiseStatusDescription"
+            app:layout_constraintTop_toTopOf="@+id/button_praiseStatus" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/imageView_tipBoxShadow"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/shadow_rectangle_radius_15"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_dolphin"
-        app:layout_constraintDimensionRatio="2.5:1"
-        app:layout_constraintEnd_toStartOf="@+id/imageView_dolphin"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_tipBox"
         app:layout_constraintStart_toStartOf="@+id/imageView_cardShadow"
         app:layout_constraintTop_toTopOf="@+id/imageView_dolphin" />
 
@@ -207,10 +243,11 @@
         android:layout_width="0dp"
         android:layout_height="88dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="148dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/main_box_tip_noshadow"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_tipBoxShadow"
-        app:layout_constraintEnd_toEndOf="@+id/imageView_tipBoxShadow"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView_cardBackground"
         app:layout_constraintTop_toTopOf="@+id/imageView_tipBoxShadow" />
 
@@ -235,11 +272,11 @@
 
     <ImageView
         android:id="@+id/imageView_dolphin"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/main_img_dolphin"
+        android:layout_width="160dp"
+        android:layout_height="192dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/main_img_whale"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView_cardShadow" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
