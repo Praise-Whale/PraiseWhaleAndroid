@@ -1,4 +1,4 @@
-package com.example.praisewhale.card.data
+package com.example.praisewhale.card
 
 data class ResponseCardData(
     val status: Int,

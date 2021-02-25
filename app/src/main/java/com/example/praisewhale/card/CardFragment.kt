@@ -67,7 +67,7 @@ class CardFragment : Fragment() {
             if (getServerCardData(year, 0) != 0) {
                 firstYear = year
                 isEmpty = false
-                break
+                Log.d("테스트4", "찍히나")
             } else isEmpty = true
         }
     }
@@ -202,19 +202,27 @@ class CardFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
+                        Log.d("테스트1", "찍히나")
                         praiseCount = it.data.praiseCount
 
                         if (praiseCount == 0 && !isEmpty) {
+                            Log.d("테스트2", "찍히나")
                             visibleView.forEach { view -> view.isVisible = false }
                             emptyView.forEach { view -> view.isVisible = true }
                             binding.btnCardPicker.isVisible = true
                         } else if (praiseCount != 0){
+                            Log.d("테스트3", "찍히나")
                             visibleView.forEach { view -> view.isVisible = true }
                             emptyView.forEach { view -> view.isVisible = false }
                             binding.btnCardPicker.isVisible = true
                             binding.cardCount.text = it.data.praiseCount.toString() + "번"
                             cardBoxAdapter.data = it.data.collectionPraise
                             cardBoxAdapter.notifyDataSetChanged()
+                        } else if (praiseCount == 0 && isEmpty) {
+                            Log.d("테스트5", "찍히나")
+                            visibleView.forEach { view -> view.isVisible = false }
+                            emptyView.forEach { view -> view.isVisible = true }
+                            binding.btnCardPicker.isVisible = true
                         }
                     }
                 }
