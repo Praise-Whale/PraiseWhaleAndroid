@@ -54,7 +54,6 @@ class HomeDialogDoneResultFragment : DialogFragment() {
         when (it.id) {
             viewBinding.buttonConfirm.id -> {
                 dialog!!.dismiss()
-                (activity as MainActivity).changeFragment(HomeFragment())
                 showLevelUpToast(isLevelUp)
             }
         }

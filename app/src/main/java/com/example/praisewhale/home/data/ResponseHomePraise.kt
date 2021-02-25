@@ -8,10 +8,14 @@ data class ResponseHomePraise(
     val data: Data
 ) {
     data class Data(
-        val praiseId: Int,
-        @SerializedName("today_praise")
-        val dailyPraise: String,
-        @SerializedName("praise_description")
-        val praiseDescription: String
-    )
+        val homePraise: HomePraise
+    ) {
+        data class HomePraise(
+            val id: Int,
+            @SerializedName("today_praise")
+            val dailyPraise: String,
+            @SerializedName("praise_description")
+            val praiseDescription: String
+        )
+    }
 }

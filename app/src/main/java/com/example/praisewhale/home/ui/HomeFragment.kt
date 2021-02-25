@@ -141,7 +141,8 @@ class HomeFragment : Fragment() {
 
     private fun getServerPraiseData() {
         val call: Call<ResponseHomePraise> = CollectionImpl.service.getPraise(
-            MyApplication.mySharedPreferences.getValue("token", "")
+            sharedPreferences.getValue("token", ""),
+            sharedPreferences.getValue(LAST_PRAISE_INDEX, "0").toInt() + 1
         )
         call.enqueue(object : Callback<ResponseHomePraise> {
             override fun onFailure(call: Call<ResponseHomePraise>, t: Throwable) {
@@ -153,28 +154,27 @@ class HomeFragment : Fragment() {
                 response: Response<ResponseHomePraise>
             ) {
                 when (response.isSuccessful) {
-                    true -> setPraiseData(response.body()!!.data)
+                    true -> setPraiseData(response.body()!!.data.homePraise)
                     false -> handlePraiseDataStatusCode(response)
                 }
             }
         })
     }
 
-    private fun setPraiseData(praiseData: ResponseHomePraise.Data) {
+    private fun setPraiseData(praiseData: ResponseHomePraise.Data.HomePraise) {
         saveLastGetPraiseData(praiseData)
         viewBinding.apply {
-            Log.d("TAG", "getServerPraiseData: ${praiseData.praiseId}")
             textViewDailyPraise.text = praiseData.dailyPraise
             textViewPraiseDescription.text = praiseData.praiseDescription
         }
     }
 
-    private fun saveLastGetPraiseData(praiseData: ResponseHomePraise.Data) {
+    private fun saveLastGetPraiseData(praiseData: ResponseHomePraise.Data.HomePraise) {
         sharedPreferences.apply {
             setValue(LAST_PRAISE_DATE, currentYMD)
             setValue(LAST_PRAISE, praiseData.dailyPraise)
             setValue(LAST_PRAISE_STATUS, "")
-            setValue(LAST_PRAISE_INDEX, praiseData.praiseId.toString())
+            setValue(LAST_PRAISE_INDEX, praiseData.id.toString())
             setValue(LAST_PRAISE_DESCRIPTION, praiseData.praiseDescription)
         }
     }
@@ -207,7 +207,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun showDialogDone() {
-        val dialogDone = HomeDialogDoneFragment.CustomDialogBuilder().getPraiseIndex(0).create()
+        val praiseIndex = sharedPreferences.getValue(LAST_PRAISE_INDEX, "").toInt()
+        val dialogDone = HomeDialogDoneFragment.CustomDialogBuilder().getPraiseIndex(praiseIndex).create()
         dialogDone.show(parentFragmentManager, dialogDone.tag)
     }
 
