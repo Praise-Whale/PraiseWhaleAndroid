@@ -7,7 +7,7 @@ import com.example.praisewhale.ResponselevelData
 import com.example.praisewhale.data.home.ResponseNickChange
 import com.example.praisewhale.home.data.RequestPraiseDone
 import com.example.praisewhale.home.data.ResponseDonePraise
-import com.example.praisewhale.card.data.ResponseCardData
+import com.example.praisewhale.card.ResponseCardData
 import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.home.data.ResponseRecentPraiseTo
 
