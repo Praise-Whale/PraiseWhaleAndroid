@@ -16,7 +16,7 @@
         android:fontFamily="@font/noto_sans_medium"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="선규님의"
+        android:text=""
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         android:fontFamily="@font/noto_sans_semi_bold"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="남궁고래"
+        android:text=""
         android:textSize="22dp"
 
         android:textStyle="bold"
@@ -40,11 +40,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/level_txt" />
 
-    <View
+    <ImageView
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="9dp"
+        android:src="@drawable/yellow_divider_radius_10"
         android:background="#ffd464"
         app:layout_constraintEnd_toEndOf="@+id/whalename_txt"
         app:layout_constraintStart_toStartOf="@+id/whalename_txt"
@@ -89,7 +90,7 @@
         android:gravity="center"
         android:includeFontPadding="false"
         android:paddingHorizontal="20dp"
-        android:text="아직은 칭찬이 어색한 고래"
+        android:text=""
         android:textColor="#503000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,18 +121,19 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
             android:includeFontPadding="false"
-            android:text="1번"
+            android:text=""
             android:textSize="20sp" />
     </LinearLayout>
 
 
-    <View
+    <ImageView
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="9dp"
         android:background="#ffd464"
+        android:src="@drawable/yellow_divider_radius_10"
         app:layout_constraintEnd_toEndOf="@+id/whale"
         app:layout_constraintStart_toStartOf="@+id/whale"
         app:layout_constraintTop_toBottomOf="@+id/whale" />
@@ -143,7 +145,7 @@
         android:layout_marginTop="9dp"
         android:fontFamily="@font/noto_sans_semi_bold"
         android:includeFontPadding="false"
-        android:text="5번 달성시 다음레벨"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -169,13 +171,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <ImageView
         android:id="@+id/level_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_bold"
-        android:includeFontPadding="false"
-        android:text="0"
+        android:src="@drawable/level1"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="@+id/imageView4"

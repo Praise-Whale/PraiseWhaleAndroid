@@ -24,12 +24,6 @@ class PraiseLevelFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var View =inflater.inflate(R.layout.fragment_praise_level, container, false)
-
-        return View
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         val token = MyApplication.mySharedPreferences.getValue("token", "")
         val call: Call<ResponselevelData> = CollectionImpl.service.getlevelcount(token)
         call.enqueue(object : Callback<ResponselevelData> {
@@ -64,26 +58,37 @@ class PraiseLevelFragment : Fragment() {
                             0 -> {
                                 level_whale.setImageResource(R.drawable.lv_0_img_whale)
                                 detail_txt.text = "아직은 칭찬이 어색한 고래"
+                                level_num.setImageResource(R.drawable.level0)
                             }
                             1 -> {
                                 level_whale.setImageResource(R.drawable.lv_1_img_whale)
                                 detail_txt.text = "칭찬에 흥미가 생긴 고래"
+                                level_num.setImageResource(R.drawable.level1)
+
                             }
                             2 -> {
                                 level_whale.setImageResource(R.drawable.lv_2_img_whale)
                                 detail_txt.text = "칭찬에 익숙해진 고래"
+                                level_num.setImageResource(R.drawable.level2)
+
                             }
                             3 -> {
                                 level_whale.setImageResource(R.drawable.lv_3_img_whale)
                                 detail_txt.text = "슬슬 리듬타기 시작한 고래"
+                                level_num.setImageResource(R.drawable.level3)
+
                             }
                             4 -> {
                                 level_whale.setImageResource(R.drawable.lv_4_img_whale)
                                 detail_txt.text = "신나게 춤추는 고래"
+                                level_num.setImageResource(R.drawable.level4)
+
                             }
                             5 -> {
                                 level_whale.setImageResource(R.drawable.lv_5_img_whale)
                                 detail_txt.text = "춤신 춤왕 만렙 고래"
+                                level_num.setImageResource(R.drawable.level5)
+
                             }
 
                         }
@@ -98,6 +103,12 @@ class PraiseLevelFragment : Fragment() {
                     }
             }
         })
+        return View
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
 
     }
 
@@ -111,7 +122,7 @@ class PraiseLevelFragment : Fragment() {
         }
     }
 
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
 
         val token = MyApplication.mySharedPreferences.getValue("token","")
@@ -170,6 +181,6 @@ class PraiseLevelFragment : Fragment() {
                     }
             }
         })
-    }
+    }*/
 }
 

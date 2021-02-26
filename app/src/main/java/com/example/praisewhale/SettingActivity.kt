@@ -1,6 +1,7 @@
 package com.example.praisewhale
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
@@ -9,6 +10,7 @@ import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -45,10 +47,6 @@ class SettingActivity :AppCompatActivity() {
         setContentView(R.layout.activity_setting)
 
 
-        val nickname=MyApplication.mySharedPreferences.getValue("nickName", "")
-
-
-        tv_nickname.text=nickname
 
 
         layout_change_nickname.setOnClickListener {
@@ -118,7 +116,7 @@ class SettingActivity :AppCompatActivity() {
                 val token = MyApplication.mySharedPreferences.getValue("token", "")
 
                 val body=RequestNickChange(
-                    nickName = nickname,
+                    nickName = MyApplication.mySharedPreferences.getValue("nickName", ""),
                     newNickName = nick_modify_edit.text.toString()
                 )
                 val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token, body)
@@ -183,30 +181,9 @@ class SettingActivity :AppCompatActivity() {
             )
 
 
-
-            /*val builder = AlertDialog.Builder(this)
-            val dialogView = layoutInflater.inflate(R.layout.custom_dialog, null)
-            val dialogText = dialogView.findViewById<EditText>(R.id.editTextTextPersonName)
-
-            builder.setView(dialogView)
-                .setPositiveButton("확인") { dialogInterface, i ->
-                    mainTv.text = dialogText.text.toString()
-
-                    *//* 확인일 때 main의 View의 값에 dialog View에 있는 값을 적용 *//*
-
-                }
-                .setNegativeButton("취소") { dialogInterface, i ->
-                    *//* 취소일 때 아무 액션이 없으므로 빈칸 *//*
-                }
-                .show()*/
         }
 
         layout_alarm.setOnClickListener {
-
-         /* val tdlg=TimepickerDialog2(this)
-            tdlg.start()*/
-
-
 
             val dialog2 = AlertDialog.Builder(this).create()
             val edialog2: LayoutInflater = LayoutInflater.from(this)
@@ -360,6 +337,16 @@ class SettingActivity :AppCompatActivity() {
             startActivity(intent)
         }
         }
+
+    override fun onResume() {
+        super.onResume()
+
+
+
+
+
+        tv_nickname.text=MyApplication.mySharedPreferences.getValue("nickName", "")
+    }
 
 
 private fun NumberPicker.removeDivider() {
