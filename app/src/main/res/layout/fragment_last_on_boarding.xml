@@ -54,14 +54,16 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <View
+                    <ImageView
                         android:layout_width="0dp"
                         android:layout_height="2dp"
                         android:layout_marginTop="1.7dp"
-                        android:background="@color/sand_yellow"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/yellow_divider_radius_10"
                         app:layout_constraintEnd_toEndOf="@id/tv_title"
                         app:layout_constraintStart_toStartOf="@id/tv_title"
-                        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_title"
+                        tools:ignore="ContentDescription" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView

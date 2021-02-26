@@ -8,10 +8,8 @@
         android:width="75dp"
         android:height="25dp" />
     <solid
-        android:color="#CCCACA" />
-    <stroke
-        android:width="2dp"
-        android:color="#CCCACA" />
+        android:color="#efefef" />
+
 </shape>
 
 
