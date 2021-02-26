@@ -1,11 +1,15 @@
 package com.example.praisewhale
 
 import android.animation.Animator
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.praisewhale.data.RequestSignIn
 import com.example.praisewhale.data.ResponseToken
@@ -24,6 +28,7 @@ class SplashActivity : AppCompatActivity() {
         val binding: ActivitySplashBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_splash)
 
+        setStatusBarColor(this@SplashActivity)
         startAnimation(binding)
         setLottieListener(binding)
     }
@@ -56,6 +61,12 @@ class SplashActivity : AppCompatActivity() {
             override fun onAnimationStart(p0: Animator?) {
             }
         })
+    }
+
+    private fun setStatusBarColor(context: Activity) {
+        val window: Window = context.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = ContextCompat.getColor(context, R.color.white)
     }
 
     private fun toOnBoarding() {
