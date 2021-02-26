@@ -20,7 +20,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.praisewhale.*
-import com.example.praisewhale.card.data.ResponseCardData
 import com.example.praisewhale.databinding.FragmentCardBinding
 import com.example.praisewhale.util.MyApplication
 import retrofit2.Call
@@ -36,6 +35,7 @@ class CardFragment : Fragment() {
     private val cal: Calendar = Calendar.getInstance()
     private val thisYear = cal.get(Calendar.YEAR)
     private var firstYear = 2021
+    private var praiseCount = 0
     private var isEmpty = false
 
     override fun onCreateView(
@@ -67,8 +67,8 @@ class CardFragment : Fragment() {
             if (getServerCardData(year, 0) != 0) {
                 firstYear = year
                 isEmpty = false
-                Log.d("테스트4", "찍히나")
-            } else isEmpty = true
+                break
+            }
         }
     }
 
@@ -142,7 +142,7 @@ class CardFragment : Fragment() {
             }
 
             confirm.setOnClickListener {
-                getServerCardData(years[year.value].substring(0, 3).toInt(), month.value)
+                getServerCardData(years[year.value].substring(0, 4).toInt(), month.value)
 
                 if (month.value == 0) {
                     binding.btnCardPicker.text = years[year.value] + " 전체"
@@ -186,8 +186,6 @@ class CardFragment : Fragment() {
     }
 
     private fun getServerCardData(year: Int, month: Int): Int {
-        var praiseCount = 0
-
         CollectionImpl.service.getPraiseCard(
             year = year, month = month,
             token = MyApplication.mySharedPreferences.getValue("token", "")
@@ -202,16 +200,14 @@ class CardFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        Log.d("테스트1", "찍히나")
                         praiseCount = it.data.praiseCount
+                        Log.d("TAG1", "${praiseCount}")
 
                         if (praiseCount == 0 && !isEmpty) {
-                            Log.d("테스트2", "찍히나")
                             visibleView.forEach { view -> view.isVisible = false }
                             emptyView.forEach { view -> view.isVisible = true }
                             binding.btnCardPicker.isVisible = true
                         } else if (praiseCount != 0){
-                            Log.d("테스트3", "찍히나")
                             visibleView.forEach { view -> view.isVisible = true }
                             emptyView.forEach { view -> view.isVisible = false }
                             binding.btnCardPicker.isVisible = true
@@ -219,7 +215,6 @@ class CardFragment : Fragment() {
                             cardBoxAdapter.data = it.data.collectionPraise
                             cardBoxAdapter.notifyDataSetChanged()
                         } else if (praiseCount == 0 && isEmpty) {
-                            Log.d("테스트5", "찍히나")
                             visibleView.forEach { view -> view.isVisible = false }
                             emptyView.forEach { view -> view.isVisible = true }
                             binding.btnCardPicker.isVisible = true
@@ -228,6 +223,7 @@ class CardFragment : Fragment() {
                 }
             }
         })
+        Log.d("TAG2", "${praiseCount}")
         return praiseCount
     }
 
