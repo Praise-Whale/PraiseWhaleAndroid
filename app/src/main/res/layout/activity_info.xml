@@ -67,7 +67,7 @@
                 android:layout_height="2dp"
                 android:background="#ffd464"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/bg_card_div"
+                android:src="@drawable/yellow_divider_radius_10"
                 app:layout_constraintEnd_toEndOf="@+id/textView5"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />

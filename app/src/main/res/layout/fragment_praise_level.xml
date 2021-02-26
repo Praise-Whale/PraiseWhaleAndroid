@@ -40,11 +40,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/level_txt" />
 
-    <View
+    <ImageView
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="9dp"
+        android:src="@drawable/yellow_divider_radius_10"
         android:background="#ffd464"
         app:layout_constraintEnd_toEndOf="@+id/whalename_txt"
         app:layout_constraintStart_toStartOf="@+id/whalename_txt"
@@ -132,7 +133,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="9dp"
         android:background="#ffd464"
-        android:src="@drawable/bg_card_div"
+        android:src="@drawable/yellow_divider_radius_10"
         app:layout_constraintEnd_toEndOf="@+id/whale"
         app:layout_constraintStart_toStartOf="@+id/whale"
         app:layout_constraintTop_toBottomOf="@+id/whale" />
