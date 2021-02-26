@@ -11,7 +11,7 @@ data class ResponseCardData(
     )
 }
 data class CollectionPraise(
-    val praiseName: String,
+    val praisedName: String,
     val created_at: String,
     val today_praise: String
 )
