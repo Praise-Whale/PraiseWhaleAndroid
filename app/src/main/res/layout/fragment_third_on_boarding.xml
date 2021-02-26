@@ -8,15 +8,17 @@
         android:layout_height="match_parent"
         tools:context=".onboarding.ThirdOnBoardingFragment">
 
-        <View
+        <ImageView
             android:id="@+id/underline"
             android:layout_width="28dp"
             android:layout_height="2dp"
             android:layout_marginStart="42dp"
             android:layout_marginTop="83dp"
-            android:background="@color/sand_yellow"
+            android:background="@android:color/transparent"
+            android:src="@drawable/yellow_divider_radius_10"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:id="@+id/layout_third_title"
