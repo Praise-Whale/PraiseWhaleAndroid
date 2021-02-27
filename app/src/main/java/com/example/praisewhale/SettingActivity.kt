@@ -345,11 +345,6 @@ class SettingActivity :AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
-
-
-
-
         tv_nickname.text=MyApplication.mySharedPreferences.getValue("nickName", "")
     }
 
