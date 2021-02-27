@@ -59,40 +59,46 @@ class PraiseLevelFragment : Fragment() {
                                 level_whale.setImageResource(R.drawable.lv_0_img_whale)
                                 detail_txt.text = "아직은 칭찬이 어색한 고래"
                                 level_num.setImageResource(R.drawable.level0)
+                                textViewPhraseGod.text = it.data.levelUpNeedCount.toString()
+
                             }
                             1 -> {
                                 level_whale.setImageResource(R.drawable.lv_1_img_whale)
                                 detail_txt.text = "칭찬에 흥미가 생긴 고래"
                                 level_num.setImageResource(R.drawable.level1)
+                                textViewPhraseGod.text = it.data.levelUpNeedCount.toString()
 
                             }
                             2 -> {
                                 level_whale.setImageResource(R.drawable.lv_2_img_whale)
                                 detail_txt.text = "칭찬에 익숙해진 고래"
                                 level_num.setImageResource(R.drawable.level2)
+                                textViewPhraseGod.text = it.data.levelUpNeedCount.toString()
 
                             }
                             3 -> {
                                 level_whale.setImageResource(R.drawable.lv_3_img_whale)
                                 detail_txt.text = "슬슬 리듬타기 시작한 고래"
                                 level_num.setImageResource(R.drawable.level3)
+                                textViewPhraseGod.text = it.data.levelUpNeedCount.toString()
 
                             }
                             4 -> {
                                 level_whale.setImageResource(R.drawable.lv_4_img_whale)
                                 detail_txt.text = "신나게 춤추는 고래"
                                 level_num.setImageResource(R.drawable.level4)
+                                textViewPhraseGod.text = it.data.levelUpNeedCount.toString()
 
                             }
                             5 -> {
                                 level_whale.setImageResource(R.drawable.lv_5_img_whale)
                                 detail_txt.text = "춤신 춤왕 만렙 고래"
                                 level_num.setImageResource(R.drawable.level5)
+                                textViewPhraseGod.text = it.data.nickName+"님은 이제 칭찬의 신!"
 
                             }
 
                         }
-                        textView3.text = it.data.levelUpNeedCount.toString() + "번 달성시 다음레벨"
                         //level_txt.text = it.data.userLevel.toString()
 
                         //level_txt.text="칭찬 고래 "+it.data.userLevel.toString()+" 단계"
