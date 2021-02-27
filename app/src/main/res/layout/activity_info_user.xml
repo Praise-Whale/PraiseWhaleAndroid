@@ -66,7 +66,6 @@
                 android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:background="@color/sand_yellow"
                 android:src="@drawable/yellow_divider_radius_10"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView5"

@@ -43,7 +43,6 @@
             android:id="@+id/view7"
             android:layout_width="60dp"
             android:layout_height="40dp"
-
             android:background="@drawable/alarm_box_time"
             app:layout_constraintBottom_toBottomOf="@+id/numberPicker3"
             app:layout_constraintEnd_toEndOf="@+id/numberPicker3"
@@ -86,12 +85,13 @@
 
     <Button
         android:id="@+id/button_ok_time"
-        android:layout_width="200dp"
+        android:layout_width="221dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/popup_btn_ok"
+        android:background="@drawable/popup_btn_bg"
         android:text="설정"
         android:fontFamily="@font/noto_sans_regular"
+        android:textSize="15sp"
         android:includeFontPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,20 +105,21 @@
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="36dp"
+        android:fontFamily="@font/noto_sans_regular"
         android:includeFontPadding="false"
-
+        android:textSize="18sp"
+        android:textColor="@color/greyish_brown"
         android:text="알람 시간"
-        android:fontFamily="@font/noto_sans_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <ImageView
         android:id="@+id/view2"
-        android:layout_width="50dp"
+        android:layout_width="0dp"
         android:layout_height="2dp"
+        android:src="@drawable/yellow_divider_radius_10"
         android:layout_centerInParent="true"
         android:layout_marginTop="5dp"
-        android:background="#ffd464"
         app:layout_constraintEnd_toEndOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
