@@ -44,7 +44,7 @@
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="5dp"
         android:src="@drawable/yellow_divider_radius_10"
         app:layout_constraintEnd_toEndOf="@+id/whalename_txt"
         app:layout_constraintStart_toStartOf="@+id/whalename_txt"
@@ -122,7 +122,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
             android:includeFontPadding="false"
-            android:text=""
+            android:layout_marginStart="3dp"
+            android:text="0번"
             android:textColor="@color/brown"
             android:textSize="20sp" />
     </LinearLayout>
@@ -155,7 +156,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
             android:textSize="16sp"
-            android:textColor="@color/brown"
+            android:textColor="#a8503000"
             android:includeFontPadding="false"
             android:text=""
             />
@@ -166,7 +167,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_regular"
             android:textSize="16sp"
-            android:textColor="@color/brown"
+            android:textColor="#a8503000"
             android:includeFontPadding="false"
             android:text="달성 시 다음 레벨!"
           />
