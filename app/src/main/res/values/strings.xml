@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PraiseWhale</string>
+    <string name="app_name">칭찬할고래</string>
 
     <!-- OnBoarding -->
     <string name="on_boarding1">하루에 한 번씩</string>
