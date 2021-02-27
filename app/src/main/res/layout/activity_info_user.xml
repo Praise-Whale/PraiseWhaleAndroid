@@ -7,20 +7,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="9dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+    <Button
+        android:id="@+id/infouser_back"
+        android:layout_width="10dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/btn_back" />
+        android:background="@drawable/btn_back"
+        />
 
 
     <ScrollView
         android:id="@+id/scroll"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +39,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="67dp"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/greyish_brown"
+                android:textSize="16sp"
                 android:text="칭찬할고래"
                 app:layout_constraintEnd_toEndOf="@+id/cons"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,30 +53,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_bold"
+                android:includeFontPadding="false"
+                android:textSize="22sp"
+                android:textColor="@color/greyish_brown"
                 android:text="서비스 이용약관"
                 app:layout_constraintEnd_toEndOf="@+id/textView4"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <View
+            <ImageView
                 android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:background="#ffd464"
+                android:src="@drawable/yellow_divider_radius_10"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView5"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:text="제 1조 (목적)"
+                android:textColor="@color/brown_grey_two"
+                android:textSize="18sp"
+                android:layout_marginTop="56dp"
+                app:layout_constraintStart_toStartOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/view3" />
+            <TextView
                 android:id="@+id/textView6"
                 android:layout_width="276dp"
-                android:layout_height="180dp"
-                android:layout_marginTop="56dp"
-                android:text="(‘https://www.notion.so/1798260d817e449badc79d95fbbfb734’) 이하 ‘칭찬할고래’는 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.   ‘칭찬할고래’는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다."
+                android:layout_height="192dp"
+                android:layout_marginTop="11dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:text=" 본 약관은 칭찬할고래(이하 “회사”라 합니다)가 제공하는 ‘칭찬할고래’ 앱 서비스(이하 “서비스”라 합니다)를 서비스 사용자(이하 “이용자”라 합니다)가 더 편리하게 이용할 수 있도록 ‘칭찬할고래’ 약관(이하 '본 약관'이라 합니다)을 마련하였습니다. 본 약관은 이용자가 서비스를 이용하는 데 필요한 권리, 의무 및 책임 사항, 이용조건 및 절차 등 기본적인 사항을 규정하고 있습니다."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
+                app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -453,7 +477,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="- 성명 : 남궁선규 - 직책 : PM - 직급 : PM - 연락처 : 010-3443-9365,                     Co.Goraedan@gmail.com    ※ 개인정보 보호 담당부서로 연결됩니다."
+                android:text="- 성명 : 남궁선규\n- 직책 : PM\n- 직급 : PM\n- 연락처 : 010-3443-9365,\nCo.Goraedan@gmail.com\n※ 개인정보 보호 담당부서로 연결됩니다."
                 app:layout_constraintEnd_toEndOf="@+id/textView63"
                 app:layout_constraintStart_toStartOf="@+id/textView64"
                 app:layout_constraintTop_toBottomOf="@+id/textView64" />
@@ -469,11 +493,11 @@
 
             <TextView
                 android:id="@+id/textView60"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="- 부서명 : 개인정보담당부서
-- 담당자 : 남궁선규
-- 연락처 : 010-3443-9365,
+                android:text="- 부서명 : 개인정보담당부서\n
+- 담당자 : 남궁선규\n
+- 연락처 : 010-3443-9365,\n
                  Co.Goraedan@gmail.com"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/textView38"
@@ -481,7 +505,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/textView65"
                 />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:id="@+id/textView66"
@@ -491,7 +515,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/textView60"
                 />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:id="@+id/textView67"
@@ -514,7 +538,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:id="@+id/textView69"
-                android:text="- (국번없이) 118
+                android:text="- (국번없이) 118\n
 - https://privacy.kisa.or.kr"
                 app:layout_constraintStart_toStartOf="@+id/textView68"
                 app:layout_constraintTop_toBottomOf="@+id/textView68"
@@ -533,7 +557,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:id="@+id/textView71"
-                android:text="- (국번없이) 1301
+                android:text="- (국번없이) 1301\n
 - cid@spo.go.kr"
                 app:layout_constraintStart_toStartOf="@+id/textView70"
                 app:layout_constraintTop_toBottomOf="@+id/textView70"
@@ -553,7 +577,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:id="@+id/textView73"
-                android:text="- (국번없이) 182
+                android:text="- (국번없이) 182\n
 - https://cyberbureau.police.go.kr"
                 app:layout_constraintStart_toStartOf="@+id/textView72"
                 app:layout_constraintTop_toBottomOf="@+id/textView72"
@@ -568,7 +592,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView73"
                 />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:id="@+id/textView75"
@@ -587,7 +611,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView75"
                 />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:id="@+id/textView77"
@@ -606,7 +630,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView77"
                 />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:id="@+id/textView79"
@@ -625,7 +649,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView79"
                 />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:id="@+id/textView81"
@@ -644,7 +668,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView81"
                 />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:id="@+id/textView83"
@@ -655,7 +679,7 @@
                 />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:id="@+id/textView84"

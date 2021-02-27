@@ -1,6 +1,7 @@
 package com.example.praisewhale
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
@@ -9,12 +10,14 @@ import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.praisewhale.data.RequestNickChange
 import com.example.praisewhale.data.home.ResponseNickChange
@@ -45,10 +48,6 @@ class SettingActivity :AppCompatActivity() {
         setContentView(R.layout.activity_setting)
 
 
-        val nickname=MyApplication.mySharedPreferences.getValue("nickName", "")
-
-
-        tv_nickname.text=nickname
 
 
         layout_change_nickname.setOnClickListener {
@@ -84,7 +83,17 @@ class SettingActivity :AppCompatActivity() {
                         before: Int,
                         count: Int
                     ) {
+
                         val textcount: TextView = mView.findViewById(R.id.textcount)
+                        textcount.isVisible=true
+                        val textcount7:TextView=mView.findViewById(R.id.textcount7)
+                        textcount7.isVisible=true
+                        val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                        existnickbg.setBackgroundResource(R.drawable.edittext_bg)
+                        val existnick:TextView=mView.findViewById(R.id.existingnick)
+                        existnick.isVisible=false
+                        val changebtn: Button=mView.findViewById(R.id.change_btn)
+                        changebtn.setBackgroundResource(R.drawable.popup_btn_bg)
                         val input: String = s.toString()
                         textcount.text=input.length.toString()
                     }
@@ -96,29 +105,14 @@ class SettingActivity :AppCompatActivity() {
             deletebtn.setOnClickListener {
 
                 nick_modify_edit.setText("")
+                deletebtn.isVisible=false
             }
             nick_modify.setOnClickListener {
-                /*val call: Call<ResponseData> = CollectionImpl.service.nicknameCheck(signUpViewModel.userName.value!!)
-                call.enqueue(object : Callback<ResponseData> {
-                    override fun onFailure(call: Call<ResponseData>, t: Throwable) {
-                        Log.d("response", t.localizedMessage!!)
-                    }
-                    override fun onResponse(
-                        call: Call<ResponseData>,
-                        response: Response<ResponseData>
-                    ) {
-                        Log.d("response", response.body().toString())
-                        response.takeIf { it.isSuccessful }
-                            ?.body()
-                            ?.let {
-                                (activity as SignUpActivity).replaceFragment(WhaleNameFragment())
-                            } ?: signUpViewModel.nameFail()
-                    }
-                })*/
+
                 val token = MyApplication.mySharedPreferences.getValue("token", "")
 
                 val body=RequestNickChange(
-                    nickName = nickname,
+                    nickName = MyApplication.mySharedPreferences.getValue("nickName", ""),
                     newNickName = nick_modify_edit.text.toString()
                 )
                 val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token, body)
@@ -131,25 +125,37 @@ class SettingActivity :AppCompatActivity() {
                         call: Call<ResponseNickChange>,
                         response: Response<ResponseNickChange>
                     ) {
-                        when (response.body()?.status) {
-
-                            400 -> Toast.makeText(
-                                applicationContext,
-                                "닉네임이 중복합니다",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-
-                        }
+                      Log.d("status코드2", response.body()?.status.toString())
+                        Log.d("닉네임 중복", "닉네임 중복")
+                        val existnick:TextView=mView.findViewById(R.id.existingnick)
+                        existnick.isVisible=true
+                        val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                        existnickbg.setBackgroundResource(R.drawable.edittext_bg_exist)
+                        val textcount:TextView=mView.findViewById(R.id.textcount)
+                        textcount.isVisible=false
+                        val textcount7:TextView=mView.findViewById(R.id.textcount7)
+                        textcount7.isVisible=false
                         response.takeIf { it.isSuccessful }
 
                             ?.body()
                             ?.let {
+                                Log.d("status코드", it.status.toString())
 
-                                    it ->
-                                Log.d("닉네임변경완료", "닉네임변경완료")
-                                //MyApplication.mySharedPreferences.setValue("alarmtime")
+                                if(it.status == 200) {
 
+                                    val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                                    existnickbg.setBackgroundResource(R.drawable.edittext_bg)
+                                    Log.d("닉네임변경완료", "닉네임변경완료")
+                                    tv_nickname.text=nick_modify_edit.text
+                                    dialog.dismiss()
+                                    dialog.cancel()
+                                    com.example.praisewhale.util.Toast.customToast("닉네임이 변경되었어요!", this@SettingActivity)
+
+                                }
+                                else {
+
+                                    //MyApplication.mySharedPreferences.setValue("alarmtime")
+                                }
 
                             }
                     }
@@ -160,10 +166,7 @@ class SettingActivity :AppCompatActivity() {
                     nick_modify_edit.text.toString()
                 )
 
-                    tv_nickname.text=nick_modify_edit.text
-                    dialog.dismiss()
-                    dialog.cancel()
-               com.example.praisewhale.util.Toast.customToast("닉네임이 변경되었어요!", this)
+
 
 
 
@@ -183,30 +186,9 @@ class SettingActivity :AppCompatActivity() {
             )
 
 
-
-            /*val builder = AlertDialog.Builder(this)
-            val dialogView = layoutInflater.inflate(R.layout.custom_dialog, null)
-            val dialogText = dialogView.findViewById<EditText>(R.id.editTextTextPersonName)
-
-            builder.setView(dialogView)
-                .setPositiveButton("확인") { dialogInterface, i ->
-                    mainTv.text = dialogText.text.toString()
-
-                    *//* 확인일 때 main의 View의 값에 dialog View에 있는 값을 적용 *//*
-
-                }
-                .setNegativeButton("취소") { dialogInterface, i ->
-                    *//* 취소일 때 아무 액션이 없으므로 빈칸 *//*
-                }
-                .show()*/
         }
 
         layout_alarm.setOnClickListener {
-
-         /* val tdlg=TimepickerDialog2(this)
-            tdlg.start()*/
-
-
 
             val dialog2 = AlertDialog.Builder(this).create()
             val edialog2: LayoutInflater = LayoutInflater.from(this)
@@ -332,6 +314,7 @@ class SettingActivity :AppCompatActivity() {
 
 
         }
+
         layout_service.setOnClickListener {
             val intent= Intent(this, InfoUserActivity::class.java)
             startActivity(intent)
@@ -359,6 +342,11 @@ class SettingActivity :AppCompatActivity() {
             startActivity(intent)
         }
         }
+
+    override fun onResume() {
+        super.onResume()
+        tv_nickname.text=MyApplication.mySharedPreferences.getValue("nickName", "")
+    }
 
 
 private fun NumberPicker.removeDivider() {

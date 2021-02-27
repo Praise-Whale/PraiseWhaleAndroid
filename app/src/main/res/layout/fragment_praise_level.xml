@@ -12,12 +12,13 @@
         android:id="@+id/level_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
-        android:fontFamily="@font/noto_sans_medium"
+        android:layout_marginTop="62dp"
+        android:fontFamily="@font/noto_sans_regular"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="선규님의"
-        android:textStyle="bold"
+        android:text=""
+        android:textColor="@color/greyish_brown"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,25 +28,24 @@
         android:id="@+id/whalename_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:fontFamily="@font/noto_sans_semi_bold"
+        android:fontFamily="@font/noto_sans_bold"
+        android:textColor="@color/greyish_brown"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="남궁고래"
-        android:textSize="22dp"
-
-        android:textStyle="bold"
+        android:text="asdf"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/level_txt" />
 
-    <View
+    <ImageView
+        android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="9dp"
-        android:background="#ffd464"
+        android:src="@drawable/yellow_divider_radius_10"
         app:layout_constraintEnd_toEndOf="@+id/whalename_txt"
         app:layout_constraintStart_toStartOf="@+id/whalename_txt"
         app:layout_constraintTop_toBottomOf="@+id/whalename_txt" />
@@ -54,46 +54,46 @@
         android:id="@+id/level_whale"
         android:layout_width="170dp"
         android:layout_height="159dp"
-        android:layout_marginTop="132dp"
         android:src="@drawable/lv_0_img_whale"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/whalename_txt" />
+        app:layout_constraintBottom_toBottomOf="@+id/cpb_circlebar"
+        app:layout_constraintEnd_toEndOf="@+id/cpb_circlebar"
+        app:layout_constraintStart_toStartOf="@+id/cpb_circlebar"
+        app:layout_constraintTop_toTopOf="@+id/cpb_circlebar" />
 
     <com.dinuscxj.progressbar.CircleProgressBar
         android:id="@+id/cpb_circlebar"
         android:layout_width="286dp"
         android:layout_height="286dp"
         android:layout_marginStart="37dp"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="37dp"
-        android:layout_marginRight="37dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/whalename_txt"
-        app:progress_end_color="#ABF200"
-        app:progress_start_color="#FFBB00"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:progress_end_color="#ffba00"
+        app:progress_start_color="#ffdf88"
+        app:progress_background_color="#ffeec3"
         app:progress_stroke_cap="round"
-        app:progress_stroke_width="18dp "
+        app:progress_stroke_width="15dp "
         app:progress_text_size="0sp"
         app:style="solid_line" />
 
     <TextView
         android:id="@+id/detail_txt"
-        android:layout_width="230dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="103dp"
+        android:layout_width="229dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="53dp"
         android:background="@drawable/lv_box_name"
         android:fontFamily="@font/noto_sans_regular"
         android:gravity="center"
         android:includeFontPadding="false"
         android:paddingHorizontal="20dp"
-        android:text="아직은 칭찬이 어색한 고래"
-        android:textColor="#503000"
+        android:text=""
+        android:textColor="@color/brown"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/level_whale" />
+        app:layout_constraintTop_toBottomOf="@+id/cpb_circlebar" />
 
 
     <LinearLayout
@@ -108,9 +108,11 @@
 
         <TextView
             android:id="@+id/textView"
+            android:fontFamily="@font/noto_sans_bold"
+            android:textSize="15sp"
+            android:textColor="@color/brown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_bold"
             android:includeFontPadding="false"
             android:text="칭찬" />
 
@@ -120,35 +122,55 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
             android:includeFontPadding="false"
-            android:text="1번"
+            android:text=""
+            android:textColor="@color/brown"
             android:textSize="20sp" />
     </LinearLayout>
 
 
-    <View
+    <ImageView
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="9dp"
-        android:background="#ffd464"
+        android:src="@drawable/yellow_divider_radius_10"
         app:layout_constraintEnd_toEndOf="@+id/whale"
         app:layout_constraintStart_toStartOf="@+id/whale"
         app:layout_constraintTop_toBottomOf="@+id/whale" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <LinearLayout
+        android:id="@+id/whaleGod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:fontFamily="@font/noto_sans_semi_bold"
-        android:includeFontPadding="false"
-        android:text="5번 달성시 다음레벨"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/view">
 
+        <TextView
+            android:id="@+id/textViewPhraseGod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:textSize="16sp"
+            android:textColor="@color/brown"
+            android:includeFontPadding="false"
+            android:text=""
+            />
+
+        <TextView
+            android:id="@+id/textViewPhrase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:textSize="16sp"
+            android:textColor="@color/brown"
+            android:includeFontPadding="false"
+            android:text="달성 시 다음 레벨!"
+          />
+    </LinearLayout>
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
@@ -163,19 +185,17 @@
         android:id="@+id/setting_btn"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="29dp"
         android:layout_marginRight="24dp"
         android:background="@drawable/lv_btn_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <ImageView
         android:id="@+id/level_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_bold"
-        android:includeFontPadding="false"
-        android:text="0"
+        android:src="@drawable/level1"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
