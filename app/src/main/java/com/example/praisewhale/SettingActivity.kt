@@ -95,11 +95,13 @@ class SettingActivity :AppCompatActivity() {
                         val changebtn: Button=mView.findViewById(R.id.change_btn)
                         changebtn.setBackgroundResource(R.drawable.popup_btn_bg)
                         val input: String = s.toString()
+                        textcount.setTextColor(resources.getColor(R.color.brown))
                         textcount.text=input.length.toString()
                     }
                 })
             nick_modify_edit.textChangedListener {
-                deletebtn.isVisible=true
+                deletebtn.isVisible = nick_modify_edit.text.toString() != ""
+
             }
 
             deletebtn.setOnClickListener {
@@ -180,10 +182,7 @@ class SettingActivity :AppCompatActivity() {
             dialog.setView(mView)
            // dialog.create()
             dialog.show()
-            dialog.window?.setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT
-            )
+
 
 
         }
