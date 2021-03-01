@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.praisewhale.MainActivity
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.CustomToastHomeBinding
 import com.example.praisewhale.databinding.DialogHomeResultBinding
-import com.example.praisewhale.home.ui.HomeFragment
+import com.example.praisewhale.util.MyApplication
 
 
 class HomeDialogDoneResultFragment : DialogFragment() {
