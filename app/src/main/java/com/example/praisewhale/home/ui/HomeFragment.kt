@@ -26,10 +26,10 @@ class HomeFragment : Fragment() {
     private var _viewBinding: FragmentHomeBinding? = null
     private val viewBinding get() = _viewBinding!!
 
-    private var currentYear = Calendar.getInstance().get(Calendar.YEAR).toString()
-    private var currentMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1).toString()
-    private var currentDate = Calendar.getInstance().get(Calendar.DATE).toString()
-    private var currentYMD = currentYear + currentMonth + currentDate
+    private lateinit var currentYear: String
+    private lateinit var currentMonth: String
+    private lateinit var currentDate: String
+    private lateinit var currentYMD: String
 
     private val sharedPreferences = MyApplication.mySharedPreferences
 
@@ -46,12 +46,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
-        setDefaultInfo()
         setPraiseStatusDefaultView()
     }
 
     override fun onResume() {
         super.onResume()
+        getCurrentDate()
+        setDefaultInfo()
         checkLastGetPraiseDate()
     }
 
@@ -69,6 +70,13 @@ class HomeFragment : Fragment() {
         val userName = sharedPreferences.getValue("nickName", "")
         viewBinding.textViewUserName.text = userName + "님을 위한"
         viewBinding.buttonDate.text = "${currentMonth}월 ${currentDate}일"
+    }
+
+    private fun getCurrentDate() {
+        currentYear = Calendar.getInstance().get(Calendar.YEAR).toString()
+        currentMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1).toString()
+        currentDate = Calendar.getInstance().get(Calendar.DATE).toString()
+        currentYMD = currentYear + currentMonth + currentDate
     }
 
     private fun checkLastGetPraiseDate() {
@@ -208,14 +216,14 @@ class HomeFragment : Fragment() {
 
     private fun showDialogDone() {
         val praiseIndex = sharedPreferences.getValue(LAST_PRAISE_INDEX, "").toInt()
-        val dialogDone = HomeDialogDoneFragment.CustomDialogBuilder().getPraiseIndex(praiseIndex).create()
+        val dialogDone =
+            HomeDialogDoneFragment.CustomDialogBuilder().setPraiseIndex(praiseIndex).create()
         dialogDone.show(parentFragmentManager, dialogDone.tag)
     }
 
     private fun showDialogUndone() {
         val dialogUndone = HomeDialogUndoneFragment.CustomDialogBuilder().create()
         dialogUndone.show(parentFragmentManager, dialogUndone.tag)
-        sharedPreferences.setValue(LAST_PRAISE_STATUS, "undone")
     }
 
     private fun setIntentToSettingActivity() {
