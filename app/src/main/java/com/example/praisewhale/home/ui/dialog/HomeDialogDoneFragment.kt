@@ -7,8 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,8 +45,8 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
-        setDialogBackground()
         getServerRecentPraiseTo()
+        setDialogBackground()
     }
 
     private fun setListeners() {
@@ -88,7 +86,8 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
 
     private fun setRecentPraiseToView(recentPraiseToList: List<ResponseRecentPraiseTo.Name>) {
         viewBinding.apply {
-            recyclerViewRecentPraiseTo.adapter = RecentPraiseToAdapter(recentPraiseToList, this@HomeDialogDoneFragment)
+            recyclerViewRecentPraiseTo.adapter =
+                RecentPraiseToAdapter(recentPraiseToList, this@HomeDialogDoneFragment)
             when (recentPraiseToList.size) {
                 0 -> textViewRecentPraiseToTitle.setInvisible()
                 else -> textViewRecentPraiseToTitle.setVisible()
@@ -162,13 +161,18 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
                 when (response.isSuccessful) {
                     true -> {
                         dialog!!.dismiss()
-                        (activity as MainActivity).changeFragment(HomeFragment())
+                        updateHomeFragmentView()
                         showResultDialog(response.body()!!.data.isLevelUp)
                     }
                     false -> handleSaveServerPraiseStatusCode(response, target)
                 }
             }
         })
+    }
+
+    private fun updateHomeFragmentView() {
+        sharedPreferences.setValue(LAST_PRAISE_STATUS, "done")
+        (activity as MainActivity).changeFragment(HomeFragment())
     }
 
     private fun handleSaveServerPraiseStatusCode(
@@ -188,24 +192,22 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
             .getLevelUpStatus(isLevelUp)
             .create()
         dialogDoneResult.show(parentFragmentManager, dialogDoneResult.tag)
-        sharedPreferences.setValue(LAST_PRAISE_STATUS, "done")
     }
 
 
     private val dialogTextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            updateDeleteButtonVisibility()
-        }
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         override fun afterTextChanged(s: Editable?) {
-            updateEditTextCurrentLength(s!!)
+            updateDeleteButtonVisibility(s!!)
+            updateEditTextCurrentLength(s)
         }
     }
 
-    private fun updateDeleteButtonVisibility() {
+    private fun updateDeleteButtonVisibility(praiseTo: Editable) {
         viewBinding.apply {
-            when (editTextPraiseTo.text.toString()) {
-                "" -> imageButtonDelete.setInvisible()
+            when (praiseTo.length) {
+                0 -> imageButtonDelete.setInvisible()
                 else -> imageButtonDelete.setVisible()
             }
         }
@@ -234,7 +236,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     class CustomDialogBuilder {
         private val dialog = HomeDialogDoneFragment()
 
-        fun getPraiseIndex(praiseId: Int): CustomDialogBuilder {
+        fun setPraiseIndex(praiseId: Int): CustomDialogBuilder {
             dialog.praiseId = praiseId
             return this
         }
