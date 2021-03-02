@@ -1,7 +1,9 @@
-package com.example.praisewhale.card
+package com.example.praisewhale.collection.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.praisewhale.collection.ui.CardFragment
+import com.example.praisewhale.collection.ui.PraiseRankingFragment
 
 
 class CollectionViewPager2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment) {

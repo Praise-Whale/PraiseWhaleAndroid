@@ -1,4 +1,4 @@
-package com.example.praisewhale.card
+package com.example.praisewhale.collection.ui
 
 import android.app.AlertDialog
 import android.content.res.Resources
@@ -19,6 +19,8 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.praisewhale.*
+import com.example.praisewhale.collection.adapter.CardBoxAdapter
+import com.example.praisewhale.collection.data.ResponseCardData
 import com.example.praisewhale.databinding.FragmentCardBinding
 import com.example.praisewhale.util.MyApplication
 import retrofit2.Call
@@ -56,7 +58,10 @@ class CardFragment : Fragment() {
         get() = listOf(binding.emptyImg, binding.tvEmpty1, binding.tvEmpty2)
 
     private fun setCardBox() {
-        cardBoxAdapter = CardBoxAdapter(requireContext())
+        cardBoxAdapter =
+            CardBoxAdapter(
+                requireContext()
+            )
         binding.rvCardBox.adapter = cardBoxAdapter
         binding.rvCardBox.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

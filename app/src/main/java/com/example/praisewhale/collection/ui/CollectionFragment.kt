@@ -1,4 +1,4 @@
-package com.example.praisewhale.card
+package com.example.praisewhale.collection.ui
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.R
+import com.example.praisewhale.collection.adapter.CollectionViewPager2Adapter
 import com.example.praisewhale.databinding.FragmentCollectionBinding
 import com.example.praisewhale.util.MyApplication
 import com.example.praisewhale.util.setContextCompatTextColor
@@ -48,8 +49,13 @@ class CollectionFragment : Fragment() {
 
     private fun setViewPager2() {
         viewBinding.viewPager2Card.apply {
-            adapter = CollectionViewPager2Adapter(this@CollectionFragment)
+            adapter =
+                CollectionViewPager2Adapter(
+                    this@CollectionFragment
+                )
+            isSaveEnabled = false
             isUserInputEnabled = false
+
         }
     }
 
