@@ -82,7 +82,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/background_rectangle_radius_15_stroke"
+        android:background="@drawable/background_rectangle_radius_15_stroke_2"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_cardShadow"
         app:layout_constraintEnd_toEndOf="@+id/button_date"
         app:layout_constraintStart_toStartOf="@+id/view_underline"

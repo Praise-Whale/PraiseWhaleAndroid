@@ -3,7 +3,7 @@ package com.example.praisewhale
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.praisewhale.card.CardFragment
+import com.example.praisewhale.collection.ui.CollectionFragment
 import com.example.praisewhale.home.ui.HomeFragment
 import com.example.praisewhale.fragment.PraiseLevelFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val mainFragment by lazy { HomeFragment() }
-    private val collectionFragment by lazy { CardFragment() }
+    private val collectionFragment by lazy { CollectionFragment() }
     private val praiseLevelFragment by lazy { PraiseLevelFragment() }
 
 

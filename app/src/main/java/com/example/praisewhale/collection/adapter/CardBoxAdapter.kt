@@ -1,10 +1,11 @@
-package com.example.praisewhale.card
+package com.example.praisewhale.collection.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.R
+import com.example.praisewhale.collection.data.CollectionPraise
 
 class CardBoxAdapter (private val context : Context) : RecyclerView.Adapter<CardBoxViewHolder>(){
     var data = listOf<CollectionPraise>()

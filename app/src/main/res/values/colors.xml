@@ -40,4 +40,6 @@
     <color name="brownish_grey">#777777</color>
     <color name="greyish_brown_two">#3f3f3f</color>
     <color name="brownish_grey_two">#626262</color>
+    <color name="grey_4">#f6f6f6</color>
+    <color name="off_white">#fffbf0</color>
 </resources>
