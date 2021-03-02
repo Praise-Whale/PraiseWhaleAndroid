@@ -60,7 +60,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     }
 
     private fun setDialogBackground() {
-        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke)
+        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke_2)
     }
 
     private fun getServerRecentPraiseTo() {
