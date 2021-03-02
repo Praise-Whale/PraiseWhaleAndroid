@@ -56,14 +56,14 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
                 response: Response<ResponsePraiseRanking>
             ) {
                 when (response.isSuccessful) {
-                    true -> setPraiseRankingView(response.body()!!.data)
+                    true -> setView(response.body()!!.data)
 //                    false -> handlePraiseRankingStatusCode(response)
                 }
             }
         })
     }
 
-    private fun setPraiseRankingView(praiseRankingData: ResponsePraiseRanking.Data) {
+    private fun setView(praiseRankingData: ResponsePraiseRanking.Data) {
         when (praiseRankingData.rankingResult.size) {
             0 -> setEmptyViewVisibility()
             else -> {
@@ -71,6 +71,7 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
                 setRankingView(praiseRankingData)
             }
         }
+        fadeOutLoadingView()
     }
 
     private fun setEmptyViewVisibility() {
@@ -127,6 +128,10 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
                 else -> fadeIn()
             }
         }
+    }
+
+    private fun fadeOutLoadingView() {
+        viewBinding.viewLoading.fadeOut()
     }
 
     override fun onClickPraiseRankingItem(praiseTo: String) {
