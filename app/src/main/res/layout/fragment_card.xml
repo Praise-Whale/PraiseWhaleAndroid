@@ -69,14 +69,13 @@
         android:orientation="horizontal"
         android:paddingLeft="42dp"
         android:paddingTop="27dp"
-        android:paddingRight="22dp"
         android:paddingBottom="43dp"
         android:visibility="invisible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_card_picker"
+        app:layout_constraintTop_toBottomOf="@+id/card_count2"
         tools:listitem="@layout/item_card_box_card"
         tools:visibility="visible" />
 

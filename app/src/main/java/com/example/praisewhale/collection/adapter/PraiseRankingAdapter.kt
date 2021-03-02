@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.collection.data.ResponsePraiseRanking
 import com.example.praisewhale.databinding.ItemPraiseRankingBinding
 import com.example.praisewhale.util.PraiseRankingClickListener
-import kotlinx.android.synthetic.main.item_praise_ranking.view.*
 
 
 class PraiseRankingAdapter(
@@ -27,7 +26,7 @@ class PraiseRankingAdapter(
     override fun onBindViewHolder(holder: PraiseRankingViewHolder, position: Int) {
         praiseRankingList.let {
             holder.onBind(position, it[position])
-            holder.itemView.button_rankingArrow.setOnClickListener {
+            holder.itemView.setOnClickListener {
                 praiseRankingClickListener.onClickPraiseRankingItem(praiseRankingList[position].praiseTo)
             }
         }

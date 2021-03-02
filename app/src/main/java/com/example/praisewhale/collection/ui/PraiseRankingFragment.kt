@@ -2,7 +2,6 @@ package com.example.praisewhale.collection.ui
 
 import android.content.res.Resources
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,10 +10,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.CollectionImpl
+import com.example.praisewhale.MainActivity
 import com.example.praisewhale.collection.adapter.PraiseRankingAdapter
 import com.example.praisewhale.collection.data.ResponsePraiseRanking
 import com.example.praisewhale.databinding.FragmentPraiseRankingBinding
-import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.util.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -131,6 +130,12 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
     }
 
     override fun onClickPraiseRankingItem(praiseTo: String) {
-        TODO("Not yet implemented")
+        (activity as MainActivity).changeFragment(PraiseRankingCardFragment())
+        PRAISE_TARGET = praiseTo
+    }
+
+
+    companion object {
+        var PRAISE_TARGET = ""
     }
 }

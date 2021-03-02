@@ -18,6 +18,7 @@ class CollectionFragment : Fragment() {
     private var _viewBinding: FragmentCollectionBinding? = null
     private val viewBinding get() = _viewBinding!!
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +33,16 @@ class CollectionFragment : Fragment() {
         setUserInfo()
         setListeners()
         setViewPager2()
+    }
+
+    override fun onStart() {
+        super.onStart()
         initTabButton()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        getSwitchHeight()
     }
 
     private fun setUserInfo() {
@@ -49,18 +59,27 @@ class CollectionFragment : Fragment() {
 
     private fun setViewPager2() {
         viewBinding.viewPager2Card.apply {
-            adapter =
-                CollectionViewPager2Adapter(
-                    this@CollectionFragment
-                )
+            adapter = CollectionViewPager2Adapter(this@CollectionFragment)
             isSaveEnabled = false
             isUserInputEnabled = false
-
         }
     }
 
     private fun initTabButton() {
-        viewBinding.tabLeft.isSelected = true
+        viewBinding.viewPager2Card.apply {
+            when (IS_FROM_PRAISE_RANKING_CARD_VIEW) {
+                true -> {
+                    activateRightTabButton()
+                    setCurrentItem(1, false)
+                    IS_FROM_PRAISE_RANKING_CARD_VIEW = false
+                }
+                false -> activateLeftTabButton()
+            }
+        }
+    }
+
+    private fun getSwitchHeight() {
+        SWITCH_HEIGHT = viewBinding.switchTrack.height
     }
 
     private val fragmentClickListener = View.OnClickListener {
@@ -73,7 +92,6 @@ class CollectionFragment : Fragment() {
                 tabRight.id -> {
                     activateRightTabButton()
                     viewPager2Card.setCurrentItem(1, true)
-
                 }
             }
         }
@@ -100,5 +118,11 @@ class CollectionFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _viewBinding = null
+    }
+
+
+    companion object {
+        var IS_FROM_PRAISE_RANKING_CARD_VIEW = false
+        var SWITCH_HEIGHT = 0
     }
 }
