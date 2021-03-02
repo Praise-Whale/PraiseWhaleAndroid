@@ -35,7 +35,7 @@
         android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
-        android:paddingBottom="24dp"
+        android:paddingBottom="48dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +43,29 @@
         app:layout_constraintTop_toBottomOf="@id/textView_rankingTitle_02"
         tools:listitem="@layout/item_praise_ranking"
         tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imageView_blurBoxTop"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:backgroundTint="@color/pale"
+        android:rotation="180"
+        android:src="@drawable/background_blur_box"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView_praiseRanking"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView_praiseRanking"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView_praiseRanking" />
+
+    <ImageView
+        android:id="@+id/imageView_blurBoxBottom"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="42dp"
+        android:backgroundTint="@color/pale"
+        android:src="@drawable/background_blur_box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView_empty"

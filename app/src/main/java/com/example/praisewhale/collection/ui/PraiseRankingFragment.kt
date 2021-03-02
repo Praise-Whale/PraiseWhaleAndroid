@@ -8,15 +8,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.collection.adapter.PraiseRankingAdapter
 import com.example.praisewhale.collection.data.ResponsePraiseRanking
 import com.example.praisewhale.databinding.FragmentPraiseRankingBinding
 import com.example.praisewhale.home.data.ResponseHomePraise
-import com.example.praisewhale.util.LAST_PRAISE_INDEX
-import com.example.praisewhale.util.MyApplication
-import com.example.praisewhale.util.PraiseRankingClickListener
-import com.example.praisewhale.util.VerticalItemDecorator
+import com.example.praisewhale.util.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,8 +68,8 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
         when (praiseRankingData.rankingResult.size) {
             0 -> setEmptyViewVisibility()
             else -> {
-                setRankingView(praiseRankingData)
                 setRankingViewVisibility()
+                setRankingView(praiseRankingData)
             }
         }
     }
@@ -106,10 +105,28 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
 
     private fun setRankingRecyclerView(praiseRankingData: ResponsePraiseRanking.Data) {
         val deviceDensity = Resources.getSystem().displayMetrics.density
-        Log.d("TAG", "setRankingRecyclerView: $deviceDensity")
         viewBinding.recyclerViewPraiseRanking.apply {
-            adapter = PraiseRankingAdapter(praiseRankingData.rankingResult, this@PraiseRankingFragment)
+            addOnScrollListener(scrollListener)
             addItemDecoration(VerticalItemDecorator((deviceDensity * 12).toInt()))
+            adapter = PraiseRankingAdapter(praiseRankingData.rankingResult, this@PraiseRankingFragment)
+        }
+    }
+
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            (recyclerView.layoutManager as LinearLayoutManager).apply {
+                updateBlurBox(findFirstCompletelyVisibleItemPosition())
+            }
+        }
+    }
+
+    private fun updateBlurBox(firstCompletelyVisibleItemPosition: Int) {
+        viewBinding.imageViewBlurBoxTop.apply {
+            when (firstCompletelyVisibleItemPosition) {
+                0 -> fadeOut()
+                else -> fadeIn()
+            }
         }
     }
 
