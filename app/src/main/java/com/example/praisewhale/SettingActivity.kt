@@ -21,6 +21,7 @@ import com.example.praisewhale.data.RequestNickChange
 import com.example.praisewhale.data.home.ResponseNickChange
 import com.example.praisewhale.util.MyApplication
 import com.example.praisewhale.util.textChangedListener
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import kotlinx.android.synthetic.main.activity_setting.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -93,7 +94,12 @@ class SettingActivity :AppCompatActivity() {
             intent.type = "message/rfc822"
             startActivity(intent)
         }
+
+        layout_open_source.setOnClickListener {
+            startActivity(Intent(this, OssLicensesMenuActivity::class.java))
+            OssLicensesMenuActivity.setActivityTitle("Ossl Title")
         }
+    }
 
     override fun onResume() {
         super.onResume()
