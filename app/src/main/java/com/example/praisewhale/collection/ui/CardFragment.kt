@@ -1,4 +1,4 @@
-package com.example.praisewhale.card
+package com.example.praisewhale.collection.ui
 
 import android.app.AlertDialog
 import android.content.res.Resources
@@ -15,11 +15,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.NumberPicker
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.praisewhale.*
+import com.example.praisewhale.collection.adapter.CardBoxAdapter
+import com.example.praisewhale.collection.data.ResponseCardData
 import com.example.praisewhale.databinding.FragmentCardBinding
 import com.example.praisewhale.util.MyApplication
 import retrofit2.Call
@@ -46,10 +47,8 @@ class CardFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setUserInfo()
         setCardBox()
         setCardPicker()
-        configureTab()
     }
 
     private val visibleView
@@ -58,13 +57,11 @@ class CardFragment : Fragment() {
     private val emptyView
         get() = listOf(binding.emptyImg, binding.tvEmpty1, binding.tvEmpty2)
 
-    private fun setUserInfo() {
-        val userName = MyApplication.mySharedPreferences.getValue("nickName", "")
-        binding.tvCardTitleName.text = userName + "님의"
-    }
-
     private fun setCardBox() {
-        cardBoxAdapter = CardBoxAdapter(requireContext())
+        cardBoxAdapter =
+            CardBoxAdapter(
+                requireContext()
+            )
         binding.rvCardBox.adapter = cardBoxAdapter
         binding.rvCardBox.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -212,21 +209,5 @@ class CardFragment : Fragment() {
                 }
             }
         })
-    }
-
-    private fun configureTab() {
-        binding.tabLeft.isSelected = true
-        binding.tabLeft.setOnClickListener {
-            binding.tabLeft.isSelected = true
-            binding.tvTabLeft.setTextColor(Color.BLACK)
-            binding.tabRight.isSelected = false
-            binding.tvTabRight.setTextColor(ResourcesCompat.getColor(resources, R.color.brown_grey, null))
-        }
-        binding.tabRight.setOnClickListener {
-            binding.tabRight.isSelected = true
-            binding.tvTabRight.setTextColor(Color.BLACK)
-            binding.tabLeft.isSelected = false
-            binding.tvTabLeft.setTextColor(ResourcesCompat.getColor(resources, R.color.brown_grey, null))
-        }
     }
 }

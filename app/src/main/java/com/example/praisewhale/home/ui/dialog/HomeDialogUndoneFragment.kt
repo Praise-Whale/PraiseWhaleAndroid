@@ -1,17 +1,16 @@
 package com.example.praisewhale.home.ui.dialog
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.MainActivity
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.DialogHomeResultBinding
 import com.example.praisewhale.home.ui.HomeFragment
 import com.example.praisewhale.util.COUNT_UNDONE
+import com.example.praisewhale.util.LAST_PRAISE_STATUS
 import com.example.praisewhale.util.MyApplication
 
 
@@ -69,17 +68,22 @@ class HomeDialogUndoneFragment : DialogFragment() {
     }
 
     private fun setDialogBackground() {
-        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke)
+        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke_2)
     }
 
     private val fragmentClickListener = View.OnClickListener {
         when (it.id) {
             viewBinding.buttonConfirm.id -> {
-                updateSharedPreferences()
                 dialog!!.dismiss()
-                (activity as MainActivity).changeFragment(HomeFragment())
+                updateHomeFragmentView()
+                updateSharedPreferences()
             }
         }
+    }
+
+    private fun updateHomeFragmentView() {
+        sharedPreferences.setValue(LAST_PRAISE_STATUS, "undone")
+        (activity as MainActivity).changeFragment(HomeFragment())
     }
 
     private fun updateSharedPreferences() {
