@@ -33,6 +33,7 @@
             android:textSize="13sp" />
 
         <TextView
+            android:id="@+id/tv_alarm_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -40,7 +41,6 @@
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
-            android:text="오전 09:00"
             android:textColor="@color/brown_grey"
             android:textSize="13sp" />
     </LinearLayout>

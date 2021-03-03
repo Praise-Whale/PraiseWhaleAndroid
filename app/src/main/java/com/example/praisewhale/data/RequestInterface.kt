@@ -7,7 +7,8 @@ import com.example.praisewhale.ResponselevelData
 import com.example.praisewhale.data.home.ResponseNickChange
 import com.example.praisewhale.home.data.RequestPraiseDone
 import com.example.praisewhale.home.data.ResponseDonePraise
-import com.example.praisewhale.card.ResponseCardData
+import com.example.praisewhale.collection.data.ResponseCardData
+import com.example.praisewhale.collection.data.ResponsePraiseRanking
 import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.home.data.ResponseRecentPraiseTo
 
@@ -49,6 +50,14 @@ interface RequestInterface {
         @Path("month") month: Int,
         @Header("token") token : String
     ): Call<ResponseCardData>
+
+    // PraiseRankingFragment.kt - 칭찬 랭킹 조회
+    @Headers("Content-Type:application/json")
+    @GET("/praise/ranking")
+    fun getPraiseRanking(
+        @Header("token") token: String
+    ): Call<ResponsePraiseRanking>
+
 
     @Headers("Content-Type:application/json")
     @GET("level/praise/{userIdx}")

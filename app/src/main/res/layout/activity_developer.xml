@@ -22,24 +22,38 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:fontFamily="@font/noto_sans_regular"
+        android:includeFontPadding="false"
         android:text="칭찬할고래"
+        android:textColor="@color/greyish_brown"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/developer_close_btn" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
-        android:text="개발자정보"
-        android:textSize="20sp"
+        android:text="개발자 정보"
+        android:fontFamily="@font/noto_sans_bold"
+        android:includeFontPadding="false"
+        android:textSize="22sp"
+        android:textColor="@color/greyish_brown"
         app:layout_constraintEnd_toEndOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
 
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/yellow_divider_radius_10"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
         android:id="@+id/textView12"
@@ -47,8 +61,12 @@
         android:layout_height="32dp"
         android:layout_marginTop="57dp"
         android:text="PLAN"
+        android:fontFamily="@font/noto_sans_regular"
+        android:textSize="15sp"
+        android:includeFontPadding="false"
+        android:textColor="@color/brown"
         android:gravity="center"
-        android:background="@drawable/developer_box_part"
+        android:background="@drawable/develop_name_bg"
         app:layout_constraintEnd_toEndOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -76,39 +94,51 @@
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="68dp"
+        android:layout_width="82dp"
         android:layout_height="32dp"
         android:text="DESIGN"
+        android:fontFamily="@font/noto_sans_regular"
+        android:textSize="15sp"
+        android:includeFontPadding="false"
+        android:textColor="@color/brown"
         android:gravity="center"
         android:layout_marginTop="26dp"
         app:layout_constraintTop_toBottomOf="@+id/plan"
-        android:background="@drawable/developer_box_part"
+        android:background="@drawable/develop_name_bg"
         app:layout_constraintEnd_toEndOf="@+id/textView12"
         app:layout_constraintStart_toStartOf="@+id/textView12"
         tools:layout_editor_absoluteY="264dp" />
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="68dp"
+        android:layout_width="94dp"
         android:layout_height="32dp"
         android:text="ANDROID"
+        android:fontFamily="@font/noto_sans_regular"
+        android:textSize="15sp"
+        android:includeFontPadding="false"
+        android:textColor="@color/brown"
         android:gravity="center"
         android:layout_marginTop="26dp"
         app:layout_constraintTop_toBottomOf="@+id/design"
-        android:background="@drawable/developer_box_part"
+        android:background="@drawable/develop_name_bg"
         app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintStart_toStartOf="@+id/textView13"
         tools:layout_editor_absoluteY="361dp" />
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="68dp"
+        android:layout_width="84dp"
         android:layout_height="32dp"
         android:text="SERVER"
+        android:fontFamily="@font/noto_sans_regular"
+        android:textSize="15sp"
+        android:includeFontPadding="false"
+        android:textColor="@color/brown"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/android"
         android:layout_marginTop="26dp"
-        android:background="@drawable/developer_box_part"
+        android:background="@drawable/develop_name_bg"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintStart_toStartOf="@+id/textView14"
         tools:layout_editor_absoluteY="447dp" />
@@ -128,6 +158,10 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            android:textColor="@color/greyish_brown"
             android:text="남궁선규" />
 
         <TextView
@@ -135,6 +169,10 @@
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            android:textColor="@color/greyish_brown"
             android:text="김송현" />
     </LinearLayout>
     <LinearLayout
@@ -152,6 +190,10 @@
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            android:textColor="@color/greyish_brown"
             android:text="임정은" />
 
         <TextView
@@ -159,6 +201,10 @@
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            android:textColor="@color/greyish_brown"
             android:text="최호준" />
     </LinearLayout>
 
@@ -176,24 +222,40 @@
         <TextView
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            android:textColor="@color/greyish_brown"
             android:layout_height="wrap_content"
             android:text="김영민" />
 
         <TextView
             android:id="@+id/textView21"
             android:layout_marginLeft="20dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            android:textColor="@color/greyish_brown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="최윤소" />
         <TextView
             android:id="@+id/textView22"
             android:layout_marginLeft="20dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            android:textColor="@color/greyish_brown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="김희빈" />
         <TextView
             android:id="@+id/textView23"
             android:layout_marginLeft="20dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            android:textColor="@color/greyish_brown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="안나영" />
@@ -211,6 +273,10 @@
 
         <TextView
             android:id="@+id/textView24"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            android:textColor="@color/greyish_brown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="최정균" />
@@ -218,6 +284,10 @@
         <TextView
             android:id="@+id/textView25"
             android:layout_marginLeft="20dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            android:textColor="@color/greyish_brown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="최다인" />
@@ -231,5 +301,5 @@
         app:layout_constraintEnd_toEndOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:srcCompat="@drawable/developer_div" />
+        android:src="@drawable/bg_card_div" />
 </androidx.constraintlayout.widget.ConstraintLayout>

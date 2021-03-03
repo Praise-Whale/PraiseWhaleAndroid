@@ -1,8 +1,9 @@
-package com.example.praisewhale.card
+package com.example.praisewhale.collection.adapter
 
 import android.view.View
 import android.widget.TextView
 import com.example.praisewhale.R
+import com.example.praisewhale.collection.data.CollectionPraise
 
 class CardBoxViewHolder (itemView : View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView){
     private val praisedName : TextView = itemView.findViewById(R.id.tv_card_name)
