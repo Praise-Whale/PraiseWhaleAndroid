@@ -79,6 +79,7 @@
     <string name="setting_personal_information">개인정보 처리방침</string>
     <string name="setting_service">서비스 이용약관</string>
     <string name="setting_developer_information">개발자 정보</string>
+    <string name="setting_open_source">오픈소스 라이센스</string>
 
     <!-- EmailIntent -->
     <string name="email_title">칭찬할고래 문의</string>

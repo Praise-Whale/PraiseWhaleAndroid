@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'com.google.android.gms.oss-licenses-plugin'
 }
 
 android {
@@ -84,4 +85,7 @@ dependencies {
 
     // Lottie
     implementation 'com.airbnb.android:lottie:3.0.7'
+
+    // Open Source Notices
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 }
