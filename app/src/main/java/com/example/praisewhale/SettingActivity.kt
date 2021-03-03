@@ -47,267 +47,23 @@ class SettingActivity :AppCompatActivity() {
 
 
         layout_change_nickname.setOnClickListener {
-
-           /* val dlg = NicknameDialog(this)
-            dlg.start()*/
-            val dialog = AlertDialog.Builder(this).create()
-            val edialog: LayoutInflater = LayoutInflater.from(this)
-            val mView: View = edialog.inflate(R.layout.namechange, null)
-            val close: Button = mView.findViewById(R.id.close_btn)
-            close.setOnClickListener {
-                dialog.dismiss()
-                dialog.cancel()
-            }
-            val nick_modify: Button = mView.findViewById(R.id.change_btn)
-            val deletebtn: Button = mView.findViewById(R.id.delete_btn)
-
-            val nick_modify_edit: EditText = mView.findViewById(R.id.editnickname)
-            nick_modify_edit.addTextChangedListener(
-                object : TextWatcher {
-                    override fun afterTextChanged(s: Editable?) {}
-                    override fun beforeTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        count: Int,
-                        after: Int
-                    ) {
-                    }
-
-                    override fun onTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        before: Int,
-                        count: Int
-                    ) {
-
-                        val textcount: TextView = mView.findViewById(R.id.textcount)
-                        textcount.isVisible=true
-                        val textcount7:TextView=mView.findViewById(R.id.textcount7)
-                        textcount7.isVisible=true
-                        val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
-                        existnickbg.setBackgroundResource(R.drawable.edittext_bg)
-                        val existnick:TextView=mView.findViewById(R.id.existingnick)
-                        existnick.isVisible=false
-                        val changebtn: Button=mView.findViewById(R.id.change_btn)
-                        changebtn.setBackgroundResource(R.drawable.popup_btn_bg)
-                        val input: String = s.toString()
-                        textcount.text=input.length.toString()
-                    }
-                })
-            nick_modify_edit.textChangedListener {
-                deletebtn.isVisible=true
-            }
-
-            deletebtn.setOnClickListener {
-
-                nick_modify_edit.setText("")
-                deletebtn.isVisible=false
-            }
-            nick_modify.setOnClickListener {
-
-                val token = MyApplication.mySharedPreferences.getValue("token", "")
-
-                val body=RequestNickChange(
-                    nickName = MyApplication.mySharedPreferences.getValue("nickName", ""),
-                    newNickName = nick_modify_edit.text.toString()
-                )
-                val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token, body)
-                call.enqueue(object : Callback<ResponseNickChange> {
-                    override fun onFailure(call: Call<ResponseNickChange>, t: Throwable) {
-                        Log.d("tag", t.localizedMessage)
-                    }
-
-                    override fun onResponse(
-                        call: Call<ResponseNickChange>,
-                        response: Response<ResponseNickChange>
-                    ) {
-                      Log.d("status코드2", response.body()?.status.toString())
-                        Log.d("닉네임 중복", "닉네임 중복")
-                        val existnick:TextView=mView.findViewById(R.id.existingnick)
-                        existnick.isVisible=true
-                        val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
-                        existnickbg.setBackgroundResource(R.drawable.edittext_bg_exist)
-                        val textcount:TextView=mView.findViewById(R.id.textcount)
-                        textcount.isVisible=false
-                        val textcount7:TextView=mView.findViewById(R.id.textcount7)
-                        textcount7.isVisible=false
-                        response.takeIf { it.isSuccessful }
-
-                            ?.body()
-                            ?.let {
-                                Log.d("status코드", it.status.toString())
-
-                                if(it.status == 200) {
-
-                                    val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
-                                    existnickbg.setBackgroundResource(R.drawable.edittext_bg)
-                                    Log.d("닉네임변경완료", "닉네임변경완료")
-                                    tv_nickname.text=nick_modify_edit.text
-                                    dialog.dismiss()
-                                    dialog.cancel()
-                                    com.example.praisewhale.util.Toast.customToast("닉네임이 변경되었어요!", this@SettingActivity)
-
-                                }
-                                else {
-
-                                    //MyApplication.mySharedPreferences.setValue("alarmtime")
-                                }
-
-                            }
-                    }
-                })
-
-                MyApplication.mySharedPreferences.setValue(
-                    "nickName",
-                    nick_modify_edit.text.toString()
-                )
-
-
-
-
-
-            }
-
-            val color = ColorDrawable(Color.TRANSPARENT)
-            // Dialog 크기 설정
-            val inset = InsetDrawable(color, 85)
-            dialog.window?.setBackgroundDrawable(inset)
-            dialog.setCancelable(false)
-            dialog.setView(mView)
-           // dialog.create()
-            dialog.show()
-            dialog.window?.setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT
-            )
-
-
+            NicknameDialog()
         }
 
         layout_alarm.setOnClickListener {
 
-            val dialog2 = AlertDialog.Builder(this).create()
-            val edialog2: LayoutInflater = LayoutInflater.from(this)
-            val mView2: View = edialog2.inflate(R.layout.numberpicker_time, null)
-
-            val ny:NumberPicker=mView2.findViewById(R.id.numberPicker)
-            val ny1:NumberPicker=mView2.findViewById(R.id.numberPicker2)
-            val ny2:NumberPicker=mView2.findViewById(R.id.numberPicker3)
-
-            val btnok:Button=mView2.findViewById(R.id.button_ok_time)
-            val btnalarmcancel:Button=mView2.findViewById(R.id.button_time_cancel)
-
-            btnalarmcancel.setOnClickListener {
-                dialog2.dismiss()
-                dialog2.cancel()
-            }
+            AlarmClockDialog()
 
 
-            val list = resources.getStringArray(R.array.ampm)
-
-            ny.removeDivider()
-            ny1.removeDivider()
-            ny2.removeDivider()
+        }
 
 
-            ny.minValue=0
-            ny.maxValue=list.size-1
+        switch_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
 
-            ny1.minValue=1
-            ny1.maxValue=12
-
-            ny2.minValue=0
-            ny2.maxValue=59
-
-            ny.displayedValues = list
-
-            ny.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
-            ny2.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
-            ny1.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
-
-
-            btnok.setOnClickListener {
-                val switch:Switch=findViewById(R.id.switch_alarm)
-                if ((ny2.value.toString()).length < 2) {
-                    if (list[ny.value] == "오전") {
-                        tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
-                        MyApplication.mySharedPreferences.setValue(
-                            "alarm_hour",
-                            ny1.value.toString()
-                        )
-                        MyApplication.mySharedPreferences.setValue(
-                            "alarm_minute",
-                             ny2.value.toString()
-                        )
-                        MyApplication.mySharedPreferences.setBooleanValue(
-                            "alarm_onoff",
-                            switch.isChecked
-                        )
-
-                    } else {
-                        val clock_ = ny1.value + 12
-                        tv_alarm_time.text =list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
-                        MyApplication.mySharedPreferences.setValue(
-                            "alarm_hour",
-                            ny1.value.toString()
-                        )
-                        MyApplication.mySharedPreferences.setValue(
-                            "alarm_minute",
-                            ny2.value.toString()
-                        )
-                        MyApplication.mySharedPreferences.setBooleanValue(
-                            "alarm_onoff",
-                            switch.isChecked
-                        )
-                    }
-                } else {
-                    if (list[ny.value] == "오후") {
-                        val clock_ = ny1.value + 12
-                        tv_alarm_time.text =list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
-                        MyApplication.mySharedPreferences.setValue(
-                            "alarm_hour",
-                            ny1.value.toString()
-                        )
-                        MyApplication.mySharedPreferences.setValue(
-                            "alarm_minute",
-                            ny2.value.toString()
-                        )
-                        MyApplication.mySharedPreferences.setBooleanValue(
-                            "alarm_onoff",
-                            switch.isChecked
-                        )
-                    } else {
-                        tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
-                        MyApplication.mySharedPreferences.setValue(
-                            "alarm_hour",
-                            ny1.value.toString()
-                        )
-                        MyApplication.mySharedPreferences.setValue(
-                            "alarm_minute",
-                            ny2.value.toString()
-                        )
-                        MyApplication.mySharedPreferences.setBooleanValue(
-                            "alarm_onoff",
-                            switch.isChecked
-                        )
-                    }
-                }
-                dialog2.dismiss()
-                com.example.praisewhale.util.Toast.customToast(
-                    "앞으로 " + tv_alarm_time.text + "에 칭찬 알림을 보내드릴게요!",
-                    this
-                )
-            }
-
-            val color = ColorDrawable(Color.TRANSPARENT)
-            // Dialog 크기 설정
-            val inset = InsetDrawable(color, 85)
-            dialog2.window?.setBackgroundDrawable(inset)
-
-            dialog2.setView(mView2)
-            dialog2.show()
-
-
+            MyApplication.mySharedPreferences.setBooleanValue(
+                "alarm_onoff",
+                isChecked
+            )
 
         }
 
@@ -342,6 +98,272 @@ class SettingActivity :AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         tv_nickname.text=MyApplication.mySharedPreferences.getValue("nickName", "")
+
+        tv_alarm_time.text=MyApplication.mySharedPreferences.getValue("alarm_time","오전 9:00 (기본)")
+        switch_alarm.isChecked=MyApplication.mySharedPreferences.getBooleanValue("alarm_onoff",true)
+    }
+
+    fun AlarmClockDialog(){
+        val dialog2 = AlertDialog.Builder(this).create()
+        val edialog2: LayoutInflater = LayoutInflater.from(this)
+        val mView2: View = edialog2.inflate(R.layout.numberpicker_time, null)
+
+        val ny:NumberPicker=mView2.findViewById(R.id.numberPicker)
+        val ny1:NumberPicker=mView2.findViewById(R.id.numberPicker2)
+        val ny2:NumberPicker=mView2.findViewById(R.id.numberPicker3)
+
+        val btnok:Button=mView2.findViewById(R.id.button_ok_time)
+        val btnalarmcancel:Button=mView2.findViewById(R.id.button_time_cancel)
+
+        btnalarmcancel.setOnClickListener {
+            dialog2.dismiss()
+            dialog2.cancel()
+        }
+
+
+        val list = resources.getStringArray(R.array.ampm)
+
+        ny.removeDivider()
+        ny1.removeDivider()
+        ny2.removeDivider()
+
+
+        ny.minValue=0
+        ny.maxValue=list.size-1
+
+        ny1.minValue=1
+        ny1.maxValue=12
+
+        ny2.minValue=0
+        ny2.maxValue=59
+
+        ny.displayedValues = list
+
+        ny.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+        ny2.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+        ny1.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+
+
+        btnok.setOnClickListener {
+            if ((ny2.value.toString()).length < 2) {
+                if (list[ny.value] == "오전") {
+                    tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_hour",
+                        ny1.value.toString()
+                    )
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_minute",
+                        ny2.value.toString()
+                    )
+
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_time",
+                        list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
+                    )
+
+                } else {
+                    val clock_ = ny1.value + 12
+                    tv_alarm_time.text =list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_hour",
+                        clock_.toString()
+                    )
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_minute",
+                        ny2.value.toString()
+                    )
+
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_time",
+                        list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
+                    )
+                }
+            } else {
+                if (list[ny.value] == "오후") {
+                    val clock_ = ny1.value + 12
+                    tv_alarm_time.text =list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_hour",
+                        clock_.toString()
+                    )
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_minute",
+                        ny2.value.toString()
+                    )
+
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_time",
+                        list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
+                    )
+
+                } else {
+                    tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_hour",
+                        ny1.value.toString()
+                    )
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_minute",
+                        ny2.value.toString()
+                    )
+
+                    MyApplication.mySharedPreferences.setValue(
+                        "alarm_time",
+                        list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
+                    )
+                }
+            }
+            dialog2.dismiss()
+            com.example.praisewhale.util.Toast.customToast(
+                "앞으로 " + tv_alarm_time.text + "에 칭찬 알림을 보내드릴게요!",
+                this
+            )
+        }
+
+        val color = ColorDrawable(Color.TRANSPARENT)
+        // Dialog 크기 설정
+        val inset = InsetDrawable(color, 85)
+        dialog2.window?.setBackgroundDrawable(inset)
+
+        dialog2.setView(mView2)
+        dialog2.show()
+
+
+    }
+
+
+    fun NicknameDialog(){
+        /* val dlg = NicknameDialog(this)
+            dlg.start()*/
+        val dialog = AlertDialog.Builder(this).create()
+        val edialog: LayoutInflater = LayoutInflater.from(this)
+        val mView: View = edialog.inflate(R.layout.namechange, null)
+        val close: Button = mView.findViewById(R.id.close_btn)
+        close.setOnClickListener {
+            dialog.dismiss()
+            dialog.cancel()
+        }
+        val nick_modify: Button = mView.findViewById(R.id.change_btn)
+        val deletebtn: Button = mView.findViewById(R.id.delete_btn)
+
+        val nick_modify_edit: EditText = mView.findViewById(R.id.editnickname)
+        nick_modify_edit.addTextChangedListener(
+            object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {}
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+
+                    val textcount: TextView = mView.findViewById(R.id.textcount)
+                    textcount.isVisible=true
+                    val textcount7:TextView=mView.findViewById(R.id.textcount7)
+                    textcount7.isVisible=true
+                    val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                    existnickbg.setBackgroundResource(R.drawable.edittext_bg)
+                    val existnick:TextView=mView.findViewById(R.id.existingnick)
+                    existnick.isVisible=false
+                    val changebtn: Button=mView.findViewById(R.id.change_btn)
+                    changebtn.setBackgroundResource(R.drawable.popup_btn_bg)
+                    val input: String = s.toString()
+                    textcount.setTextColor(Color.parseColor("#503000"))
+                    textcount.text=input.length.toString()
+                }
+            })
+        nick_modify_edit.textChangedListener {
+            deletebtn.isVisible = nick_modify_edit.text.toString() != ""
+
+        }
+
+        deletebtn.setOnClickListener {
+
+            nick_modify_edit.setText("")
+            deletebtn.isVisible=false
+        }
+        nick_modify.setOnClickListener {
+
+            val token = MyApplication.mySharedPreferences.getValue("token", "")
+
+            val body=RequestNickChange(
+                nickName = MyApplication.mySharedPreferences.getValue("nickName", ""),
+                newNickName = nick_modify_edit.text.toString()
+            )
+            val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token, body)
+            call.enqueue(object : Callback<ResponseNickChange> {
+                override fun onFailure(call: Call<ResponseNickChange>, t: Throwable) {
+                    Log.d("tag", t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<ResponseNickChange>,
+                    response: Response<ResponseNickChange>
+                ) {
+                    Log.d("status코드2", response.body()?.status.toString())
+                    Log.d("닉네임 중복", "닉네임 중복")
+                    val existnick:TextView=mView.findViewById(R.id.existingnick)
+                    existnick.isVisible=true
+                    val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                    existnickbg.setBackgroundResource(R.drawable.edittext_bg_exist)
+                    val textcount:TextView=mView.findViewById(R.id.textcount)
+                    textcount.isVisible=false
+                    val textcount7:TextView=mView.findViewById(R.id.textcount7)
+                    textcount7.isVisible=false
+                    response.takeIf { it.isSuccessful }
+
+                        ?.body()
+                        ?.let {
+                            Log.d("status코드", it.status.toString())
+
+                            if(it.status == 200) {
+
+                                val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                                existnickbg.setBackgroundResource(R.drawable.edittext_bg)
+                                Log.d("닉네임변경완료", "닉네임변경완료")
+                                tv_nickname.text=nick_modify_edit.text
+                                dialog.dismiss()
+                                dialog.cancel()
+                                com.example.praisewhale.util.Toast.customToast("닉네임이 변경되었어요!", this@SettingActivity)
+
+                            }
+                            else {
+
+                                //MyApplication.mySharedPreferences.setValue("alarmtime")
+                            }
+
+                        }
+                }
+            })
+
+            MyApplication.mySharedPreferences.setValue(
+                "nickName",
+                nick_modify_edit.text.toString()
+            )
+
+
+
+
+
+        }
+
+        val color = ColorDrawable(Color.TRANSPARENT)
+        // Dialog 크기 설정
+        val inset = InsetDrawable(color, 85)
+        dialog.window?.setBackgroundDrawable(inset)
+        dialog.setCancelable(false)
+        dialog.setView(mView)
+        // dialog.create()
+        dialog.show()
     }
 
 

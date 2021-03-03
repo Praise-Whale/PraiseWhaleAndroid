@@ -10,17 +10,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="142dp"
         android:layout_marginTop="14dp"
+        android:layout_marginEnd="27dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/view2">
 
         <View
             android:id="@+id/view5"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_width="61dp"
+            android:layout_height="44dp"
             android:background="@drawable/alarm_box_time"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/numberPicker"
@@ -29,19 +30,30 @@
 
         <View
             android:id="@+id/view6"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_width="61dp"
+            android:layout_height="44dp"
             android:background="@drawable/alarm_box_time"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/numberPicker2"
             app:layout_constraintStart_toStartOf="@+id/numberPicker2"
             app:layout_constraintTop_toTopOf="@+id/numberPicker2" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:fontFamily="@font/noto_sans_regular"
+            android:textSize="13sp"
+            android:includeFontPadding="false"
+            app:layout_constraintStart_toStartOf="@+id/view6"
+            app:layout_constraintTop_toTopOf="@+id/view6"
+            app:layout_constraintEnd_toEndOf="@+id/view7"
+            app:layout_constraintBottom_toBottomOf="@+id/view6"
+            />
         <View
             android:id="@+id/view7"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_width="61dp"
+            android:layout_height="44dp"
             android:background="@drawable/alarm_box_time"
             app:layout_constraintBottom_toBottomOf="@+id/numberPicker3"
             app:layout_constraintEnd_toEndOf="@+id/numberPicker3"
@@ -52,7 +64,7 @@
             android:id="@+id/numberPicker"
             android:layout_width="wrap_content"
             android:layout_height="142dp"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="0dp"
             android:layout_marginLeft="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,18 +75,19 @@
             android:id="@+id/numberPicker2"
             android:layout_width="wrap_content"
             android:layout_height="142dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginEnd="19dp"
             app:layout_constraintBottom_toBottomOf="@+id/numberPicker"
             app:layout_constraintEnd_toStartOf="@+id/numberPicker3"
             app:layout_constraintStart_toEndOf="@+id/numberPicker"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+           />
 
         <NumberPicker
             android:id="@+id/numberPicker3"
             android:layout_width="wrap_content"
             android:layout_height="142dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginEnd="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/numberPicker2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -84,7 +97,7 @@
     <Button
         android:id="@+id/button_ok_time"
         android:layout_width="221dp"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/popup_btn_bg"
@@ -93,17 +106,16 @@
         android:textSize="15sp"
         android:includeFontPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/noto_sans_regular"
         android:includeFontPadding="false"
         android:textSize="18sp"
@@ -118,7 +130,7 @@
         android:layout_height="2dp"
         android:src="@drawable/yellow_divider_radius_10"
         android:layout_centerInParent="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
