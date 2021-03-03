@@ -1,7 +1,6 @@
 package com.example.praisewhale
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
@@ -10,7 +9,6 @@ import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,9 +21,7 @@ import com.example.praisewhale.data.RequestNickChange
 import com.example.praisewhale.data.home.ResponseNickChange
 import com.example.praisewhale.util.MyApplication
 import com.example.praisewhale.util.textChangedListener
-import kotlinx.android.synthetic.main.activity_developer.view.*
 import kotlinx.android.synthetic.main.activity_setting.*
-import kotlinx.android.synthetic.main.fragment_praise_level.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -243,9 +239,9 @@ class SettingActivity :AppCompatActivity() {
                             "alarm_minute",
                              ny2.value.toString()
                         )
-                        MyApplication.mySharedPreferences.setValue(
+                        MyApplication.mySharedPreferences.setBooleanValue(
                             "alarm_onoff",
-                            switch.isChecked.toString()
+                            switch.isChecked
                         )
 
                     } else {
@@ -259,9 +255,9 @@ class SettingActivity :AppCompatActivity() {
                             "alarm_minute",
                             ny2.value.toString()
                         )
-                        MyApplication.mySharedPreferences.setValue(
+                        MyApplication.mySharedPreferences.setBooleanValue(
                             "alarm_onoff",
-                            switch.isChecked.toString()
+                            switch.isChecked
                         )
                     }
                 } else {
@@ -276,9 +272,9 @@ class SettingActivity :AppCompatActivity() {
                             "alarm_minute",
                             ny2.value.toString()
                         )
-                        MyApplication.mySharedPreferences.setValue(
+                        MyApplication.mySharedPreferences.setBooleanValue(
                             "alarm_onoff",
-                            switch.isChecked.toString()
+                            switch.isChecked
                         )
                     } else {
                         tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
@@ -290,9 +286,9 @@ class SettingActivity :AppCompatActivity() {
                             "alarm_minute",
                             ny2.value.toString()
                         )
-                        MyApplication.mySharedPreferences.setValue(
+                        MyApplication.mySharedPreferences.setBooleanValue(
                             "alarm_onoff",
-                            switch.isChecked.toString()
+                            switch.isChecked
                         )
                     }
                 }
