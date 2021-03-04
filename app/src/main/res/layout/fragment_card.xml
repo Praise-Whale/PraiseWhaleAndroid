@@ -69,6 +69,7 @@
         android:clipToPadding="false"
         android:orientation="horizontal"
         android:paddingLeft="42dp"
+        android:paddingRight="22dp"
         android:paddingTop="27dp"
         android:paddingBottom="23dp"
         android:visibility="invisible"
