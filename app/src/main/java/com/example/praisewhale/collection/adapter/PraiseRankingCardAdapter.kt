@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.collection.data.ResponsePraiseRanking
+import com.example.praisewhale.collection.data.ResponsePraiseRankingCard
 import com.example.praisewhale.databinding.ItemCardBoxCardBinding
 
 
 class PraiseRankingCardAdapter(
-    private val praiseRankingList: List<ResponsePraiseRanking.Data.RankingResult>
+    private val praiseRankingList: List<ResponsePraiseRankingCard.Data.PraiseCollection>
 ) : RecyclerView.Adapter<PraiseRankingCardViewHolder>() {
 
     private var _viewBinding: ItemCardBoxCardBinding? = null
