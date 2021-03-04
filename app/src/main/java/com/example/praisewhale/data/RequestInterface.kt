@@ -61,10 +61,12 @@ interface RequestInterface {
 
     // PraiseRankingCardFragment.kt - 칭찬 랭킹 카드 조회
     @Headers("Content-Type:application/json")
-    @GET("/praise/eachTarget")
+    @GET("/praise")
     fun getPraiseRankingCard(
-        @Header("token") token: String
+        @Header("token") token: String,
+        @Query("praisedName") praisedName: String
     ): Call<ResponsePraiseRankingCard>
+
     // 토큰 재발급
     @Headers("Content-Type:application/json")
     @PUT("/users/refreshtoken")
