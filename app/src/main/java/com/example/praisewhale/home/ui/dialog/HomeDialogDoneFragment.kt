@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.MainActivity
 import com.example.praisewhale.R
+import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.DialogHomeDoneBinding
 import com.example.praisewhale.home.adapter.RecentPraiseToAdapter
 import com.example.praisewhale.home.data.RequestPraiseDone
@@ -97,8 +98,39 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
 
     private fun handleRecentPraiseToStatusCode(response: Response<ResponseRecentPraiseTo>) {
         when (response.code()) {
-//            401 -> getServerRecentPraiseTo() todo - 토큰 값 갱신 후 재요청
-            else -> Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
+            400 -> updateTokenForGetServerRecentPraiseTo()
+            else -> Log.d("TAG", "HomeDialogDoneFragment - handleStatusCode: ${response.code()}")
+        }
+    }
+
+    private fun updateTokenForGetServerRecentPraiseTo() {
+        val call: Call<ResponseToken> = CollectionImpl.service.putRefreshToken(
+            sharedPreferences.getValue("refreshToken", "")
+        )
+        call.enqueue(object : Callback<ResponseToken> {
+            override fun onFailure(call: Call<ResponseToken>, t: Throwable) {
+                Log.d("tag", t.localizedMessage!!)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseToken>,
+                response: Response<ResponseToken>
+            ) {
+                when (response.isSuccessful) {
+                    true -> {
+                        saveNewTokenData(response.body()!!.data)
+                        getServerRecentPraiseTo()
+                    }
+                    false -> Log.d("TAG", "HomeDialogDoneFragment - onResponse: error")
+                }
+            }
+        })
+    }
+
+    private fun saveNewTokenData(tokenData: ResponseToken.Data) {
+        sharedPreferences.apply {
+            setValue("token", tokenData.accessToken)
+            setValue("refreshToken", tokenData.refreshToken)
         }
     }
 
@@ -180,11 +212,33 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         target: String
     ) {
         when (response.code()) {
-//            401 -> saveServerPraiseData(target) todo - 토큰 값 갱신 후 재요청
-            else -> { // todo - 각 에러 코드별 처리..
-                Log.d("TAG", "handleStatusCode: ${response.code()}, ${response.message()}")
-            }
+            400 -> updateTokenForSaveServerPraiseData(target)
+            else -> Log.d("TAG", "HomeDialogDoneFragment - handleStatusCode: ${response.code()}")
         }
+    }
+
+    private fun updateTokenForSaveServerPraiseData(target: String) {
+        val call: Call<ResponseToken> = CollectionImpl.service.putRefreshToken(
+            sharedPreferences.getValue("refreshToken", "")
+        )
+        call.enqueue(object : Callback<ResponseToken> {
+            override fun onFailure(call: Call<ResponseToken>, t: Throwable) {
+                Log.d("tag", t.localizedMessage!!)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseToken>,
+                response: Response<ResponseToken>
+            ) {
+                when (response.isSuccessful) {
+                    true -> {
+                        saveNewTokenData(response.body()!!.data)
+                        saveServerPraiseData(target)
+                    }
+                    false -> Log.d("TAG", "HomeDialogDoneFragment - onResponse: error")
+                }
+            }
+        })
     }
 
     private fun showResultDialog(isLevelUp: Boolean) {

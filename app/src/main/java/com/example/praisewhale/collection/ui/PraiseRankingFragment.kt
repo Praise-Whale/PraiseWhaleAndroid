@@ -13,7 +13,9 @@ import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.MainActivity
 import com.example.praisewhale.collection.adapter.PraiseRankingAdapter
 import com.example.praisewhale.collection.data.ResponsePraiseRanking
+import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.FragmentPraiseRankingBinding
+import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.util.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -56,20 +58,28 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
                 response: Response<ResponsePraiseRanking>
             ) {
                 when (response.isSuccessful) {
-                    true -> setPraiseRankingView(response.body()!!.data)
-//                    false -> handlePraiseRankingStatusCode(response)
+                    true -> setView(response.body()!!.data)
+                    false -> handlePraiseRankingStatusCode(response)
                 }
             }
         })
     }
 
-    private fun setPraiseRankingView(praiseRankingData: ResponsePraiseRanking.Data) {
+    private fun setView(praiseRankingData: ResponsePraiseRanking.Data) {
         when (praiseRankingData.rankingResult.size) {
             0 -> setEmptyViewVisibility()
             else -> {
                 setRankingViewVisibility()
                 setRankingView(praiseRankingData)
             }
+        }
+        fadeOutLoadingView()
+    }
+
+    private fun handlePraiseRankingStatusCode(response: Response<ResponsePraiseRanking>) {
+        when (response.code()) {
+            400 -> updateToken()
+            else -> Log.d("TAG", "PraiseRankingFragment - handlePraiseDataStatusCode: ${response.code()}")
         }
     }
 
@@ -103,11 +113,40 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
     }
 
     private fun setRankingRecyclerView(praiseRankingData: ResponsePraiseRanking.Data) {
-        val deviceDensity = Resources.getSystem().displayMetrics.density
         viewBinding.recyclerViewPraiseRanking.apply {
             addOnScrollListener(scrollListener)
-            addItemDecoration(VerticalItemDecorator((deviceDensity * 12).toInt()))
             adapter = PraiseRankingAdapter(praiseRankingData.rankingResult, this@PraiseRankingFragment)
+        }
+    }
+
+    private fun updateToken() {
+        val call: Call<ResponseToken> = CollectionImpl.service.putRefreshToken(
+            sharedPreferences.getValue("refreshToken", "")
+        )
+        call.enqueue(object : Callback<ResponseToken> {
+            override fun onFailure(call: Call<ResponseToken>, t: Throwable) {
+                Log.d("tag", t.localizedMessage!!)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseToken>,
+                response: Response<ResponseToken>
+            ) {
+                when (response.isSuccessful) {
+                    true -> {
+                        saveNewTokenData(response.body()!!.data)
+                        getServerPraiseRankingData()
+                    }
+                    false -> Log.d("TAG", "HomeFragment - onResponse: error")
+                }
+            }
+        })
+    }
+
+    private fun saveNewTokenData(tokenData: ResponseToken.Data) {
+        sharedPreferences.apply {
+            setValue("token", tokenData.accessToken)
+            setValue("refreshToken", tokenData.refreshToken)
         }
     }
 
@@ -127,6 +166,10 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
                 else -> fadeIn()
             }
         }
+    }
+
+    private fun fadeOutLoadingView() {
+        viewBinding.viewLoading.fadeOut()
     }
 
     override fun onClickPraiseRankingItem(praiseTo: String) {
