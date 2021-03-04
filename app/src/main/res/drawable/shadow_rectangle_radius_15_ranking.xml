@@ -19,7 +19,7 @@
                 android:left="6dp"
                 android:right="6dp"
                 android:top="3dp" />
-            <solid android:color="#03825600" />
+            <solid android:color="#05825600" />
         </shape>
     </item>
     <item>
@@ -30,7 +30,7 @@
                 android:left="6dp"
                 android:right="6dp"
                 android:top="3dp" />
-            <solid android:color="#03825600" />
+            <solid android:color="#05825600" />
         </shape>
     </item>
     <item>
@@ -41,7 +41,7 @@
                 android:left="6dp"
                 android:right="6dp"
                 android:top="3dp" />
-            <solid android:color="#03825600" />
+            <solid android:color="#05825600" />
         </shape>
     </item>
 </layer-list>
