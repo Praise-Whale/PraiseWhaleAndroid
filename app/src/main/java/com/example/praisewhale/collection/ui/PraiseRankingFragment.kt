@@ -104,10 +104,8 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
     }
 
     private fun setRankingRecyclerView(praiseRankingData: ResponsePraiseRanking.Data) {
-        val deviceDensity = Resources.getSystem().displayMetrics.density
         viewBinding.recyclerViewPraiseRanking.apply {
             addOnScrollListener(scrollListener)
-            addItemDecoration(VerticalItemDecorator((deviceDensity * 12).toInt()))
             adapter = PraiseRankingAdapter(praiseRankingData.rankingResult, this@PraiseRankingFragment)
         }
     }
