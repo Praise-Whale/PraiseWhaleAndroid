@@ -2,6 +2,7 @@ package com.example.praisewhale.collection.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.collection.data.ResponsePraiseRanking
+import com.example.praisewhale.collection.data.ResponsePraiseRankingCard
 import com.example.praisewhale.databinding.ItemCardBoxCardBinding
 
 
@@ -10,6 +11,6 @@ class PraiseRankingCardViewHolder(
 ) : RecyclerView.ViewHolder(viewBinding.root) {
 
 
-    fun onBind(position: Int, rankingData: ResponsePraiseRanking.Data.RankingResult) {
+    fun onBind(position: Int, rankingData: ResponsePraiseRankingCard.Data.PraiseCollection) {
     }
 }
