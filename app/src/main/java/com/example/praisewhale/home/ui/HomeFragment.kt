@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.R
 import com.example.praisewhale.SettingActivity
+import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.FragmentHomeBinding
 import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.home.ui.dialog.HomeDialogDoneFragment
@@ -189,18 +190,39 @@ class HomeFragment : Fragment() {
 
     private fun handlePraiseDataStatusCode(response: Response<ResponseHomePraise>) {
         when (response.code()) {
-            400 -> {
-                // todo - 토큰 값 갱신 후 재요청
-                Log.d("TAG", "handlePraiseDataStatusCode: 토큰 값 갱신")
-                getServerPraiseData()
+            400 -> updateToken()
+            else -> Log.d("TAG", "handlePraiseDataStatusCode: ${response.code()}")
+        }
+    }
+
+    private fun updateToken() {
+        val call: Call<ResponseToken> = CollectionImpl.service.putRefreshToken(
+            sharedPreferences.getValue("refreshToken", "")
+        )
+        call.enqueue(object : Callback<ResponseToken> {
+            override fun onFailure(call: Call<ResponseToken>, t: Throwable) {
+                Log.d("tag", t.localizedMessage!!)
             }
-            // todo - 각 에러 코드별 처리..
-            else -> {
-                Log.d(
-                    "TAG",
-                    "handlePraiseDataStatusCode: ${response.code()}, ${response.message()}"
-                )
+
+            override fun onResponse(
+                call: Call<ResponseToken>,
+                response: Response<ResponseToken>
+            ) {
+                when (response.isSuccessful) {
+                    true -> {
+                        saveNewTokenData(response.body()!!.data)
+                        getServerPraiseData()
+                    }
+                    false -> Log.d("TAG", "HomeFragment - onResponse: error")
+                }
             }
+        })
+    }
+
+    private fun saveNewTokenData(tokenData: ResponseToken.Data) {
+        sharedPreferences.apply {
+            setValue("token", tokenData.accessToken)
+            setValue("refreshToken", tokenData.refreshToken)
         }
     }
 
