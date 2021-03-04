@@ -55,7 +55,7 @@
         android:id="@+id/view_underline"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:background="@color/sand_yellow"
+        android:background="@drawable/yellow_divider_radius_10"
         app:layout_constraintEnd_toEndOf="@+id/textView_dialogTitle_03"
         app:layout_constraintStart_toStartOf="@+id/textView_dialogTitle_01"
         app:layout_constraintTop_toBottomOf="@+id/textView_dialogTitle_01" />
