@@ -58,6 +58,12 @@ interface RequestInterface {
         @Header("token") token: String
     ): Call<ResponsePraiseRanking>
 
+    // 토큰 재발급
+    @Headers("Content-Type:application/json")
+    @PUT("/users/refreshtoken")
+    fun putRefreshToken(
+        @Header("refreshtoken") refreshToken: String
+    ): Call<ResponseToken>
 
     @Headers("Content-Type:application/json")
     @GET("level/praise/{userIdx}")
