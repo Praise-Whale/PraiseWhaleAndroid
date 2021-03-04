@@ -32,7 +32,7 @@
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_marginTop="4dp"
-        android:background="@color/sand_yellow"
+        android:background="@drawable/yellow_divider_radius_10"
         app:layout_constraintEnd_toEndOf="@+id/textView_homeTitle"
         app:layout_constraintStart_toStartOf="@+id/textView_homeTitle"
         app:layout_constraintTop_toBottomOf="@+id/textView_homeTitle" />

@@ -58,7 +58,7 @@
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/bg_card_div"
+        android:background="@drawable/yellow_divider_radius_10"
         app:layout_constraintEnd_toEndOf="@id/textView_title"
         app:layout_constraintStart_toStartOf="@id/textView_title"
         app:layout_constraintTop_toBottomOf="@id/textView_title" />

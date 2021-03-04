@@ -69,7 +69,7 @@
         android:orientation="horizontal"
         android:paddingLeft="42dp"
         android:paddingTop="27dp"
-        android:paddingBottom="43dp"
+        android:paddingBottom="23dp"
         android:visibility="invisible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
