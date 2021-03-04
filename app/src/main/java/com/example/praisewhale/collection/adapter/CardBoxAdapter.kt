@@ -21,6 +21,6 @@ class CardBoxAdapter (private val context : Context) : RecyclerView.Adapter<Card
     override fun getItemCount(): Int = data.size
 
     override fun onBindViewHolder(holder: CardBoxViewHolder, position: Int) {
-        holder.onBind(position, data[position])
+        holder.onBind(data[position])
     }
 }
