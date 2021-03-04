@@ -30,20 +30,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_rankingInfo"
-        style="@style/noto_sans_bold_18dp_brown"
+    <ImageView
+        android:id="@+id/imageView_rankingInfo"
         android:layout_width="38dp"
         android:layout_height="38dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/background_oval"
+        android:src="@drawable/ranking_circle_number_1"
         android:stateListAnimator="@null"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_background"
         app:layout_constraintStart_toStartOf="@+id/imageView_background"
-        app:layout_constraintTop_toTopOf="@+id/imageView_background"
-        tools:text="1" />
+        app:layout_constraintTop_toTopOf="@+id/imageView_background" />
 
     <TextView
         android:id="@+id/textView_praiseTo"
@@ -53,7 +51,7 @@
         android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_background"
         app:layout_constraintEnd_toEndOf="@+id/textView_praiseCount"
-        app:layout_constraintStart_toEndOf="@+id/button_rankingInfo"
+        app:layout_constraintStart_toEndOf="@+id/imageView_rankingInfo"
         app:layout_constraintTop_toTopOf="@+id/imageView_background"
         tools:text="남궁선규선규" />
 
