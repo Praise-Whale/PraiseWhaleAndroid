@@ -19,6 +19,7 @@ import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.FragmentPraiseRankingCardBinding
 import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.util.MyApplication
+import com.example.praisewhale.util.fadeOut
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -86,6 +87,7 @@ class PraiseRankingCardFragment : Fragment() {
     private fun setPraiseRankingCardView(praiseRankingCardData: ResponsePraiseRankingCard.Data) {
         viewBinding.textViewPraiseRankingCardTitle01.text = "${praiseRankingCardData.praiseCount}번"
         setRecyclerView(praiseRankingCardData.praiseCollection)
+        fadeOutLoadingView()
     }
 
     private fun setRecyclerView(praiseRankingCardList: List<ResponsePraiseRankingCard.Data.PraiseCollection>) {
@@ -93,6 +95,10 @@ class PraiseRankingCardFragment : Fragment() {
             adapter = PraiseRankingCardAdapter(praiseRankingCardList)
             LinearSnapHelper().attachToRecyclerView(this)
         }
+    }
+
+    private fun fadeOutLoadingView() {
+        viewBinding.viewLoading.fadeOut()
     }
 
     private fun handlePraiseRankingCardStatusCode(response: Response<ResponsePraiseRankingCard>) {
