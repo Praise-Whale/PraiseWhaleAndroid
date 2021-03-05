@@ -79,7 +79,10 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
     private fun handlePraiseRankingStatusCode(response: Response<ResponsePraiseRanking>) {
         when (response.code()) {
             400 -> updateToken()
-            else -> Log.d("TAG", "PraiseRankingFragment - handlePraiseDataStatusCode: ${response.code()}")
+            else -> {
+                Log.d("TAG", "PraiseRankingFragment - handlePraiseDataStatusCode: ${response.code()}")
+                return
+            }
         }
     }
 
@@ -137,7 +140,10 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
                         saveNewTokenData(response.body()!!.data)
                         getServerPraiseRankingData()
                     }
-                    false -> Log.d("TAG", "HomeFragment - onResponse: error")
+                    false -> {
+                        Log.d("TAG", "PraiseRankingFragment - onResponse: error")
+                        return
+                    }
                 }
             }
         })
