@@ -7,17 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.MainActivity
 import com.example.praisewhale.collection.adapter.PraiseRankingCardAdapter
-import com.example.praisewhale.collection.data.ResponsePraiseRanking
 import com.example.praisewhale.collection.data.ResponsePraiseRankingCard
 import com.example.praisewhale.collection.ui.CollectionFragment.Companion.IS_FROM_PRAISE_RANKING_CARD_VIEW
 import com.example.praisewhale.collection.ui.CollectionFragment.Companion.SWITCH_HEIGHT
 import com.example.praisewhale.collection.ui.PraiseRankingFragment.Companion.PRAISE_TARGET
+import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.FragmentPraiseRankingCardBinding
+import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.util.MyApplication
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,6 +45,7 @@ class PraiseRankingCardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUserInfo()
         setListeners()
+        getPraiseRankingCardData()
         setButtonPraiseTargetHeight()
         setOnBackPressedCallBack()
     }
@@ -62,7 +63,8 @@ class PraiseRankingCardFragment : Fragment() {
 
     private fun getPraiseRankingCardData() {
         val call: Call<ResponsePraiseRankingCard> = CollectionImpl.service.getPraiseRankingCard(
-            sharedPreferences.getValue("token", "")
+            sharedPreferences.getValue("token", ""),
+            PRAISE_TARGET
         )
         call.enqueue(object : Callback<ResponsePraiseRankingCard> {
             override fun onFailure(call: Call<ResponsePraiseRankingCard>, t: Throwable) {
@@ -74,18 +76,60 @@ class PraiseRankingCardFragment : Fragment() {
                 response: Response<ResponsePraiseRankingCard>
             ) {
                 when (response.isSuccessful) {
-                    true -> setRecyclerView(response.body()!!.data.praiseCollection)
-//                    false -> handlePraiseRankingStatusCode(response)
+                    true -> setPraiseRankingCardView(response.body()!!.data)
+                    false -> handlePraiseRankingCardStatusCode(response)
                 }
             }
         })
     }
 
+    private fun setPraiseRankingCardView(praiseRankingCardData: ResponsePraiseRankingCard.Data) {
+        viewBinding.textViewPraiseRankingCardTitle01.text = "${praiseRankingCardData.praiseCount}번"
+        setRecyclerView(praiseRankingCardData.praiseCollection)
+    }
+
     private fun setRecyclerView(praiseRankingCardList: List<ResponsePraiseRankingCard.Data.PraiseCollection>) {
         viewBinding.recyclerViewPraiseRankingCard.apply {
-            Log.d("TAG", "setRecyclerView: ${praiseRankingCardList.size}")
             adapter = PraiseRankingCardAdapter(praiseRankingCardList)
             LinearSnapHelper().attachToRecyclerView(this)
+        }
+    }
+
+    private fun handlePraiseRankingCardStatusCode(response: Response<ResponsePraiseRankingCard>) {
+        when (response.code()) {
+            400 -> updateToken()
+            else -> Log.d("TAG", "handlePraiseDataStatusCode: ${response.code()}")
+        }
+    }
+
+    private fun updateToken() {
+        val call: Call<ResponseToken> = CollectionImpl.service.putRefreshToken(
+            sharedPreferences.getValue("refreshToken", "")
+        )
+        call.enqueue(object : Callback<ResponseToken> {
+            override fun onFailure(call: Call<ResponseToken>, t: Throwable) {
+                Log.d("tag", t.localizedMessage!!)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseToken>,
+                response: Response<ResponseToken>
+            ) {
+                when (response.isSuccessful) {
+                    true -> {
+                        saveNewTokenData(response.body()!!.data)
+                        getPraiseRankingCardData()
+                    }
+                    false -> Log.d("TAG", "HomeFragment - onResponse: error")
+                }
+            }
+        })
+    }
+
+    private fun saveNewTokenData(tokenData: ResponseToken.Data) {
+        sharedPreferences.apply {
+            setValue("token", tokenData.accessToken)
+            setValue("refreshToken", tokenData.refreshToken)
         }
     }
 
