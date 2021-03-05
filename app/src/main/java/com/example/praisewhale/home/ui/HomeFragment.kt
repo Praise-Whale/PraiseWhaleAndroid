@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.CollectionImpl
+import com.example.praisewhale.MainActivity
 import com.example.praisewhale.R
 import com.example.praisewhale.SettingActivity
 import com.example.praisewhale.data.ResponseToken
@@ -26,6 +28,7 @@ class HomeFragment : Fragment() {
 
     private var _viewBinding: FragmentHomeBinding? = null
     private val viewBinding get() = _viewBinding!!
+    private lateinit var onBackPressedCallback: OnBackPressedCallback
 
     private lateinit var currentYear: String
     private lateinit var currentMonth: String
@@ -48,6 +51,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         setPraiseStatusDefaultView()
+        setOnBackPressedCallBack()
     }
 
     override fun onResume() {
@@ -55,6 +59,14 @@ class HomeFragment : Fragment() {
         getCurrentDate()
         setDefaultInfo()
         checkLastGetPraiseDate()
+        if (!onBackPressedCallback.isEnabled) {
+            onBackPressedCallback.isEnabled = true
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        onBackPressedCallback.isEnabled = false
     }
 
     private fun setListeners() {
@@ -230,6 +242,15 @@ class HomeFragment : Fragment() {
             setValue("token", tokenData.accessToken)
             setValue("refreshToken", tokenData.refreshToken)
         }
+    }
+
+    private fun setOnBackPressedCallBack() {
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                (activity as MainActivity).showFinishToast()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
     }
 
     private val fragmentClickListener = View.OnClickListener {
