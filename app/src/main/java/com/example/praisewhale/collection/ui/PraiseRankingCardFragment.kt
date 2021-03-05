@@ -50,6 +50,18 @@ class PraiseRankingCardFragment : Fragment() {
         setOnBackPressedCallBack()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (!onBackPressedCallback.isEnabled) {
+            onBackPressedCallback.isEnabled = true
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        onBackPressedCallback.isEnabled = false
+    }
+
     private fun setUserInfo() {
         viewBinding.apply {
             textViewUserName.text = "${sharedPreferences.getValue("nickName", "")}님의"
@@ -154,10 +166,7 @@ class PraiseRankingCardFragment : Fragment() {
                 backToPraiseRankingView()
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            onBackPressedCallback
-        )
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
     }
 
     private fun backToPraiseRankingView() {

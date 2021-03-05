@@ -86,16 +86,14 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
-
-    override fun onBackPressed() {
+    
+    fun showFinishToast() {
         if (System.currentTimeMillis() - backPressedTime < 2000) {
-            super.onBackPressed()
-        } else {
-            showToast()
-            backPressedTime = System.currentTimeMillis();
+            finish()
             return
         }
-        super.onBackPressed()
+        showToast()
+        backPressedTime = System.currentTimeMillis()
     }
 
     private fun showToast() {
