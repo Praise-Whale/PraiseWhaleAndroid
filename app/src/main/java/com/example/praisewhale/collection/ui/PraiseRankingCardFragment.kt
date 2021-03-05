@@ -17,7 +17,6 @@ import com.example.praisewhale.collection.ui.CollectionFragment.Companion.SWITCH
 import com.example.praisewhale.collection.ui.PraiseRankingFragment.Companion.PRAISE_TARGET
 import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.FragmentPraiseRankingCardBinding
-import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.util.MyApplication
 import com.example.praisewhale.util.fadeOut
 import retrofit2.Call
@@ -104,7 +103,10 @@ class PraiseRankingCardFragment : Fragment() {
     private fun handlePraiseRankingCardStatusCode(response: Response<ResponsePraiseRankingCard>) {
         when (response.code()) {
             400 -> updateToken()
-            else -> Log.d("TAG", "handlePraiseDataStatusCode: ${response.code()}")
+            else -> {
+                Log.d("TAG", "PraiseRankingCardFragment - handlePraiseDataStatusCode: ${response.code()}")
+                return
+            }
         }
     }
 
@@ -126,7 +128,10 @@ class PraiseRankingCardFragment : Fragment() {
                         saveNewTokenData(response.body()!!.data)
                         getPraiseRankingCardData()
                     }
-                    false -> Log.d("TAG", "HomeFragment - onResponse: error")
+                    false -> {
+                        Log.d("TAG", "HomeFragment - onResponse: error")
+                        return
+                    }
                 }
             }
         })
