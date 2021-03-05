@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import com.example.praisewhale.*
 import com.example.praisewhale.databinding.FragmentPraiseLevelBinding
 import com.example.praisewhale.util.MyApplication
@@ -20,6 +21,9 @@ import retrofit2.Response
 class PraiseLevelFragment : Fragment() {
 
     lateinit var binding: FragmentPraiseLevelBinding
+    private lateinit var onBackPressedCallback: OnBackPressedCallback
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,9 +42,17 @@ class PraiseLevelFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setOnBackPressedCallBack()
+    }
 
     override fun onResume() {
         super.onResume()
+        if (!onBackPressedCallback.isEnabled) {
+            onBackPressedCallback.isEnabled = true
+        }
+
         val token = MyApplication.mySharedPreferences.getValue("token", "")
         val call: Call<ResponselevelData> = CollectionImpl.service.getlevelcount(token)
         call.enqueue(object : Callback<ResponselevelData> {
@@ -122,5 +134,18 @@ class PraiseLevelFragment : Fragment() {
         })
     }
 
+    override fun onPause() {
+        super.onPause()
+        onBackPressedCallback.isEnabled = false
+    }
+
+    private fun setOnBackPressedCallBack() {
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                (activity as MainActivity).showFinishToast()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+    }
 }
 

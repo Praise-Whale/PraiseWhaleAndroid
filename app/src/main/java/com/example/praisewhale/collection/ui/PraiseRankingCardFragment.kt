@@ -7,18 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.MainActivity
 import com.example.praisewhale.collection.adapter.PraiseRankingCardAdapter
-import com.example.praisewhale.collection.data.ResponsePraiseRanking
 import com.example.praisewhale.collection.data.ResponsePraiseRankingCard
 import com.example.praisewhale.collection.ui.CollectionFragment.Companion.IS_FROM_PRAISE_RANKING_CARD_VIEW
 import com.example.praisewhale.collection.ui.CollectionFragment.Companion.SWITCH_HEIGHT
 import com.example.praisewhale.collection.ui.PraiseRankingFragment.Companion.PRAISE_TARGET
+import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.FragmentPraiseRankingCardBinding
 import com.example.praisewhale.util.MyApplication
+import com.example.praisewhale.util.fadeOut
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,8 +45,21 @@ class PraiseRankingCardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUserInfo()
         setListeners()
+        getPraiseRankingCardData()
         setButtonPraiseTargetHeight()
         setOnBackPressedCallBack()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!onBackPressedCallback.isEnabled) {
+            onBackPressedCallback.isEnabled = true
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        onBackPressedCallback.isEnabled = false
     }
 
     private fun setUserInfo() {
@@ -62,7 +75,8 @@ class PraiseRankingCardFragment : Fragment() {
 
     private fun getPraiseRankingCardData() {
         val call: Call<ResponsePraiseRankingCard> = CollectionImpl.service.getPraiseRankingCard(
-            sharedPreferences.getValue("token", "")
+            sharedPreferences.getValue("token", ""),
+            PRAISE_TARGET
         )
         call.enqueue(object : Callback<ResponsePraiseRankingCard> {
             override fun onFailure(call: Call<ResponsePraiseRankingCard>, t: Throwable) {
@@ -74,18 +88,71 @@ class PraiseRankingCardFragment : Fragment() {
                 response: Response<ResponsePraiseRankingCard>
             ) {
                 when (response.isSuccessful) {
-                    true -> setRecyclerView(response.body()!!.data.praiseCollection)
-//                    false -> handlePraiseRankingStatusCode(response)
+                    true -> setPraiseRankingCardView(response.body()!!.data)
+                    false -> handlePraiseRankingCardStatusCode(response)
                 }
             }
         })
     }
 
+    private fun setPraiseRankingCardView(praiseRankingCardData: ResponsePraiseRankingCard.Data) {
+        viewBinding.textViewPraiseRankingCardTitle01.text = "${praiseRankingCardData.praiseCount}번"
+        setRecyclerView(praiseRankingCardData.praiseCollection)
+        fadeOutLoadingView()
+    }
+
     private fun setRecyclerView(praiseRankingCardList: List<ResponsePraiseRankingCard.Data.PraiseCollection>) {
         viewBinding.recyclerViewPraiseRankingCard.apply {
-            Log.d("TAG", "setRecyclerView: ${praiseRankingCardList.size}")
             adapter = PraiseRankingCardAdapter(praiseRankingCardList)
             LinearSnapHelper().attachToRecyclerView(this)
+        }
+    }
+
+    private fun fadeOutLoadingView() {
+        viewBinding.viewLoading.fadeOut()
+    }
+
+    private fun handlePraiseRankingCardStatusCode(response: Response<ResponsePraiseRankingCard>) {
+        when (response.code()) {
+            400 -> updateToken()
+            else -> {
+                Log.d("TAG", "PraiseRankingCardFragment - handlePraiseDataStatusCode: ${response.code()}")
+                return
+            }
+        }
+    }
+
+    private fun updateToken() {
+        val call: Call<ResponseToken> = CollectionImpl.service.putRefreshToken(
+            sharedPreferences.getValue("refreshToken", "")
+        )
+        call.enqueue(object : Callback<ResponseToken> {
+            override fun onFailure(call: Call<ResponseToken>, t: Throwable) {
+                Log.d("tag", t.localizedMessage!!)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseToken>,
+                response: Response<ResponseToken>
+            ) {
+                when (response.isSuccessful) {
+                    true -> {
+                        saveNewTokenData(response.body()!!.data)
+                        getPraiseRankingCardData()
+                    }
+                    false -> {
+                        Log.d("TAG", "HomeFragment - onResponse: error")
+                        return
+                    }
+                }
+            }
+        })
+    }
+
+    private fun saveNewTokenData(tokenData: ResponseToken.Data) {
+        sharedPreferences.apply {
+            setValue("token", tokenData.accessToken)
+            setValue("refreshToken", tokenData.refreshToken)
         }
     }
 
@@ -99,10 +166,7 @@ class PraiseRankingCardFragment : Fragment() {
                 backToPraiseRankingView()
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            onBackPressedCallback
-        )
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
     }
 
     private fun backToPraiseRankingView() {

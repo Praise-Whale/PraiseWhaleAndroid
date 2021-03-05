@@ -1,6 +1,5 @@
 package com.example.praisewhale.collection.ui
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,7 +14,6 @@ import com.example.praisewhale.collection.adapter.PraiseRankingAdapter
 import com.example.praisewhale.collection.data.ResponsePraiseRanking
 import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.FragmentPraiseRankingBinding
-import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.util.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -79,7 +77,10 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
     private fun handlePraiseRankingStatusCode(response: Response<ResponsePraiseRanking>) {
         when (response.code()) {
             400 -> updateToken()
-            else -> Log.d("TAG", "PraiseRankingFragment - handlePraiseDataStatusCode: ${response.code()}")
+            else -> {
+                Log.d("TAG", "PraiseRankingFragment - handlePraiseDataStatusCode: ${response.code()}")
+                return
+            }
         }
     }
 
@@ -137,7 +138,10 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
                         saveNewTokenData(response.body()!!.data)
                         getServerPraiseRankingData()
                     }
-                    false -> Log.d("TAG", "HomeFragment - onResponse: error")
+                    false -> {
+                        Log.d("TAG", "PraiseRankingFragment - onResponse: error")
+                        return
+                    }
                 }
             }
         })

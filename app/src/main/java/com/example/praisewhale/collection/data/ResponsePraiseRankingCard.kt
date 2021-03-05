@@ -14,9 +14,10 @@ data class ResponsePraiseRankingCard(
     ) {
         data class PraiseCollection(
             @SerializedName("praisedName")
-            val praisedTo: String,
-            val createdAt: String,
-            @SerializedName("todayPraise")
+            val name: String,
+            @SerializedName("created_at")
+            val date: String,
+            @SerializedName("today_praise")
             val praise: String
         )
     }

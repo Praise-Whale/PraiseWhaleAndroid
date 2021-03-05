@@ -128,4 +128,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_praiseRankingCardTitle_02"
         tools:listitem="@layout/item_card_box_card" />
 
+    <View
+        android:id="@+id/view_loading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/card_box_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_praiseTarget" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
