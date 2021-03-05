@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pale"
+    tools:context=".collection.ui.PraiseRankingCardFragment">
+
+    <ImageButton
+        android:id="@+id/imageButton_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="17dp"
+        android:background="@null"
+        android:paddingVertical="15dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="21dp"
+        android:src="@drawable/btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView_userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:fontFamily="@font/noto_sans_medium"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.05"
+        android:text="닉네임님의"
+        android:textColor="@color/greyish_brown"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/noto_sans_bold"
+        android:gravity="bottom"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.05"
+        android:text="칭찬 카드"
+        android:textColor="@color/greyish_brown"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@id/textView_userName"
+        app:layout_constraintStart_toStartOf="@id/textView_userName"
+        app:layout_constraintTop_toBottomOf="@id/textView_userName" />
+
+    <View
+        android:id="@+id/view_underline"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/yellow_divider_radius_10"
+        app:layout_constraintEnd_toEndOf="@id/textView_title"
+        app:layout_constraintStart_toStartOf="@id/textView_title"
+        app:layout_constraintTop_toBottomOf="@id/textView_title" />
+
+    <Button
+        android:id="@+id/button_praiseTarget"
+        style="@style/noto_sans_regular_17dp_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/background_rectangle_radius_30_stroke_2"
+        android:gravity="center"
+        android:paddingHorizontal="27dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="14dp"
+        android:stateListAnimator="@null"
+        android:text="남궁선규선규"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_underline" />
+
+    <View
+        android:id="@+id/view_praiseRankingCardBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/card_box_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_praiseTarget" />
+
+    <TextView
+        android:id="@+id/textView_praiseRankingCardTitle_01"
+        style="@style/noto_sans_bold_20dp_brown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="30dp"
+        android:text="n번"
+        app:layout_constraintStart_toStartOf="@+id/view_praiseRankingCardBackground"
+        app:layout_constraintTop_toTopOf="@+id/view_praiseRankingCardBackground" />
+
+    <TextView
+        android:id="@+id/textView_praiseRankingCardTitle_02"
+        style="@style/noto_sans_regular_20dp_brown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="의 칭찬"
+        app:layout_constraintStart_toEndOf="@+id/textView_praiseRankingCardTitle_01"
+        app:layout_constraintTop_toTopOf="@+id/textView_praiseRankingCardTitle_01" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_praiseRankingCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingLeft="32dp"
+        android:paddingTop="27dp"
+        android:paddingRight="32dp"
+        android:paddingBottom="23dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_praiseRankingCardTitle_02"
+        tools:listitem="@layout/item_card_box_card" />
+
+    <View
+        android:id="@+id/view_loading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/card_box_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_praiseTarget" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

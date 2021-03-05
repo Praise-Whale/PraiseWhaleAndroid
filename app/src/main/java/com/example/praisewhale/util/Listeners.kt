@@ -6,3 +6,8 @@ import android.view.View
 interface RecentPraiseToClickListener {
     fun onClickRecentPraiseToItem(recentPraiseTo: String)
 }
+
+/* PraiseRankingFragment.kt - 칭찬 랭킹 아이템 클릭 인터페이스 */
+interface PraiseRankingClickListener {
+    fun onClickPraiseRankingItem(praiseTo: String)
+}

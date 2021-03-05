@@ -7,7 +7,6 @@ import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.CustomToastHomeBinding
 import com.example.praisewhale.databinding.DialogHomeResultBinding
-import com.example.praisewhale.util.MyApplication
 
 
 class HomeDialogDoneResultFragment : DialogFragment() {
@@ -46,7 +45,7 @@ class HomeDialogDoneResultFragment : DialogFragment() {
     }
 
     private fun setDialogBackground() {
-        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke)
+        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke_2)
     }
 
     private val dialogDoneClickListener = View.OnClickListener {

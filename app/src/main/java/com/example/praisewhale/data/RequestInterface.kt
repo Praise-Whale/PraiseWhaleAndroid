@@ -7,7 +7,9 @@ import com.example.praisewhale.ResponselevelData
 import com.example.praisewhale.data.home.ResponseNickChange
 import com.example.praisewhale.home.data.RequestPraiseDone
 import com.example.praisewhale.home.data.ResponseDonePraise
-import com.example.praisewhale.card.ResponseCardData
+import com.example.praisewhale.collection.data.ResponseCardData
+import com.example.praisewhale.collection.data.ResponsePraiseRanking
+import com.example.praisewhale.collection.data.ResponsePraiseRankingCard
 import com.example.praisewhale.home.data.ResponseHomePraise
 import com.example.praisewhale.home.data.ResponseRecentPraiseTo
 
@@ -49,6 +51,28 @@ interface RequestInterface {
         @Path("month") month: Int,
         @Header("token") token : String
     ): Call<ResponseCardData>
+
+    // PraiseRankingFragment.kt - 칭찬 랭킹 조회
+    @Headers("Content-Type:application/json")
+    @GET("/praise/ranking")
+    fun getPraiseRanking(
+        @Header("token") token: String
+    ): Call<ResponsePraiseRanking>
+
+    // PraiseRankingCardFragment.kt - 칭찬 랭킹 카드 조회
+    @Headers("Content-Type:application/json")
+    @GET("/praise")
+    fun getPraiseRankingCard(
+        @Header("token") token: String,
+        @Query("praisedName") name: String
+    ): Call<ResponsePraiseRankingCard>
+
+    // 토큰 재발급
+    @Headers("Content-Type:application/json")
+    @PUT("/users/refreshtoken")
+    fun putRefreshToken(
+        @Header("refreshtoken") refreshToken: String
+    ): Call<ResponseToken>
 
     @Headers("Content-Type:application/json")
     @GET("level/praise/{userIdx}")
