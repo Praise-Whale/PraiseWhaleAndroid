@@ -68,7 +68,7 @@ class CardFragment : Fragment() {
         LinearSnapHelper().attachToRecyclerView(binding.rvCardBox)
 
         binding.btnCardPicker.text = thisYear.toString() + "년 전체"
-        getServerCardData(thisYear, 0)
+        getServerCardData(thisYear, "0")
     }
 
     private fun setCardPicker() {
@@ -125,7 +125,7 @@ class CardFragment : Fragment() {
             }
 
             confirm.setOnClickListener {
-                getServerCardData(years[year.value].substring(0, 4).toInt(), month.value)
+                getServerCardData(years[year.value].substring(0, 4).toInt(), String.format("%02d", month.value))
 
                 if (month.value == 0) {
                     binding.btnCardPicker.text = years[year.value] + " 전체"
@@ -168,7 +168,7 @@ class CardFragment : Fragment() {
         }
     }
 
-    private fun getServerCardData(year: Int, month: Int) {
+    private fun getServerCardData(year: Int, month: String) {
         CollectionImpl.service.getPraiseCard(
             year = year, month = month,
             token = MyApplication.mySharedPreferences.getValue("token", "")
@@ -187,7 +187,7 @@ class CardFragment : Fragment() {
                             visibleView.forEach { view -> view.isVisible = false }
                             emptyView.forEach { view -> view.isVisible = true }
 
-                            if (year == thisYear && month == 0) {
+                            if (year == thisYear && month == "0") {
                                 binding.btnCardPicker.isVisible = false
                                 binding.tvEmpty1.text = getString(R.string.all_empty_title)
                                 binding.tvEmpty2.text = getString(R.string.all_empty_sub)

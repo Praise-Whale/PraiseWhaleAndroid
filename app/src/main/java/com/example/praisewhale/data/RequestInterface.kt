@@ -48,7 +48,7 @@ interface RequestInterface {
     @GET("praise/{year}/{month}")
     fun getPraiseCard(
         @Path("year") year : Int,
-        @Path("month") month: Int,
+        @Path("month") month: String,
         @Header("token") token : String
     ): Call<ResponseCardData>
 
