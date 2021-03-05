@@ -64,7 +64,7 @@ interface RequestInterface {
     @GET("/praise")
     fun getPraiseRankingCard(
         @Header("token") token: String,
-        @Query("praisedName") praisedName: String
+        @Query("praisedName") name: String
     ): Call<ResponsePraiseRankingCard>
 
     // 토큰 재발급

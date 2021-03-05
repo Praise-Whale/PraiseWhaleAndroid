@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.praisewhale.CollectionImpl
 import com.example.praisewhale.MainActivity
 import com.example.praisewhale.collection.adapter.PraiseRankingCardAdapter
-import com.example.praisewhale.collection.data.ResponsePraiseRanking
 import com.example.praisewhale.collection.data.ResponsePraiseRankingCard
 import com.example.praisewhale.collection.ui.CollectionFragment.Companion.IS_FROM_PRAISE_RANKING_CARD_VIEW
 import com.example.praisewhale.collection.ui.CollectionFragment.Companion.SWITCH_HEIGHT
@@ -92,7 +90,6 @@ class PraiseRankingCardFragment : Fragment() {
 
     private fun setRecyclerView(praiseRankingCardList: List<ResponsePraiseRankingCard.Data.PraiseCollection>) {
         viewBinding.recyclerViewPraiseRankingCard.apply {
-            Log.d("TAG", "setRecyclerView: ${praiseRankingCardList.size}")
             adapter = PraiseRankingCardAdapter(praiseRankingCardList)
             LinearSnapHelper().attachToRecyclerView(this)
         }

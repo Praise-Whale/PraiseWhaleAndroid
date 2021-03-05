@@ -23,6 +23,6 @@ class PraiseRankingCardAdapter(
     }
 
     override fun onBindViewHolder(holder: PraiseRankingCardViewHolder, position: Int) {
-        holder.onBind(position, praiseRankingList[position])
+        holder.onBind(praiseRankingList[position])
     }
 }
