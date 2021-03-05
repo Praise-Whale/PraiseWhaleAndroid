@@ -51,6 +51,12 @@
     <string name="next">다음</string>
     <string name="start">시작하기</string>
 
+    <!-- CardFragment -->
+    <string name="all_empty_title">아직 칭찬을 하지 않았어요!</string>
+    <string name="all_empty_sub">칭찬 미션을 완료하고,/n칭찬 카드를 모아봐요!</string>
+    <string name="default_empty_title">이 달에 완료한 칭찬이 없어요!</string>
+    <string name="default_empty_sub">앞으로 더 꾸준한/n칭찬 습관을 길러봐요!</string>
+
     <!-- LevelInfoActivity -->
     <string name="level_info_title">칭찬할고래 레벨</string>
     <string name="level0">아직은 칭찬이 어색한 고래</string>

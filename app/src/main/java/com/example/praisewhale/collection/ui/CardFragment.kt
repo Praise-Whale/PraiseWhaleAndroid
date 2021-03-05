@@ -183,19 +183,18 @@ class CardFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-
                         if (it.data.praiseCount == 0) {
                             visibleView.forEach { view -> view.isVisible = false }
                             emptyView.forEach { view -> view.isVisible = true }
 
                             if (year == thisYear && month == 0) {
                                 binding.btnCardPicker.isVisible = false
-                                binding.tvEmpty1.text = "아직 칭찬을 하지 않았어요!"
-                                binding.tvEmpty2.text = "칭찬 미션을 완료하고,\n칭찬 카드를 모아봐요!"
+                                binding.tvEmpty1.text = getString(R.string.all_empty_title)
+                                binding.tvEmpty2.text = getString(R.string.all_empty_sub)
                             } else {
                                 binding.btnCardPicker.isVisible = true
-                                binding.tvEmpty1.text = "이 달에 완료한 칭찬이 없어요!"
-                                binding.tvEmpty2.text = "앞으로 더 꾸준한\n칭찬 습관을 길러봐요!"
+                                binding.tvEmpty1.text = getString(R.string.all_empty_title)
+                                binding.tvEmpty2.text = getString(R.string.default_empty_sub)
                             }
                         } else {
                             visibleView.forEach { view -> view.isVisible = true }
