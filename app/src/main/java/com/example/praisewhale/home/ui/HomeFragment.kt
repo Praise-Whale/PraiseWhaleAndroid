@@ -191,7 +191,10 @@ class HomeFragment : Fragment() {
     private fun handlePraiseDataStatusCode(response: Response<ResponseHomePraise>) {
         when (response.code()) {
             400 -> updateToken()
-            else -> Log.d("TAG", "handlePraiseDataStatusCode: ${response.code()}")
+            else -> {
+                Log.d("TAG", "handlePraiseDataStatusCode: ${response.code()}")
+                return
+            }
         }
     }
 
@@ -213,7 +216,10 @@ class HomeFragment : Fragment() {
                         saveNewTokenData(response.body()!!.data)
                         getServerPraiseData()
                     }
-                    false -> Log.d("TAG", "HomeFragment - onResponse: error")
+                    false -> {
+                        Log.d("TAG", "HomeFragment - onResponse: error")
+                        return
+                    }
                 }
             }
         })

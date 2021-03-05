@@ -99,7 +99,10 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     private fun handleRecentPraiseToStatusCode(response: Response<ResponseRecentPraiseTo>) {
         when (response.code()) {
             400 -> updateTokenForGetServerRecentPraiseTo()
-            else -> Log.d("TAG", "HomeDialogDoneFragment - handleStatusCode: ${response.code()}")
+            else -> {
+                Log.d("TAG", "HomeDialogDoneFragment - handleStatusCode: ${response.code()}")
+                return
+            }
         }
     }
 
@@ -121,7 +124,10 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
                         saveNewTokenData(response.body()!!.data)
                         getServerRecentPraiseTo()
                     }
-                    false -> Log.d("TAG", "HomeDialogDoneFragment - onResponse: error")
+                    false -> {
+                        Log.d("TAG", "HomeDialogDoneFragment - onResponse: error")
+                        return
+                    }
                 }
             }
         })
