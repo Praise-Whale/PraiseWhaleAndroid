@@ -3,5 +3,4 @@
     <!-- GENERAL -->
     <dimen name="default_stroke_width">7dp</dimen>
     <dimen name="default_background_stroke_width">3dp</dimen>
-    <dimen name="switch_thumb_padding">4dp</dimen>
 </resources>

@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import com.example.praisewhale.MainActivity
 import com.example.praisewhale.R
 import com.example.praisewhale.collection.adapter.CollectionViewPager2Adapter
 import com.example.praisewhale.databinding.FragmentCollectionBinding
@@ -17,6 +19,7 @@ class CollectionFragment : Fragment() {
 
     private var _viewBinding: FragmentCollectionBinding? = null
     private val viewBinding get() = _viewBinding!!
+    private lateinit var onBackPressedCallback: OnBackPressedCallback
 
 
     override fun onCreateView(
@@ -33,6 +36,7 @@ class CollectionFragment : Fragment() {
         setUserInfo()
         setListeners()
         setViewPager2()
+        setOnBackPressedCallBack()
     }
 
     override fun onStart() {
@@ -40,9 +44,17 @@ class CollectionFragment : Fragment() {
         initTabButton()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (!onBackPressedCallback.isEnabled) {
+            onBackPressedCallback.isEnabled = true
+        }
+    }
+
     override fun onPause() {
         super.onPause()
         getSwitchHeight()
+        onBackPressedCallback.isEnabled = false
     }
 
     private fun setUserInfo() {
@@ -63,6 +75,15 @@ class CollectionFragment : Fragment() {
             isSaveEnabled = false
             isUserInputEnabled = false
         }
+    }
+
+    private fun setOnBackPressedCallBack() {
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                (activity as MainActivity).showFinishToast()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
     }
 
     private fun initTabButton() {
