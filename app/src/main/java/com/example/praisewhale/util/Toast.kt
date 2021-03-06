@@ -17,7 +17,7 @@ object Toast {
         Toast(context).apply {
             layout.findViewById<TextView>(R.id.textView4).text = msg
             view = layout
-            setGravity(Gravity.BOTTOM, 0, 200)
+            setGravity(Gravity.BOTTOM, 0, 100)
             duration = Toast.LENGTH_SHORT
             show()
 
