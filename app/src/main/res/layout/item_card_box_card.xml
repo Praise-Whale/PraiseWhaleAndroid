@@ -150,6 +150,7 @@
         android:fontFamily="@font/gmarket_sans_medium"
         android:gravity="center"
         android:lineSpacingExtra="5dp"
+        android:includeFontPadding="false"
         android:text="네가 내 친구라서 참 좋아"
         android:textColor="@color/brown"
         android:textSize="20sp"
