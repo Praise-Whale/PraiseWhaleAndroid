@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
     <ImageView
         android:id="@+id/imageView_cardShadow"
@@ -18,7 +18,7 @@
 
     <ImageView
         android:id="@+id/imageView_background"
-        android:layout_width="276dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -33,32 +33,34 @@
         android:id="@+id/tv_card_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:layout_marginLeft="27dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/noto_sans_medium"
         android:includeFontPadding="false"
-        android:text="To."
-        android:textSize="18sp"
-        android:textColor="@color/colorBlack"
         android:letterSpacing="-0.05"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView_background" />
+        android:text="To."
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_card_date"
+        app:layout_constraintStart_toStartOf="@+id/imageView_background"
+        app:layout_constraintTop_toTopOf="@+id/imageView_cardShadow" />
 
     <TextView
         android:id="@+id/tv_card_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="6dp"
+        android:ellipsize="end"
         android:fontFamily="@font/noto_sans_bold"
         android:includeFontPadding="false"
-        android:text="남궁웅앵"
-        android:textSize="18sp"
-        android:textColor="@color/colorBlack"
         android:letterSpacing="-0.05"
-        android:ellipsize="end"
         android:singleLine="true"
-        app:layout_constraintTop_toTopOf="@id/tv_card_to"
-        app:layout_constraintStart_toEndOf="@id/tv_card_to"/>
+        android:text="남궁웅앵"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_card_to"
+        app:layout_constraintStart_toEndOf="@id/tv_card_to"
+        app:layout_constraintTop_toTopOf="@+id/tv_card_to" />
 
     <View
         android:id="@+id/v_card_div"
@@ -66,46 +68,94 @@
         android:layout_height="2dp"
         android:layout_marginTop="2dp"
         android:background="@drawable/bg_card_div"
-        app:layout_constraintTop_toBottomOf="@id/tv_card_to"
+        app:layout_constraintEnd_toEndOf="@id/tv_card_name"
         app:layout_constraintStart_toStartOf="@id/tv_card_to"
-        app:layout_constraintEnd_toEndOf="@id/tv_card_name"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_card_to" />
 
     <TextView
         android:id="@+id/tv_card_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
         android:layout_marginRight="27dp"
         android:background="@drawable/bg_card_box_date"
         android:fontFamily="@font/noto_sans_regular"
-        android:text="12월 22일"
-        android:textSize="13sp"
-        android:textColor="@color/brown"
-        android:letterSpacing="-0.05"
         android:includeFontPadding="false"
-        app:layout_constraintTop_toTopOf="@+id/imageView_background"
+        android:letterSpacing="-0.05"
+        android:paddingHorizontal="13dp"
+        android:paddingVertical="6dp"
+        android:text="12월 22일"
+        app:layout_constraintTop_toTopOf="@id/tv_card_name"
+        app:layout_constraintBottom_toBottomOf="@id/tv_card_name"
+        android:textColor="@color/brown"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView_background" />
 
-    <TextView
-        android:id="@+id/tv_card_praise"
+    <ImageView
+        android:id="@+id/imageView_cardFrame"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginHorizontal="18dp"
         android:layout_marginTop="21dp"
         android:layout_marginBottom="18dp"
-        android:background="@drawable/card_img_card"
-        android:fontFamily="@font/gmarket_sans_medium"
-        android:gravity="center"
-        android:lineSpacingExtra="5dp"
-        android:paddingHorizontal="35dp"
-        android:paddingTop="32dp"
-        android:paddingBottom="33dp"
-        android:text="네가 내 친구라서 참 좋아"
-        android:textColor="@color/brown"
-        android:textSize="20sp"
+        android:background="@drawable/background_rectangle_radius_12_stroke_3"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_background"
         app:layout_constraintEnd_toEndOf="@+id/imageView_background"
         app:layout_constraintStart_toStartOf="@+id/imageView_background"
-        app:layout_constraintTop_toBottomOf="@id/v_card_div" />
+        app:layout_constraintTop_toBottomOf="@+id/v_card_div" />
+
+    <ImageView
+        android:id="@+id/imageView_cardFrameOval_01"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/background_oval"
+        app:layout_constraintStart_toStartOf="@id/imageView_cardFrame"
+        app:layout_constraintTop_toTopOf="@id/imageView_cardFrame" />
+
+    <ImageView
+        android:id="@+id/imageView_cardFrameOval_02"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/background_oval"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame"
+        app:layout_constraintTop_toTopOf="@id/imageView_cardFrame" />
+
+    <ImageView
+        android:id="@+id/imageView_cardFrameOval_03"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/background_oval"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_cardFrame"
+        app:layout_constraintStart_toStartOf="@id/imageView_cardFrame" />
+
+    <ImageView
+        android:id="@+id/imageView_cardFrameOval_04"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/background_oval"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_cardFrame"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame" />
+
+    <TextView
+        android:id="@+id/tv_card_praise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"
+        android:text="네가 내 친구라서 참 좋아"
+        android:textColor="@color/brown"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_cardFrame"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame"
+        app:layout_constraintStart_toStartOf="@+id/imageView_cardFrame"
+        app:layout_constraintTop_toTopOf="@+id/imageView_cardFrame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

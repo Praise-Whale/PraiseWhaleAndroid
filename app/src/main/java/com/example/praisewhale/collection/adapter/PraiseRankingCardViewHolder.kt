@@ -1,5 +1,7 @@
 package com.example.praisewhale.collection.adapter
 
+import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.collection.data.ResponsePraiseRankingCard
 import com.example.praisewhale.databinding.ItemCardBoxCardBinding
@@ -13,11 +15,20 @@ class PraiseRankingCardViewHolder(
 
 
     fun onBind(rankingData: ResponsePraiseRankingCard.Data.PraiseCollection) {
+        setMatchParentToRecyclerView()
         viewBinding.apply {
             tvCardName.text = rankingData.name
             tvCardPraise.text = rankingData.praise
             tvCardDate.text = getFormattedDate(rankingData.date)
         }
+    }
+
+    private fun setMatchParentToRecyclerView() {
+        val layoutParams = ConstraintLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        viewBinding.root.layoutParams = layoutParams
     }
 
     private fun getFormattedDate(date: String): String {
