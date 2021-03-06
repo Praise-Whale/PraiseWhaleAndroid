@@ -114,11 +114,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_praiseRankingCard"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:clipToPadding="false"
         android:orientation="horizontal"
         android:paddingLeft="32dp"
-        android:paddingTop="27dp"
+        android:paddingTop="25dp"
         android:paddingRight="32dp"
         android:paddingBottom="23dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
