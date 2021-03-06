@@ -83,7 +83,7 @@
         android:layout_width="229dp"
         android:layout_height="51dp"
         android:layout_marginTop="53dp"
-        android:background="@drawable/lv_box_name"
+        android:background="@drawable/level_box_name"
         android:fontFamily="@font/noto_sans_regular"
         android:gravity="center"
         android:includeFontPadding="false"
