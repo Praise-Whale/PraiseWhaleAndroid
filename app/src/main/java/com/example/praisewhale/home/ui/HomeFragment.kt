@@ -39,10 +39,11 @@ class HomeFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _viewBinding = FragmentHomeBinding.inflate(layoutInflater)
+        _viewBinding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return viewBinding.root
     }
 
