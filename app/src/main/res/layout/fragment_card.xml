@@ -78,14 +78,15 @@
         android:layout_height="0dp"
         android:layout_marginTop="127dp"
         android:src="@drawable/empty_img_whale"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/tv_empty1"
         app:layout_constraintDimensionRatio="125:107"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintWidth_percent="0.35" />
+        app:layout_constraintWidth_percent="0.35"
+        tools:visibility="visible"/>
 
     <TextView
         android:id="@+id/tv_empty1"
@@ -95,12 +96,13 @@
         android:layout_marginTop="16dp"
         android:alpha="0.7"
         android:text="이 달에 완료한 칭찬이 없어요!"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/tv_empty2"
         app:layout_constraintLeft_toLeftOf="@id/empty_img"
         app:layout_constraintRight_toRightOf="@id/empty_img"
         app:layout_constraintTop_toBottomOf="@id/empty_img"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/tv_empty2"
@@ -112,10 +114,11 @@
         android:gravity="center"
         android:lineSpacingExtra="-2sp"
         android:text="앞으로 더 꾸준한\n칭찬 습관을 길러봐요!"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintLeft_toLeftOf="@id/tv_empty1"
         app:layout_constraintRight_toRightOf="@id/tv_empty1"
         app:layout_constraintTop_toBottomOf="@id/tv_empty1"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
