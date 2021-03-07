@@ -231,7 +231,7 @@ class SettingActivity :AppCompatActivity() {
         // Dialog 크기 설정
         val inset = InsetDrawable(color, 85)
         dialog2.window?.setBackgroundDrawable(inset)
-
+        dialog2.setCancelable(false)
         dialog2.setView(mView2)
         dialog2.show()
 
@@ -368,7 +368,7 @@ class SettingActivity :AppCompatActivity() {
         dialog.window?.setBackgroundDrawable(inset)
         dialog.setCancelable(false)
         dialog.setView(mView)
-        // dialog.create()
+        dialog.setCancelable(false)
         dialog.show()
     }
 
