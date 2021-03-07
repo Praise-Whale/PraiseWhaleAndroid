@@ -143,6 +143,7 @@ class CardFragment : Fragment() {
             dialog.window?.setBackgroundDrawable(inset)
 
             dialog.setView(mView)
+            dialog.setCancelable(false)
             dialog.show()
         }
     }
