@@ -17,6 +17,7 @@
         android:includeFontPadding="false"
         android:paddingHorizontal="14dp"
         android:text="김송현"
+        android:paddingBottom="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
