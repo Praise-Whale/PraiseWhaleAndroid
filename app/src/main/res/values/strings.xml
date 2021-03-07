@@ -64,9 +64,9 @@
     <string name="level1">칭찬에 흥미가 생긴 고래</string>
     <string name="level_count_1">10번</string>
     <string name="level2">칭찬에 익숙해진 고래</string>
-    <string name="level_count_2">15번</string>
+    <string name="level_count_2">30번</string>
     <string name="level3">슬슬 리듬타기 시작한 고래</string>
-    <string name="level_count_3">20번</string>
+    <string name="level_count_3">50번</string>
     <string name="level4">신나게 춤추는 고래</string>
     <string name="level_count_4">100번</string>
     <string name="level5">춤신 춤왕 만렙 고래</string>
