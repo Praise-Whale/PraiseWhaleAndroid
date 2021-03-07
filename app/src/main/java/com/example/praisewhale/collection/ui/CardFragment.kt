@@ -143,6 +143,7 @@ class CardFragment : Fragment() {
             dialog.window?.setBackgroundDrawable(inset)
 
             dialog.setView(mView)
+            dialog.setCancelable(false)
             dialog.show()
         }
     }
@@ -193,7 +194,7 @@ class CardFragment : Fragment() {
                                 binding.tvEmpty2.text = getString(R.string.all_empty_sub)
                             } else {
                                 binding.btnCardPicker.isVisible = true
-                                binding.tvEmpty1.text = getString(R.string.all_empty_title)
+                                binding.tvEmpty1.text = getString(R.string.default_empty_title)
                                 binding.tvEmpty2.text = getString(R.string.default_empty_sub)
                             }
                         } else {

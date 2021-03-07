@@ -83,7 +83,7 @@
 
     <TextView
         android:id="@+id/textView_emptyTitle"
-        style="@style/noto_sans_bold_16dp_greyish_brown"
+        style="@style/noto_sans_bold_18dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -98,16 +98,15 @@
 
     <TextView
         android:id="@+id/textView_emptyDescription"
-        style="@style/noto_sans_medium_16dp_greyish_brown"
+        style="@style/noto_sans_regular_15dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:layout_marginBottom="125dp"
         android:alpha="0.7"
         android:gravity="center"
+        android:lineSpacingExtra="-2sp"
         android:text="칭찬 미션을 완료하면\n칭찬한 대상에 대한 랭킹이 완성돼요!"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/textView_emptyTitle"
         app:layout_constraintRight_toRightOf="@id/textView_emptyTitle"
         app:layout_constraintTop_toBottomOf="@id/textView_emptyTitle"
@@ -120,7 +119,9 @@
         android:background="@drawable/card_box_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

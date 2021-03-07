@@ -71,8 +71,8 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     private fun timeString(): String {
-        var hour = MyApplication.mySharedPreferences.getValue("alarm_hour", "14").toInt()
-        val minute = MyApplication.mySharedPreferences.getValue("alarm_minute", "40").toInt()
+        var hour = MyApplication.mySharedPreferences.getValue("alarm_hour", "9").toInt()
+        val minute = MyApplication.mySharedPreferences.getValue("alarm_minute", "00")
 
         if (hour >= 12) {
             if (hour in 12..21) {
