@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             )
             calendar.set(
                 Calendar.MINUTE,
-                MyApplication.mySharedPreferences.getValue("alarm_minute", "0").toInt()
+                MyApplication.mySharedPreferences.getValue("alarm_minute", "00").toInt()
             )
             val intent = Intent(this, AlarmReceiver::class.java)
             val pendingIntent =
