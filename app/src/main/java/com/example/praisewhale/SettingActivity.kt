@@ -271,6 +271,7 @@ class SettingActivity :AppCompatActivity() {
                     before: Int,
                     count: Int
                 ) {
+                    nick_modify.isClickable=true
 
                     val textcount: TextView = mView.findViewById(R.id.textcount)
                     textcount.isVisible=true
@@ -289,6 +290,7 @@ class SettingActivity :AppCompatActivity() {
             })
         nick_modify_edit.textChangedListener {
             deletebtn.isVisible = nick_modify_edit.text.toString() != ""
+            nick_modify.isClickable=true
 
         }
 
@@ -296,6 +298,9 @@ class SettingActivity :AppCompatActivity() {
 
             nick_modify_edit.setText("")
             deletebtn.isVisible=false
+            nick_modify.isClickable=false
+            nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
+
         }
         nick_modify.setOnClickListener {
 
@@ -325,6 +330,8 @@ class SettingActivity :AppCompatActivity() {
                     textcount.isVisible=false
                     val textcount7:TextView=mView.findViewById(R.id.textcount7)
                     textcount7.isVisible=false
+                    nick_modify.isClickable=false
+                    nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
                     response.takeIf { it.isSuccessful }
 
                         ?.body()
@@ -332,7 +339,7 @@ class SettingActivity :AppCompatActivity() {
                             Log.d("status코드", it.status.toString())
 
                             if(it.status == 200) {
-
+                                nick_modify.isClickable=true
                                 val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
                                 existnickbg.setBackgroundResource(R.drawable.edittext_bg)
                                 Log.d("닉네임변경완료", "닉네임변경완료")
