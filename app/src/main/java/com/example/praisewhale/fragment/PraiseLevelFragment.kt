@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import com.example.praisewhale.*
 import com.example.praisewhale.databinding.FragmentPraiseLevelBinding
 import com.example.praisewhale.util.MyApplication
@@ -118,7 +119,13 @@ class PraiseLevelFragment : Fragment() {
                                 level_whale.setImageResource(R.drawable.lv_5_img_whale)
                                 detail_txt.text = "춤신 춤왕 만렙 고래"
                                 level_num.setImageResource(R.drawable.level5)
-                                textViewPhraseGod.text = it.data.nickName+"님은 이제 칭찬의 신!"+"번"
+                                textViewPhrase.isVisible=false
+                                textViewPhraseGod.isVisible=false
+
+                                textViewPhraseGod5.text = it.data.nickName+"님은 이제"
+                                textViewPhraseGod5.isVisible=true
+                                textViewPhrase5.isVisible=true
+                                    //뒤에
                                 cpb_circlebar.progress=100
                             }
 
