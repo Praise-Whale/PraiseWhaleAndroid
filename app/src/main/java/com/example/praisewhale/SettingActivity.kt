@@ -153,7 +153,7 @@ class SettingActivity :AppCompatActivity() {
         btnok.setOnClickListener {
             if ((ny2.value.toString()).length < 2) {
                 if (list[ny.value] == "오전") {
-                    tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":0" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         ny1.value.toString()
@@ -170,7 +170,7 @@ class SettingActivity :AppCompatActivity() {
 
                 } else {
                     val clock_ = ny1.value + 12
-                    tv_alarm_time.text =list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":0" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         clock_.toString()
@@ -188,7 +188,7 @@ class SettingActivity :AppCompatActivity() {
             } else {
                 if (list[ny.value] == "오후") {
                     val clock_ = ny1.value + 12
-                    tv_alarm_time.text =list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         clock_.toString()
@@ -204,7 +204,7 @@ class SettingActivity :AppCompatActivity() {
                     )
 
                 } else {
-                    tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         ny1.value.toString()
