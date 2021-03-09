@@ -78,10 +78,10 @@ class PraiseLevelFragment : Fragment() {
                         whalename_txt.text = it.data.whaleName.toString()
 
                         textView2.text = it.data.praiseCount.toString() + "번"
-                        PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                     /*   PraseLevelDialogFragment(R.layout.level_popup,1).show(
                             parentFragmentManager,
                             "MainActivity"
-                        )
+                        )*/
 
                         when(it.data.praiseCount){
                             5-> PraseLevelDialogFragment(R.layout.level_popup,1).show(
