@@ -38,7 +38,10 @@ class HomeDialogUndoneFragment : DialogFragment() {
     }
 
     private fun setListeners() {
-        viewBinding.buttonConfirm.setOnClickListener(fragmentClickListener)
+        viewBinding.apply {
+            imageButtonClose.setOnClickListener(fragmentClickListener)
+            buttonConfirm.setOnClickListener(fragmentClickListener)
+        }
     }
 
     private fun setDialogContents() {
@@ -72,11 +75,16 @@ class HomeDialogUndoneFragment : DialogFragment() {
     }
 
     private val fragmentClickListener = View.OnClickListener {
-        when (it.id) {
-            viewBinding.buttonConfirm.id -> {
-                dialog!!.dismiss()
-                updateHomeFragmentView()
-                updateSharedPreferences()
+        viewBinding.apply {
+            when (it.id) {
+                imageButtonClose.id -> {
+                    dialog!!.dismiss()
+                }
+                buttonConfirm.id -> {
+                    dialog!!.dismiss()
+                    updateHomeFragmentView()
+                    updateSharedPreferences()
+                }
             }
         }
     }
