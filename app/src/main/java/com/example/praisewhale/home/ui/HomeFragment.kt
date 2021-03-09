@@ -268,11 +268,13 @@ class HomeFragment : Fragment() {
         val praiseIndex = sharedPreferences.getValue(LAST_PRAISE_INDEX, "").toInt()
         val dialogDone =
             HomeDialogDoneFragment.CustomDialogBuilder().setPraiseIndex(praiseIndex).create()
+        dialogDone.isCancelable = false
         dialogDone.show(parentFragmentManager, dialogDone.tag)
     }
 
     private fun showDialogUndone() {
         val dialogUndone = HomeDialogUndoneFragment.CustomDialogBuilder().create()
+        dialogUndone.isCancelable = false
         dialogUndone.show(parentFragmentManager, dialogUndone.tag)
     }
 

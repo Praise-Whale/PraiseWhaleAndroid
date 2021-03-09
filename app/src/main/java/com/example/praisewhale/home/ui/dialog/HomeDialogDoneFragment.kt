@@ -46,8 +46,19 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
-        getServerRecentPraiseTo()
         setDialogBackground()
+        getServerRecentPraiseTo()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requireContext().showKeyboard()
+        viewBinding.editTextPraiseTo.requestFocus()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        requireContext().hideKeyboard()
     }
 
     private fun setListeners() {
@@ -251,6 +262,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         val dialogDoneResult = HomeDialogDoneResultFragment.CustomDialogBuilder()
             .getLevelUpStatus(isLevelUp)
             .create()
+        dialogDoneResult.isCancelable = false
         dialogDoneResult.show(parentFragmentManager, dialogDoneResult.tag)
     }
 
@@ -261,6 +273,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         override fun afterTextChanged(s: Editable?) {
             updateDeleteButtonVisibility(s!!)
             updateEditTextCurrentLength(s)
+            updateConfirmButtonColor(s)
         }
     }
 
@@ -279,6 +292,15 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
             when (praiseTo.length) {
                 0 -> setContextCompatTextColor(R.color.brown_grey)
                 else -> setContextCompatTextColor(R.color.brown)
+            }
+        }
+    }
+
+    private fun updateConfirmButtonColor(praiseTo: Editable) {
+        viewBinding.buttonConfirm.apply {
+            when (praiseTo.length) {
+                0 -> setContextCompatBackgroundTintList(R.color.very_light_pink)
+                else -> setContextCompatBackgroundTintList(R.color.sand_yellow)
             }
         }
     }

@@ -38,6 +38,7 @@ class HomeDialogDoneResultFragment : DialogFragment() {
 
     private fun setDialogContents() {
         viewBinding.apply {
+            imageButtonClose.visibility = View.INVISIBLE
             imageViewWhale.setImageResource(R.drawable.yes_5_img_whale)
             textViewTitle.text = "참 잘했고래!"
             textViewSubTitle.text = "내일도 칭찬해요!"
