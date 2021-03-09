@@ -13,6 +13,7 @@ import androidx.core.view.isVisible
 import com.example.praisewhale.*
 import com.example.praisewhale.databinding.FragmentPraiseLevelBinding
 import com.example.praisewhale.util.MyApplication
+import com.sopt.cherish.ui.dialog.PraseLevelDialogFragment
 import kotlinx.android.synthetic.main.fragment_praise_level.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -77,6 +78,36 @@ class PraiseLevelFragment : Fragment() {
                         whalename_txt.text = it.data.whaleName.toString()
 
                         textView2.text = it.data.praiseCount.toString() + "번"
+                        PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                            parentFragmentManager,
+                            "MainActivity"
+                        )
+
+                        when(it.data.praiseCount){
+                            5-> PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                                parentFragmentManager,
+                                "MainActivity"
+                            )
+                            10->PraseLevelDialogFragment(R.layout.level_popup,2).show(
+                                parentFragmentManager,
+                                "MainActivity"
+                            )
+                            30->PraseLevelDialogFragment(R.layout.level_popup,3).show(
+                                parentFragmentManager,
+                                "MainActivity"
+                            )
+                            50->PraseLevelDialogFragment(R.layout.level_popup,4).show(
+                                parentFragmentManager,
+                                "MainActivity"
+                            )
+                            100->PraseLevelDialogFragment(R.layout.level_popup,5).show(
+                                parentFragmentManager,
+                                "MainActivity"
+                            )
+
+
+
+                        }
                         
 
                         when (it.data.userLevel) {
