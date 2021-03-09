@@ -162,7 +162,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/background_rectangle_radius_30"
-        android:backgroundTint="@color/sand_yellow"
+        android:backgroundTint="@color/very_light_pink"
         android:text="확인"
         android:paddingBottom="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
