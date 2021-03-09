@@ -153,7 +153,7 @@ class SettingActivity :AppCompatActivity() {
         btnok.setOnClickListener {
             if ((ny2.value.toString()).length < 2) {
                 if (list[ny.value] == "오전") {
-                    tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":0" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         ny1.value.toString()
@@ -170,7 +170,7 @@ class SettingActivity :AppCompatActivity() {
 
                 } else {
                     val clock_ = ny1.value + 12
-                    tv_alarm_time.text =list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":0" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         clock_.toString()
@@ -188,7 +188,7 @@ class SettingActivity :AppCompatActivity() {
             } else {
                 if (list[ny.value] == "오후") {
                     val clock_ = ny1.value + 12
-                    tv_alarm_time.text =list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         clock_.toString()
@@ -204,7 +204,7 @@ class SettingActivity :AppCompatActivity() {
                     )
 
                 } else {
-                    tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         ny1.value.toString()
@@ -271,6 +271,7 @@ class SettingActivity :AppCompatActivity() {
                     before: Int,
                     count: Int
                 ) {
+                    nick_modify.isClickable=true
 
                     val textcount: TextView = mView.findViewById(R.id.textcount)
                     textcount.isVisible=true
@@ -289,6 +290,7 @@ class SettingActivity :AppCompatActivity() {
             })
         nick_modify_edit.textChangedListener {
             deletebtn.isVisible = nick_modify_edit.text.toString() != ""
+            nick_modify.isClickable=true
 
         }
 
@@ -296,6 +298,9 @@ class SettingActivity :AppCompatActivity() {
 
             nick_modify_edit.setText("")
             deletebtn.isVisible=false
+            nick_modify.isClickable=false
+            nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
+
         }
         nick_modify.setOnClickListener {
 
@@ -325,6 +330,8 @@ class SettingActivity :AppCompatActivity() {
                     textcount.isVisible=false
                     val textcount7:TextView=mView.findViewById(R.id.textcount7)
                     textcount7.isVisible=false
+                    nick_modify.isClickable=false
+                    nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
                     response.takeIf { it.isSuccessful }
 
                         ?.body()
@@ -332,7 +339,7 @@ class SettingActivity :AppCompatActivity() {
                             Log.d("status코드", it.status.toString())
 
                             if(it.status == 200) {
-
+                                nick_modify.isClickable=true
                                 val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
                                 existnickbg.setBackgroundResource(R.drawable.edittext_bg)
                                 Log.d("닉네임변경완료", "닉네임변경완료")
