@@ -2,7 +2,9 @@ package com.example.praisewhale.util
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.content.Context
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 
@@ -46,4 +48,18 @@ fun View.fadeOut() {
                 }
             })
     }
+}
+
+fun Context.showKeyboard() {
+    (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(
+        InputMethodManager.SHOW_FORCED,
+        InputMethodManager.HIDE_IMPLICIT_ONLY
+    )
+}
+
+fun Context.hideKeyboard() {
+    (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(
+        InputMethodManager.HIDE_IMPLICIT_ONLY,
+        0
+    )
 }

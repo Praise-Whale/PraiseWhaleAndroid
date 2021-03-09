@@ -116,6 +116,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="최근 칭찬한 사람"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/editText_praiseTo"
         app:layout_constraintTop_toBottomOf="@+id/textView_currentLength" />
 

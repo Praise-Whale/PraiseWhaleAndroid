@@ -46,8 +46,19 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
-        getServerRecentPraiseTo()
         setDialogBackground()
+        getServerRecentPraiseTo()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requireContext().showKeyboard()
+        viewBinding.editTextPraiseTo.requestFocus()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        requireContext().hideKeyboard()
     }
 
     private fun setListeners() {
