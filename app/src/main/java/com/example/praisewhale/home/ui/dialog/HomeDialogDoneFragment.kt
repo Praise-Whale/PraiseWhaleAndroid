@@ -262,6 +262,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         val dialogDoneResult = HomeDialogDoneResultFragment.CustomDialogBuilder()
             .getLevelUpStatus(isLevelUp)
             .create()
+        dialogDoneResult.isCancelable = false
         dialogDoneResult.show(parentFragmentManager, dialogDoneResult.tag)
     }
 
