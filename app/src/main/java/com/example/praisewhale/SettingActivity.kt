@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -69,13 +70,24 @@ class SettingActivity :AppCompatActivity() {
         }
 
         layout_service.setOnClickListener {
-            val intent= Intent(this, InfoUserActivity::class.java)
+            //val intent= Intent(this, InfoUserActivity::class.java)
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.notion.so/8ced90e384b1417ab6e24ce9c8436ab8")
+            )
+           // startActivity(intent)
+
             startActivity(intent)
         }
 
         layout_personal_information.setOnClickListener {
-            val intent= Intent(this, InfoActivity::class.java)
+            //val intent= Intent(this, InfoActivity::class.java)
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.notion.so/4ae478f551f249d097a6e46cffad6d07")
+            )
             startActivity(intent)
+           // startActivity(intent)
         }
         layout_developer.setOnClickListener {
             val intent= Intent(this, DeveloperActivity::class.java)
