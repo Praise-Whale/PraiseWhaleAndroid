@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/popup_box_popup_1"
+    android:background="@drawable/popup_bg"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -11,84 +11,135 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_medium"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/noto_sans_regular"
         android:includeFontPadding="false"
         android:text="닉네임변경"
+        android:textColor="@color/greyish_brown"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <ImageView
         android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="2dp"
+        android:src="@drawable/yellow_divider_radius_10"
         android:layout_centerInParent="true"
-        android:layout_marginTop="5dp"
-        android:background="#ffd464"
+        android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button
         android:id="@+id/close_btn"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="22dp"
         android:background="@drawable/popup_btn_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/nick_change_box_nickname"
-        android:layout_marginRight="40dp"
-        android:inputType="textPersonName"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="27dp"
+        android:background="@drawable/edittext_bg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2">
+
+
+        <EditText
+            android:id="@+id/editnickname"
+            android:layout_width="176dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="13dp"
+            android:background="@null"
+            android:fontFamily="@font/noto_sans_regular"
+            android:hint="닉네임을 7자 이내로 입력해 주세요"
+            android:includeFontPadding="false"
+            android:inputType="textPersonName"
+            android:maxLength="7"
+            android:textColorHint="@color/very_light_pink_two"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" > <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/delete_btn"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/btn_delete"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/editnickname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editnickname" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/change_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="71dp"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/popup_btn_ok"
-        android:text="변경"
+        android:layout_width="221dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="228dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/popup_btn_bg_init"
         android:fontFamily="@font/noto_sans_regular"
         android:includeFontPadding="false"
+        android:text="변경"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/delete_btn"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/btn_delete"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
+    <TextView
+        android:id="@+id/textcount7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/noto_sans_regular"
+        android:includeFontPadding="false"
+        android:text="/7"
+        android:textColor="@color/brownish_grey"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
     <TextView
         android:id="@+id/textcount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:text="2/7"
         android:fontFamily="@font/noto_sans_regular"
+        android:textSize="13sp"
+        android:textColor="@color/brownish_grey"
+        android:includeFontPadding="false"
+        android:text="0"
+        app:layout_constraintEnd_toStartOf="@+id/textcount7"
+        app:layout_constraintTop_toTopOf="@+id/textcount7" />
+
+    <TextView
+        android:id="@+id/existingnick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"
+        android:fontFamily="@font/noto_sans_regular"
+        android:textSize="13sp"
+        android:includeFontPadding="false"
+        android:textColor="@color/dark_peach"
+        android:text="이미 사용 중인 닉네임이에요!"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

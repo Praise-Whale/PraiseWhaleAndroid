@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="signUpViewModel"
+            type="com.example.praisewhale.signup.SignUpViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pale"
+        tools:context=".signup.AgreeFragment">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="59dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/title"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_medium"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/terms_of_service2"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_title"
+            app:layout_constraintStart_toEndOf="@id/tv_title"
+            app:layout_constraintTop_toTopOf="@id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_terms_of_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/terms_of_service"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="0.9dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/yellow_divider_radius_10"
+            app:layout_constraintEnd_toEndOf="@id/tv_terms_of_service"
+            app:layout_constraintStart_toStartOf="@id/tv_terms_of_service"
+            app:layout_constraintTop_toBottomOf="@id/tv_terms_of_service"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_title4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/terms_of_service3"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_terms_of_service"
+            app:layout_constraintStart_toEndOf="@id/tv_terms_of_service"
+            app:layout_constraintTop_toTopOf="@id/tv_terms_of_service" />
+
+        <TextView
+            android:id="@+id/tv_title5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/terms_of_service4"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/tv_terms_of_service"
+            app:layout_constraintTop_toBottomOf="@id/tv_terms_of_service" />
+
+        <ImageView
+            android:id="@+id/img_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nickname_img_progress_1"
+            app:layout_constraintEnd_toStartOf="@id/img_middle_progress"
+            app:layout_constraintTop_toTopOf="@id/tv_title"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/img_middle_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/nickname_ic_progress"
+            app:layout_constraintBottom_toBottomOf="@id/img_progress"
+            app:layout_constraintEnd_toStartOf="@id/img_last_progress"
+            app:layout_constraintTop_toTopOf="@id/img_progress"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/img_last_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="42dp"
+            android:src="@drawable/nickname_ic_progress"
+            app:layout_constraintBottom_toBottomOf="@id/img_progress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_progress"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/img_whale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/agree_img_whale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title5"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dp"
+            android:background="@drawable/background_agree_box"
+            android:paddingBottom="31dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_whale">
+
+            <ImageButton
+                android:id="@+id/btn_agree_check"
+                allAgreeCheck="@{signUpViewModel.isAgree}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="27dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{() -> signUpViewModel.allAgreeCheck()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.05"
+                android:text="@string/agree_all"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@id/btn_agree_check"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/layout_personal_information_agree"
+                app:layout_constraintTop_toTopOf="@id/btn_agree_check" />
+
+            <View
+                android:id="@+id/underline"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="19dp"
+                android:background="@color/light_tan"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_agree_check" />
+
+            <ImageView
+                android:id="@+id/img_personal_information_check"
+                agreeCheck="@{signUpViewModel.isAgree}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:layout_constraintEnd_toEndOf="@id/btn_agree_check"
+                app:layout_constraintStart_toStartOf="@id/btn_agree_check"
+                app:layout_constraintTop_toBottomOf="@id/underline"
+                tools:ignore="ContentDescription" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_personal_information_agree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                app:layout_constraintBottom_toBottomOf="@id/img_personal_information_check"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_personal_information_check"
+                app:layout_constraintTop_toTopOf="@id/img_personal_information_check">
+
+                <TextView
+                    android:id="@+id/tv_personal_information_agree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/agree_personal_information"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="27dp"
+                    android:src="@drawable/agree_ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_personal_information_agree"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_personal_information_agree"
+                    tools:ignore="ContentDescription" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/img_service_check"
+                agreeCheck="@{signUpViewModel.isAgree}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                app:layout_constraintEnd_toEndOf="@id/btn_agree_check"
+                app:layout_constraintStart_toStartOf="@id/btn_agree_check"
+                app:layout_constraintTop_toBottomOf="@id/layout_personal_information_agree"
+                tools:ignore="ContentDescription" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_service_agree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                app:layout_constraintBottom_toBottomOf="@id/img_service_check"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_service_check"
+                app:layout_constraintTop_toTopOf="@id/img_service_check">
+
+                <TextView
+                    android:id="@+id/tv_service_agree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/agree_service"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="27dp"
+                    android:src="@drawable/agree_ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_service_agree"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_service_agree"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/agree_warning"
+            android:textColor="@color/brown_grey"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="@id/layout_agree"
+            app:layout_constraintStart_toStartOf="@id/layout_agree"
+            app:layout_constraintTop_toBottomOf="@id/layout_agree" />
+
+        <Button
+            android:id="@+id/btn_agree_next"
+            style="?android:attr/borderlessButtonStyle"
+            agreeNextButton="@{signUpViewModel.isAgree}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="51dp"
+            android:background="@drawable/btn_next"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:paddingVertical="14dp"
+            android:text="@string/next"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_warning" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,6 +1,36 @@
 <resources>
-    <string name="app_name">PraiseWhale</string>
+    <string name="app_name">칭찬할고래</string>
 
+    <!-- OnBoarding -->
+    <string name="on_boarding1">하루에 한 번씩</string>
+    <string name="on_boarding2">칭찬</string>
+    <string name="on_boarding3">해요</string>
+    <string name="on_boarding4">매일 매일 다른 칭찬 미션을\n하나씩 보내드릴게요!</string>
+    <string name="on_boarding5">원하는 시간에 리마인드 알림도 받을 수 있어요:)</string>
+    <string name="on_boarding6">나만의 고래</string>
+    <string name="on_boarding7">를</string>
+    <string name="on_boarding8">춤 추게</string>
+    <string name="on_boarding9">" 해요"</string>
+    <string name="on_boarding10">칭찬을 할 때 마다\n나의 고래가 춤을 춰요!</string>
+    <string name="on_boarding11">칭찬 횟수에 따라 고래의 레벨이 높아져요:)</string>
+    <string name="on_boarding12">칭찬을</string>
+    <string name="on_boarding13">" 모아보고"</string>
+    <string name="on_boarding14">칭찬랭킹</string>
+    <string name="on_boarding15">을 확인해요</string>
+    <string name="on_boarding16">내가 한 칭찬을 모아보고\n칭찬 대상에 대한 랭킹도 확인해요!</string>
+    <string name="on_boarding17">누구에게 언제 어떤 칭찬을 했는지 한 번에 확인해요:)</string>
+
+    <!-- AgreeFragment -->
+    <string name="terms_of_service">이용약관</string>
+    <string name="terms_of_service3">을 읽고</string>
+    <string name="terms_of_service2">의</string>
+    <string name="terms_of_service4">동의해주세요!</string>
+    <string name="agree_all">모든 약관을 확인하였으며, 이에 동의해요</string>
+    <string name="agree_personal_information">[필수] 개인정보 처리방침 동의</string>
+    <string name="agree_service">[필수] 서비스 이용약관 동의</string>
+    <string name="agree_warning">약관에 동의하지 않을 경우,\n칭찬할고래를 이용할 수 없어요!</string>
+
+    <!-- SignUp -->
     <string name="title">칭찬할고래</string>
     <string name="title2">에서</string>
     <string name="title3">"사용할 "</string>
@@ -11,29 +41,63 @@
     <string name="title8">고래의 이름</string>
     <string name="title9">와 함께</string>
     <string name="title10">"매일 "</string>
-    <string name="title11">칭찬 한마디,</string>
+    <string name="title11">칭찬 한마디</string>
     <string name="title12">실천해볼까요?</string>
-
     <string name="hint_nickname">닉네임을 7자 이내로 입력해주세요.</string>
     <string name="hint_whale_name">고래의 이름을 7자 이내로 입력해주세요.</string>
-    <string name="check_warning">이미 사용중인 닉네임이에요!</string>
+    <string name="check_warning">이미 사용 중인 닉네임이에요!</string>
     <string name="impossible_name_change">고래의 이름은 다시 변경할 수 없어요!</string>
     <string name="max_length">/7</string>
     <string name="next">다음</string>
     <string name="start">시작하기</string>
 
+    <!-- CardFragment -->
+    <string name="all_empty_title">아직 칭찬을 하지 않았어요!</string>
+    <string name="all_empty_sub">칭찬 미션을 완료하고,\n칭찬 카드를 모아봐요!</string>
+    <string name="default_empty_title">이 달에 완료한 칭찬이 없어요!</string>
+    <string name="default_empty_sub">앞으로 더 꾸준한\n칭찬 습관을 길러봐요!</string>
+
+    <!-- LevelInfoActivity -->
     <string name="level_info_title">칭찬할고래 레벨</string>
     <string name="level0">아직은 칭찬이 어색한 고래</string>
     <string name="level_count_0">5번</string>
     <string name="level1">칭찬에 흥미가 생긴 고래</string>
     <string name="level_count_1">10번</string>
     <string name="level2">칭찬에 익숙해진 고래</string>
-    <string name="level_count_2">15번</string>
+    <string name="level_count_2">30번</string>
     <string name="level3">슬슬 리듬타기 시작한 고래</string>
-    <string name="level_count_3">20번</string>
+    <string name="level_count_3">50번</string>
     <string name="level4">신나게 춤추는 고래</string>
     <string name="level_count_4">100번</string>
     <string name="level5">춤신 춤왕 만렙 고래</string>
+
+    <!-- alarm -->
+    <string name="alarm_content">지금 바로 오늘의 칭찬을 확인하고, 실천해보세요!</string>
+    <string name="alarm_title">오늘의 칭찬이 도착했어요!</string>
+    <string name="alarm_head_up_title">오늘의 칭찬</string>
+    <string name="alarm_head_up_content">이 도착했어요!</string>
+
+    <!-- SettingActivity -->
+    <string name="setting_title">설정</string>
+    <string name="setting_nickname_change">닉네임 변경</string>
+    <string name="setting_push_alarm">푸시알림</string>
+    <string name="setting_asking">문의하기</string>
+    <string name="setting_personal_information">개인정보 처리방침</string>
+    <string name="setting_service">서비스 이용약관</string>
+    <string name="setting_developer_information">개발자 정보</string>
+    <string name="setting_open_source">오픈소스 라이센스</string>
+
+    <!-- EmailIntent -->
+    <string name="email_title">칭찬할고래 문의</string>
+    <string name="email_content">
+        1. 문의 유형 (문의, 버그 제보, 회원 탈퇴, 기타) :\n
+        2. 회원 닉네임 (필요시 기입) :\n
+        3. 문의 내용 :\n
+        문의하신 사항은 칭찬할고래팀이 신속하게 처리하겠습니다. 감사합니다 :)</string>
+    <string name="email_receiver">Co.Goraedan@gmail.com</string>
+
+    <string name="setting_info_url">이하 ‘칭찬할고래’는 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
+</string>
 
     <string-array name="ampm">
         <item>오전</item>

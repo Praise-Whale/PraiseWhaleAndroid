@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="276dp"
+    android:layout_height="wrap_content">
+
+    <ImageButton
+        android:id="@+id/imageButton_close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@android:color/transparent"
+        android:padding="16dp"
+        android:src="@drawable/popup_btn_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_dialogTitle_01"
+        style="@style/noto_sans_regular_18dp_greyish_brown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="34dp"
+        android:text="누구에게"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_dialogTitle_02"
+        style="@style/noto_sans_bold_18dp_greyish_brown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:text="칭찬"
+        app:layout_constraintStart_toEndOf="@+id/textView_dialogTitle_01"
+        app:layout_constraintTop_toTopOf="@+id/textView_dialogTitle_01" />
+
+    <TextView
+        android:id="@+id/textView_dialogTitle_03"
+        style="@style/noto_sans_regular_18dp_greyish_brown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="했나요?"
+        app:layout_constraintStart_toEndOf="@+id/textView_dialogTitle_02"
+        app:layout_constraintTop_toTopOf="@+id/textView_dialogTitle_02" />
+
+    <View
+        android:id="@+id/view_underline"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@drawable/yellow_divider_radius_10"
+        app:layout_constraintEnd_toEndOf="@+id/textView_dialogTitle_03"
+        app:layout_constraintStart_toStartOf="@+id/textView_dialogTitle_01"
+        app:layout_constraintTop_toBottomOf="@+id/textView_dialogTitle_01" />
+
+    <EditText
+        android:id="@+id/editText_praiseTo"
+        style="@style/noto_sans_regular_13dp_black"
+        android:layout_width="220dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/selector_edittext"
+        android:hint="이름을 실명으로 입력해주세요."
+        android:paddingStart="12dp"
+        android:paddingLeft="12dp"
+        android:maxLength="6"
+        android:textColorHint="@color/very_light_pink_two"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_dialogTitle_01"
+        app:layout_constraintTop_toBottomOf="@+id/view_underline" />
+
+    <ImageButton
+        android:id="@+id/imageButton_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:visibility="invisible"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btn_delete"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_praiseTo"
+        app:layout_constraintEnd_toEndOf="@+id/editText_praiseTo"
+        app:layout_constraintTop_toTopOf="@+id/editText_praiseTo" />
+
+    <TextView
+        android:id="@+id/textView_currentLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        style="@style/noto_sans_regular_13dp_brown_grey"
+        app:layout_constraintBottom_toBottomOf="@id/textView_maxLength"
+        app:layout_constraintEnd_toStartOf="@id/textView_maxLength"
+        app:layout_constraintTop_toTopOf="@id/textView_maxLength" />
+
+    <TextView
+        android:id="@+id/textView_maxLength"
+        style="@style/noto_sans_regular_13dp_brown_grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="/6"
+        app:layout_constraintEnd_toEndOf="@id/editText_praiseTo"
+        app:layout_constraintTop_toBottomOf="@id/editText_praiseTo" />
+
+
+    <TextView
+        android:id="@+id/textView_recentPraiseToTitle"
+        style="@style/noto_sans_regular_14dp_brown_grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최근 칭찬한 사람"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/editText_praiseTo"
+        app:layout_constraintTop_toBottomOf="@+id/textView_currentLength" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_recentPraiseTo"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="@+id/editText_praiseTo"
+        app:layout_constraintStart_toStartOf="@+id/editText_praiseTo"
+        app:layout_constraintTop_toBottomOf="@+id/textView_recentPraiseToTitle"
+        tools:listitem="@layout/item_recent_praise_to" />
+
+    <ImageView
+        android:id="@+id/imageView_blurBoxLeft"
+        android:layout_width="35dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/box_blur"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerView_recentPraiseTo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView_recentPraiseTo" />
+
+    <ImageView
+        android:id="@+id/imageView_blurBoxRight"
+        android:layout_width="35dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:rotation="180"
+        android:src="@drawable/box_blur"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerView_recentPraiseTo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView_recentPraiseTo" />
+
+    <Button
+        android:id="@+id/button_confirm"
+        style="@style/noto_sans_regular_15dp_black"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/background_rectangle_radius_30"
+        android:backgroundTint="@color/very_light_pink"
+        android:text="확인"
+        android:paddingBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView_recentPraiseTo"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView_recentPraiseTo"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_recentPraiseTo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

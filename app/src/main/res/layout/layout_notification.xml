@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="13dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_custom_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/push_img_icon_2"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/title"
+            android:textColor="@color/dodger_blue"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_alarm_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="7dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:textColor="@color/brown_grey"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.05"
+                android:text="@string/alarm_title"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/noto_sans_regular"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.05"
+                android:text="@string/alarm_content"
+                android:textColor="@color/greyish_brown"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="42dp"
+            android:src="@drawable/push_img_whale"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".onboarding.FirstOnBoardingFragment">
+
+        <ImageView
+            android:id="@+id/underline"
+            android:layout_width="28dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="83dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/yellow_divider_radius_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:id="@+id/layout_first_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/underline"
+            app:layout_constraintTop_toBottomOf="@id/underline">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.05"
+                android:text="@string/on_boarding1"
+                android:textColor="@color/greyish_brown"
+                android:textSize="26sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/on_boarding2"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/on_boarding3"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="26sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_different_praise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/on_boarding4"
+            android:textColor="@color/greyish_brown"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/layout_first_title"
+            app:layout_constraintTop_toBottomOf="@id/layout_first_title" />
+
+        <TextView
+            android:id="@+id/tv_content_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="@string/on_boarding5"
+            android:textColor="@color/brown_grey"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/tv_different_praise"
+            app:layout_constraintTop_toBottomOf="@id/tv_different_praise" />
+
+        <ImageView
+            android:id="@+id/img_first_on_boarding"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:src="@drawable/onboarding_1_img_whale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_content_alarm"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

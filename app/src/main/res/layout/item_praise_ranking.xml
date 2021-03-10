@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView_cardShadow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shadow_rectangle_radius_15_ranking"
+        android:backgroundTint="@color/praise_ranking_card_shadow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="23dp" />
+
+    <ImageView
+        android:id="@+id/imageView_background"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/background_rectangle_radius_15_stroke_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_rankingInfo"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/ranking_circle_number_1"
+        android:stateListAnimator="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_background"
+        app:layout_constraintStart_toStartOf="@+id/imageView_background"
+        app:layout_constraintTop_toTopOf="@+id/imageView_background" />
+
+    <TextView
+        android:id="@+id/textView_praiseTo"
+        style="@style/noto_sans_bold_18dp_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_background"
+        app:layout_constraintEnd_toEndOf="@+id/textView_praiseCount"
+        app:layout_constraintStart_toEndOf="@+id/imageView_rankingInfo"
+        app:layout_constraintTop_toTopOf="@+id/imageView_background"
+        tools:text="남궁선규선규" />
+
+    <TextView
+        android:id="@+id/textView_praiseCount"
+        style="@style/noto_sans_regular_16dp_brown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="38번"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_background"
+        app:layout_constraintEnd_toStartOf="@+id/button_rankingArrow"
+        app:layout_constraintTop_toTopOf="@+id/imageView_background" />
+
+    <Button
+        android:id="@+id/button_rankingArrow"
+        android:layout_width="4dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="22dp"
+        android:background="@drawable/ranking_ic_arrow"
+        android:stateListAnimator="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView_background" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
