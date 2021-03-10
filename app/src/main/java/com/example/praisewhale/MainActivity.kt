@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             view = toastViewBinding.constraintLayoutToastContainer
             toastViewBinding.textViewToastMessage.text = "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다."
             duration = Toast.LENGTH_SHORT
-            setGravity(Gravity.BOTTOM, 0, 250)
+            setGravity(Gravity.BOTTOM, 0, 0)
             show()
         }
     }
