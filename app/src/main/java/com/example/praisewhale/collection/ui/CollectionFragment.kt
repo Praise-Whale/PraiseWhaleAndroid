@@ -42,6 +42,7 @@ class CollectionFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         initTabButton()
+        checkPreviousView()
     }
 
     override fun onResume() {
@@ -87,6 +88,13 @@ class CollectionFragment : Fragment() {
     }
 
     private fun initTabButton() {
+        when (viewBinding.viewPager2Card.currentItem) {
+            0 -> activateLeftTabButton()
+            1 -> activateRightTabButton()
+        }
+    }
+
+    private fun checkPreviousView() {
         viewBinding.viewPager2Card.apply {
             when (IS_FROM_PRAISE_RANKING_CARD_VIEW) {
                 true -> {
