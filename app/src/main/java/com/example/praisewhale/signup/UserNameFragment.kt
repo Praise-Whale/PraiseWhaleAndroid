@@ -37,6 +37,7 @@ class UserNameFragment : Fragment() {
 
         setFocus(binding)
         setBackgroundChangeListener(binding)
+        setBackClickListener(binding)
         setErrorObserver(binding)
         setNextClickListener(binding)
         setTextChangedListener(binding)
@@ -54,6 +55,12 @@ class UserNameFragment : Fragment() {
 
     private fun setFocus(binding: FragmentUserNameBinding) {
         binding.etNickname.requestFocus()
+    }
+
+    private fun setBackClickListener(binding: FragmentUserNameBinding) {
+        binding.btnBack.setOnClickListener {
+            (activity as SignUpActivity).finishFragment(this)
+        }
     }
 
     private fun setNextClickListener(binding: FragmentUserNameBinding) {
