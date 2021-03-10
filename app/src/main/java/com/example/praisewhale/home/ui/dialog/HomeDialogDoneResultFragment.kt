@@ -65,7 +65,7 @@ class HomeDialogDoneResultFragment : DialogFragment() {
                 view = toastViewBinding.constraintLayoutToastContainer
                 toastViewBinding.textViewToastMessage.text = "레벨업 되었어요! 고래를 확인해보세요!"
                 duration = Toast.LENGTH_LONG
-                setGravity(Gravity.BOTTOM, 0, 250)
+                setGravity(Gravity.BOTTOM, 0, 0)
                 show()
             }
         }
