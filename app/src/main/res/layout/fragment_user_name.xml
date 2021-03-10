@@ -173,6 +173,7 @@
                     android:layout_marginHorizontal="51dp"
                     android:fontFamily="@font/noto_sans_regular"
                     android:hint="@string/hint_nickname"
+                    android:imeOptions="actionDone"
                     android:importantForAutofill="no"
                     android:includeFontPadding="false"
                     android:inputType="text"
