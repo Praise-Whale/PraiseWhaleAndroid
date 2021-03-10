@@ -1,6 +1,7 @@
 package com.example.praisewhale
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
@@ -14,6 +15,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +26,7 @@ import com.example.praisewhale.util.MyApplication
 import com.example.praisewhale.util.textChangedListener
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import kotlinx.android.synthetic.main.activity_setting.*
+import kotlinx.android.synthetic.main.namechange.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +41,7 @@ class SettingActivity :AppCompatActivity() {
 
     lateinit var mDisplayedValuesHr     : MutableList<String>
     lateinit var mDisplayedValuesMin    : MutableList<String>
-
+    var tvalarmtimetoast=""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -163,9 +166,11 @@ class SettingActivity :AppCompatActivity() {
 
 
         btnok.setOnClickListener {
+
             if ((ny2.value.toString()).length < 2) {
                 if (list[ny.value] == "오전") {
                     tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":0" + ny2.value.toString()
+                    tvalarmtimetoast=list[ny.value]+" "+ny1.value.toString() + ":0" +ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         ny1.value.toString()
@@ -177,10 +182,12 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
+                        list[ny.value]+" "+ny1.value.toString() + ":0" + ny2.value.toString()
                     )
 
                 } else {
+                    tvalarmtimetoast=list[ny.value]+" "+ny1.value.toString() + ":0" +ny2.value.toString()
+
                     val clock_ = ny1.value + 12
                     tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":0" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
@@ -194,11 +201,13 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
+                        list[ny.value]+" "+clock_.toString() + ":0" + ny2.value.toString()
                     )
                 }
             } else {
                 if (list[ny.value] == "오후") {
+                    tvalarmtimetoast=list[ny.value]+" "+ny1.value.toString() + ":" +ny2.value.toString()
+
                     val clock_ = ny1.value + 12
                     tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
@@ -212,10 +221,12 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
+                        list[ny.value]+" "+clock_.toString() + ":" + ny2.value.toString()
                     )
 
                 } else {
+                    tvalarmtimetoast=list[ny.value]+" "+ny1.value.toString() + ":" +ny2.value.toString()
+
                     tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
@@ -228,13 +239,13 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
+                        list[ny.value]+" "+ny1.value.toString() + ":" + ny2.value.toString()
                     )
                 }
             }
             dialog2.dismiss()
             com.example.praisewhale.util.Toast.customToast(
-                "앞으로 " + tv_alarm_time.text + "에 칭찬 알림을 보내드릴게요!",
+                "앞으로 " + tvalarmtimetoast + "에 칭찬 알림을 보내드릴게요!",
                 this
             )
         }
@@ -256,7 +267,12 @@ class SettingActivity :AppCompatActivity() {
             dlg.start()*/
         val dialog = AlertDialog.Builder(this).create()
         val edialog: LayoutInflater = LayoutInflater.from(this)
+
         val mView: View = edialog.inflate(R.layout.namechange, null)
+        //키보드 올라오기
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+
         val close: Button = mView.findViewById(R.id.close_btn)
         close.setOnClickListener {
             dialog.dismiss()
@@ -266,9 +282,18 @@ class SettingActivity :AppCompatActivity() {
         val deletebtn: Button = mView.findViewById(R.id.delete_btn)
 
         val nick_modify_edit: EditText = mView.findViewById(R.id.editnickname)
+        nick_modify_edit.hint=MyApplication.mySharedPreferences.getValue("nickName","")
+        //
+
+
         nick_modify_edit.addTextChangedListener(
             object : TextWatcher {
-                override fun afterTextChanged(s: Editable?) {}
+                override fun afterTextChanged(s: Editable?) {
+                    val textcount: TextView = mView.findViewById(R.id.textcount)
+                    if(nick_modify_edit.text.toString()==""){
+                        textcount.setTextColor(Color.parseColor("#9c9c9c"))
+                    }
+                }
                 override fun beforeTextChanged(
                     s: CharSequence?,
                     start: Int,
@@ -282,10 +307,13 @@ class SettingActivity :AppCompatActivity() {
                     start: Int,
                     before: Int,
                     count: Int
-                ) {
+                ) { val textcount: TextView = mView.findViewById(R.id.textcount)
+                    if(nick_modify_edit.text.toString()==""){
+                        textcount.setTextColor(Color.parseColor("#9c9c9c"))
+                    }
                     nick_modify.isClickable=true
 
-                    val textcount: TextView = mView.findViewById(R.id.textcount)
+
                     textcount.isVisible=true
                     val textcount7:TextView=mView.findViewById(R.id.textcount7)
                     textcount7.isVisible=true
@@ -301,6 +329,7 @@ class SettingActivity :AppCompatActivity() {
                 }
             })
         nick_modify_edit.textChangedListener {
+
             deletebtn.isVisible = nick_modify_edit.text.toString() != ""
             nick_modify.isClickable=true
 
@@ -311,6 +340,8 @@ class SettingActivity :AppCompatActivity() {
             nick_modify_edit.setText("")
             deletebtn.isVisible=false
             nick_modify.isClickable=false
+            val textcount: TextView = mView.findViewById(R.id.textcount)
+            textcount.setTextColor(Color.parseColor("#9c9c9c"))
             nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
 
         }
@@ -355,7 +386,8 @@ class SettingActivity :AppCompatActivity() {
                                 val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
                                 existnickbg.setBackgroundResource(R.drawable.edittext_bg)
                                 Log.d("닉네임변경완료", "닉네임변경완료")
-                                tv_nickname.text=nick_modify_edit.text
+
+                                tv_nickname.text=nick_modify_edit.text.toString()
                                 dialog.dismiss()
                                 dialog.cancel()
                                 com.example.praisewhale.util.Toast.customToast("닉네임이 변경되었어요!", this@SettingActivity)
