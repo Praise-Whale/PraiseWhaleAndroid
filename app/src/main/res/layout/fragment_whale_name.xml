@@ -32,13 +32,13 @@
 
         <TextView
             android:id="@+id/tv_whale_name"
+            nickNameEllipsize="@{signUpViewModel.userName}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:fontFamily="@font/noto_sans_bold"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
-            android:text="@{signUpViewModel.userName}"
             android:textColor="@color/greyish_brown"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/btn_back"
@@ -188,6 +188,7 @@
                     android:background="@drawable/background_edit_text_focused"
                     android:fontFamily="@font/noto_sans_regular"
                     android:hint="@string/hint_whale_name"
+                    android:imeOptions="actionDone"
                     android:importantForAutofill="no"
                     android:includeFontPadding="false"
                     android:inputType="text"

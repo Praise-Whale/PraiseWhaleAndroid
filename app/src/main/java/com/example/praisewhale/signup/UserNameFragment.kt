@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -37,9 +38,11 @@ class UserNameFragment : Fragment() {
 
         setFocus(binding)
         setBackgroundChangeListener(binding)
+        setBackClickListener(binding)
         setErrorObserver(binding)
         setNextClickListener(binding)
         setTextChangedListener(binding)
+        setEditorActionListener(binding)
 
         return binding.root
     }
@@ -54,6 +57,12 @@ class UserNameFragment : Fragment() {
 
     private fun setFocus(binding: FragmentUserNameBinding) {
         binding.etNickname.requestFocus()
+    }
+
+    private fun setBackClickListener(binding: FragmentUserNameBinding) {
+        binding.btnBack.setOnClickListener {
+            (activity as SignUpActivity).finishFragment(this)
+        }
     }
 
     private fun setNextClickListener(binding: FragmentUserNameBinding) {
@@ -90,6 +99,18 @@ class UserNameFragment : Fragment() {
     private fun setTextChangedListener(binding: FragmentUserNameBinding) {
         binding.etNickname.textChangedListener {
             if (!(signUpViewModel.isValid.value!!)) signUpViewModel.validReset()
+        }
+    }
+
+    private fun setEditorActionListener(binding: FragmentUserNameBinding) {
+        binding.etNickname.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                if (!(signUpViewModel.userName.value.isNullOrEmpty())) {
+                    nicknameCheck()
+                }
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
         }
     }
 

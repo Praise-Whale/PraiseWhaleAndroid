@@ -15,6 +15,16 @@ object SignUpBinding {
         btnReset.visibility = if (name.isEmpty()) View.INVISIBLE else View.VISIBLE
     }
 
+    @BindingAdapter("nickNameEllipsize")
+    @JvmStatic
+    fun nickNameEllipsize(tvNickName: TextView, name: String) {
+        if(name.length>5) {
+            tvNickName.text = String.format(tvNickName.context.getString(R.string.nicknameEllipsize), name.substring(0,5))
+        } else {
+            tvNickName.text = name
+        }
+    }
+
     @BindingAdapter("nickNameCount")
     @JvmStatic
     fun nickNameCount(tvCount: TextView, name: String) {

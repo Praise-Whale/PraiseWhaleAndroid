@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -42,6 +43,7 @@ class WhaleNameFragment : Fragment() {
         setFocusListener(binding)
         setBackClickListener(binding)
         setNextClickListener(binding)
+        setEditorActionListener(binding)
         return binding.root
     }
 
@@ -77,6 +79,18 @@ class WhaleNameFragment : Fragment() {
             } else {
                 Vibrate.startVibrate(requireContext())
             }
+        }
+    }
+
+    private fun setEditorActionListener(binding: FragmentWhaleNameBinding) {
+        binding.etWhaleName.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                if (!(signUpViewModel.whaleName.value.isNullOrEmpty())) {
+                    signUp()
+                }
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
         }
     }
 
