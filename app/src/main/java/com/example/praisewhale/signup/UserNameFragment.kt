@@ -93,6 +93,11 @@ class UserNameFragment : Fragment() {
         }
     }
 
+    private fun nicknameError() {
+        signUpViewModel.nameFail()
+        Vibrate.startVibrate(requireContext())
+    }
+
     private fun nicknameCheck() {
         val call: Call<ResponseData> =
             CollectionImpl.service.nicknameCheck(signUpViewModel.userName.value!!)
@@ -110,7 +115,7 @@ class UserNameFragment : Fragment() {
                     ?.body()
                     ?.let {
                         (activity as SignUpActivity).replaceFragment(WhaleNameFragment())
-                    } ?: signUpViewModel.nameFail()
+                    } ?: nicknameError()
             }
         })
     }
