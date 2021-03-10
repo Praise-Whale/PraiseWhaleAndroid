@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <Button
         android:id="@+id/infouser_back"
         android:layout_width="9dp"
         android:layout_height="18dp"
@@ -15,7 +15,7 @@
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/btn_back" />
+        android:background="@drawable/btn_back"/>
 
 
     <ScrollView

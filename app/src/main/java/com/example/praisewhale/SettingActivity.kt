@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -69,13 +70,24 @@ class SettingActivity :AppCompatActivity() {
         }
 
         layout_service.setOnClickListener {
-            val intent= Intent(this, InfoUserActivity::class.java)
+            //val intent= Intent(this, InfoUserActivity::class.java)
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.notion.so/8ced90e384b1417ab6e24ce9c8436ab8")
+            )
+           // startActivity(intent)
+
             startActivity(intent)
         }
 
         layout_personal_information.setOnClickListener {
-            val intent= Intent(this, InfoActivity::class.java)
+            //val intent= Intent(this, InfoActivity::class.java)
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.notion.so/4ae478f551f249d097a6e46cffad6d07")
+            )
             startActivity(intent)
+           // startActivity(intent)
         }
         layout_developer.setOnClickListener {
             val intent= Intent(this, DeveloperActivity::class.java)
@@ -153,7 +165,7 @@ class SettingActivity :AppCompatActivity() {
         btnok.setOnClickListener {
             if ((ny2.value.toString()).length < 2) {
                 if (list[ny.value] == "오전") {
-                    tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":0" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":0" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         ny1.value.toString()
@@ -170,7 +182,7 @@ class SettingActivity :AppCompatActivity() {
 
                 } else {
                     val clock_ = ny1.value + 12
-                    tv_alarm_time.text =list[ny.value]+clock_.toString() + ":0" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":0" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         clock_.toString()
@@ -188,7 +200,7 @@ class SettingActivity :AppCompatActivity() {
             } else {
                 if (list[ny.value] == "오후") {
                     val clock_ = ny1.value + 12
-                    tv_alarm_time.text =list[ny.value]+clock_.toString() + ":" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         clock_.toString()
@@ -204,7 +216,7 @@ class SettingActivity :AppCompatActivity() {
                     )
 
                 } else {
-                    tv_alarm_time.text =list[ny.value]+ny1.value.toString() + ":" + ny2.value.toString()
+                    tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         ny1.value.toString()
@@ -231,7 +243,7 @@ class SettingActivity :AppCompatActivity() {
         // Dialog 크기 설정
         val inset = InsetDrawable(color, 85)
         dialog2.window?.setBackgroundDrawable(inset)
-
+        dialog2.setCancelable(false)
         dialog2.setView(mView2)
         dialog2.show()
 
@@ -271,6 +283,7 @@ class SettingActivity :AppCompatActivity() {
                     before: Int,
                     count: Int
                 ) {
+                    nick_modify.isClickable=true
 
                     val textcount: TextView = mView.findViewById(R.id.textcount)
                     textcount.isVisible=true
@@ -289,6 +302,7 @@ class SettingActivity :AppCompatActivity() {
             })
         nick_modify_edit.textChangedListener {
             deletebtn.isVisible = nick_modify_edit.text.toString() != ""
+            nick_modify.isClickable=true
 
         }
 
@@ -296,6 +310,9 @@ class SettingActivity :AppCompatActivity() {
 
             nick_modify_edit.setText("")
             deletebtn.isVisible=false
+            nick_modify.isClickable=false
+            nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
+
         }
         nick_modify.setOnClickListener {
 
@@ -325,6 +342,8 @@ class SettingActivity :AppCompatActivity() {
                     textcount.isVisible=false
                     val textcount7:TextView=mView.findViewById(R.id.textcount7)
                     textcount7.isVisible=false
+                    nick_modify.isClickable=false
+                    nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
                     response.takeIf { it.isSuccessful }
 
                         ?.body()
@@ -332,7 +351,7 @@ class SettingActivity :AppCompatActivity() {
                             Log.d("status코드", it.status.toString())
 
                             if(it.status == 200) {
-
+                                nick_modify.isClickable=true
                                 val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
                                 existnickbg.setBackgroundResource(R.drawable.edittext_bg)
                                 Log.d("닉네임변경완료", "닉네임변경완료")
@@ -368,7 +387,7 @@ class SettingActivity :AppCompatActivity() {
         dialog.window?.setBackgroundDrawable(inset)
         dialog.setCancelable(false)
         dialog.setView(mView)
-        // dialog.create()
+        dialog.setCancelable(false)
         dialog.show()
     }
 

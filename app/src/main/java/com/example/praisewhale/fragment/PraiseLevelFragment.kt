@@ -9,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import com.example.praisewhale.*
 import com.example.praisewhale.databinding.FragmentPraiseLevelBinding
 import com.example.praisewhale.util.MyApplication
+import com.sopt.cherish.ui.dialog.PraseLevelDialogFragment
 import kotlinx.android.synthetic.main.fragment_praise_level.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -76,6 +78,36 @@ class PraiseLevelFragment : Fragment() {
                         whalename_txt.text = it.data.whaleName.toString()
 
                         textView2.text = it.data.praiseCount.toString() + "번"
+                     /*   PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                            parentFragmentManager,
+                            "MainActivity"
+                        )*/
+
+                        when(it.data.praiseCount){
+                            5-> PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                                parentFragmentManager,
+                                "MainActivity"
+                            )
+                            10->PraseLevelDialogFragment(R.layout.level_popup,2).show(
+                                parentFragmentManager,
+                                "MainActivity"
+                            )
+                            30->PraseLevelDialogFragment(R.layout.level_popup,3).show(
+                                parentFragmentManager,
+                                "MainActivity"
+                            )
+                            50->PraseLevelDialogFragment(R.layout.level_popup,4).show(
+                                parentFragmentManager,
+                                "MainActivity"
+                            )
+                            100->PraseLevelDialogFragment(R.layout.level_popup,5).show(
+                                parentFragmentManager,
+                                "MainActivity"
+                            )
+
+
+
+                        }
                         
 
                         when (it.data.userLevel) {
@@ -118,7 +150,13 @@ class PraiseLevelFragment : Fragment() {
                                 level_whale.setImageResource(R.drawable.lv_5_img_whale)
                                 detail_txt.text = "춤신 춤왕 만렙 고래"
                                 level_num.setImageResource(R.drawable.level5)
-                                textViewPhraseGod.text = it.data.nickName+"님은 이제 칭찬의 신!"+"번"
+                                textViewPhrase.isVisible=false
+                                textViewPhraseGod.isVisible=false
+
+                                textViewPhraseGod5.text = it.data.nickName+"님은 이제"
+                                textViewPhraseGod5.isVisible=true
+                                textViewPhrase5.isVisible=true
+                                    //뒤에
                                 cpb_circlebar.progress=100
                             }
 
