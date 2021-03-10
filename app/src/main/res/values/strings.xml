@@ -50,6 +50,7 @@
     <string name="max_length">/7</string>
     <string name="next">다음</string>
     <string name="start">시작하기</string>
+    <string name="nicknameEllipsize">%s...</string>
 
     <!-- CardFragment -->
     <string name="all_empty_title">아직 칭찬을 하지 않았어요!</string>
