@@ -37,7 +37,7 @@
     <ImageView
         android:id="@+id/underline_title"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_marginTop="4dp"
         android:background="@android:color/transparent"
         android:src="@drawable/yellow_divider_radius_10"

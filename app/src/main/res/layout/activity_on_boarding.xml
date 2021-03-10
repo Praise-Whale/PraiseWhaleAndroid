@@ -21,7 +21,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_on_boarding"
             android:layout_width="0dp"
-            android:layout_height="7dp"
+            android:layout_height="8dp"
             android:layout_marginBottom="33dp"
             app:layout_constraintBottom_toTopOf="@id/btn_on_boarding_next"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,8 +29,8 @@
             app:tabBackground="@drawable/on_boarding_indicator_selector"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp"
-            app:tabPaddingEnd="7dp"
-            app:tabPaddingStart="7dp" />
+            app:tabPaddingEnd="8dp"
+            app:tabPaddingStart="8dp" />
 
         <Button
             android:id="@+id/btn_on_boarding_next"

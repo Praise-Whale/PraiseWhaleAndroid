@@ -18,20 +18,31 @@
         android:background="@color/pale"
         tools:context=".signup.UserNameFragment">
 
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="17dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="59dp"
+            android:layout_marginStart="36dp"
             android:fontFamily="@font/noto_sans_bold"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:text="@string/title"
             android:textColor="@color/greyish_brown"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/btn_back"
+            app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
         <TextView
             android:id="@+id/tv_title2"
@@ -162,6 +173,7 @@
                     android:layout_marginHorizontal="51dp"
                     android:fontFamily="@font/noto_sans_regular"
                     android:hint="@string/hint_nickname"
+                    android:imeOptions="actionDone"
                     android:importantForAutofill="no"
                     android:includeFontPadding="false"
                     android:inputType="text"
