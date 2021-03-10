@@ -16,6 +16,7 @@
         android:fontFamily="@font/noto_sans_regular"
         android:includeFontPadding="false"
         android:text="닉네임변경"
+        android:letterSpacing="-0.05"
         android:textColor="@color/greyish_brown"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,15 +33,29 @@
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <Button
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/close_btn"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="22dp"
-        android:background="@drawable/popup_btn_close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="17dp"
+            android:background="@drawable/popup_btn_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/editTextTextPersonName"
@@ -57,12 +72,12 @@
 
         <EditText
             android:id="@+id/editnickname"
-            android:layout_width="176dp"
+            android:layout_width="wrap_content"
             android:layout_height="19dp"
             android:layout_marginStart="13dp"
             android:background="@null"
             android:fontFamily="@font/noto_sans_regular"
-            android:hint="닉네임을 7자 이내로 입력해 주세요"
+            android:hint=""
             android:includeFontPadding="false"
             android:inputType="textPersonName"
             android:maxLength="7"
@@ -111,7 +126,7 @@
         android:fontFamily="@font/noto_sans_regular"
         android:includeFontPadding="false"
         android:text="/7"
-        android:textColor="@color/brownish_grey"
+        android:textColor="@color/brown_grey"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
@@ -122,7 +137,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_regular"
         android:textSize="13sp"
-        android:textColor="@color/brownish_grey"
+        android:textColor="@color/brown_grey"
         android:includeFontPadding="false"
         android:text="0"
         app:layout_constraintEnd_toStartOf="@+id/textcount7"
