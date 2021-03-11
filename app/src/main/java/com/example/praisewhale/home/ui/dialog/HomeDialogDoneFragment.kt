@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -65,6 +67,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         viewBinding.apply {
             imageButtonClose.setOnClickListener(fragmentClickListener)
             editTextPraiseTo.addTextChangedListener(dialogTextWatcher)
+            editTextPraiseTo.setOnEditorActionListener(editTextActionListener)
             imageButtonDelete.setOnClickListener(fragmentClickListener)
             recyclerViewRecentPraiseTo.addOnScrollListener(dialogDoneScrollListener)
             buttonConfirm.setOnClickListener(fragmentClickListener)
@@ -305,13 +308,23 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _viewBinding = null
+    private val editTextActionListener = TextView.OnEditorActionListener { _, actionId, _ ->
+        when (actionId) {
+            EditorInfo.IME_ACTION_DONE -> {
+                saveServerPraiseData(viewBinding.editTextPraiseTo.text.toString())
+                true
+            }
+            else -> false
+        }
     }
 
     override fun onClickRecentPraiseToItem(recentPraiseTo: String) {
         viewBinding.editTextPraiseTo.setText(recentPraiseTo)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _viewBinding = null
     }
 
 
