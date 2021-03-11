@@ -26,6 +26,8 @@ import com.example.praisewhale.util.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
@@ -199,7 +201,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         val call: Call<ResponseDonePraise> = CollectionImpl.service.postPraiseDone(
             sharedPreferences.getValue("token", ""),
             praiseId,
-            RequestPraiseDone(target)
+            RequestPraiseDone(target, getCurrentDate())
         )
         call.enqueue(object : Callback<ResponseDonePraise> {
             override fun onFailure(call: Call<ResponseDonePraise>, t: Throwable) {
@@ -220,6 +222,13 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
                 }
             }
         })
+    }
+
+    private fun getCurrentDate(): String {
+        val currentDate = Calendar.getInstance().time
+        val pattern = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.KOREAN)
+        Log.d("TAG", "getCurrentDateForServer: ${pattern.format(currentDate)}")
+        return pattern.format(currentDate)
     }
 
     private fun updateHomeFragmentView() {
