@@ -2,11 +2,10 @@ package com.example.praisewhale.home.ui.dialog
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.R
-import com.example.praisewhale.databinding.CustomToastHomeBinding
 import com.example.praisewhale.databinding.DialogHomeResultBinding
+import com.example.praisewhale.util.showToast
 
 
 class HomeDialogDoneResultFragment : DialogFragment() {
@@ -38,6 +37,7 @@ class HomeDialogDoneResultFragment : DialogFragment() {
 
     private fun setDialogContents() {
         viewBinding.apply {
+            imageButtonClose.visibility = View.INVISIBLE
             imageViewWhale.setImageResource(R.drawable.yes_5_img_whale)
             textViewTitle.text = "참 잘했고래!"
             textViewSubTitle.text = "내일도 칭찬해요!"
@@ -59,14 +59,7 @@ class HomeDialogDoneResultFragment : DialogFragment() {
 
     private fun showLevelUpToast(isLevelUp: Boolean) {
         if (isLevelUp) {
-            val toastViewBinding = CustomToastHomeBinding.inflate(layoutInflater)
-            Toast(requireContext()).apply {
-                view = toastViewBinding.constraintLayoutToastContainer
-                toastViewBinding.textViewToastMessage.text = "레벨업 되었어요! 고래를 확인해보세요!"
-                duration = Toast.LENGTH_LONG
-                setGravity(Gravity.BOTTOM, 0, 250)
-                show()
-            }
+            requireContext().showToast("레벨업 되었어요! 고래를 확인해보세요!")
         }
     }
 

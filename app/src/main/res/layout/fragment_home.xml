@@ -23,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="오늘의 칭찬 한 마디"
+        android:text="오늘의 칭찬 한마디"
         app:layout_constraintStart_toStartOf="@+id/textView_userName"
         app:layout_constraintTop_toBottomOf="@+id/textView_userName" />
 
@@ -263,9 +263,8 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="2dp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="3"

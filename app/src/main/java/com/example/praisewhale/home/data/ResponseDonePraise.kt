@@ -9,7 +9,7 @@ data class ResponseDonePraise(
     val data: Data
 ) {
     data class Data(
-        @SerializedName("levelUpCheck")
+        @SerializedName("levelCheck")
         val isLevelUp: Boolean,
         val userLevel: Int
     )

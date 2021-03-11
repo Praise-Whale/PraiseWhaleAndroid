@@ -12,7 +12,6 @@
             android:id="@+id/img_main_whale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="83dp"
             android:src="@drawable/onboarding_4_img_whale"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +49,7 @@
                         android:letterSpacing="-0.05"
                         android:text="@string/title"
                         android:textColor="@color/greyish_brown"
-                        android:textSize="23sp"
+                        android:textSize="23dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,7 +73,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/title9"
                     android:textColor="@color/greyish_brown"
-                    android:textSize="23sp" />
+                    android:textSize="23dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -93,7 +92,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/title10"
                     android:textColor="@color/greyish_brown"
-                    android:textSize="23sp" />
+                    android:textSize="23dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -103,7 +102,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/title11"
                     android:textColor="@color/greyish_brown"
-                    android:textSize="23sp" />
+                    android:textSize="23dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -123,7 +122,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/title12"
                     android:textColor="@color/greyish_brown"
-                    android:textSize="23sp" />
+                    android:textSize="23dp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

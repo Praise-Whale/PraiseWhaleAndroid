@@ -104,7 +104,6 @@
         android:layout_marginTop="7dp"
         android:alpha="0.7"
         android:gravity="center"
-        android:lineSpacingExtra="-2sp"
         android:text="칭찬 미션을 완료하면\n칭찬한 대상에 대한 랭킹이 완성돼요!"
         android:visibility="visible"
         app:layout_constraintLeft_toLeftOf="@id/textView_emptyTitle"
@@ -116,12 +115,11 @@
         android:id="@+id/view_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
         android:background="@drawable/card_box_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

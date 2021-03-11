@@ -2,9 +2,16 @@ package com.example.praisewhale.util
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.content.Context
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.praisewhale.R
+import com.example.praisewhale.databinding.CustomToastBinding
 
 
 fun View.setVisible() {
@@ -45,5 +52,31 @@ fun View.fadeOut() {
                     visibility = View.INVISIBLE
                 }
             })
+    }
+}
+
+fun Context.showKeyboard() {
+    (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(
+        InputMethodManager.SHOW_FORCED,
+        InputMethodManager.HIDE_IMPLICIT_ONLY
+    )
+}
+
+fun Context.hideKeyboard() {
+    (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(
+        InputMethodManager.HIDE_IMPLICIT_ONLY,
+        0
+    )
+}
+
+fun Context.showToast(text: String) {
+    val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    val toastViewBinding = CustomToastBinding.inflate(layoutInflater)
+    Toast(this).apply {
+        view = toastViewBinding.constraintLayoutToastContainer
+        toastViewBinding.textViewToastMessage.text = text
+        duration = Toast.LENGTH_SHORT
+        setGravity(Gravity.BOTTOM, 0, 0)
+        show()
     }
 }

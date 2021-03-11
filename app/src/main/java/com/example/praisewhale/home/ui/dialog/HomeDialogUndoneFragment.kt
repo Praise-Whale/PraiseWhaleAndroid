@@ -38,7 +38,10 @@ class HomeDialogUndoneFragment : DialogFragment() {
     }
 
     private fun setListeners() {
-        viewBinding.buttonConfirm.setOnClickListener(fragmentClickListener)
+        viewBinding.apply {
+            imageButtonClose.setOnClickListener(fragmentClickListener)
+            buttonConfirm.setOnClickListener(fragmentClickListener)
+        }
     }
 
     private fun setDialogContents() {
@@ -52,8 +55,8 @@ class HomeDialogUndoneFragment : DialogFragment() {
             }
             2, 3 -> {
                 viewBinding.apply {
-                    textViewTitle.text = "춤추고 싶고래!"
-                    textViewSubTitle.text = "칭찬으로 저를 춤추게 해주세요!"
+                    textViewTitle.text = "춤 추고 싶고래.."
+                    textViewSubTitle.text = "칭찬으로 저를 춤 추게 해주세요!"
                     imageViewWhale.setImageResource(R.drawable.no_2_img_whale)
                 }
             }
@@ -72,11 +75,16 @@ class HomeDialogUndoneFragment : DialogFragment() {
     }
 
     private val fragmentClickListener = View.OnClickListener {
-        when (it.id) {
-            viewBinding.buttonConfirm.id -> {
-                dialog!!.dismiss()
-                updateHomeFragmentView()
-                updateSharedPreferences()
+        viewBinding.apply {
+            when (it.id) {
+                imageButtonClose.id -> {
+                    dialog!!.dismiss()
+                }
+                buttonConfirm.id -> {
+                    dialog!!.dismiss()
+                    updateHomeFragmentView()
+                    updateSharedPreferences()
+                }
             }
         }
     }

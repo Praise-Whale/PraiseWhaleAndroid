@@ -19,7 +19,7 @@ class PraiseRankingAdapter(
 
     override fun getItemCount(): Int = praiseRankingList.size
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PraiseRankingViewHolder {
-        _viewBinding = ItemPraiseRankingBinding.inflate(LayoutInflater.from(parent.context))
+        _viewBinding = ItemPraiseRankingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PraiseRankingViewHolder(viewBinding)
     }
 

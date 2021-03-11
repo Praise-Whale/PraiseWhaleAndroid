@@ -25,7 +25,11 @@ class PraiseLevelFragment : Fragment() {
     lateinit var binding: FragmentPraiseLevelBinding
     private lateinit var onBackPressedCallback: OnBackPressedCallback
     var praisecount=""
-    var popupcheck=false
+    var popupcheck1=false
+    var popupcheck2=false
+    var popupcheck3=false
+    var popupcheck4=false
+    var popupcheck5=false
     var userlevel=""
     var needcount=""
 
@@ -49,6 +53,11 @@ class PraiseLevelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        popupcheck1=MyApplication.mySharedPreferences.getBooleanValue("popupcheck1",false)
+        popupcheck2=MyApplication.mySharedPreferences.getBooleanValue("popupcheck2",false)
+        popupcheck3=MyApplication.mySharedPreferences.getBooleanValue("popupcheck3",false)
+        popupcheck4=MyApplication.mySharedPreferences.getBooleanValue("popupcheck4",false)
+        popupcheck5=MyApplication.mySharedPreferences.getBooleanValue("popupcheck5",false)
 
         setLevel()
         userlevel=MyApplication.mySharedPreferences.getValue("userlevel",userlevel.toString())
@@ -65,12 +74,14 @@ class PraiseLevelFragment : Fragment() {
                 cpb_circlebar.progress = praisecount.toInt() * 20
             }
             "1" -> {
-                if(!popupcheck){
+                if(!popupcheck1){
                     PraseLevelDialogFragment(R.layout.level_popup,1).show(
                         parentFragmentManager,
                         "MainActivity"
                     )}
-                popupcheck=true
+                popupcheck1=true
+                MyApplication.mySharedPreferences.setBooleanValue("popupcheck1",popupcheck1)
+
                 textView2.text = praisecount.toString() + "번"
 
                 level_whale.setImageResource(R.drawable.lv_1_img_whale)
@@ -79,12 +90,16 @@ class PraiseLevelFragment : Fragment() {
                 textViewPhraseGod.text = needcount.toString()+"번"
                 cpb_circlebar.progress = (praisecount.toInt()-5) * 20
             }
-            "2" -> { if(!popupcheck){
+            "2" -> {
+
+                if(!popupcheck2){
                 PraseLevelDialogFragment(R.layout.level_popup,2).show(
                     parentFragmentManager,
                     "MainActivity"
                 )}
-                popupcheck=true
+                popupcheck2=true
+                MyApplication.mySharedPreferences.setBooleanValue("popupcheck2",popupcheck2)
+
                 textView2.text = praisecount.toString() + "번"
 
                 level_whale.setImageResource(R.drawable.lv_2_img_whale)
@@ -93,11 +108,15 @@ class PraiseLevelFragment : Fragment() {
                 textViewPhraseGod.text = needcount.toString()+"번"
                 cpb_circlebar.progress = (praisecount.toInt()-10) * 5
             }
-            "3" -> {if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,3).show(
+            "3" -> {
+
+                if(!popupcheck3){PraseLevelDialogFragment(R.layout.level_popup,3).show(
                 parentFragmentManager,
                 "MainActivity"
             )}
-                popupcheck=true
+                popupcheck3=true
+                MyApplication.mySharedPreferences.setBooleanValue("popupcheck3",popupcheck3)
+
                 textView2.text = praisecount.toString() + "번"
 
                 level_whale.setImageResource(R.drawable.lv_3_img_whale)
@@ -106,11 +125,15 @@ class PraiseLevelFragment : Fragment() {
                 textViewPhraseGod.text = needcount.toString()+"번"
                 cpb_circlebar.progress = (praisecount.toInt()-30) * 5
             }
-            "4" -> { if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,4).show(
+            "4" -> {
+
+                if(!popupcheck4){PraseLevelDialogFragment(R.layout.level_popup,4).show(
                 parentFragmentManager,
                 "MainActivity"
             )}
-                popupcheck=true
+                popupcheck4=true
+                MyApplication.mySharedPreferences.setBooleanValue("popupcheck4",popupcheck4)
+
                 textView2.text = praisecount.toString() + "번"
 
                 level_whale.setImageResource(R.drawable.lv_4_img_whale)
@@ -119,11 +142,15 @@ class PraiseLevelFragment : Fragment() {
                 textViewPhraseGod.text = needcount.toString()
                 cpb_circlebar.progress = (praisecount.toInt()-50) *2
             }
-            "5" -> {  if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,5).show(
+            "5" -> {
+
+                if(!popupcheck5){PraseLevelDialogFragment(R.layout.level_popup,5).show(
                 parentFragmentManager,
                 "MainActivity"
             )}
-                popupcheck=true
+                popupcheck5=true
+                MyApplication.mySharedPreferences.setBooleanValue("popupcheck5",popupcheck5)
+
                 textView2.text = praisecount.toString() + "번"
 
                 level_whale.setImageResource(R.drawable.lv_5_img_whale)
@@ -140,6 +167,44 @@ class PraiseLevelFragment : Fragment() {
             }
 
         }
+       /* when(praisecount.toInt()){
+            5-> {
+                if(!popupcheck){
+                    PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                        parentFragmentManager,
+                        "MainActivity"
+                    )}
+                popupcheck=true
+            }
+            10->{
+                if(!popupcheck){
+                    PraseLevelDialogFragment(R.layout.level_popup,2).show(
+                        parentFragmentManager,
+                        "MainActivity"
+                    )}
+                popupcheck=true}
+
+            30->{
+                if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,3).show(
+                    parentFragmentManager,
+                    "MainActivity"
+                )}
+                popupcheck=true}
+            50->{
+                if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,4).show(
+                    parentFragmentManager,
+                    "MainActivity"
+                )}
+                popupcheck=true}
+            100->{
+                if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,5).show(
+                    parentFragmentManager,
+                    "MainActivity"
+                )}
+                popupcheck=true}
+
+
+        }*/
         setOnBackPressedCallBack()
     }
 

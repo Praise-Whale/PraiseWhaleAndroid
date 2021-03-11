@@ -18,20 +18,31 @@
         android:background="@color/pale"
         tools:context=".signup.UserNameFragment">
 
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="17dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="59dp"
+            android:layout_marginStart="36dp"
             android:fontFamily="@font/noto_sans_bold"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:text="@string/title"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@id/btn_back"
+            app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
         <TextView
             android:id="@+id/tv_title2"
@@ -42,7 +53,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/title2"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toEndOf="@id/tv_title"
             app:layout_constraintTop_toTopOf="@id/tv_title" />
 
@@ -56,7 +67,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/title3"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
@@ -69,7 +80,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/title4"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="@id/tv_title3"
             app:layout_constraintStart_toEndOf="@id/tv_title3"
             app:layout_constraintTop_toTopOf="@id/tv_title3" />
@@ -95,7 +106,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/title5"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="@id/tv_title4"
             app:layout_constraintStart_toEndOf="@id/tv_title4"
             app:layout_constraintTop_toTopOf="@id/tv_title4" />
@@ -110,7 +121,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/title6"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@id/tv_title3"
             app:layout_constraintTop_toBottomOf="@id/tv_title3" />
 
@@ -162,6 +173,7 @@
                     android:layout_marginHorizontal="51dp"
                     android:fontFamily="@font/noto_sans_regular"
                     android:hint="@string/hint_nickname"
+                    android:imeOptions="actionDone"
                     android:importantForAutofill="no"
                     android:includeFontPadding="false"
                     android:inputType="text"
@@ -170,7 +182,7 @@
                     android:padding="13dp"
                     android:text="@={signUpViewModel.userName}"
                     android:textColor="@color/black"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -199,7 +211,7 @@
                     android:includeFontPadding="false"
                     android:letterSpacing="-0.05"
                     android:textColor="@color/brown"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:visibility="@{signUpViewModel.isValid? View.VISIBLE : View.INVISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_max_length"
                     app:layout_constraintEnd_toStartOf="@id/tv_max_length"
@@ -215,7 +227,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/max_length"
                     android:textColor="@color/brown_grey"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:visibility="@{signUpViewModel.isValid? View.VISIBLE : View.INVISIBLE}"
                     app:layout_constraintEnd_toEndOf="@id/et_nickname"
                     app:layout_constraintTop_toBottomOf="@id/et_nickname" />
@@ -230,7 +242,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/check_warning"
                     android:textColor="@color/dark_peach"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:visibility="@{signUpViewModel.isValid? View.INVISIBLE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_max_length"
                     app:layout_constraintEnd_toEndOf="@id/et_nickname"
@@ -253,7 +265,7 @@
                     android:paddingVertical="14dp"
                     android:text="@string/next"
                     android:textColor="@color/colorBlack"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/et_nickname"
                     app:layout_constraintStart_toStartOf="@id/et_nickname"

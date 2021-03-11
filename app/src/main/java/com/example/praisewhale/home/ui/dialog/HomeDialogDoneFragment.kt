@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -46,14 +48,26 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
-        getServerRecentPraiseTo()
         setDialogBackground()
+        getServerRecentPraiseTo()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requireContext().showKeyboard()
+        viewBinding.editTextPraiseTo.requestFocus()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        requireContext().hideKeyboard()
     }
 
     private fun setListeners() {
         viewBinding.apply {
             imageButtonClose.setOnClickListener(fragmentClickListener)
             editTextPraiseTo.addTextChangedListener(dialogTextWatcher)
+            editTextPraiseTo.setOnEditorActionListener(editTextActionListener)
             imageButtonDelete.setOnClickListener(fragmentClickListener)
             recyclerViewRecentPraiseTo.addOnScrollListener(dialogDoneScrollListener)
             buttonConfirm.setOnClickListener(fragmentClickListener)
@@ -209,6 +223,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     }
 
     private fun updateHomeFragmentView() {
+        sharedPreferences.setValue(COUNT_UNDONE, "0")
         sharedPreferences.setValue(LAST_PRAISE_STATUS, "done")
         (activity as MainActivity).changeFragment(HomeFragment())
     }
@@ -251,6 +266,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         val dialogDoneResult = HomeDialogDoneResultFragment.CustomDialogBuilder()
             .getLevelUpStatus(isLevelUp)
             .create()
+        dialogDoneResult.isCancelable = false
         dialogDoneResult.show(parentFragmentManager, dialogDoneResult.tag)
     }
 
@@ -261,6 +277,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         override fun afterTextChanged(s: Editable?) {
             updateDeleteButtonVisibility(s!!)
             updateEditTextCurrentLength(s)
+            updateConfirmButtonColor(s)
         }
     }
 
@@ -283,13 +300,35 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _viewBinding = null
+    private fun updateConfirmButtonColor(praiseTo: Editable) {
+        viewBinding.buttonConfirm.apply {
+            when (praiseTo.length) {
+                0 -> setContextCompatBackgroundTintList(R.color.very_light_pink)
+                else -> setContextCompatBackgroundTintList(R.color.sand_yellow)
+            }
+        }
+    }
+
+    private val editTextActionListener = TextView.OnEditorActionListener { _, actionId, _ ->
+        when (actionId) {
+            EditorInfo.IME_ACTION_DONE -> {
+                saveServerPraiseData(viewBinding.editTextPraiseTo.text.toString())
+                true
+            }
+            else -> false
+        }
     }
 
     override fun onClickRecentPraiseToItem(recentPraiseTo: String) {
-        viewBinding.editTextPraiseTo.setText(recentPraiseTo)
+        viewBinding.editTextPraiseTo.apply {
+            setText(recentPraiseTo)
+            setSelection(recentPraiseTo.length)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _viewBinding = null
     }
 
 

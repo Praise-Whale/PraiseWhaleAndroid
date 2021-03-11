@@ -13,7 +13,6 @@
             android:layout_width="28dp"
             android:layout_height="2dp"
             android:layout_marginStart="42dp"
-            android:layout_marginTop="83dp"
             android:background="@android:color/transparent"
             android:src="@drawable/yellow_divider_radius_10"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +41,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/on_boarding12"
                     android:textColor="@color/greyish_brown"
-                    android:textSize="26sp" />
+                    android:textSize="26dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -52,7 +51,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/on_boarding13"
                     android:textColor="@color/greyish_brown"
-                    android:textSize="26sp" />
+                    android:textSize="26dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -69,7 +68,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/on_boarding14"
                     android:textColor="@color/greyish_brown"
-                    android:textSize="26sp" />
+                    android:textSize="26dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -79,7 +78,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/on_boarding15"
                     android:textColor="@color/greyish_brown"
-                    android:textSize="26sp" />
+                    android:textSize="26dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -93,7 +92,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/on_boarding16"
             android:textColor="@color/greyish_brown"
-            android:textSize="16sp"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="@id/layout_third_title"
             app:layout_constraintTop_toBottomOf="@id/layout_third_title" />
 
@@ -107,7 +106,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/on_boarding17"
             android:textColor="@color/brown_grey"
-            android:textSize="13sp"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="@id/tv_content_check_ranking"
             app:layout_constraintTop_toBottomOf="@id/tv_content_check_ranking" />
 
