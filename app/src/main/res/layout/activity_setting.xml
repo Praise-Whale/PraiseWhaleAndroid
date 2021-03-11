@@ -49,10 +49,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_change_nickname"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="42dp"
-        android:paddingVertical="8dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/underline_change_nickname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_setting_title"
         app:layout_constraintTop_toBottomOf="@id/underline_title">
@@ -61,12 +62,14 @@
             android:id="@+id/tv_change_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:text="@string/setting_nickname_change"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_nickname"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,15 +77,15 @@
             android:id="@+id/tv_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:text="나영"
             android:textColor="@color/brown"
-            android:textSize="15sp"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_change_nickname" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_change_nickname" />
 
         <ImageButton
             android:id="@+id/btn_change_nickname"
@@ -104,7 +107,9 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/very_light_pink"
+        app:layout_constraintBottom_toTopOf="@+id/layout_alarm"
         app:layout_constraintEnd_toEndOf="@id/layout_change_nickname"
         app:layout_constraintStart_toStartOf="@id/layout_change_nickname"
         app:layout_constraintTop_toBottomOf="@id/layout_change_nickname" />
@@ -112,23 +117,27 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_alarm"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="5dp"
-        android:paddingVertical="8dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/underline_push_alarm"
         app:layout_constraintEnd_toEndOf="@id/layout_change_nickname"
         app:layout_constraintStart_toStartOf="@id/layout_change_nickname"
         app:layout_constraintTop_toBottomOf="@id/underline_change_nickname">
+
 
         <TextView
             android:id="@+id/tv_push_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
-            android:text="@string/setting_push_alarm"
+            android:text="푸시알림"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_alarm_time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,12 +148,12 @@
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
-            android:text="오전 9:00 (기본)"
+            android:text="오전 9:00 "
             android:textColor="@color/brown"
             android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_push_alarm" />
-
+            app:layout_constraintTop_toBottomOf="@+id/tv_push_alarm" />
         <ImageView
             android:id="@+id/btn_alarm_time"
             android:layout_width="wrap_content"
@@ -174,7 +183,9 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/very_light_pink"
+        app:layout_constraintBottom_toTopOf="@+id/layout_ask"
         app:layout_constraintEnd_toEndOf="@id/layout_alarm"
         app:layout_constraintStart_toStartOf="@id/layout_alarm"
         app:layout_constraintTop_toBottomOf="@id/layout_alarm" />
@@ -182,17 +193,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_ask"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/underline_ask"
         app:layout_constraintEnd_toEndOf="@id/layout_change_nickname"
         app:layout_constraintStart_toStartOf="@id/layout_change_nickname"
-        app:layout_constraintTop_toBottomOf="@id/underline_push_alarm">
+        app:layout_constraintTop_toBottomOf="@+id/underline_push_alarm">
 
         <TextView
             android:id="@+id/tv_ask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="19dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
@@ -223,7 +238,9 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/very_light_pink"
+        app:layout_constraintBottom_toTopOf="@+id/layout_personal_information"
         app:layout_constraintEnd_toEndOf="@id/layout_ask"
         app:layout_constraintStart_toStartOf="@id/layout_ask"
         app:layout_constraintTop_toBottomOf="@id/layout_ask" />
@@ -231,8 +248,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_personal_information"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/underline_personal_information"
         app:layout_constraintEnd_toEndOf="@+id/layout_change_nickname"
         app:layout_constraintStart_toStartOf="@+id/layout_change_nickname"
         app:layout_constraintTop_toBottomOf="@id/underline_ask">
@@ -272,7 +291,9 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/very_light_pink"
+        app:layout_constraintBottom_toTopOf="@+id/layout_service"
         app:layout_constraintEnd_toEndOf="@id/layout_personal_information"
         app:layout_constraintStart_toStartOf="@id/layout_personal_information"
         app:layout_constraintTop_toBottomOf="@id/layout_personal_information" />
@@ -280,8 +301,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_service"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/underline_service"
         app:layout_constraintEnd_toEndOf="@+id/layout_change_nickname"
         app:layout_constraintStart_toStartOf="@+id/layout_change_nickname"
         app:layout_constraintTop_toBottomOf="@id/underline_personal_information">
@@ -321,7 +344,9 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/very_light_pink"
+        app:layout_constraintBottom_toTopOf="@+id/layout_developer"
         app:layout_constraintEnd_toEndOf="@id/layout_service"
         app:layout_constraintStart_toStartOf="@id/layout_service"
         app:layout_constraintTop_toBottomOf="@id/layout_service" />
@@ -329,8 +354,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_developer"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/underline_developer"
         app:layout_constraintEnd_toEndOf="@+id/layout_change_nickname"
         app:layout_constraintStart_toStartOf="@+id/layout_change_nickname"
         app:layout_constraintTop_toBottomOf="@id/underline_service">
@@ -365,21 +392,25 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/underline_developer"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/very_light_pink"
-            app:layout_constraintEnd_toEndOf="@id/layout_developer"
-            app:layout_constraintStart_toStartOf="@id/layout_developer"
-            app:layout_constraintTop_toBottomOf="@id/layout_developer" />
+    <View
+        android:id="@+id/underline_developer"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/very_light_pink"
+        app:layout_constraintBottom_toTopOf="@+id/layout_open_source"
+        app:layout_constraintEnd_toEndOf="@id/layout_developer"
+        app:layout_constraintStart_toStartOf="@id/layout_developer"
+        app:layout_constraintTop_toBottomOf="@id/layout_developer" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_open_source"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/layout_developer"
         app:layout_constraintStart_toStartOf="@id/layout_developer"
         app:layout_constraintTop_toBottomOf="@id/underline_developer">
@@ -389,6 +420,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="19dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"

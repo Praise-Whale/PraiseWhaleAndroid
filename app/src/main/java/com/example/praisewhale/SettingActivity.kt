@@ -136,7 +136,7 @@ class SettingActivity :AppCompatActivity() {
         super.onResume()
         tv_nickname.text=MyApplication.mySharedPreferences.getValue("nickName", "")
 
-        tv_alarm_time.text=MyApplication.mySharedPreferences.getValue("alarm_time","오전 9:00 (기본)")
+        tv_alarm_time.text=MyApplication.mySharedPreferences.getValue("alarm_time","오전 9:00 ")
         switch_alarm.isChecked=MyApplication.mySharedPreferences.getBooleanValue("alarm_onoff",true)
     }
 
@@ -203,8 +203,9 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+ny1.value.toString() + ":0" + ny2.value.toString()
+                        list[ny.value]+" "+ny1.value.toString() + ":0" +ny2.value.toString()
                     )
+
 
                 } else {
                     tvalarmtimetoast=list[ny.value]+" "+ny1.value.toString() + ":0" +ny2.value.toString()
@@ -223,7 +224,7 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+clock_.toString() + ":0" + ny2.value.toString()
+                        list[ny.value]+" "+ny1.value.toString() + ":0" +ny2.value.toString()
                     )
                 }
             } else {
@@ -244,7 +245,7 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+clock_.toString() + ":" + ny2.value.toString()
+                        list[ny.value]+" "+ny1.value.toString() + ":" +ny2.value.toString()
                     )
 
                 } else {
@@ -262,7 +263,7 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+ny1.value.toString() + ":" + ny2.value.toString()
+                        list[ny.value]+" "+ny1.value.toString() + ":" +ny2.value.toString()
                     )
                 }
             }
@@ -296,7 +297,7 @@ class SettingActivity :AppCompatActivity() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 
-        val close: ConstraintLayout = mView.findViewById(R.id.close_btn)
+        val close: ConstraintLayout = mView.findViewById(R.id.close_btn_nick)
         close.setOnClickListener {
             dialog.dismiss()
             dialog.cancel()
@@ -315,6 +316,9 @@ class SettingActivity :AppCompatActivity() {
                     val textcount: TextView = mView.findViewById(R.id.textcount)
                     if(nick_modify_edit.text.toString()==""){
                         textcount.setTextColor(Color.parseColor("#9c9c9c"))
+                        val changebtn: Button=mView.findViewById(R.id.change_btn)
+                        changebtn.setBackgroundResource(R.drawable.popup_btn_bg_init)
+
                     }
                 }
                 override fun beforeTextChanged(
@@ -333,6 +337,7 @@ class SettingActivity :AppCompatActivity() {
                 ) { val textcount: TextView = mView.findViewById(R.id.textcount)
                     if(nick_modify_edit.text.toString()==""){
                         textcount.setTextColor(Color.parseColor("#9c9c9c"))
+
                     }
                     nick_modify.isClickable=true
 
@@ -386,19 +391,22 @@ class SettingActivity :AppCompatActivity() {
                     call: Call<ResponseNickChange>,
                     response: Response<ResponseNickChange>
                 ) {
-                    Log.d("status코드2", response.body()?.status.toString())
-                    Log.d("닉네임 중복", "닉네임 중복")
-                    Vibrate.startVibrate(context = this@SettingActivity)
-                    val existnick:TextView=mView.findViewById(R.id.existingnick)
-                    existnick.isVisible=true
-                    val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
-                    existnickbg.setBackgroundResource(R.drawable.edittext_bg_exist)
-                    val textcount:TextView=mView.findViewById(R.id.textcount)
-                    textcount.isVisible=false
-                    val textcount7:TextView=mView.findViewById(R.id.textcount7)
-                    textcount7.isVisible=false
-                    nick_modify.isClickable=false
-                    nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
+
+                    if(!response.isSuccessful){
+                        Log.d("status코드2", response.body()?.status.toString())
+                        Log.d("닉네임 중복", "닉네임 중복")
+                        Vibrate.startVibrate(context = this@SettingActivity)
+                        val existnick:TextView=mView.findViewById(R.id.existingnick)
+                        existnick.isVisible=true
+                        val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                        existnickbg.setBackgroundResource(R.drawable.edittext_bg_exist)
+                        val textcount:TextView=mView.findViewById(R.id.textcount)
+                        textcount.isVisible=false
+                        val textcount7:TextView=mView.findViewById(R.id.textcount7)
+                        textcount7.isVisible=false
+                        nick_modify.isClickable=false
+                        nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
+                    }
                     response.takeIf { it.isSuccessful }
 
                         ?.body()
