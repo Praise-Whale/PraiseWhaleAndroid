@@ -319,7 +319,10 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     }
 
     override fun onClickRecentPraiseToItem(recentPraiseTo: String) {
-        viewBinding.editTextPraiseTo.setText(recentPraiseTo)
+        viewBinding.editTextPraiseTo.apply {
+            setText(recentPraiseTo)
+            setSelection(recentPraiseTo.length)
+        }
     }
 
     override fun onDestroyView() {
