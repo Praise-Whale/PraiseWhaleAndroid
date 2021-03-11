@@ -10,31 +10,21 @@
 
     <TextView
         android:id="@+id/tv_card_title_name"
+        style="@style/noto_sans_regular_16dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="62dp"
-        android:fontFamily="@font/noto_sans_medium"
-        android:includeFontPadding="false"
-        android:letterSpacing="-0.05"
         android:text="닉네임님의"
-        android:textColor="@color/greyish_brown"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_card_title"
+        style="@style/noto_sans_bold_22dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/noto_sans_bold"
-        android:gravity="bottom"
-        android:includeFontPadding="false"
-        android:letterSpacing="-0.05"
         android:text="칭찬 카드"
-        android:textColor="@color/greyish_brown"
-        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="@id/tv_card_title_name"
         app:layout_constraintStart_toStartOf="@id/tv_card_title_name"
         app:layout_constraintTop_toBottomOf="@id/tv_card_title_name" />
@@ -75,14 +65,10 @@
 
     <TextView
         android:id="@+id/tv_tab_left"
+        style="@style/noto_sans_regular_15dp_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:letterSpacing="-0.05"
         android:text="카드서랍"
-        android:textColor="@color/black"
-        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/tab_left"
         app:layout_constraintLeft_toLeftOf="@id/tab_left"
         app:layout_constraintRight_toRightOf="@id/tab_left"
@@ -102,14 +88,10 @@
 
     <TextView
         android:id="@+id/tv_tab_right"
+        style="@style/noto_sans_regular_15dp_brown_grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:letterSpacing="-0.05"
         android:text="칭찬랭킹"
-        android:textColor="@color/brown_grey"
-        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/tab_right"
         app:layout_constraintLeft_toLeftOf="@id/tab_right"
         app:layout_constraintRight_toRightOf="@id/tab_right"
