@@ -223,6 +223,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     }
 
     private fun updateHomeFragmentView() {
+        sharedPreferences.setValue(COUNT_UNDONE, "0")
         sharedPreferences.setValue(LAST_PRAISE_STATUS, "done")
         (activity as MainActivity).changeFragment(HomeFragment())
     }
