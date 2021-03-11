@@ -24,7 +24,14 @@ class PraiseLevelFragment : Fragment() {
 
     lateinit var binding: FragmentPraiseLevelBinding
     private lateinit var onBackPressedCallback: OnBackPressedCallback
-
+    var praisecount=""
+    var popupcheck1=false
+    var popupcheck2=false
+    var popupcheck3=false
+    var popupcheck4=false
+    var popupcheck5=false
+    var userlevel=""
+    var needcount=""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +53,158 @@ class PraiseLevelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        popupcheck1=MyApplication.mySharedPreferences.getBooleanValue("popupcheck1",false)
+        popupcheck2=MyApplication.mySharedPreferences.getBooleanValue("popupcheck2",false)
+        popupcheck3=MyApplication.mySharedPreferences.getBooleanValue("popupcheck3",false)
+        popupcheck4=MyApplication.mySharedPreferences.getBooleanValue("popupcheck4",false)
+        popupcheck5=MyApplication.mySharedPreferences.getBooleanValue("popupcheck5",false)
+
+        setLevel()
+        userlevel=MyApplication.mySharedPreferences.getValue("userlevel",userlevel.toString())
+        praisecount=MyApplication.mySharedPreferences.getValue("praisecount",praisecount.toString())
+        needcount=MyApplication.mySharedPreferences.getValue("needcount",needcount.toString())
+
+        when (userlevel) {
+            "0" -> {
+                textView2.text = praisecount.toString() + "번"
+                level_whale.setImageResource(R.drawable.lv_0_img_whale)
+                detail_txt.text = "아직은 칭찬이 어색한 고래"
+                level_num.setImageResource(R.drawable.level0)
+                textViewPhraseGod.text = needcount.toString()+"번"
+                cpb_circlebar.progress = praisecount.toInt() * 20
+            }
+            "1" -> {
+                if(!popupcheck1){
+                    PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                        parentFragmentManager,
+                        "MainActivity"
+                    )}
+                popupcheck1=true
+                MyApplication.mySharedPreferences.setBooleanValue("popupcheck1",popupcheck1)
+
+                textView2.text = praisecount.toString() + "번"
+
+                level_whale.setImageResource(R.drawable.lv_1_img_whale)
+                detail_txt.text = "칭찬에 흥미가 생긴 고래"
+                level_num.setImageResource(R.drawable.level1)
+                textViewPhraseGod.text = needcount.toString()+"번"
+                cpb_circlebar.progress = (praisecount.toInt()-5) * 20
+            }
+            "2" -> {
+
+                if(!popupcheck2){
+                PraseLevelDialogFragment(R.layout.level_popup,2).show(
+                    parentFragmentManager,
+                    "MainActivity"
+                )}
+                popupcheck2=true
+                MyApplication.mySharedPreferences.setBooleanValue("popupcheck2",popupcheck2)
+
+                textView2.text = praisecount.toString() + "번"
+
+                level_whale.setImageResource(R.drawable.lv_2_img_whale)
+                detail_txt.text = "칭찬에 익숙해진 고래"
+                level_num.setImageResource(R.drawable.level2)
+                textViewPhraseGod.text = needcount.toString()+"번"
+                cpb_circlebar.progress = (praisecount.toInt()-10) * 5
+            }
+            "3" -> {
+
+                if(!popupcheck3){PraseLevelDialogFragment(R.layout.level_popup,3).show(
+                parentFragmentManager,
+                "MainActivity"
+            )}
+                popupcheck3=true
+                MyApplication.mySharedPreferences.setBooleanValue("popupcheck3",popupcheck3)
+
+                textView2.text = praisecount.toString() + "번"
+
+                level_whale.setImageResource(R.drawable.lv_3_img_whale)
+                detail_txt.text = "슬슬 리듬타기 시작한 고래"
+                level_num.setImageResource(R.drawable.level3)
+                textViewPhraseGod.text = needcount.toString()+"번"
+                cpb_circlebar.progress = (praisecount.toInt()-30) * 5
+            }
+            "4" -> {
+
+                if(!popupcheck4){PraseLevelDialogFragment(R.layout.level_popup,4).show(
+                parentFragmentManager,
+                "MainActivity"
+            )}
+                popupcheck4=true
+                MyApplication.mySharedPreferences.setBooleanValue("popupcheck4",popupcheck4)
+
+                textView2.text = praisecount.toString() + "번"
+
+                level_whale.setImageResource(R.drawable.lv_4_img_whale)
+                detail_txt.text = "신나게 춤추는 고래"
+                level_num.setImageResource(R.drawable.level4)
+                textViewPhraseGod.text = needcount.toString()
+                cpb_circlebar.progress = (praisecount.toInt()-50) *2
+            }
+            "5" -> {
+
+                if(!popupcheck5){PraseLevelDialogFragment(R.layout.level_popup,5).show(
+                parentFragmentManager,
+                "MainActivity"
+            )}
+                popupcheck5=true
+                MyApplication.mySharedPreferences.setBooleanValue("popupcheck5",popupcheck5)
+
+                textView2.text = praisecount.toString() + "번"
+
+                level_whale.setImageResource(R.drawable.lv_5_img_whale)
+                detail_txt.text = "춤신 춤왕 만렙 고래"
+                level_num.setImageResource(R.drawable.level5)
+                textViewPhrase.isVisible=false
+                textViewPhraseGod.isVisible=false
+
+                textViewPhraseGod5.text = MyApplication.mySharedPreferences.getValue("nickName","")+"님은 이제"
+                textViewPhraseGod5.isVisible=true
+                textViewPhrase5.isVisible=true
+                //뒤에
+                cpb_circlebar.progress=100
+            }
+
+        }
+       /* when(praisecount.toInt()){
+            5-> {
+                if(!popupcheck){
+                    PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                        parentFragmentManager,
+                        "MainActivity"
+                    )}
+                popupcheck=true
+            }
+            10->{
+                if(!popupcheck){
+                    PraseLevelDialogFragment(R.layout.level_popup,2).show(
+                        parentFragmentManager,
+                        "MainActivity"
+                    )}
+                popupcheck=true}
+
+            30->{
+                if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,3).show(
+                    parentFragmentManager,
+                    "MainActivity"
+                )}
+                popupcheck=true}
+            50->{
+                if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,4).show(
+                    parentFragmentManager,
+                    "MainActivity"
+                )}
+                popupcheck=true}
+            100->{
+                if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,5).show(
+                    parentFragmentManager,
+                    "MainActivity"
+                )}
+                popupcheck=true}
+
+
+        }*/
         setOnBackPressedCallBack()
     }
 
@@ -55,6 +214,12 @@ class PraiseLevelFragment : Fragment() {
             onBackPressedCallback.isEnabled = true
         }
 
+
+    }
+
+    fun setLevel(){
+        level_txt.text=MyApplication.mySharedPreferences.getValue("nickName","")+ "님의"
+        whalename_txt.text=MyApplication.mySharedPreferences.getValue("whaleName","")
         val token = MyApplication.mySharedPreferences.getValue("token", "")
         val call: Call<ResponselevelData> = CollectionImpl.service.getlevelcount(token)
         call.enqueue(object : Callback<ResponselevelData> {
@@ -74,93 +239,63 @@ class PraiseLevelFragment : Fragment() {
 
                             it ->
 
-                        level_txt.text = it.data.nickName.toString() + "님의"
-                        whalename_txt.text = it.data.whaleName.toString()
+                      /*  level_txt.text = it.data.nickName.toString() + "님의"
+                        whalename_txt.text = it.data.whaleName.toString()*/
+                        userlevel=it.data.userLevel.toString()
+                        MyApplication.mySharedPreferences.setValue("userlevel",it.data.userLevel.toString())
+                        praisecount=it.data.praiseCount.toString()
+                        MyApplication.mySharedPreferences.setValue("praisecount",it.data.praiseCount.toString())
+                        needcount=it.data.levelUpNeedCount.toString()
+                        MyApplication.mySharedPreferences.setValue("needcount",it.data.levelUpNeedCount.toString())
 
-                        textView2.text = it.data.praiseCount.toString() + "번"
-                     /*   PraseLevelDialogFragment(R.layout.level_popup,1).show(
-                            parentFragmentManager,
-                            "MainActivity"
-                        )*/
+                        //textView2.text = it.data.praiseCount.toString() + "번"
+                        /*   PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                               parentFragmentManager,
+                               "MainActivity"
+                           )*/
 
-                        when(it.data.praiseCount){
-                            5-> PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                    /*    when(it.data.praiseCount){
+                            5-> {
+                                if(!popupcheck){
+                                PraseLevelDialogFragment(R.layout.level_popup,1).show(
                                 parentFragmentManager,
                                 "MainActivity"
-                            )
-                            10->PraseLevelDialogFragment(R.layout.level_popup,2).show(
+                            )}
+                            popupcheck=true
+                            }
+                            10->{
+                                if(!popupcheck){
+                                PraseLevelDialogFragment(R.layout.level_popup,2).show(
                                 parentFragmentManager,
                                 "MainActivity"
-                            )
-                            30->PraseLevelDialogFragment(R.layout.level_popup,3).show(
+                            )}
+                                popupcheck=true}
+
+                            30->{
+                                if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,3).show(
                                 parentFragmentManager,
                                 "MainActivity"
-                            )
-                            50->PraseLevelDialogFragment(R.layout.level_popup,4).show(
+                            )}
+                        popupcheck=true}
+                            50->{
+                                if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,4).show(
                                 parentFragmentManager,
                                 "MainActivity"
-                            )
-                            100->PraseLevelDialogFragment(R.layout.level_popup,5).show(
+                                )}
+                                popupcheck=true}
+                            100->{
+                                if(!popupcheck){PraseLevelDialogFragment(R.layout.level_popup,5).show(
                                 parentFragmentManager,
                                 "MainActivity"
-                            )
+                                        )}
+                                popupcheck=true}
 
 
 
                         }
-                        
+*/
 
-                        when (it.data.userLevel) {
-                            0 -> {
-                                level_whale.setImageResource(R.drawable.lv_0_img_whale)
-                                detail_txt.text = "아직은 칭찬이 어색한 고래"
-                                level_num.setImageResource(R.drawable.level0)
-                                textViewPhraseGod.text = it.data.levelUpNeedCount.toString()+"번"
-                                cpb_circlebar.progress = it.data.praiseCount * 20
-                            }
-                            1 -> {
-                                level_whale.setImageResource(R.drawable.lv_1_img_whale)
-                                detail_txt.text = "칭찬에 흥미가 생긴 고래"
-                                level_num.setImageResource(R.drawable.level1)
-                                textViewPhraseGod.text = it.data.levelUpNeedCount.toString()+"번"
-                                cpb_circlebar.progress = (it.data.praiseCount-5) * 20
-                            }
-                            2 -> {
-                                level_whale.setImageResource(R.drawable.lv_2_img_whale)
-                                detail_txt.text = "칭찬에 익숙해진 고래"
-                                level_num.setImageResource(R.drawable.level2)
-                                textViewPhraseGod.text = it.data.levelUpNeedCount.toString()+"번"
-                                cpb_circlebar.progress = (it.data.praiseCount-10) * 5
-                            }
-                            3 -> {
-                                level_whale.setImageResource(R.drawable.lv_3_img_whale)
-                                detail_txt.text = "슬슬 리듬타기 시작한 고래"
-                                level_num.setImageResource(R.drawable.level3)
-                                textViewPhraseGod.text = it.data.levelUpNeedCount.toString()+"번"
-                                cpb_circlebar.progress = (it.data.praiseCount-30) * 5
-                            }
-                            4 -> {
-                                level_whale.setImageResource(R.drawable.lv_4_img_whale)
-                                detail_txt.text = "신나게 춤추는 고래"
-                                level_num.setImageResource(R.drawable.level4)
-                                textViewPhraseGod.text = it.data.levelUpNeedCount.toString()
-                                cpb_circlebar.progress = (it.data.praiseCount-50) *2
-                            }
-                            5 -> {
-                                level_whale.setImageResource(R.drawable.lv_5_img_whale)
-                                detail_txt.text = "춤신 춤왕 만렙 고래"
-                                level_num.setImageResource(R.drawable.level5)
-                                textViewPhrase.isVisible=false
-                                textViewPhraseGod.isVisible=false
 
-                                textViewPhraseGod5.text = it.data.nickName+"님은 이제"
-                                textViewPhraseGod5.isVisible=true
-                                textViewPhrase5.isVisible=true
-                                    //뒤에
-                                cpb_circlebar.progress=100
-                            }
-
-                        }
 
                     }
             }
