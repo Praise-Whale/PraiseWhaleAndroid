@@ -37,7 +37,7 @@
                 android:letterSpacing="-0.05"
                 android:text="@string/on_boarding1"
                 android:textColor="@color/greyish_brown"
-                android:textSize="26sp" />
+                android:textSize="26dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/on_boarding2"
                     android:textColor="@color/greyish_brown"
-                    android:textSize="26sp" />
+                    android:textSize="26dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
                     android:letterSpacing="-0.05"
                     android:text="@string/on_boarding3"
                     android:textColor="@color/greyish_brown"
-                    android:textSize="26sp" />
+                    android:textSize="26dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -77,7 +77,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/on_boarding4"
             android:textColor="@color/greyish_brown"
-            android:textSize="16sp"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="@id/layout_first_title"
             app:layout_constraintTop_toBottomOf="@id/layout_first_title" />
 
@@ -91,7 +91,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/on_boarding5"
             android:textColor="@color/brown_grey"
-            android:textSize="13sp"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="@id/tv_different_praise"
             app:layout_constraintTop_toBottomOf="@id/tv_different_praise" />
 

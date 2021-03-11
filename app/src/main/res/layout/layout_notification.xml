@@ -30,7 +30,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/title"
             android:textColor="@color/dodger_blue"
-            android:textSize="13sp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/tv_alarm_time"
@@ -42,7 +42,7 @@
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:textColor="@color/brown_grey"
-            android:textSize="13sp" />
+            android:textSize="13dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,7 +66,7 @@
                 android:letterSpacing="-0.05"
                 android:text="@string/alarm_title"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/tv_content"
@@ -78,7 +78,7 @@
                 android:letterSpacing="-0.05"
                 android:text="@string/alarm_content"
                 android:textColor="@color/greyish_brown"
-                android:textSize="13sp" />
+                android:textSize="13dp" />
         </LinearLayout>
 
         <ImageView
