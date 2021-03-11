@@ -227,7 +227,6 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     private fun getCurrentDate(): String {
         val currentDate = Calendar.getInstance().time
         val pattern = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.KOREAN)
-        Log.d("TAG", "getCurrentDateForServer: ${pattern.format(currentDate)}")
         return pattern.format(currentDate)
     }
 
