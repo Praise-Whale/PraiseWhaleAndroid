@@ -55,8 +55,8 @@ class HomeDialogUndoneFragment : DialogFragment() {
             }
             2, 3 -> {
                 viewBinding.apply {
-                    textViewTitle.text = "춤추고 싶고래!"
-                    textViewSubTitle.text = "칭찬으로 저를 춤추게 해주세요!"
+                    textViewTitle.text = "춤 추고 싶고래.."
+                    textViewSubTitle.text = "칭찬으로 저를 춤 추게 해주세요!"
                     imageViewWhale.setImageResource(R.drawable.no_2_img_whale)
                 }
             }
