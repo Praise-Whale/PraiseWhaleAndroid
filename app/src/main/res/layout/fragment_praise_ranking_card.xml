@@ -24,31 +24,21 @@
 
     <TextView
         android:id="@+id/textView_userName"
+        style="@style/noto_sans_regular_16dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="62dp"
-        android:fontFamily="@font/noto_sans_medium"
-        android:includeFontPadding="false"
-        android:letterSpacing="-0.05"
         android:text="닉네임님의"
-        android:textColor="@color/greyish_brown"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_title"
+        style="@style/noto_sans_bold_22dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/noto_sans_bold"
-        android:gravity="bottom"
-        android:includeFontPadding="false"
-        android:letterSpacing="-0.05"
         android:text="칭찬 카드"
-        android:textColor="@color/greyish_brown"
-        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="@id/textView_userName"
         app:layout_constraintStart_toStartOf="@id/textView_userName"
         app:layout_constraintTop_toBottomOf="@id/textView_userName" />
