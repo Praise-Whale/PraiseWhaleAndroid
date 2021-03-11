@@ -148,14 +148,14 @@ class HomeFragment : Fragment() {
                     buttonPraiseStatus.setContextCompatBackgroundTintList(R.color.dodger_blue_13)
                     textViewPraiseStatus.setContextCompatTextColor(R.color.dodger_blue)
                     textViewPraiseStatus.text = "완료"
-                    textViewPraiseDescription.text = "완료한 칭찬은 카드서랍에서\n" + "확인할 수 있어요!"
+                    textViewPraiseDescription.text = "완료한 칭찬은 카드서랍\n" + "에서 확인할 수 있어요!"
                 }
                 "undone" -> {
                     imageViewDolphin.setImageResource(R.drawable.main_img_whale_fail)
                     buttonPraiseStatus.setContextCompatBackgroundTintList(R.color.very_light_pink)
                     textViewPraiseStatus.setContextCompatTextColor(R.color.black)
                     textViewPraiseStatus.text = "미완료"
-                    textViewPraiseDescription.text = "내일은 꼭 칭찬해서\n" + "고래를 춤추게 해요!"
+                    textViewPraiseDescription.text = "내일은 꼭 칭찬해서\n" + "고래를 춤 추게 해요!"
                 }
             }
         }
