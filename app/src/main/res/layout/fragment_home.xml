@@ -22,7 +22,6 @@
         style="@style/noto_sans_bold_22dp_greyish_brown"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="오늘의 칭찬 한마디"
         app:layout_constraintStart_toStartOf="@+id/textView_userName"
         app:layout_constraintTop_toBottomOf="@+id/textView_userName" />
