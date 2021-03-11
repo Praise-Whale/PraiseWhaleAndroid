@@ -1,6 +1,7 @@
 package com.example.praisewhale.signup
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.praisewhale.InfoActivity
-import com.example.praisewhale.InfoUserActivity
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.FragmentAgreeBinding
 import com.example.praisewhale.util.Vibrate
@@ -28,20 +27,28 @@ class AgreeFragment : Fragment() {
         binding.lifecycleOwner = this@AgreeFragment
 
         setNextButtonClick(binding)
-        startInfoActivity(binding)
-        startInfoUserActivity(binding)
+        startPersonalInformationAgree(binding)
+        startServiceAgreeIntent(binding)
         return binding.root
     }
 
-    private fun startInfoActivity(binding: FragmentAgreeBinding) {
+    private fun startPersonalInformationAgree(binding: FragmentAgreeBinding) {
         binding.layoutPersonalInformationAgree.setOnClickListener {
-            startActivity(Intent(requireContext(), InfoActivity::class.java))
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.notion.so/4ae478f551f249d097a6e46cffad6d07")
+            )
+            startActivity(intent)
         }
     }
 
-    private fun startInfoUserActivity(binding: FragmentAgreeBinding) {
+    private fun startServiceAgreeIntent(binding: FragmentAgreeBinding) {
         binding.layoutServiceAgree.setOnClickListener {
-            startActivity(Intent(requireContext(), InfoUserActivity::class.java))
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.notion.so/8ced90e384b1417ab6e24ce9c8436ab8")
+            )
+            startActivity(intent)
         }
     }
 

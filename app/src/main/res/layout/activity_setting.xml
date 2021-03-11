@@ -139,7 +139,7 @@
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
-            android:text="오전 9:00 (기본)"
+            android:text="오전 9:00 "
             android:textColor="@color/brown"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
