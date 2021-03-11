@@ -63,13 +63,21 @@
         <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
+    <style name="noto_sans_regular_15dp_brown_grey">
+        <item name="android:fontFamily">@font/noto_sans_regular</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:letterSpacing">-0.05</item>
+        <item name="android:textColor">@color/brown_grey</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
     <style name="noto_sans_regular_15dp_greyish_brown">
         <item name="android:fontFamily">@font/noto_sans_regular</item>
         <item name="android:textSize">15dp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/greyish_brown</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:lineSpacingMultiplier">1.0</item>
     </style>
 
     <style name="noto_sans_regular_16dp_brown">
@@ -155,6 +163,15 @@
 
     <style name="noto_sans_bold_18dp_black">
         <item name="android:fontFamily">@font/noto_sans_bold</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:letterSpacing">-0.05</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
+    <style name="noto_sans_medium_18dp_black">
+        <item name="android:fontFamily">@font/noto_sans_medium</item>
         <item name="android:textSize">18dp</item>
         <item name="android:letterSpacing">-0.05</item>
         <item name="android:textColor">@color/black</item>

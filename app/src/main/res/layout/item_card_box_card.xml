@@ -31,33 +31,23 @@
 
     <TextView
         android:id="@+id/tv_card_to"
+        style="@style/noto_sans_medium_18dp_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="27dp"
         android:layout_marginTop="28dp"
-        android:fontFamily="@font/noto_sans_medium"
-        android:includeFontPadding="false"
-        android:letterSpacing="-0.05"
         android:text="To."
-        android:textColor="@color/colorBlack"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_card_date"
         app:layout_constraintStart_toStartOf="@+id/imageView_background"
         app:layout_constraintTop_toTopOf="@+id/imageView_cardShadow" />
 
     <TextView
         android:id="@+id/tv_card_name"
+        style="@style/noto_sans_bold_18dp_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/noto_sans_bold"
-        android:includeFontPadding="false"
-        android:letterSpacing="-0.05"
-        android:singleLine="true"
+        android:layout_marginLeft="4dp"
         android:text="남궁웅앵"
-        android:textColor="@color/colorBlack"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_card_to"
         app:layout_constraintStart_toEndOf="@id/tv_card_to"
         app:layout_constraintTop_toTopOf="@+id/tv_card_to" />
@@ -74,20 +64,16 @@
 
     <TextView
         android:id="@+id/tv_card_date"
+        style="@style/noto_sans_regular_13dp_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="27dp"
         android:background="@drawable/bg_card_box_date"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:letterSpacing="-0.05"
         android:paddingHorizontal="13dp"
         android:paddingVertical="6dp"
         android:text="12월 22일"
         app:layout_constraintTop_toTopOf="@id/tv_card_name"
         app:layout_constraintBottom_toBottomOf="@id/tv_card_name"
-        android:textColor="@color/brown"
-        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView_background" />
 
     <ImageView
@@ -145,19 +131,15 @@
 
     <TextView
         android:id="@+id/tv_card_praise"
+        style="@style/gmarket_sans_medium_20dp_brown"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="33dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="33dp"
         android:layout_marginBottom="33dp"
-        android:fontFamily="@font/gmarket_sans_medium"
         android:gravity="center"
-        android:includeFontPadding="false"
-        android:lineSpacingExtra="5dp"
         android:text="네가 내 친구라서 참 좋아"
-        android:textColor="@color/brown"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_cardFrame"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame"
         app:layout_constraintStart_toStartOf="@+id/imageView_cardFrame"
