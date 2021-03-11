@@ -148,7 +148,7 @@ class HomeFragment : Fragment() {
                     buttonPraiseStatus.setContextCompatBackgroundTintList(R.color.dodger_blue_13)
                     textViewPraiseStatus.setContextCompatTextColor(R.color.dodger_blue)
                     textViewPraiseStatus.text = "완료"
-                    textViewPraiseDescription.text = "완료한 칭찬은 카드서랍에서 확인할 수 있어요!"
+                    textViewPraiseDescription.text = "완료한 칭찬은 카드서랍에서\n" + "확인할 수 있어요!"
                 }
                 "undone" -> {
                     imageViewDolphin.setImageResource(R.drawable.main_img_whale_fail)
