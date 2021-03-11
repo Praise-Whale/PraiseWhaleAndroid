@@ -14,7 +14,6 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -24,12 +23,11 @@ import com.example.praisewhale.data.RequestNickChange
 import com.example.praisewhale.data.home.ResponseNickChange
 import com.example.praisewhale.util.MyApplication
 import com.example.praisewhale.util.Vibrate
+import com.example.praisewhale.util.showToast
 import com.example.praisewhale.util.textChangedListener
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.activity_setting.tv_alarm_time
-import kotlinx.android.synthetic.main.layout_notification.*
-import kotlinx.android.synthetic.main.namechange.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -73,10 +71,8 @@ class SettingActivity :AppCompatActivity() {
                 )
             ){
                 if(isChecked){
-                com.example.praisewhale.util.Toast.customToast(
-                    "앞으로 " + tv_alarm_time.text + "에 칭찬 알림을 보내드릴게요!",
-                    this
-                )}
+                    showToast("앞으로 " + tv_alarm_time.text + "에 칭찬 알림을 보내드릴게요!")
+                }
             }
             MyApplication.mySharedPreferences.setBooleanValue(
                 "alarm_onoff",
@@ -267,10 +263,7 @@ class SettingActivity :AppCompatActivity() {
                 }
             }
             dialog2.dismiss()
-            com.example.praisewhale.util.Toast.customToast(
-                "앞으로 " + tvalarmtimetoast + "에 칭찬 알림을 보내드릴게요!",
-                this
-            )
+            showToast("앞으로 " + tvalarmtimetoast + "에 칭찬 알림을 보내드릴게요!")
         }
 
         val color = ColorDrawable(Color.TRANSPARENT)
@@ -414,7 +407,7 @@ class SettingActivity :AppCompatActivity() {
                                 tv_nickname.text=nick_modify_edit.text.toString()
                                 dialog.dismiss()
                                 dialog.cancel()
-                                com.example.praisewhale.util.Toast.customToast("닉네임이 변경되었어요!", this@SettingActivity)
+                                showToast("닉네임이 변경되었어요!")
 
                                 MyApplication.mySharedPreferences.setValue(
                                     "nickName",

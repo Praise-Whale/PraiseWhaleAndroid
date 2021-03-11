@@ -5,17 +5,15 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.collection.ui.CollectionFragment
-import com.example.praisewhale.databinding.CustomToastHomeBinding
 import com.example.praisewhale.fragment.PraiseLevelFragment
 import com.example.praisewhale.home.ui.HomeFragment
 import com.example.praisewhale.notification.AlarmReceiver
 import com.example.praisewhale.util.MyApplication
+import com.example.praisewhale.util.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -92,18 +90,7 @@ class MainActivity : AppCompatActivity() {
             finish()
             return
         }
-        showToast()
+        showToast("'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.")
         backPressedTime = System.currentTimeMillis()
-    }
-
-    private fun showToast() {
-        val toastViewBinding = CustomToastHomeBinding.inflate(layoutInflater)
-        Toast(this).apply {
-            view = toastViewBinding.constraintLayoutToastContainer
-            toastViewBinding.textViewToastMessage.text = "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다."
-            duration = Toast.LENGTH_SHORT
-            setGravity(Gravity.BOTTOM, 0, 0)
-            show()
-        }
     }
 }
