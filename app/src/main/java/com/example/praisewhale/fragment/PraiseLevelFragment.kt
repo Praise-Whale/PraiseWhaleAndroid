@@ -40,12 +40,6 @@ class PraiseLevelFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding= FragmentPraiseLevelBinding.inflate(layoutInflater)
-        binding.settingBtn.setOnClickListener {
-
-
-            val intent= Intent(context,LevelInfoActivity::class.java)
-            startActivity(intent)
-        }
 
 
         return binding.root
@@ -53,6 +47,13 @@ class PraiseLevelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.settingBtn.setOnClickListener {
+
+
+            val intent= Intent(context,LevelInfoActivity::class.java)
+            startActivity(intent)
+        }
+
         popupcheck1=MyApplication.mySharedPreferences.getBooleanValue("popupcheck1",false)
         popupcheck2=MyApplication.mySharedPreferences.getBooleanValue("popupcheck2",false)
         popupcheck3=MyApplication.mySharedPreferences.getBooleanValue("popupcheck3",false)
