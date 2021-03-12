@@ -8,16 +8,12 @@
 
     <TextView
         android:id="@+id/card_picker_title"
+        style="@style/noto_sans_regular_18dp_greyish_brown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginLeft="27dp"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
         android:text="칭찬 날짜"
-        android:textColor="@color/greyish_brown"
-        android:textSize="18sp"
-        android:letterSpacing="-0.05"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -106,7 +102,7 @@
         android:background="@drawable/bg_btn_card_picker"
         android:fontFamily="@font/noto_sans_regular"
         android:text="설정"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:textColor="@color/colorBlack"
         android:letterSpacing="-0.05"
         app:layout_constraintTop_toBottomOf="@id/cl_card_picker"
