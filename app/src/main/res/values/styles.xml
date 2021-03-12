@@ -219,4 +219,10 @@
     <style name="ImageButton.size48.icon14">
         <item name="android:padding">17dp</item>
     </style>
+
+    <style name="DefaultNumberPickerTheme" parent="AppTheme">
+        <item name="android:textSize">13dp</item>
+        <item name="fontFamily">@font/noto_sans_regular</item>
+        <item name="colorControlNormal">#00ffffff</item>
+    </style>
 </resources>

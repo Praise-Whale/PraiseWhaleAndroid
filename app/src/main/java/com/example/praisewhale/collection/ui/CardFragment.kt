@@ -113,12 +113,6 @@ class CardFragment : Fragment() {
                     month.value = i
             }
 
-            // 라인 제거
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-                year.removeDivider()
-                month.removeDivider()
-            }
-
             cancel.setOnClickListener {
                 dialog.dismiss()
                 dialog.cancel()
@@ -145,27 +139,6 @@ class CardFragment : Fragment() {
             dialog.setView(mView)
             dialog.setCancelable(false)
             dialog.show()
-        }
-    }
-
-    // NumberPicker 라인 제거 함수
-    private fun NumberPicker.removeDivider() {
-        val pickerFields = NumberPicker::class.java.declaredFields
-        for (pf in pickerFields) {
-            if (pf.name == "mSelectionDivider") {
-                pf.isAccessible = true
-                try {
-                    val colorDrawable = ColorDrawable(Color.TRANSPARENT)
-                    pf[this] = colorDrawable
-                } catch (e: java.lang.IllegalArgumentException) {
-
-                } catch (e: Resources.NotFoundException) {
-
-                } catch (e: IllegalAccessException) {
-
-                }
-                break
-            }
         }
     }
 

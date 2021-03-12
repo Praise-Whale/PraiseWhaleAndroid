@@ -158,11 +158,6 @@ class SettingActivity :AppCompatActivity() {
 
         val list = resources.getStringArray(R.array.ampm)
 
-        ny.removeDivider()
-        ny1.removeDivider()
-        ny2.removeDivider()
-
-
         ny.minValue=0
         ny.maxValue=list.size-1
 
@@ -447,27 +442,4 @@ class SettingActivity :AppCompatActivity() {
         dialog.setCancelable(false)
         dialog.show()
     }
-
-
-private fun NumberPicker.removeDivider() {
-    val pickerFields = NumberPicker::class.java.declaredFields
-    for (pf in pickerFields) {
-        if (pf.name == "mSelectionDivider") {
-            pf.isAccessible = true
-            try {
-                val colorDrawable = ColorDrawable(Color.TRANSPARENT)
-                pf[this] = colorDrawable
-            } catch (e: java.lang.IllegalArgumentException) {
-
-            } catch (e: Resources.NotFoundException) {
-
-            } catch (e: IllegalAccessException) {
-
-            }
-            break
-        }
-    }
 }
-
-
-    }
