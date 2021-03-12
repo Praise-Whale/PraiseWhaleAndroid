@@ -71,7 +71,7 @@ class SettingActivity :AppCompatActivity() {
                 )
             ){
                 if(isChecked){
-                    showToast("앞으로 " + tv_alarm_time.text + "에 칭찬 알림을 보내드릴게요!")
+                    showToast("앞으로 " + tv_alarm_time.text +" 에 칭찬 알림을 보내드릴게요!")
                 }
             }
             MyApplication.mySharedPreferences.setBooleanValue(
@@ -148,7 +148,7 @@ class SettingActivity :AppCompatActivity() {
         val ny2:NumberPicker=mView2.findViewById(R.id.numberPicker3)
 
         val btnok:Button=mView2.findViewById(R.id.button_ok_time)
-        val btnalarmcancel:ConstraintLayout=mView2.findViewById(R.id.button_time_cancel)
+        val btnalarmcancel:ImageButton=mView2.findViewById(R.id.button_time_cancel)
 
         btnalarmcancel.setOnClickListener {
             dialog2.dismiss()
@@ -259,7 +259,7 @@ class SettingActivity :AppCompatActivity() {
                 }
             }
             dialog2.dismiss()
-            showToast("앞으로 " + tvalarmtimetoast + "에 칭찬 알림을 보내드릴게요!")
+            showToast("앞으로 " + tvalarmtimetoast + " 에 칭찬 알림을 보내드릴게요!")
         }
 
         val color = ColorDrawable(Color.TRANSPARENT)
@@ -285,7 +285,7 @@ class SettingActivity :AppCompatActivity() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 
-        val close: ConstraintLayout = mView.findViewById(R.id.close_btn_nick)
+        val close: ImageButton = mView.findViewById(R.id.close_btn_nick)
         close.setOnClickListener {
             dialog.dismiss()
             dialog.cancel()
