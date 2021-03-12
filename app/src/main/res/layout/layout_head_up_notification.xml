@@ -26,7 +26,7 @@
         android:letterSpacing="-0.05"
         android:text="@string/alarm_head_up_title"
         android:textColor="@color/cool_blue"
-        android:textSize="13sp" />
+        android:textSize="13dp" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -38,5 +38,5 @@
         android:letterSpacing="-0.05"
         android:text="@string/alarm_head_up_content"
         android:textColor="@color/black"
-        android:textSize="13sp" />
+        android:textSize="13dp" />
 </LinearLayout>

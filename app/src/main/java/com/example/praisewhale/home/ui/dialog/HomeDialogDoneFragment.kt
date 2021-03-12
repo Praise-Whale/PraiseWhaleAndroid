@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +26,8 @@ import com.example.praisewhale.util.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
@@ -65,6 +69,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         viewBinding.apply {
             imageButtonClose.setOnClickListener(fragmentClickListener)
             editTextPraiseTo.addTextChangedListener(dialogTextWatcher)
+            editTextPraiseTo.setOnEditorActionListener(editTextActionListener)
             imageButtonDelete.setOnClickListener(fragmentClickListener)
             recyclerViewRecentPraiseTo.addOnScrollListener(dialogDoneScrollListener)
             buttonConfirm.setOnClickListener(fragmentClickListener)
@@ -196,7 +201,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         val call: Call<ResponseDonePraise> = CollectionImpl.service.postPraiseDone(
             sharedPreferences.getValue("token", ""),
             praiseId,
-            RequestPraiseDone(target)
+            RequestPraiseDone(target, getCurrentDate())
         )
         call.enqueue(object : Callback<ResponseDonePraise> {
             override fun onFailure(call: Call<ResponseDonePraise>, t: Throwable) {
@@ -219,7 +224,14 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         })
     }
 
+    private fun getCurrentDate(): String {
+        val currentDate = Calendar.getInstance().time
+        val pattern = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.KOREAN)
+        return pattern.format(currentDate)
+    }
+
     private fun updateHomeFragmentView() {
+        sharedPreferences.setValue(COUNT_UNDONE, "0")
         sharedPreferences.setValue(LAST_PRAISE_STATUS, "done")
         (activity as MainActivity).changeFragment(HomeFragment())
     }
@@ -305,13 +317,26 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _viewBinding = null
+    private val editTextActionListener = TextView.OnEditorActionListener { _, actionId, _ ->
+        when (actionId) {
+            EditorInfo.IME_ACTION_DONE -> {
+                saveServerPraiseData(viewBinding.editTextPraiseTo.text.toString())
+                true
+            }
+            else -> false
+        }
     }
 
     override fun onClickRecentPraiseToItem(recentPraiseTo: String) {
-        viewBinding.editTextPraiseTo.setText(recentPraiseTo)
+        viewBinding.editTextPraiseTo.apply {
+            setText(recentPraiseTo)
+            setSelection(recentPraiseTo.length)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _viewBinding = null
     }
 
 

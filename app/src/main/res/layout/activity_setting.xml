@@ -30,7 +30,7 @@
         android:letterSpacing="-0.05"
         android:text="@string/setting_title"
         android:textColor="@color/greyish_brown"
-        android:textSize="22sp"
+        android:textSize="22dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_close" />
 
@@ -66,7 +66,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/setting_nickname_change"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,7 +80,7 @@
             android:letterSpacing="-0.05"
             android:text="나영"
             android:textColor="@color/brown"
-            android:textSize="15sp"
+            android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_change_nickname" />
 
@@ -128,7 +128,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/setting_push_alarm"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,9 +139,9 @@
             android:fontFamily="@font/noto_sans_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
-            android:text="오전 9:00 (기본)"
+            android:text="오전 9:00 "
             android:textColor="@color/brown"
-            android:textSize="15sp"
+            android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_push_alarm" />
 
@@ -198,7 +198,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/setting_asking"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -247,7 +247,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/setting_personal_information"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -296,7 +296,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/setting_service"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -345,7 +345,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/setting_developer_information"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -365,15 +365,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/underline_developer"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/very_light_pink"
-            app:layout_constraintEnd_toEndOf="@id/layout_developer"
-            app:layout_constraintStart_toStartOf="@id/layout_developer"
-            app:layout_constraintTop_toBottomOf="@id/layout_developer" />
+    <View
+        android:id="@+id/underline_developer"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/very_light_pink"
+        app:layout_constraintEnd_toEndOf="@id/layout_developer"
+        app:layout_constraintStart_toStartOf="@id/layout_developer"
+        app:layout_constraintTop_toBottomOf="@id/layout_developer" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_open_source"
@@ -394,7 +394,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/setting_open_source"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

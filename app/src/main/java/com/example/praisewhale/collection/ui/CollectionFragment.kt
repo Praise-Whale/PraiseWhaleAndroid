@@ -2,6 +2,7 @@ package com.example.praisewhale.collection.ui
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,13 +40,10 @@ class CollectionFragment : Fragment() {
         setOnBackPressedCallBack()
     }
 
-    override fun onStart() {
-        super.onStart()
-        initTabButton()
-    }
-
     override fun onResume() {
         super.onResume()
+        checkPreviousView()
+        initTabButton()
         if (!onBackPressedCallback.isEnabled) {
             onBackPressedCallback.isEnabled = true
         }
@@ -87,6 +85,13 @@ class CollectionFragment : Fragment() {
     }
 
     private fun initTabButton() {
+        when (viewBinding.viewPager2Card.currentItem) {
+            0 -> activateLeftTabButton()
+            1 -> activateRightTabButton()
+        }
+    }
+
+    private fun checkPreviousView() {
         viewBinding.viewPager2Card.apply {
             when (IS_FROM_PRAISE_RANKING_CARD_VIEW) {
                 true -> {
@@ -128,6 +133,7 @@ class CollectionFragment : Fragment() {
     }
 
     private fun activateRightTabButton() {
+        Log.d("TAG", "activateRightTabButton:called ")
         viewBinding.apply {
             tabLeft.isSelected = false
             tvTabLeft.setContextCompatTextColor(R.color.brown_grey)

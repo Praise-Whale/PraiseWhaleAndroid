@@ -40,7 +40,7 @@
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@id/btn_back"
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
@@ -53,7 +53,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/title7"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toEndOf="@id/tv_whale_name"
             app:layout_constraintTop_toTopOf="@id/tv_whale_name" />
 
@@ -67,7 +67,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/title8"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@id/tv_whale_name"
             app:layout_constraintTop_toBottomOf="@id/tv_whale_name" />
 
@@ -92,7 +92,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/title5"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="@id/tv_title2"
             app:layout_constraintStart_toEndOf="@id/tv_title2"
             app:layout_constraintTop_toTopOf="@id/tv_title2" />
@@ -107,7 +107,7 @@
             android:letterSpacing="-0.05"
             android:text="@string/title6"
             android:textColor="@color/greyish_brown"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@id/tv_title2"
             app:layout_constraintTop_toBottomOf="@id/tv_title2" />
 
@@ -163,7 +163,7 @@
                     android:lineSpacingExtra="1sp"
                     android:text="@string/impossible_name_change"
                     android:textColor="@color/brown_grey"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     app:layout_constraintBottom_toTopOf="@id/img_whale"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -197,7 +197,7 @@
                     android:padding="13dp"
                     android:text="@={signUpViewModel.whaleName}"
                     android:textColor="@color/black"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -226,7 +226,7 @@
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="-3sp"
                     android:textColor="@color/brown"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_max_length"
                     app:layout_constraintEnd_toStartOf="@id/tv_max_length"
                     app:layout_constraintTop_toTopOf="@id/tv_max_length" />
@@ -241,7 +241,7 @@
                     android:lineSpacingExtra="-3sp"
                     android:text="@string/max_length"
                     android:textColor="@color/brown_grey"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     app:layout_constraintEnd_toEndOf="@id/et_whale_name"
                     app:layout_constraintTop_toBottomOf="@id/et_whale_name" />
 
@@ -260,7 +260,7 @@
                     android:paddingVertical="14dp"
                     android:text="@string/next"
                     android:textColor="@color/colorBlack"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/et_whale_name"
                     app:layout_constraintStart_toStartOf="@id/et_whale_name"
