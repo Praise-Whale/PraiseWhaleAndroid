@@ -14,6 +14,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/sand_yellow</item>
         <!-- Customize your theme here. -->
         <item name="colorAccent">@color/sand_yellow</item>
+        <!-- Base font style -->
+        <item name="android:fontFamily">@font/noto_sans_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:letterSpacing">-0.05</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18dp</item>
     </style>
 
     <!-- Text Styles - Noto sans -->
