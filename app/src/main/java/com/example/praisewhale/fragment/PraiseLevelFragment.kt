@@ -85,14 +85,8 @@ class PraiseLevelFragment : Fragment() {
                           whalename_txt.text = it.data.whaleName.toString()*/
                        // userlevel=it.data.userLevel
                         praisecount=it.data.praiseCount
-                        textView2.text = it.data.praiseCount.toString() + "번"
-                        textViewPhraseGod.text = it.data.levelUpNeedCount.toString() +"번"
-
-                        // MyApplication.mySharedPreferences.setValue("userlevel",it.data.userLevel.toString())
-                       // praisecount=it.data.praiseCount
-                        // MyApplication.mySharedPreferences.setValue("praisecount",it.data.praiseCount.toString())
-                       // needcount=it.data.levelUpNeedCount
-                        //  MyApplication.mySharedPreferences.setValue("needcount",it.data.levelUpNeedCount.toString())
+                        binding.textView2.text = it.data.praiseCount.toString() + "번"
+                        binding.textViewPhraseGod.text = it.data.levelUpNeedCount.toString() +"번"
 
                         setview(it.data.userLevel.toString(),it.data.praiseCount)
 
@@ -101,18 +95,12 @@ class PraiseLevelFragment : Fragment() {
                     }
             }
         })
-       // userlevel=MyApplication.mySharedPreferences.getValue("userlevel",userlevel.toString())
-       // praisecount=MyApplication.mySharedPreferences.getValue("praisecount",praisecount.toString())
-      //  needcount=MyApplication.mySharedPreferences.getValue("needcount",needcount.toString())
-
 
         setOnBackPressedCallBack()
     }
     fun setview(level:String,praisecount:Int){
         when (level) {
             "0" -> {
-
-
                 detail_txt.text = "아직은 칭찬이 어색한 고래"
                 level_whale.isVisible=true
                 imageView_lv1.isVisible=false
@@ -240,6 +228,10 @@ class PraiseLevelFragment : Fragment() {
             }
 
         }
+        binding.whaleGod.isVisible=true
+        binding.whale.isVisible=true
+        binding.detailTxt.isVisible=true
+        binding.levelNum.isVisible=true
     }
 
     override fun onResume() {
