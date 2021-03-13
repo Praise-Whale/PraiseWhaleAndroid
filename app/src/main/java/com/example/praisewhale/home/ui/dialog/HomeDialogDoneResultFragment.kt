@@ -6,6 +6,7 @@ import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.DialogHomeResultBinding
+import com.example.praisewhale.util.hideKeyboard
 import com.example.praisewhale.util.showToast
 
 
@@ -29,6 +30,7 @@ class HomeDialogDoneResultFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         setDialogContents()
+        requireContext().hideKeyboard()
     }
 
     override fun onResume() {
