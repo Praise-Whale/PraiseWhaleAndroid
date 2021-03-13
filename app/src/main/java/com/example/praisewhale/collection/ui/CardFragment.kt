@@ -35,7 +35,7 @@ class CardFragment : Fragment() {
 
     private val cal: Calendar = Calendar.getInstance()
     private val thisYear = cal.get(Calendar.YEAR)
-    private var firstYear = 2021
+    private var firstYear = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -157,30 +157,40 @@ class CardFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        if (it.data.praiseCount == 0) {
-                            visibleView.forEach { view -> view.isVisible = false }
-                            emptyView.forEach { view -> view.isVisible = true }
+                        firstYear = it.data.firstDate.created_at.substring(0,4).toInt()
 
-                            if (year == thisYear && month == "0") {
-                                binding.btnCardPicker.isVisible = false
-                                binding.tvEmpty1.text = getString(R.string.all_empty_title)
-                                binding.tvEmpty2.text = getString(R.string.all_empty_sub)
-                            } else {
-                                binding.btnCardPicker.isVisible = true
-                                binding.tvEmpty1.text = getString(R.string.default_empty_title)
-                                binding.tvEmpty2.text = getString(R.string.default_empty_sub)
-                            }
-                        } else {
-                            visibleView.forEach { view -> view.isVisible = true }
-                            emptyView.forEach { view -> view.isVisible = false }
-                            binding.btnCardPicker.isVisible = true
+                        if (it.data.praiseCount == 0) configureEmptyView()
+                        else {
+                            configureDefaultView()
                             binding.cardCount.text = it.data.praiseCount.toString() + "번"
                             cardBoxAdapter.data = it.data.collectionPraise
                             cardBoxAdapter.notifyDataSetChanged()
                         }
                     }
-                }
+                } else configureAllEmptyView()
             }
         })
+    }
+
+    private fun configureAllEmptyView() {
+        visibleView.forEach { view -> view.isVisible = false }
+        emptyView.forEach { view -> view.isVisible = true }
+        binding.btnCardPicker.isVisible = false
+        binding.tvEmpty1.text = getString(R.string.all_empty_title)
+        binding.tvEmpty2.text = getString(R.string.all_empty_sub)
+    }
+
+    private fun configureEmptyView() {
+        visibleView.forEach { view -> view.isVisible = false }
+        emptyView.forEach { view -> view.isVisible = true }
+        binding.btnCardPicker.isVisible = true
+        binding.tvEmpty1.text = getString(R.string.default_empty_title)
+        binding.tvEmpty2.text = getString(R.string.default_empty_sub)
+    }
+
+    private fun configureDefaultView() {
+        visibleView.forEach { view -> view.isVisible = true }
+        emptyView.forEach { view -> view.isVisible = false }
+        binding.btnCardPicker.isVisible = true
     }
 }

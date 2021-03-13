@@ -7,6 +7,7 @@ data class ResponseCardData(
 ){
     data class Data(
         val praiseCount: Int,
+        val firstDate: FirstDate,
         val collectionPraise: List<CollectionPraise>
     )
 }
@@ -14,4 +15,7 @@ data class CollectionPraise(
     val praisedName: String,
     val created_at: String,
     val today_praise: String
+)
+data class FirstDate(
+    val created_at: String
 )
