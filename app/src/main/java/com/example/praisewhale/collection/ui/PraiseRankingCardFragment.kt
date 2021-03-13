@@ -9,11 +9,9 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.praisewhale.CollectionImpl
-import com.example.praisewhale.MainActivity
 import com.example.praisewhale.collection.adapter.PraiseRankingCardAdapter
 import com.example.praisewhale.collection.data.ResponsePraiseRankingCard
-import com.example.praisewhale.collection.ui.CollectionFragment.Companion.IS_FROM_PRAISE_RANKING_CARD_VIEW
-import com.example.praisewhale.collection.ui.CollectionFragment.Companion.SWITCH_HEIGHT
+import com.example.praisewhale.collection.ui.CollectionTabFragment.Companion.SWITCH_HEIGHT
 import com.example.praisewhale.collection.ui.PraiseRankingFragment.Companion.PRAISE_TARGET
 import com.example.praisewhale.data.ResponseToken
 import com.example.praisewhale.databinding.FragmentPraiseRankingCardBinding
@@ -163,21 +161,16 @@ class PraiseRankingCardFragment : Fragment() {
     private fun setOnBackPressedCallBack() {
         onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                backToPraiseRankingView()
+                (parentFragment as CollectionFragment).showFragmentCollectionTab()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
     }
 
-    private fun backToPraiseRankingView() {
-        (activity as MainActivity).changeFragment(CollectionFragment())
-        IS_FROM_PRAISE_RANKING_CARD_VIEW = true
-    }
-
     private val fragmentOnClickListener = View.OnClickListener {
         viewBinding.apply {
             when (it.id) {
-                imageButtonBack.id -> backToPraiseRankingView()
+                imageButtonBack.id -> (parentFragment as CollectionFragment).showFragmentCollectionTab()
             }
         }
     }

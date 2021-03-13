@@ -142,11 +142,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_agree"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="42dp"
             android:layout_marginTop="92dp"
             android:background="@drawable/background_agree_box"
-            android:paddingBottom="31dp"
+            android:paddingBottom="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/img_whale">
@@ -165,9 +166,10 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
+                android:id="@+id/tv_all_agree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="22dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/noto_sans_regular"
                 android:includeFontPadding="false"
                 android:letterSpacing="-0.05"
@@ -175,8 +177,7 @@
                 android:textColor="@color/black"
                 android:textSize="13dp"
                 app:layout_constraintBottom_toBottomOf="@id/btn_agree_check"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/layout_personal_information_agree"
+                app:layout_constraintStart_toEndOf="@id/btn_agree_check"
                 app:layout_constraintTop_toTopOf="@id/btn_agree_check" />
 
             <View
@@ -194,21 +195,20 @@
                 agreeCheck="@{signUpViewModel.isAgree}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_personal_information_agree"
                 app:layout_constraintEnd_toEndOf="@id/btn_agree_check"
                 app:layout_constraintStart_toStartOf="@id/btn_agree_check"
-                app:layout_constraintTop_toBottomOf="@id/underline"
+                app:layout_constraintTop_toTopOf="@id/layout_personal_information_agree"
                 tools:ignore="ContentDescription" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_personal_information_agree"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                app:layout_constraintBottom_toBottomOf="@id/img_personal_information_check"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/img_personal_information_check"
-                app:layout_constraintTop_toTopOf="@id/img_personal_information_check">
+                app:layout_constraintStart_toStartOf="@id/tv_all_agree"
+                app:layout_constraintTop_toTopOf="@id/underline">
 
                 <TextView
                     android:id="@+id/tv_personal_information_agree"
@@ -241,21 +241,19 @@
                 agreeCheck="@{signUpViewModel.isAgree}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_service_agree"
                 app:layout_constraintEnd_toEndOf="@id/btn_agree_check"
                 app:layout_constraintStart_toStartOf="@id/btn_agree_check"
-                app:layout_constraintTop_toBottomOf="@id/layout_personal_information_agree"
+                app:layout_constraintTop_toTopOf="@id/layout_service_agree"
                 tools:ignore="ContentDescription" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_service_agree"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                app:layout_constraintBottom_toBottomOf="@id/img_service_check"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/img_service_check"
-                app:layout_constraintTop_toTopOf="@id/img_service_check">
+                app:layout_constraintStart_toStartOf="@id/tv_all_agree"
+                app:layout_constraintTop_toBottomOf="@id/layout_personal_information_agree">
 
                 <TextView
                     android:id="@+id/tv_service_agree"

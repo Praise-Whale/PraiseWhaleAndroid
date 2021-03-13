@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_card_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pale"
+    tools:context=".collection.ui.CardFragment">
+
+    <TextView
+        android:id="@+id/tv_card_title_name"
+        style="@style/noto_sans_regular_16dp_greyish_brown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:text="닉네임님의"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_card_title"
+        style="@style/noto_sans_bold_22dp_greyish_brown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="칭찬 카드"
+        app:layout_constraintEnd_toEndOf="@id/tv_card_title_name"
+        app:layout_constraintStart_toStartOf="@id/tv_card_title_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_card_title_name" />
+
+    <View
+        android:id="@+id/v_card_title_div"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_card_div"
+        app:layout_constraintEnd_toEndOf="@id/tv_card_title"
+        app:layout_constraintStart_toStartOf="@id/tv_card_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_card_title" />
+
+    <View
+        android:id="@+id/switch_track"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/background_rectangle_radius_30_stroke_2"
+        app:layout_constraintDimensionRatio="222:51"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_card_title_div"
+        app:layout_constraintWidth_percent="0.62" />
+
+    <View
+        android:id="@+id/tab_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/card_tab_bg_selector"
+        app:layout_constraintBottom_toBottomOf="@id/switch_track"
+        app:layout_constraintDimensionRatio="107:43"
+        app:layout_constraintLeft_toLeftOf="@id/switch_track"
+        app:layout_constraintTop_toTopOf="@id/switch_track"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/tv_tab_left"
+        style="@style/noto_sans_regular_15dp_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="카드서랍"
+        app:layout_constraintBottom_toBottomOf="@id/tab_left"
+        app:layout_constraintLeft_toLeftOf="@id/tab_left"
+        app:layout_constraintRight_toRightOf="@id/tab_left"
+        app:layout_constraintTop_toTopOf="@id/tab_left" />
+
+    <View
+        android:id="@+id/tab_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/card_tab_bg_selector"
+        app:layout_constraintBottom_toBottomOf="@id/switch_track"
+        app:layout_constraintDimensionRatio="107:43"
+        app:layout_constraintRight_toRightOf="@id/switch_track"
+        app:layout_constraintTop_toTopOf="@id/switch_track"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/tv_tab_right"
+        style="@style/noto_sans_regular_15dp_brown_grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="칭찬랭킹"
+        app:layout_constraintBottom_toBottomOf="@id/tab_right"
+        app:layout_constraintLeft_toLeftOf="@id/tab_right"
+        app:layout_constraintRight_toRightOf="@id/tab_right"
+        app:layout_constraintTop_toTopOf="@id/tab_right" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/card_box_bg"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switch_track" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

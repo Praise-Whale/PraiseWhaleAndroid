@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/level_popup_bg"
-    android:layout_width="wrap_content"
+    android:layout_width="276dp"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/lv_popup_img_whale" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView_lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
@@ -47,9 +47,9 @@
         android:textColor="@color/greyish_brown"
         android:letterSpacing="-0.05"
         android:gravity="center_horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintEnd_toEndOf="@+id/textView_lv"
+        app:layout_constraintStart_toStartOf="@+id/textView_lv"
+        app:layout_constraintTop_toBottomOf="@+id/textView_lv" />
 
     <Button
         android:id="@+id/pop_ok_btn"
@@ -60,10 +60,11 @@
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="30dp"
         android:text="확인"
+        style="?android:attr/borderlessButtonStyle"
         android:letterSpacing="-0.05"
         android:fontFamily="@font/noto_sans_regular"
         android:includeFontPadding="false"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:textColor="@color/black"
         android:background="@drawable/popup_btn_bg"
         app:layout_constraintBottom_toBottomOf="parent"

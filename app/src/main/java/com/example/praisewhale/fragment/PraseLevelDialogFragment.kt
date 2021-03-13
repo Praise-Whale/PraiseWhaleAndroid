@@ -38,7 +38,9 @@ class PraseLevelDialogFragment(
             2-> binding.levelPopText.setText("칭찬에 익숙해지고 있네요!")
             3-> binding.levelPopText.setText("둠칫 두둠칫 점점 신이나요!")
             4-> binding.levelPopText.setText("저 춤 출래요, 말리지 마세요!")
-            5-> binding.levelPopText.setText("친구에게도 칭찬할고래를 알려줘요!")
+            5-> {binding.levelPopText.setText("친구에게도 칭찬할고래를 알려줘요!")
+                binding.textViewLv.setText("이제 만렙 고래!")
+            }
 
 
         }

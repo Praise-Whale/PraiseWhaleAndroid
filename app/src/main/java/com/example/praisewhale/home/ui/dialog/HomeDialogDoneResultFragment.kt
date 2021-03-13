@@ -1,10 +1,12 @@
 package com.example.praisewhale.home.ui.dialog
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.R
 import com.example.praisewhale.databinding.DialogHomeResultBinding
+import com.example.praisewhale.util.hideKeyboard
 import com.example.praisewhale.util.showToast
 
 
@@ -28,6 +30,11 @@ class HomeDialogDoneResultFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         setDialogContents()
+        requireContext().hideKeyboard()
+    }
+
+    override fun onResume() {
+        super.onResume()
         setDialogBackground()
     }
 
@@ -45,7 +52,12 @@ class HomeDialogDoneResultFragment : DialogFragment() {
     }
 
     private fun setDialogBackground() {
-        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke_2)
+        val deviceWidth = Resources.getSystem().displayMetrics.widthPixels
+        val dialogHorizontalMargin = (Resources.getSystem().displayMetrics.density * 42) * 2
+        dialog!!.window!!.apply {
+            setLayout((deviceWidth - dialogHorizontalMargin).toInt(), WindowManager.LayoutParams.WRAP_CONTENT)
+            setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke_2)
+        }
     }
 
     private val dialogDoneClickListener = View.OnClickListener {

@@ -1,9 +1,11 @@
 package com.example.praisewhale.home.ui.dialog
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.example.praisewhale.MainActivity
 import com.example.praisewhale.R
@@ -34,6 +36,10 @@ class HomeDialogUndoneFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         setDialogContents()
+    }
+
+    override fun onResume() {
+        super.onResume()
         setDialogBackground()
     }
 
@@ -71,7 +77,12 @@ class HomeDialogUndoneFragment : DialogFragment() {
     }
 
     private fun setDialogBackground() {
-        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke_2)
+        val deviceWidth = Resources.getSystem().displayMetrics.widthPixels
+        val dialogHorizontalMargin = (Resources.getSystem().displayMetrics.density * 42) * 2
+        dialog!!.window!!.apply {
+            setLayout((deviceWidth - dialogHorizontalMargin).toInt(), WindowManager.LayoutParams.WRAP_CONTENT)
+            setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke_2)
+        }
     }
 
     private val fragmentClickListener = View.OnClickListener {

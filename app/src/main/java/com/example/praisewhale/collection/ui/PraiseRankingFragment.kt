@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.praisewhale.CollectionImpl
-import com.example.praisewhale.MainActivity
 import com.example.praisewhale.collection.adapter.PraiseRankingAdapter
 import com.example.praisewhale.collection.data.ResponsePraiseRanking
 import com.example.praisewhale.data.ResponseToken
@@ -177,7 +176,7 @@ class PraiseRankingFragment : Fragment(), PraiseRankingClickListener {
     }
 
     override fun onClickPraiseRankingItem(praiseTo: String) {
-        (activity as MainActivity).changeFragment(PraiseRankingCardFragment())
+        (parentFragment as CollectionTabFragment).showFragmentPraiseRankingCard()
         PRAISE_TARGET = praiseTo
     }
 

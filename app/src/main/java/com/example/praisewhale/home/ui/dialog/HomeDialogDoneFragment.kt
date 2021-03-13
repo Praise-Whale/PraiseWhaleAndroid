@@ -1,5 +1,6 @@
 package com.example.praisewhale.home.ui.dialog
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
@@ -50,12 +52,12 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
-        setDialogBackground()
         getServerRecentPraiseTo()
     }
 
     override fun onResume() {
         super.onResume()
+        setDialogBackground()
         requireContext().showKeyboard()
         viewBinding.editTextPraiseTo.requestFocus()
     }
@@ -74,10 +76,6 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
             recyclerViewRecentPraiseTo.addOnScrollListener(dialogDoneScrollListener)
             buttonConfirm.setOnClickListener(fragmentClickListener)
         }
-    }
-
-    private fun setDialogBackground() {
-        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke_2)
     }
 
     private fun getServerRecentPraiseTo() {
@@ -153,6 +151,15 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         sharedPreferences.apply {
             setValue("token", tokenData.accessToken)
             setValue("refreshToken", tokenData.refreshToken)
+        }
+    }
+
+    private fun setDialogBackground() {
+        val deviceWidth = Resources.getSystem().displayMetrics.widthPixels
+        val dialogHorizontalMargin = (Resources.getSystem().displayMetrics.density * 42) * 2
+        dialog!!.window!!.apply {
+            setLayout((deviceWidth - dialogHorizontalMargin).toInt(), WindowManager.LayoutParams.WRAP_CONTENT)
+            setBackgroundDrawableResource(R.drawable.background_rectangle_radius_15_stroke_2)
         }
     }
 
