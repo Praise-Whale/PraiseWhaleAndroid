@@ -9,55 +9,95 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.collection.ui.CollectionFragment
+import com.example.praisewhale.databinding.ActivityMainBinding
 import com.example.praisewhale.fragment.PraiseLevelFragment
 import com.example.praisewhale.home.ui.HomeFragment
 import com.example.praisewhale.notification.AlarmReceiver
 import com.example.praisewhale.util.MyApplication
 import com.example.praisewhale.util.showToast
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainFragment by lazy { HomeFragment() }
+    private var _viewBinding: ActivityMainBinding? = null
+    private val viewBinding get() = _viewBinding!!
+
+    private val homeFragment by lazy { HomeFragment() }
     private val collectionFragment by lazy { CollectionFragment() }
     private val praiseLevelFragment by lazy { PraiseLevelFragment() }
+
     private var backPressedTime: Long = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-
+        setViewBinding()
         initBottomNav()
         notification()
     }
 
+    private fun setViewBinding() {
+        _viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
+    }
+
     private fun initBottomNav() {
-        bottomNavigationView.run {
+        viewBinding.bottomNavigationView.apply {
             setOnNavigationItemSelectedListener {
                 when (it.itemId) {
-                    R.id.menu_main -> {
-                        changeFragment(mainFragment)
-                    }
-                    R.id.menu_collection -> {
-                        changeFragment(collectionFragment)
-                    }
-                    R.id.menu_praiseLevel -> {
-                        changeFragment(praiseLevelFragment)
-                    }
+                    menu.getItem(0).itemId -> showFragmentHome()
+                    menu.getItem(1).itemId -> showFragmentCollection()
+                    menu.getItem(2).itemId -> showFragmentPraiseLevel()
                 }
                 true
             }
-            selectedItemId = R.id.menu_main
+            selectedItemId = menu.getItem(0).itemId
+        }
+    }
+
+    private fun showFragmentHome() {
+        supportFragmentManager.apply {
+            when (fragments.contains(homeFragment)) {
+                true -> {
+                    beginTransaction().show(homeFragment).commit()
+                    beginTransaction().hide(collectionFragment).commit()
+                    beginTransaction().hide(praiseLevelFragment).commit()
+                }
+                false -> beginTransaction().add(viewBinding.frameLayoutFragmentContainer.id, homeFragment).commit()
+            }
+        }
+    }
+
+    private fun showFragmentCollection() {
+        supportFragmentManager.apply {
+            when (fragments.contains(collectionFragment)) {
+                true -> {
+                    beginTransaction().hide(homeFragment).commit()
+                    beginTransaction().show(collectionFragment).commit()
+                    beginTransaction().hide(praiseLevelFragment).commit()
+                }
+                false -> beginTransaction().add(viewBinding.frameLayoutFragmentContainer.id, collectionFragment).commit()
+            }
+        }
+    }
+
+    private fun showFragmentPraiseLevel() {
+        supportFragmentManager.apply {
+            when (fragments.contains(praiseLevelFragment)) {
+                true -> {
+                    beginTransaction().hide(homeFragment).commit()
+                    beginTransaction().hide(collectionFragment).commit()
+                    beginTransaction().show(praiseLevelFragment).commit()
+                }
+                false -> beginTransaction().add(viewBinding.frameLayoutFragmentContainer.id, praiseLevelFragment).commit()
+            }
         }
     }
 
     fun changeFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frameLayout_fragmentContainer, fragment).commit()
+            .replace(viewBinding.frameLayoutFragmentContainer.id, fragment).commit()
     }
 
     private fun notification() {
@@ -84,7 +124,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
-    
+
     fun showFinishToast() {
         if (System.currentTimeMillis() - backPressedTime < 2000) {
             finish()
