@@ -1,6 +1,7 @@
 package com.example.praisewhale
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
@@ -14,6 +15,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -295,8 +297,16 @@ class SettingActivity :AppCompatActivity() {
 
         val nick_modify_edit: EditText = mView.findViewById(R.id.editnickname)
         nick_modify_edit.hint=MyApplication.mySharedPreferences.getValue("nickName","")
-        //
 
+
+        nick_modify_edit.setOnEditorActionListener { textView, action, event ->
+            var handled = false
+            if (action == EditorInfo.IME_ACTION_DONE) {
+                changeNickname(nick_modify, nick_modify_edit, dialog, mView)
+                handled = true
+            }
+            handled
+        }
 
         nick_modify_edit.addTextChangedListener(
             object : TextWatcher {
@@ -362,75 +372,7 @@ class SettingActivity :AppCompatActivity() {
 
         }
         nick_modify.setOnClickListener {
-
-            val token = MyApplication.mySharedPreferences.getValue("token", "")
-
-            val body=RequestNickChange(
-                nickName = MyApplication.mySharedPreferences.getValue("nickName", ""),
-                newNickName = nick_modify_edit.text.toString()
-            )
-            val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token, body)
-            call.enqueue(object : Callback<ResponseNickChange> {
-                override fun onFailure(call: Call<ResponseNickChange>, t: Throwable) {
-                    Log.d("tag", t.localizedMessage)
-                }
-
-                override fun onResponse(
-                    call: Call<ResponseNickChange>,
-                    response: Response<ResponseNickChange>
-                ) {
-
-                    if(!response.isSuccessful){
-                        Log.d("status코드2", response.body()?.status.toString())
-                        Log.d("닉네임 중복", "닉네임 중복")
-                        Vibrate.startVibrate(context = this@SettingActivity)
-                        val existnick:TextView=mView.findViewById(R.id.existingnick)
-                        existnick.isVisible=true
-                        val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
-                        existnickbg.setBackgroundResource(R.drawable.edittext_bg_exist)
-                        val textcount:TextView=mView.findViewById(R.id.textcount)
-                        textcount.isVisible=false
-                        val textcount7:TextView=mView.findViewById(R.id.textcount7)
-                        textcount7.isVisible=false
-                        nick_modify.isClickable=false
-                        nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
-                    }
-                    response.takeIf { it.isSuccessful }
-
-                        ?.body()
-                        ?.let {
-                            Log.d("status코드", it.status.toString())
-
-                            if(it.status == 200) {
-                                nick_modify.isClickable=true
-                                val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
-                                existnickbg.setBackgroundResource(R.drawable.edittext_bg)
-                                Log.d("닉네임변경완료", "닉네임변경완료")
-
-                                tv_nickname.text=nick_modify_edit.text.toString()
-                                dialog.dismiss()
-                                dialog.cancel()
-                                showToast("닉네임이 변경되었어요!")
-
-                                MyApplication.mySharedPreferences.setValue(
-                                    "nickName",
-                                    nick_modify_edit.text.toString()
-                                )
-                            }
-                            else {
-
-                                //MyApplication.mySharedPreferences.setValue("alarmtime")
-                            }
-
-                        }
-                }
-            })
-
-
-
-
-
-
+            changeNickname(nick_modify, nick_modify_edit, dialog, mView)
         }
 
         val color = ColorDrawable(Color.TRANSPARENT)
@@ -441,5 +383,70 @@ class SettingActivity :AppCompatActivity() {
         dialog.setView(mView)
         dialog.setCancelable(false)
         dialog.show()
+    }
+
+    private fun changeNickname(nick_modify: Button, nick_modify_edit: EditText, dialog: AlertDialog, mView: View) {
+        val token = MyApplication.mySharedPreferences.getValue("token", "")
+
+        val body=RequestNickChange(
+            nickName = MyApplication.mySharedPreferences.getValue("nickName", ""),
+            newNickName = nick_modify_edit.text.toString()
+        )
+        val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token, body)
+        call.enqueue(object : Callback<ResponseNickChange> {
+            override fun onFailure(call: Call<ResponseNickChange>, t: Throwable) {
+                Log.d("tag", t.localizedMessage)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseNickChange>,
+                response: Response<ResponseNickChange>
+            ) {
+
+                if(!response.isSuccessful){
+                    Log.d("status코드2", response.body()?.status.toString())
+                    Log.d("닉네임 중복", "닉네임 중복")
+                    Vibrate.startVibrate(context = this@SettingActivity)
+                    val existnick:TextView=mView.findViewById(R.id.existingnick)
+                    existnick.isVisible=true
+                    val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                    existnickbg.setBackgroundResource(R.drawable.edittext_bg_exist)
+                    val textcount:TextView=mView.findViewById(R.id.textcount)
+                    textcount.isVisible=false
+                    val textcount7:TextView=mView.findViewById(R.id.textcount7)
+                    textcount7.isVisible=false
+                    nick_modify.isClickable=false
+                    nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
+                }
+                response.takeIf { it.isSuccessful }
+
+                    ?.body()
+                    ?.let {
+                        Log.d("status코드", it.status.toString())
+
+                        if(it.status == 200) {
+                            nick_modify.isClickable=true
+                            val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                            existnickbg.setBackgroundResource(R.drawable.edittext_bg)
+                            Log.d("닉네임변경완료", "닉네임변경완료")
+
+                            tv_nickname.text=nick_modify_edit.text.toString()
+                            dialog.dismiss()
+                            dialog.cancel()
+                            showToast("닉네임이 변경되었어요!")
+
+                            MyApplication.mySharedPreferences.setValue(
+                                "nickName",
+                                nick_modify_edit.text.toString()
+                            )
+                        }
+                        else {
+
+                            //MyApplication.mySharedPreferences.setValue("alarmtime")
+                        }
+
+                    }
+            }
+        })
     }
 }
