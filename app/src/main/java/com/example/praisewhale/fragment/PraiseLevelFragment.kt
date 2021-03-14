@@ -47,8 +47,8 @@ class PraiseLevelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.settingBtn.setOnClickListener {
 
+        binding.settingBtn.setOnClickListener {
 
             val intent= Intent(context,LevelInfoActivity::class.java)
             startActivity(intent)

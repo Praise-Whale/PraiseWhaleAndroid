@@ -4,71 +4,83 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/level_popup_bg"
-    android:layout_width="276dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="34dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/lv_popup_img_whale" />
-
-    <TextView
-        android:id="@+id/textView_lv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:text="레벨업했고래!"
-        android:fontFamily="@font/noto_sans_bold"
-        android:textSize="18dp"
-        android:includeFontPadding="false"
-        android:textColor="@color/greyish_brown"
-        android:letterSpacing="-0.05"
-        android:gravity="center_horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <TextView
-        android:id="@+id/level_pop_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="칭찬에 흥미가 생겼군요!"
-        android:fontFamily="@font/noto_sans_regular"
-        android:textSize="16dp"
-        android:includeFontPadding="false"
-        android:textColor="@color/greyish_brown"
-        android:letterSpacing="-0.05"
-        android:gravity="center_horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/textView_lv"
-        app:layout_constraintStart_toStartOf="@+id/textView_lv"
-        app:layout_constraintTop_toBottomOf="@+id/textView_lv" />
-
-    <Button
-        android:id="@+id/pop_ok_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="30dp"
-        android:text="확인"
-        style="?android:attr/borderlessButtonStyle"
-        android:letterSpacing="-0.05"
-        android:fontFamily="@font/noto_sans_regular"
-        android:includeFontPadding="false"
-        android:textSize="15dp"
-        android:textColor="@color/black"
-        android:background="@drawable/popup_btn_bg"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="276dp"
+        android:layout_height="381dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/level_pop_text" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="165dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/lv_popup_img_whale" />
+
+        <TextView
+            android:id="@+id/textView_lv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="레벨업했고래!"
+            android:textColor="@color/greyish_brown"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/level_pop_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="칭찬에 흥미가 생겼군요!"
+            android:textColor="@color/greyish_brown"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView_lv"
+            app:layout_constraintStart_toStartOf="@+id/textView_lv"
+            app:layout_constraintTop_toBottomOf="@+id/textView_lv" />
+
+        <Button
+            android:id="@+id/pop_ok_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/popup_btn_bg"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.05"
+            android:text="확인"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/level_pop_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

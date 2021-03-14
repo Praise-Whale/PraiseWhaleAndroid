@@ -3,7 +3,7 @@
     android:id="@+id/constraintLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="275dp"
     android:background="@drawable/popup_bg"
     android:layout_height="wrap_content">
 
@@ -66,10 +66,10 @@
             android:layout_height="142dp"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="30dp"
+            android:outlineAmbientShadowColor="#9c9c9c"
         app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
             android:theme="@style/DefaultNumberPickerTheme"/>
 
         <NumberPicker
@@ -98,18 +98,21 @@
 
     <Button
         android:id="@+id/button_ok_time"
-        android:layout_width="221dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
         android:layout_height="43dp"
+        android:layout_marginStart="27dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="27dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/popup_btn_bg"
-        android:text="설정"
         android:fontFamily="@font/noto_sans_regular"
-        android:textSize="15dp"
         android:includeFontPadding="false"
+        android:text="설정"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <TextView
@@ -122,7 +125,7 @@
         android:includeFontPadding="false"
         android:textSize="18dp"
         android:textColor="@color/greyish_brown"
-        android:text="알람 시간"
+        android:text="알림 시간"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

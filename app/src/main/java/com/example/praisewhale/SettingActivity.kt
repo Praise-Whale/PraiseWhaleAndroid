@@ -1,6 +1,7 @@
 package com.example.praisewhale
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
@@ -14,6 +15,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -132,7 +134,7 @@ class SettingActivity :AppCompatActivity() {
         super.onResume()
         tv_nickname.text=MyApplication.mySharedPreferences.getValue("nickName", "")
 
-        tv_alarm_time.text=MyApplication.mySharedPreferences.getValue("alarm_time","오전 9:00 ")
+        tv_alarm_time.text=MyApplication.mySharedPreferences.getValue("alarm_time","오전 9:00")
         switch_alarm.isChecked=MyApplication.mySharedPreferences.getBooleanValue("alarm_onoff",true)
     }
 
@@ -157,28 +159,65 @@ class SettingActivity :AppCompatActivity() {
 
 
         val list = resources.getStringArray(R.array.ampm)
+        //val list_minute=resources.getStringArray(R.array.minute)
 
-        ny.minValue=0
-        ny.maxValue=list.size-1
+        val list_minute = arrayOfNulls<String>(60)
+        //list_minute[0] = "00"
+        for (i in 0..59) {
+            if(i<10){
+                list_minute[i] = "0$i"
+            }else{
+                list_minute[i]=i.toString()
+            }
+        }
+        val list_hour = arrayOfNulls<String>(13)
+        //list_minute[0] = "00"
+        for (i in 0..12) {
 
-        ny1.minValue=1
-        ny1.maxValue=12
+                list_hour[i] = (i+1).toString()
 
-        ny2.minValue=0
-        ny2.maxValue=59
+        }
 
-        ny.displayedValues = list
+
 
         ny.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
         ny2.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
         ny1.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
 
+        ny.displayedValues = list
+        ny1.displayedValues=list_hour
+        ny2.displayedValues=list_minute
+
+        ny.minValue=0
+        ny.maxValue=list.size-1
+
+        ny1.minValue=0
+        ny1.maxValue=list_hour.size-2
+
+        ny2.minValue=0
+        ny2.maxValue=list_minute.size-1
+
+
+
+        for (i in list_minute.indices) {
+            if (tv_alarm_time.text.split(" ")[1].split(":")[1] == list_minute[i]){
+            ny2.value = i}
+        }
+
+        for (i in list.indices) {
+            if (tv_alarm_time.text.split(" ")[0] == list[i]){
+                ny.value = i}
+        }
+        for (i in list_hour.indices) {
+            if (tv_alarm_time.text.split(" ")[1].split(":")[0] == list_hour[i]){
+                ny1.value = i}
+        }
 
         btnok.setOnClickListener {
 
             if ((ny2.value.toString()).length < 2) {
                 if (list[ny.value] == "오전") {
-                    tvalarmtimetoast=list[ny.value]+" "+ny1.value.toString() + ":0" +ny2.value.toString()
+                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":0" +ny2.value.toString()
 //                    tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":0" + ny2.value.toString()
                     tv_alarm_time.text=tvalarmtimetoast
 
@@ -194,12 +233,12 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+ny1.value.toString() + ":0" +ny2.value.toString()
+                        list[ny.value]+" "+(ny1.value+1).toString() + ":0" +ny2.value.toString()
                     )
 
 
                 } else {
-                    tvalarmtimetoast=list[ny.value]+" "+ny1.value.toString() + ":0" +ny2.value.toString()
+                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":0" +ny2.value.toString()
                     tv_alarm_time.text=tvalarmtimetoast
 
                     val clock_ = ny1.value + 12
@@ -215,12 +254,12 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+ny1.value.toString() + ":0" +ny2.value.toString()
+                        list[ny.value]+" "+(ny1.value+1).toString() + ":0" +ny2.value.toString()
                     )
                 }
             } else {
                 if (list[ny.value] == "오후") {
-                    tvalarmtimetoast=list[ny.value]+" "+ny1.value.toString() + ":" +ny2.value.toString()
+                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":" +ny2.value.toString()
                     tv_alarm_time.text=tvalarmtimetoast
 
                     val clock_ = ny1.value + 12
@@ -236,11 +275,11 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+ny1.value.toString() + ":" +ny2.value.toString()
+                        list[ny.value]+" "+(ny1.value+1).toString() + ":" +ny2.value.toString()
                     )
 
                 } else {
-                    tvalarmtimetoast=list[ny.value]+" "+ny1.value.toString() + ":" +ny2.value.toString()
+                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":" +ny2.value.toString()
                     tv_alarm_time.text=tvalarmtimetoast
                    // tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
@@ -254,7 +293,7 @@ class SettingActivity :AppCompatActivity() {
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+ny1.value.toString() + ":" +ny2.value.toString()
+                        list[ny.value]+" "+(ny1.value+1).toString() + ":" +ny2.value.toString()
                     )
                 }
             }
@@ -295,8 +334,16 @@ class SettingActivity :AppCompatActivity() {
 
         val nick_modify_edit: EditText = mView.findViewById(R.id.editnickname)
         nick_modify_edit.hint=MyApplication.mySharedPreferences.getValue("nickName","")
-        //
 
+
+        nick_modify_edit.setOnEditorActionListener { textView, action, event ->
+            var handled = false
+            if (action == EditorInfo.IME_ACTION_DONE) {
+                changeNickname(nick_modify, nick_modify_edit, dialog, mView)
+                handled = true
+            }
+            handled
+        }
 
         nick_modify_edit.addTextChangedListener(
             object : TextWatcher {
@@ -362,75 +409,7 @@ class SettingActivity :AppCompatActivity() {
 
         }
         nick_modify.setOnClickListener {
-
-            val token = MyApplication.mySharedPreferences.getValue("token", "")
-
-            val body=RequestNickChange(
-                nickName = MyApplication.mySharedPreferences.getValue("nickName", ""),
-                newNickName = nick_modify_edit.text.toString()
-            )
-            val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token, body)
-            call.enqueue(object : Callback<ResponseNickChange> {
-                override fun onFailure(call: Call<ResponseNickChange>, t: Throwable) {
-                    Log.d("tag", t.localizedMessage)
-                }
-
-                override fun onResponse(
-                    call: Call<ResponseNickChange>,
-                    response: Response<ResponseNickChange>
-                ) {
-
-                    if(!response.isSuccessful){
-                        Log.d("status코드2", response.body()?.status.toString())
-                        Log.d("닉네임 중복", "닉네임 중복")
-                        Vibrate.startVibrate(context = this@SettingActivity)
-                        val existnick:TextView=mView.findViewById(R.id.existingnick)
-                        existnick.isVisible=true
-                        val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
-                        existnickbg.setBackgroundResource(R.drawable.edittext_bg_exist)
-                        val textcount:TextView=mView.findViewById(R.id.textcount)
-                        textcount.isVisible=false
-                        val textcount7:TextView=mView.findViewById(R.id.textcount7)
-                        textcount7.isVisible=false
-                        nick_modify.isClickable=false
-                        nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
-                    }
-                    response.takeIf { it.isSuccessful }
-
-                        ?.body()
-                        ?.let {
-                            Log.d("status코드", it.status.toString())
-
-                            if(it.status == 200) {
-                                nick_modify.isClickable=true
-                                val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
-                                existnickbg.setBackgroundResource(R.drawable.edittext_bg)
-                                Log.d("닉네임변경완료", "닉네임변경완료")
-
-                                tv_nickname.text=nick_modify_edit.text.toString()
-                                dialog.dismiss()
-                                dialog.cancel()
-                                showToast("닉네임이 변경되었어요!")
-
-                                MyApplication.mySharedPreferences.setValue(
-                                    "nickName",
-                                    nick_modify_edit.text.toString()
-                                )
-                            }
-                            else {
-
-                                //MyApplication.mySharedPreferences.setValue("alarmtime")
-                            }
-
-                        }
-                }
-            })
-
-
-
-
-
-
+            changeNickname(nick_modify, nick_modify_edit, dialog, mView)
         }
 
         val color = ColorDrawable(Color.TRANSPARENT)
@@ -441,5 +420,70 @@ class SettingActivity :AppCompatActivity() {
         dialog.setView(mView)
         dialog.setCancelable(false)
         dialog.show()
+    }
+
+    private fun changeNickname(nick_modify: Button, nick_modify_edit: EditText, dialog: AlertDialog, mView: View) {
+        val token = MyApplication.mySharedPreferences.getValue("token", "")
+
+        val body=RequestNickChange(
+            nickName = MyApplication.mySharedPreferences.getValue("nickName", ""),
+            newNickName = nick_modify_edit.text.toString()
+        )
+        val call : Call<ResponseNickChange> = CollectionImpl.service.nickchange(token, body)
+        call.enqueue(object : Callback<ResponseNickChange> {
+            override fun onFailure(call: Call<ResponseNickChange>, t: Throwable) {
+                Log.d("tag", t.localizedMessage)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseNickChange>,
+                response: Response<ResponseNickChange>
+            ) {
+
+                if(!response.isSuccessful){
+                    Log.d("status코드2", response.body()?.status.toString())
+                    Log.d("닉네임 중복", "닉네임 중복")
+                    Vibrate.startVibrate(context = this@SettingActivity)
+                    val existnick:TextView=mView.findViewById(R.id.existingnick)
+                    existnick.isVisible=true
+                    val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                    existnickbg.setBackgroundResource(R.drawable.edittext_bg_exist)
+                    val textcount:TextView=mView.findViewById(R.id.textcount)
+                    textcount.isVisible=false
+                    val textcount7:TextView=mView.findViewById(R.id.textcount7)
+                    textcount7.isVisible=false
+                    nick_modify.isClickable=false
+                    nick_modify.setBackgroundResource(R.drawable.popup_btn_bg_init)
+                }
+                response.takeIf { it.isSuccessful }
+
+                    ?.body()
+                    ?.let {
+                        Log.d("status코드", it.status.toString())
+
+                        if(it.status == 200) {
+                            nick_modify.isClickable=true
+                            val existnickbg:ConstraintLayout=mView.findViewById(R.id.editTextTextPersonName)
+                            existnickbg.setBackgroundResource(R.drawable.edittext_bg)
+                            Log.d("닉네임변경완료", "닉네임변경완료")
+
+                            tv_nickname.text=nick_modify_edit.text.toString()
+                            dialog.dismiss()
+                            dialog.cancel()
+                            showToast("닉네임이 변경되었어요!")
+
+                            MyApplication.mySharedPreferences.setValue(
+                                "nickName",
+                                nick_modify_edit.text.toString()
+                            )
+                        }
+                        else {
+
+                            //MyApplication.mySharedPreferences.setValue("alarmtime")
+                        }
+
+                    }
+            }
+        })
     }
 }
