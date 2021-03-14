@@ -134,7 +134,7 @@ class SettingActivity :AppCompatActivity() {
         super.onResume()
         tv_nickname.text=MyApplication.mySharedPreferences.getValue("nickName", "")
 
-        tv_alarm_time.text=MyApplication.mySharedPreferences.getValue("alarm_time","오전 9:00 ")
+        tv_alarm_time.text=MyApplication.mySharedPreferences.getValue("alarm_time","오전 9:00")
         switch_alarm.isChecked=MyApplication.mySharedPreferences.getBooleanValue("alarm_onoff",true)
     }
 
