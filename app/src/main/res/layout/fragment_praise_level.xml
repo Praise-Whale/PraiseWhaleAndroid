@@ -313,12 +313,12 @@
     <ImageView
         android:id="@+id/imageView_lv2"
         android:layout_width="0dp"
-
+        android:visibility="invisible"
         android:layout_height="0dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="15dp"
         android:src="@drawable/lv_2_img_whale"
         app:layout_constraintBottom_toBottomOf="@+id/cpb_circlebar"
         app:layout_constraintEnd_toEndOf="@+id/cpb_circlebar"

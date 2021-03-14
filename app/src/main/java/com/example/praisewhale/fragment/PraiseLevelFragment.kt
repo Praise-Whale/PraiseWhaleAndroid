@@ -47,10 +47,6 @@ class PraiseLevelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        PraseLevelDialogFragment(R.layout.level_popup,1).show(
-            parentFragmentManager,
-            "MainActivity"
-        )
 
         binding.settingBtn.setOnClickListener {
 
