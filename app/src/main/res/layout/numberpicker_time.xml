@@ -104,6 +104,7 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/popup_btn_bg"
         android:text="설정"
+        style="?android:attr/borderlessButtonStyle"
         android:fontFamily="@font/noto_sans_regular"
         android:textSize="15dp"
         android:includeFontPadding="false"

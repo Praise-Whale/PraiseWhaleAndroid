@@ -47,8 +47,12 @@ class PraiseLevelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.settingBtn.setOnClickListener {
+        PraseLevelDialogFragment(R.layout.level_popup,1).show(
+            parentFragmentManager,
+            "MainActivity"
+        )
 
+        binding.settingBtn.setOnClickListener {
 
             val intent= Intent(context,LevelInfoActivity::class.java)
             startActivity(intent)
