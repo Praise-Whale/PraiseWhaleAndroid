@@ -12,6 +12,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import com.example.praisewhale.*
 import com.example.praisewhale.databinding.FragmentPraiseLevelBinding
+import com.example.praisewhale.home.ui.dialog.HomeDialogDoneFragment
 import com.example.praisewhale.util.MyApplication
 import com.sopt.cherish.ui.dialog.PraseLevelDialogFragment
 import kotlinx.android.synthetic.main.fragment_praise_level.*
@@ -47,7 +48,10 @@ class PraiseLevelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        /*val dialogDone =
+            PraiseLeveldialogFragment.CustomDialogBuilder(2).create()
+        dialogDone.isCancelable = false
+        dialogDone.show(parentFragmentManager, dialogDone.tag)*/
         binding.settingBtn.setOnClickListener {
 
             val intent= Intent(context,LevelInfoActivity::class.java)
@@ -113,10 +117,15 @@ class PraiseLevelFragment : Fragment() {
             }
             "1" -> {
                 if(!popupcheck1){
-                    PraseLevelDialogFragment(R.layout.level_popup,1).show(
+                   /* PraseLevelDialogFragment(R.layout.level_popup,1).show(
                         parentFragmentManager,
                         "MainActivity"
-                    )}
+                    )*/
+                    val dialogDone =
+                        PraiseLeveldialogFragment.CustomDialogBuilder(1).create()
+                    dialogDone.isCancelable = false
+                    dialogDone.show(parentFragmentManager, dialogDone.tag)
+                }
                 popupcheck1=true
                 MyApplication.mySharedPreferences.setBooleanValue("popupcheck1",popupcheck1)
 
@@ -134,10 +143,14 @@ class PraiseLevelFragment : Fragment() {
             "2" -> {
 
                 if(!popupcheck2){
-                    PraseLevelDialogFragment(R.layout.level_popup,2).show(
+                    val dialogDone =
+                        PraiseLeveldialogFragment.CustomDialogBuilder(2).create()
+                    dialogDone.isCancelable = false
+                    dialogDone.show(parentFragmentManager, dialogDone.tag)
+                   /* PraseLevelDialogFragment(R.layout.level_popup,2).show(
                         parentFragmentManager,
                         "MainActivity"
-                    )}
+                    )*/}
                 popupcheck2=true
                 MyApplication.mySharedPreferences.setBooleanValue("popupcheck2",popupcheck2)
 
@@ -155,10 +168,15 @@ class PraiseLevelFragment : Fragment() {
             }
             "3" -> {
 
-                if(!popupcheck3){PraseLevelDialogFragment(R.layout.level_popup,3).show(
+                if(!popupcheck3){
+                    val dialogDone =
+                        PraiseLeveldialogFragment.CustomDialogBuilder(3).create()
+                    dialogDone.isCancelable = false
+                    dialogDone.show(parentFragmentManager, dialogDone.tag)
+                /*PraseLevelDialogFragment(R.layout.level_popup,3).show(
                     parentFragmentManager,
                     "MainActivity"
-                )}
+                )*/}
                 popupcheck3=true
                 MyApplication.mySharedPreferences.setBooleanValue("popupcheck3",popupcheck3)
 
@@ -175,10 +193,15 @@ class PraiseLevelFragment : Fragment() {
             }
             "4" -> {
 
-                if(!popupcheck4){PraseLevelDialogFragment(R.layout.level_popup,4).show(
+                if(!popupcheck4){
+                    val dialogDone =
+                        PraiseLeveldialogFragment.CustomDialogBuilder(4).create()
+                    dialogDone.isCancelable = false
+                    dialogDone.show(parentFragmentManager, dialogDone.tag)
+                /*PraseLevelDialogFragment(R.layout.level_popup,4).show(
                     parentFragmentManager,
                     "MainActivity"
-                )}
+                )*/}
                 popupcheck4=true
                 MyApplication.mySharedPreferences.setBooleanValue("popupcheck4",popupcheck4)
                 level_whale.isVisible=false
@@ -196,10 +219,15 @@ class PraiseLevelFragment : Fragment() {
             }
             "5" -> {
 
-                if(!popupcheck5){PraseLevelDialogFragment(R.layout.level_popup,5).show(
+                if(!popupcheck5){
+                    val dialogDone =
+                        PraiseLeveldialogFragment.CustomDialogBuilder(5).create()
+                    dialogDone.isCancelable = false
+                    dialogDone.show(parentFragmentManager, dialogDone.tag)
+                /*PraseLevelDialogFragment(R.layout.level_popup,5).show(
                     parentFragmentManager,
                     "MainActivity"
-                )}
+                )*/}
                 popupcheck5=true
                 MyApplication.mySharedPreferences.setBooleanValue("popupcheck5",popupcheck5)
 
