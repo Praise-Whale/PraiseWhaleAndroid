@@ -33,7 +33,6 @@ class CollectionTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUserInfo()
         setListeners()
         setViewPager2()
         setOnBackPressedCallBack()
@@ -41,6 +40,7 @@ class CollectionTabFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        setUserInfo()
         initTabButton()
         if (!onBackPressedCallback.isEnabled) {
             onBackPressedCallback.isEnabled = true
