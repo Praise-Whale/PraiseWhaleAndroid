@@ -64,7 +64,6 @@ class PraiseLevelFragment : Fragment() {
         popupcheck4=MyApplication.mySharedPreferences.getBooleanValue("popupcheck4",false)
         popupcheck5=MyApplication.mySharedPreferences.getBooleanValue("popupcheck5",false)
 
-        level_txt.text=MyApplication.mySharedPreferences.getValue("nickName","")+ "님의"
         whalename_txt.text=MyApplication.mySharedPreferences.getValue("whaleName","")
         val token = MyApplication.mySharedPreferences.getValue("token", "")
         val call: Call<ResponselevelData> = CollectionImpl.service.getlevelcount(token)
@@ -264,6 +263,7 @@ class PraiseLevelFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        setUserInfo()
         if (!onBackPressedCallback.isEnabled) {
             onBackPressedCallback.isEnabled = true
         }
@@ -274,6 +274,11 @@ class PraiseLevelFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         onBackPressedCallback.isEnabled = false
+    }
+
+    private fun setUserInfo() {
+        val userName = MyApplication.mySharedPreferences.getValue("nickName", "")
+        binding.levelTxt.text = userName + "님의"
     }
 
     private fun setOnBackPressedCallBack() {
