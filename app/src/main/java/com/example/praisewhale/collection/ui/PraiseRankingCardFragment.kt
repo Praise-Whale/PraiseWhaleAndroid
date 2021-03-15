@@ -41,15 +41,15 @@ class PraiseRankingCardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUserInfo()
         setListeners()
-        getPraiseRankingCardData()
         setButtonPraiseTargetHeight()
         setOnBackPressedCallBack()
     }
 
     override fun onResume() {
         super.onResume()
+        setUserInfo()
+        getPraiseRankingCardData()
         if (!onBackPressedCallback.isEnabled) {
             onBackPressedCallback.isEnabled = true
         }
@@ -102,7 +102,9 @@ class PraiseRankingCardFragment : Fragment() {
     private fun setRecyclerView(praiseRankingCardList: List<ResponsePraiseRankingCard.Data.PraiseCollection>) {
         viewBinding.recyclerViewPraiseRankingCard.apply {
             adapter = PraiseRankingCardAdapter(praiseRankingCardList)
-            LinearSnapHelper().attachToRecyclerView(this)
+            if (onFlingListener == null) {
+                LinearSnapHelper().attachToRecyclerView(this)
+            }
         }
     }
 
@@ -114,7 +116,10 @@ class PraiseRankingCardFragment : Fragment() {
         when (response.code()) {
             400 -> updateToken()
             else -> {
-                Log.d("TAG", "PraiseRankingCardFragment - handlePraiseDataStatusCode: ${response.code()}")
+                Log.d(
+                    "TAG",
+                    "PraiseRankingCardFragment - handlePraiseDataStatusCode: ${response.code()}"
+                )
                 return
             }
         }
@@ -164,7 +169,10 @@ class PraiseRankingCardFragment : Fragment() {
                 (parentFragment as CollectionFragment).showFragmentCollectionTab()
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            onBackPressedCallback
+        )
     }
 
     private val fragmentOnClickListener = View.OnClickListener {
