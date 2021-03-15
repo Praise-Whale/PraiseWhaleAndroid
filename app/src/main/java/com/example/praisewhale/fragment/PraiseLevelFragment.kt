@@ -48,7 +48,7 @@ class PraiseLevelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*val dialogDone =
+       /* val dialogDone =
             PraiseLeveldialogFragment.CustomDialogBuilder(2).create()
         dialogDone.isCancelable = false
         dialogDone.show(parentFragmentManager, dialogDone.tag)*/
