@@ -30,7 +30,6 @@ class HomeDialogDoneResultFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         setDialogContents()
-        requireContext().hideKeyboard()
     }
 
     override fun onResume() {
