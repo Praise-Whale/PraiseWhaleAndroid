@@ -7,7 +7,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.example.praisewhale.MainActivity
@@ -20,7 +19,6 @@ class PraiseWhaleFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
-        Log.d("fcm", p0)
     }
 
     override fun onMessageReceived(p0: RemoteMessage) {
@@ -29,8 +27,6 @@ class PraiseWhaleFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun notification(p0: RemoteMessage) {
-        Log.d("fcm", p0.toString())
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = getString(R.string.app_name)
             val descriptionText = getString(R.string.app_name)
