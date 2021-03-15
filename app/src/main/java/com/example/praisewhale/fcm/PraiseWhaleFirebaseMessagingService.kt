@@ -27,19 +27,6 @@ class PraiseWhaleFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun notification(p0: RemoteMessage) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(R.string.app_name)
-            val descriptionText = getString(R.string.app_name)
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val channel =
-                NotificationChannel(getString(R.string.app_name), name, importance).apply {
-                    description = descriptionText
-                }
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-
         val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
