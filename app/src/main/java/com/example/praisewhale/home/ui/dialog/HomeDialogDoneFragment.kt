@@ -62,11 +62,6 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
         viewBinding.editTextPraiseTo.requestFocus()
     }
 
-    override fun onPause() {
-        super.onPause()
-        requireContext().hideKeyboard()
-    }
-
     private fun setListeners() {
         viewBinding.apply {
             imageButtonClose.setOnClickListener(fragmentClickListener)
@@ -197,11 +192,16 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
     private val fragmentClickListener = View.OnClickListener {
         viewBinding.apply {
             when (it.id) {
-                imageButtonClose.id -> dialog!!.dismiss()
+                imageButtonClose.id -> dismissDialog()
                 imageButtonDelete.id -> editTextPraiseTo.setText("")
                 buttonConfirm.id -> saveServerPraiseData(editTextPraiseTo.text.toString())
             }
         }
+    }
+
+    private fun dismissDialog() {
+        dialog!!.dismiss()
+        requireContext().hideKeyboard()
     }
 
     private fun saveServerPraiseData(target: String) {
@@ -221,7 +221,7 @@ class HomeDialogDoneFragment : DialogFragment(), RecentPraiseToClickListener {
             ) {
                 when (response.isSuccessful) {
                     true -> {
-                        dialog!!.dismiss()
+                        dismissDialog()
                         updateHomeFragmentView()
                         showResultDialog(response.body()!!.data.isLevelUp)
                     }
