@@ -98,7 +98,6 @@
         app:layout_constraintTop_toBottomOf="@id/cpb_circlebar">
 
         <TextView
-            android:visibility="invisible"
             android:id="@+id/detail_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,6 +112,7 @@
             android:text=""
             android:textColor="@color/brown"
             android:textSize="16dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/consdetail"
             app:layout_constraintEnd_toEndOf="@+id/consdetail"
             app:layout_constraintStart_toStartOf="@+id/consdetail"
@@ -121,11 +121,11 @@
 
     <LinearLayout
         android:id="@+id/whale"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="21dp"
         android:orientation="horizontal"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/consdetail"
         app:layout_constraintStart_toStartOf="@+id/consdetail"
         app:layout_constraintTop_toBottomOf="@+id/consdetail">
@@ -245,11 +245,11 @@
 
     <ImageView
         android:id="@+id/level_num"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
         android:src="@drawable/lv_ic_lv"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cpb_circlebar" />
@@ -271,12 +271,9 @@
         android:id="@+id/imageView_lv5"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="33dp"
-        android:src="@drawable/lv_5_img_whale"
         android:visibility="invisible"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/lv_5_img_whale"
         app:layout_constraintBottom_toBottomOf="@+id/cpb_circlebar"
         app:layout_constraintEnd_toEndOf="@+id/cpb_circlebar"
         app:layout_constraintStart_toStartOf="@+id/cpb_circlebar"
@@ -317,14 +314,13 @@
     <ImageView
         android:id="@+id/imageView_lv2"
         android:layout_width="0dp"
-
         android:layout_height="0dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="38dp"
-        android:src="@drawable/lv_2_img_whale"
         android:visibility="invisible"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/lv_2_img_whale"
         app:layout_constraintBottom_toBottomOf="@+id/cpb_circlebar"
         app:layout_constraintEnd_toEndOf="@+id/cpb_circlebar"
         app:layout_constraintStart_toStartOf="@+id/cpb_circlebar"

@@ -1,21 +1,13 @@
 package com.example.praisewhale
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import com.example.praisewhale.collection.ui.CollectionFragment
 import com.example.praisewhale.databinding.ActivityMainBinding
 import com.example.praisewhale.fragment.PraiseLevelFragment
 import com.example.praisewhale.home.ui.HomeFragment
-import com.example.praisewhale.notification.AlarmReceiver
-import com.example.praisewhale.util.MyApplication
 import com.example.praisewhale.util.showToast
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setViewBinding()
         initBottomNav()
-        notification()
     }
 
     private fun setViewBinding() {
@@ -98,31 +89,6 @@ class MainActivity : AppCompatActivity() {
     fun changeFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(viewBinding.frameLayoutFragmentContainer.id, fragment).commit()
-    }
-
-    private fun notification() {
-        val alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-
-        if (NotificationManagerCompat.from(applicationContext).areNotificationsEnabled()) {
-            val calendar = Calendar.getInstance()
-            calendar.set(
-                Calendar.HOUR_OF_DAY,
-                MyApplication.mySharedPreferences.getValue("alarm_hour", "9").toInt()
-            )
-            calendar.set(
-                Calendar.MINUTE,
-                MyApplication.mySharedPreferences.getValue("alarm_minute", "00").toInt()
-            )
-            val intent = Intent(this, AlarmReceiver::class.java)
-            val pendingIntent =
-                PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-            alarmManager.setInexactRepeating(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
-                AlarmManager.INTERVAL_DAY,
-                pendingIntent
-            )
-        }
     }
 
     fun showFinishToast() {

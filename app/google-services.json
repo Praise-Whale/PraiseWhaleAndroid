@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "629386282362",
+    "project_id": "praisewhale",
+    "storage_bucket": "praisewhale.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629386282362:android:f613663f7cc33648e402c3",
+        "android_client_info": {
+          "package_name": "com.example.praisewhale"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629386282362-lh0uccfcc18j9n704s4ud800e7h628c2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoO1tLpNOplKQk7XvJsxpkzAC-mtDe7D8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629386282362-lh0uccfcc18j9n704s4ud800e7h628c2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
