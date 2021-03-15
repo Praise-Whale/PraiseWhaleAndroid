@@ -215,54 +215,101 @@ class SettingActivity :AppCompatActivity() {
 
         btnok.setOnClickListener {
 
-            if ((ny2.value.toString()).length < 2) {
+            if(list[ny.value]=="오전"){
+                tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
+//                    tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":0" + ny2.value.toString()
+                tv_alarm_time.text=tvalarmtimetoast
+
+                MyApplication.mySharedPreferences.setValue(
+                    "alarm_hour",
+                    (ny1.value+1).toString()
+                )
+                Log.d("apple",(ny1.value+1).toString())
+                MyApplication.mySharedPreferences.setValue(
+                    "alarm_minute",
+                    list_minute[ny2.value].toString()
+                )
+                Log.d("appless", list_minute[ny2.value].toString())
+                MyApplication.mySharedPreferences.setValue(
+                    "alarm_time",
+                    list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
+                )
+
+            }else{
+                tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
+                tv_alarm_time.text=tvalarmtimetoast
+
+                val clock_ = (ny1.value+1) + 12
+                // tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":0" + ny2.value.toString()
+                MyApplication.mySharedPreferences.setValue(
+                    "alarm_hour",
+                    clock_.toString()
+                )
+                Log.d("apple",clock_.toString())
+
+                MyApplication.mySharedPreferences.setValue(
+                    "alarm_minute",
+                    list_minute[ny2.value].toString()
+                )
+                Log.d("appless", list_minute[ny2.value].toString())
+
+                MyApplication.mySharedPreferences.setValue(
+                    "alarm_time",
+                    list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
+                )
+
+            }
+            /*if ((ny2.value.toString()).length < 2) {
                 if (list[ny.value] == "오전") {
-                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":0" +ny2.value.toString()
+                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
 //                    tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":0" + ny2.value.toString()
                     tv_alarm_time.text=tvalarmtimetoast
 
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
-                        ny1.value.toString()
+                        (ny1.value+1).toString()
                     )
+                    Log.d("apple",(ny1.value+1).toString())
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_minute",
-                        ny2.value.toString()
+                        list_minute[ny2.value].toString()
                     )
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+(ny1.value+1).toString() + ":0" +ny2.value.toString()
+                        list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
                     )
 
 
                 } else {
-                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":0" +ny2.value.toString()
+                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
                     tv_alarm_time.text=tvalarmtimetoast
 
-                    val clock_ = ny1.value + 12
+                    val clock_ = (ny1.value+1) + 12
                    // tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":0" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
                         clock_.toString()
                     )
+                    Log.d("apple",clock_.toString())
+
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_minute",
-                        ny2.value.toString()
+                        list_minute[ny2.value].toString()
                     )
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+(ny1.value+1).toString() + ":0" +ny2.value.toString()
+                        list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
                     )
                 }
             } else {
                 if (list[ny.value] == "오후") {
-                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":" +ny2.value.toString()
+                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
                     tv_alarm_time.text=tvalarmtimetoast
 
-                    val clock_ = ny1.value + 12
+                    val clock_ = (ny1.value+1) + 12
                    // tv_alarm_time.text =list[ny.value]+" "+clock_.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
@@ -270,33 +317,33 @@ class SettingActivity :AppCompatActivity() {
                     )
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_minute",
-                        ny2.value.toString()
+                        list_minute[ny2.value].toString()
                     )
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+(ny1.value+1).toString() + ":" +ny2.value.toString()
+                        list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
                     )
 
                 } else {
-                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":" +ny2.value.toString()
+                    tvalarmtimetoast=list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
                     tv_alarm_time.text=tvalarmtimetoast
                    // tv_alarm_time.text =list[ny.value]+" "+ny1.value.toString() + ":" + ny2.value.toString()
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_hour",
-                        ny1.value.toString()
+                        (ny1.value+1).toString()
                     )
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_minute",
-                        ny2.value.toString()
+                        list_minute[ny2.value].toString()
                     )
 
                     MyApplication.mySharedPreferences.setValue(
                         "alarm_time",
-                        list[ny.value]+" "+(ny1.value+1).toString() + ":" +ny2.value.toString()
+                        list[ny.value]+" "+(ny1.value+1).toString() + ":" +list_minute[ny2.value].toString()
                     )
                 }
-            }
+            }*/
             dialog2.dismiss()
             showToast("앞으로 " + tvalarmtimetoast + " 에 칭찬 알림을 보내드릴게요!")
         }
