@@ -39,6 +39,7 @@ class WhaleNameFragment : Fragment() {
         binding.signUpViewModel = signUpViewModel
         binding.lifecycleOwner = this
 
+        getFcmToken()
         setFocus(binding)
         setFocusListener(binding)
         setBackClickListener(binding)
@@ -53,6 +54,10 @@ class WhaleNameFragment : Fragment() {
         val imm =
             requireView().context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    }
+
+    private fun getFcmToken() {
+        signUpViewModel.fcmToken()
     }
 
     private fun setFocus(binding: FragmentWhaleNameBinding) {
@@ -97,7 +102,8 @@ class WhaleNameFragment : Fragment() {
     private fun signUp() {
         val body = RequestSignUp(
             nickName = signUpViewModel.userName.value!!,
-            whaleName = signUpViewModel.whaleName.value!!
+            whaleName = signUpViewModel.whaleName.value!!,
+            deviceToken = signUpViewModel.fcmToken.value!!
         )
         val call: Call<ResponseToken> = CollectionImpl.service.signUp(body)
         call.enqueue(object : Callback<ResponseToken> {
