@@ -1,10 +1,8 @@
 package com.example.praisewhale
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
@@ -21,7 +19,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
+import com.example.praisewhale.data.RequestAlarm
 import com.example.praisewhale.data.RequestNickChange
+import com.example.praisewhale.data.ResponseData
 import com.example.praisewhale.data.home.ResponseNickChange
 import com.example.praisewhale.util.MyApplication
 import com.example.praisewhale.util.Vibrate
@@ -29,7 +29,6 @@ import com.example.praisewhale.util.showToast
 import com.example.praisewhale.util.textChangedListener
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import kotlinx.android.synthetic.main.activity_setting.*
-import kotlinx.android.synthetic.main.activity_setting.tv_alarm_time
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -66,6 +65,7 @@ class SettingActivity :AppCompatActivity() {
         }
 
         switch_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
+            registerAlarm(isChecked)
 
             if(!MyApplication.mySharedPreferences.getBooleanValue(
                     "alarm_onoff",
@@ -530,6 +530,28 @@ class SettingActivity :AppCompatActivity() {
                         }
 
                     }
+            }
+        })
+    }
+
+    private fun registerAlarm(isChecked : Boolean) {
+        val body = RequestAlarm(alarmSet = isChecked)
+        val token = MyApplication.mySharedPreferences.getValue("token", "")
+        val call: Call<ResponseData> = CollectionImpl.service.registerAlarm(token, body)
+        call.enqueue(object : Callback<ResponseData> {
+            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                Log.d("response", t.localizedMessage!!)
+            }
+
+            override fun onResponse(
+                call: Call<ResponseData>,
+                response: Response<ResponseData>
+            ) {
+                Log.d("response", response.body().toString())
+                response.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                    } ?: Toast.makeText(this@SettingActivity, "error", Toast.LENGTH_SHORT).show()
             }
         })
     }
