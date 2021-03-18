@@ -1,11 +1,9 @@
 package com.example.praisewhale.collection.ui
 
 import android.app.AlertDialog
-import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -94,142 +92,17 @@ class CardFragment : Fragment() {
             val months = arrayOfNulls<String>(13)
             months[0] = "전체"
             for (i in 1..12) {
-                months[i] = i.toString() + "월"
-            }
-            val monthsOfOnlyYear = arrayOfNulls<String>(thisMonth - firstMonth + 2)
-            monthsOfOnlyYear[0] = "전체"
-            for (i in 1 until monthsOfOnlyYear.size) {
-                monthsOfOnlyYear[i] = (firstMonth + i - 1).toString() + "월"
-            }
-            val monthsOfOThisYear = arrayOfNulls<String>(thisMonth + 1)
-            monthsOfOThisYear[0] = "전체"
-            for (i in 1 until monthsOfOThisYear.size) {
-                monthsOfOThisYear[i] = i.toString() + "월"
-            }
-            val monthsOfOFirstYear = arrayOfNulls<String>(14 - firstMonth)
-            monthsOfOFirstYear[0] = "전체"
-            for (i in 1 until monthsOfOFirstYear.size) {
-                monthsOfOFirstYear[i] = (firstMonth + i - 1).toString() + "월"
+                months[i] = (month.minValue + i).toString() + "월"
             }
 
             year.displayedValues = years
+            month.displayedValues = months
+
             year.minValue = 0
             year.maxValue = years.size - 1
-
             month.minValue = 0
-            // 각 year 마다 다른 month 적용
-            Log.d("첫년도", "$firstYear")
-            Log.d("현년도", "$thisYear")
-            Log.d("년 개수", "${years.size}")
-            when (years.size) {
-                1 -> { // firstYear == thisYear
-                    month.displayedValues = monthsOfOnlyYear
-                    month.maxValue = monthsOfOnlyYear.size - 1
+            month.maxValue = 12
 
-                    // confirm
-                    confirm.setOnClickListener {
-                        clickConfirm(year, month, years, monthsOfOnlyYear)
-
-                        dialog.dismiss()
-                        dialog.cancel()
-                    }
-                }
-                2 -> { // firstYear & thisYear
-                    if (years[year.value] == "${thisYear}년") {
-                        month.displayedValues = monthsOfOThisYear
-                        month.maxValue = monthsOfOThisYear.size - 1
-                    } else {
-                        month.displayedValues = monthsOfOFirstYear
-                        month.maxValue = monthsOfOFirstYear.size - 1
-                    }
-
-                    // 스크롤 시 다른 month 적용
-                    year.setOnValueChangedListener { yearPicker, oldVal, newVal ->
-                        if (monthsOfOThisYear.size > monthsOfOFirstYear.size) {
-                            if (oldVal == yearPicker.maxValue && newVal == 0) { // this -> first
-                                month.maxValue = monthsOfOFirstYear.size - 1
-                                month.displayedValues = monthsOfOFirstYear
-                            }
-                            if (oldVal == 0 && newVal == yearPicker.maxValue) { // first -> this
-                                month.displayedValues = monthsOfOThisYear
-                                month.maxValue = monthsOfOThisYear.size - 1
-                            }
-                        } else {
-                            if (oldVal == yearPicker.maxValue && newVal == 0) { // this -> first
-                                month.displayedValues = monthsOfOFirstYear
-                                month.maxValue = monthsOfOFirstYear.size - 1
-                            }
-                            if (oldVal == 0 && newVal == yearPicker.maxValue) { // first -> this
-                                month.maxValue = monthsOfOThisYear.size - 1
-                                month.displayedValues = monthsOfOThisYear
-                            }
-                        }
-                    }
-
-                    // confirm
-                    confirm.setOnClickListener {
-                        if (years[year.value] == "${thisYear}년") clickConfirm(year, month, years, monthsOfOThisYear)
-                        else clickConfirm(year, month, years, monthsOfOFirstYear)
-
-                        dialog.dismiss()
-                        dialog.cancel()
-                    }
-                }
-                else -> { // firstYear & thisYear & else
-                    when {
-                        years[year.value] == "${thisYear}년" -> {
-                            month.displayedValues = monthsOfOThisYear
-                            month.maxValue = monthsOfOThisYear.size - 1
-                        }
-                        years[year.value] == "${firstYear}년" -> {
-                            month.displayedValues = monthsOfOFirstYear
-                            month.maxValue = monthsOfOFirstYear.size - 1
-                        }
-                        else -> {
-                            month.displayedValues = months
-                            month.maxValue = months.size - 1
-                        }
-                    }
-
-                    // 스크롤 시 다른 month 적용
-                    year.setOnValueChangedListener { yearPicker, oldVal, newVal ->
-                        if (oldVal == yearPicker.maxValue) { // this -> else
-                            month.displayedValues = months
-                            month.maxValue = months.size - 1
-                        }
-                        if (newVal == yearPicker.maxValue) { // else -> this
-                            month.maxValue = monthsOfOThisYear.size - 1
-                            month.displayedValues = monthsOfOThisYear
-                        }
-                        if (newVal == 0) { // else -> first
-                            month.maxValue = monthsOfOFirstYear.size - 1
-                            month.displayedValues = monthsOfOFirstYear
-                        }
-                        if (oldVal == 0) { // first -> else
-                            month.displayedValues = months
-                            month.maxValue = months.size - 1
-                        }
-                    }
-
-                    // confirm
-                    confirm.setOnClickListener {
-                        when {
-                            years[year.value] == "${thisYear}년" -> clickConfirm(year, month, years, monthsOfOThisYear)
-                            years[year.value] == "${firstYear}년" -> clickConfirm(year, month, years, monthsOfOFirstYear)
-                            else -> {
-                                getServerCardData(years[year.value].substring(0, 4).toInt(), String.format("%02d", month.value))
-                                if (month.value == 0) binding.btnCardPicker.text = years[year.value] + " 전체"
-                                else binding.btnCardPicker.text = years[year.value] + " " + months[month.value]
-                            }
-                        }
-
-                        dialog.dismiss()
-                        dialog.cancel()
-                    }
-                }
-            }
-
-            // picker에 써있는 값이 선택되어 있게 설정
             for (i in years.indices) {
                 if (binding.btnCardPicker.text.split(" ")[0] == years[i])
                     year.value = i
@@ -245,6 +118,19 @@ class CardFragment : Fragment() {
                 dialog.cancel()
             }
 
+            confirm.setOnClickListener {
+                getServerCardData(years[year.value].substring(0, 4).toInt(), String.format("%02d", month.value))
+
+                if (month.value == 0) {
+                    binding.btnCardPicker.text = years[year.value] + " 전체"
+                } else {
+                    binding.btnCardPicker.text = years[year.value] + " " + months[month.value]
+                }
+
+                dialog.dismiss()
+                dialog.cancel()
+            }
+
             // Dialog background 설정
             val color = ColorDrawable(Color.TRANSPARENT)
             val inset = InsetDrawable(color, 85)
@@ -253,17 +139,6 @@ class CardFragment : Fragment() {
             dialog.setView(mView)
             dialog.setCancelable(false)
             dialog.show()
-        }
-    }
-
-    private fun clickConfirm(year: NumberPicker, month: NumberPicker, years: Array<String>, months: Array<String?>) {
-        if (month.value == 0) {
-            getServerCardData(years[year.value].substring(0, 4).toInt(), String.format("%02d", month.value))
-            binding.btnCardPicker.text = years[year.value] + " 전체"
-        } else {
-            val monthValue = months[month.value]!!.split("월")[0].toInt()
-            getServerCardData(years[year.value].substring(0, 4).toInt(), String.format("%02d", monthValue))
-            binding.btnCardPicker.text = years[year.value] + " " + months[month.value]
         }
     }
 
@@ -285,8 +160,13 @@ class CardFragment : Fragment() {
                         firstYear = it.data.firstDate.created_at.substring(0,4).toInt()
                         firstMonth = it.data.firstDate.created_at.substring(5,7).toInt()
 
-                        if (it.data.praiseCount == 0) configureEmptyView()
-                        else {
+                        if (it.data.praiseCount == 0) {
+                            if (year == firstYear && month.toInt() < firstMonth && month != "0")
+                                configurePastEmptyView()
+                            else if (year == thisYear && month.toInt() > thisMonth)
+                                configureFutureEmptyView()
+                            else configureEmptyView()
+                        } else {
                             configureDefaultView()
                             binding.cardCount.text = it.data.praiseCount.toString() + "번"
                             cardBoxAdapter.data = it.data.collectionPraise
@@ -318,5 +198,21 @@ class CardFragment : Fragment() {
         visibleView.forEach { view -> view.isVisible = true }
         emptyView.forEach { view -> view.isVisible = false }
         binding.btnCardPicker.isVisible = true
+    }
+
+    private fun configurePastEmptyView() {
+        visibleView.forEach { view -> view.isVisible = false }
+        emptyView.forEach { view -> view.isVisible = true }
+        binding.btnCardPicker.isVisible = true
+        binding.tvEmpty1.text = getString(R.string.past_empty_title)
+        binding.tvEmpty2.text = getString(R.string.past_empty_sub)
+    }
+
+    private fun configureFutureEmptyView() {
+        visibleView.forEach { view -> view.isVisible = false }
+        emptyView.forEach { view -> view.isVisible = true }
+        binding.btnCardPicker.isVisible = true
+        binding.tvEmpty1.text = getString(R.string.future_empty_title)
+        binding.tvEmpty2.text = getString(R.string.future_empty_sub)
     }
 }
