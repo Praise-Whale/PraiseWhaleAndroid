@@ -35,15 +35,14 @@ class PraiseWhaleFirebaseMessagingService : FirebaseMessagingService() {
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
         val convertView = RemoteViews(packageName, R.layout.layout_notification)
-        convertView.setTextViewText(R.id.tv_alarm_time, timeString())
-        val convertHeadUpView =
-            RemoteViews(packageName, R.layout.layout_head_up_notification)
+//        convertView.setTextViewText(R.id.tv_alarm_time, timeString())
+//        val convertHeadUpView =
+//            RemoteViews(packageName, R.layout.layout_head_up_notification)
 
         val builder =
             NotificationCompat.Builder(this, getString(R.string.app_name))
-                .setSmallIcon(R.drawable.push_ic_icon)
-                .setCustomContentView(convertHeadUpView)
-                .setCustomBigContentView(convertView)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setCustomContentView(convertView)
                 .setContentIntent(pendingIntent)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
