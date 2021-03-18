@@ -59,8 +59,8 @@ class SettingActivity :AppCompatActivity() {
 
         layout_alarm.setOnClickListener {
 
-            AlarmClockDialog()
-
+            //AlarmClockDialog()
+            showToast("아직 준비 중인 기능이에요! 기다려주세요!")
 
         }
 
