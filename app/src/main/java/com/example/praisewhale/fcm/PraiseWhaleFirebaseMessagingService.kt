@@ -11,9 +11,10 @@ import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.example.praisewhale.R
 import com.example.praisewhale.SplashActivity
-import com.example.praisewhale.util.MyApplication
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PraiseWhaleFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -35,7 +36,7 @@ class PraiseWhaleFirebaseMessagingService : FirebaseMessagingService() {
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
         val convertView = RemoteViews(packageName, R.layout.layout_notification)
-//        convertView.setTextViewText(R.id.tv_alarm_time, timeString())
+        convertView.setTextViewText(R.id.tv_alarm_time, timeString())
 //        val convertHeadUpView =
 //            RemoteViews(packageName, R.layout.layout_head_up_notification)
 
@@ -66,27 +67,5 @@ class PraiseWhaleFirebaseMessagingService : FirebaseMessagingService() {
 
     }
 
-    private fun timeString(): String {
-        var hour = MyApplication.mySharedPreferences.getValue("alarm_hour", "9").toInt()
-        val minute = MyApplication.mySharedPreferences.getValue("alarm_minute", "00")
-
-        if (hour >= 12) {
-            if (hour in 12..21) {
-                hour -= 12
-                return "오후 0$hour:$minute"
-            }
-            if (hour >= 22) {
-                hour -= 12
-                return "오후 $hour:$minute"
-            }
-        } else {
-            if (hour in 0..9) {
-                return "오전 0$hour:$minute"
-            }
-            if (hour >= 10) {
-                return "오전 $hour:$minute"
-            }
-        }
-        return ""
-    }
+    private fun timeString() = SimpleDateFormat("a h:mm", Locale.KOREA).format(Date())
 }
