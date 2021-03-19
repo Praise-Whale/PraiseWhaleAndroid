@@ -9,8 +9,8 @@ import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
-import com.example.praisewhale.MainActivity
 import com.example.praisewhale.R
+import com.example.praisewhale.SplashActivity
 import com.example.praisewhale.util.MyApplication
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -27,7 +27,7 @@ class PraiseWhaleFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun notification(p0: RemoteMessage) {
-        val intent = Intent(this, MainActivity::class.java).apply {
+        val intent = Intent(this, SplashActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
 
