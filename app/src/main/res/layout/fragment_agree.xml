@@ -7,7 +7,7 @@
 
         <variable
             name="signUpViewModel"
-            type="com.example.praisewhale.signup.SignUpViewModel" />
+            type="com.sopt27.praisewhale.signup.SignUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

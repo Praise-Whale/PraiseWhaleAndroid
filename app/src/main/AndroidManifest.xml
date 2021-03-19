@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.praisewhale">
+    package="com.sopt27.praisewhale">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name=".util.MyApplication"
+        android:name="com.sopt27.praisewhale.util.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".SplashActivity"
+            android:name="com.sopt27.praisewhale.SplashActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
@@ -29,43 +29,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".onboarding.OnBoardingActivity"
+            android:name="com.sopt27.praisewhale.onboarding.OnBoardingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".signup.SignUpActivity"
+            android:name="com.sopt27.praisewhale.signup.SignUpActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".InfoActivity"
+            android:name="com.sopt27.praisewhale.InfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".InfoUserActivity"
+            android:name="com.sopt27.praisewhale.InfoUserActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.sopt27.praisewhale.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".SettingActivity"
+            android:name="com.sopt27.praisewhale.SettingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".DeveloperActivity"
+            android:name="com.sopt27.praisewhale.DeveloperActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".LevelInfoActivity"
+            android:name="com.sopt27.praisewhale.LevelInfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".CircularActivity"
+            android:name="com.sopt27.praisewhale.CircularActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
-        <service android:name=".fcm.PraiseWhaleFirebaseMessagingService"
+        <service android:name="com.sopt27.praisewhale.fcm.PraiseWhaleFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
