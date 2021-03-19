@@ -57,6 +57,10 @@
     <string name="all_empty_sub">칭찬 미션을 완료하고,\n칭찬 카드를 모아봐요!</string>
     <string name="default_empty_title">이 달에 완료한 칭찬이 없어요!</string>
     <string name="default_empty_sub">앞으로 더 꾸준한\n칭찬 습관을 길러봐요!</string>
+    <string name="past_empty_title">이미 지난 달이에요!</string>
+    <string name="past_empty_sub">과거보다는 앞으로 다가올 날에\n더 열심히 칭찬해요!</string>
+    <string name="future_empty_title">아직 오지 않은 달이에요!</string>
+    <string name="future_empty_sub">꾸준히 칭찬하다 보면\n곧 만나게 될 거예요!</string>
 
     <!-- LevelInfoActivity -->
     <string name="level_info_title">칭찬할고래 레벨</string>
@@ -77,6 +81,7 @@
     <string name="alarm_title">오늘의 칭찬이 도착했어요!</string>
     <string name="alarm_head_up_title">오늘의 칭찬</string>
     <string name="alarm_head_up_content">이 도착했어요!</string>
+    <string name="alarm_time">오전 9:00</string>
 
     <!-- SettingActivity -->
     <string name="setting_title">설정</string>

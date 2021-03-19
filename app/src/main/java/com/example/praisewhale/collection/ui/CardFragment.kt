@@ -1,11 +1,9 @@
 package com.example.praisewhale.collection.ui
 
 import android.app.AlertDialog
-import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -35,7 +33,9 @@ class CardFragment : Fragment() {
 
     private val cal: Calendar = Calendar.getInstance()
     private val thisYear = cal.get(Calendar.YEAR)
+    private val thisMonth = cal.get(Calendar.MONTH) + 1
     private var firstYear = 0
+    private var firstMonth = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -158,9 +158,15 @@ class CardFragment : Fragment() {
                 if (response.isSuccessful) {
                     response.body()?.let {
                         firstYear = it.data.firstDate.created_at.substring(0,4).toInt()
+                        firstMonth = it.data.firstDate.created_at.substring(5,7).toInt()
 
-                        if (it.data.praiseCount == 0) configureEmptyView()
-                        else {
+                        if (it.data.praiseCount == 0) {
+                            if (year == firstYear && month.toInt() < firstMonth && month != "0")
+                                configurePastEmptyView()
+                            else if (year == thisYear && month.toInt() > thisMonth)
+                                configureFutureEmptyView()
+                            else configureEmptyView()
+                        } else {
                             configureDefaultView()
                             binding.cardCount.text = it.data.praiseCount.toString() + "번"
                             cardBoxAdapter.data = it.data.collectionPraise
@@ -192,5 +198,21 @@ class CardFragment : Fragment() {
         visibleView.forEach { view -> view.isVisible = true }
         emptyView.forEach { view -> view.isVisible = false }
         binding.btnCardPicker.isVisible = true
+    }
+
+    private fun configurePastEmptyView() {
+        visibleView.forEach { view -> view.isVisible = false }
+        emptyView.forEach { view -> view.isVisible = true }
+        binding.btnCardPicker.isVisible = true
+        binding.tvEmpty1.text = getString(R.string.past_empty_title)
+        binding.tvEmpty2.text = getString(R.string.past_empty_sub)
+    }
+
+    private fun configureFutureEmptyView() {
+        visibleView.forEach { view -> view.isVisible = false }
+        emptyView.forEach { view -> view.isVisible = true }
+        binding.btnCardPicker.isVisible = true
+        binding.tvEmpty1.text = getString(R.string.future_empty_title)
+        binding.tvEmpty2.text = getString(R.string.future_empty_sub)
     }
 }
