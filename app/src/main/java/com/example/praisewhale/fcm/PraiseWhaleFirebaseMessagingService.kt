@@ -11,6 +11,8 @@ import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.example.praisewhale.R
 import com.example.praisewhale.SplashActivity
+import com.example.praisewhale.util.LAST_PRAISE_STATUS
+import com.example.praisewhale.util.MyApplication
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import java.text.SimpleDateFormat
@@ -24,7 +26,9 @@ class PraiseWhaleFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
-        notification(p0)
+        if (MyApplication.mySharedPreferences.getValue(LAST_PRAISE_STATUS, "") == "") {
+            notification(p0)
+        }
     }
 
     private fun notification(p0: RemoteMessage) {
