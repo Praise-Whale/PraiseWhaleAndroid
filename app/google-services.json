@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:629386282362:android:f613663f7cc33648e402c3",
+        "mobilesdk_app_id": "1:629386282362:android:f6ebbf86cc00e473e402c3",
         "android_client_info": {
-          "package_name": "com.example.praisewhale"
+          "package_name": "com.sopt27.praisewhale"
         }
       },
       "oauth_client": [
