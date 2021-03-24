@@ -22,7 +22,7 @@
         style="@style/noto_sans_bold_22dp_greyish_brown"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="오늘의 칭찬 한마디"
+        android:text="@string/home_title"
         app:layout_constraintStart_toStartOf="@+id/textView_userName"
         app:layout_constraintTop_toBottomOf="@+id/textView_userName" />
 
@@ -167,7 +167,7 @@
             android:backgroundTint="@color/very_light_pink"
             android:gravity="center"
             android:paddingBottom="2dp"
-            android:text="못했어요.."
+            android:text="@string/home_button_undone"
             app:layout_constraintBottom_toBottomOf="@+id/imageView_cardBackground"
             app:layout_constraintEnd_toStartOf="@+id/button_positive"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -183,7 +183,7 @@
             android:backgroundTint="@color/sand_yellow"
             android:gravity="center"
             android:paddingBottom="2dp"
-            android:text="했어요!"
+            android:text="@string/home_button_done"
             app:layout_constraintBottom_toBottomOf="@+id/button_negative"
             app:layout_constraintEnd_toEndOf="@+id/imageView_cardFrame"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -209,7 +209,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:text="오늘의 칭찬"
+            android:text="@string/home_praise_status_description"
             app:layout_constraintBottom_toBottomOf="@+id/button_praiseStatus"
             app:layout_constraintEnd_toStartOf="@id/textView_praiseStatus"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -223,11 +223,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginBottom="2dp"
-            android:text="완료"
             app:layout_constraintBottom_toBottomOf="@+id/button_praiseStatus"
             app:layout_constraintEnd_toEndOf="@+id/button_praiseStatus"
             app:layout_constraintStart_toEndOf="@id/textView_praiseStatusDescription"
-            app:layout_constraintTop_toTopOf="@+id/button_praiseStatus" />
+            app:layout_constraintTop_toTopOf="@+id/button_praiseStatus"
+            tools:text="완료" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

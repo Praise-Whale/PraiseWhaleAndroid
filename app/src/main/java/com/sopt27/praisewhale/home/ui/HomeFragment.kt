@@ -51,13 +51,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
-        setPraiseStatusDefaultView()
+        setPraiseStatusDefaultVisibility()
         setOnBackPressedCallBack()
     }
 
     override fun onResume() {
         super.onResume()
-        getCurrentDate()
+        getCurrentYMD()
         setDefaultInfo()
         checkLastGetPraiseDate()
         if (!onBackPressedCallback.isEnabled) {
@@ -82,14 +82,16 @@ class HomeFragment : Fragment() {
 
     private fun setDefaultInfo() {
         val userName = sharedPreferences.getValue("nickName", "")
-        viewBinding.textViewUserName.text = userName + "님을 위한"
+        viewBinding.textViewUserName.text = userName + getString(R.string.home_user_name)
         viewBinding.buttonDate.text = "${currentMonth}월 ${currentDate}일"
     }
 
-    private fun getCurrentDate() {
-        currentYear = Calendar.getInstance().get(Calendar.YEAR).toString()
-        currentMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1).toString()
-        currentDate = Calendar.getInstance().get(Calendar.DATE).toString()
+    private fun getCurrentYMD() {
+        Calendar.getInstance().let {
+            currentYear = it.get(Calendar.YEAR).toString()
+            currentMonth = (it.get(Calendar.MONTH) + 1).toString()
+            currentDate = it.get(Calendar.DATE).toString()
+        }
         currentYMD = currentYear + currentMonth + currentDate
     }
 
@@ -112,13 +114,13 @@ class HomeFragment : Fragment() {
 
             val lastGetPraiseStatus = sharedPreferences.getValue(LAST_PRAISE_STATUS, "")
             when (lastGetPraiseStatus.length) {
-                0 -> setPraiseStatusDefaultView() // 아무 버튼도 누르지 않았을 경우 기본 뷰 설정
-                else -> setPraiseStatusResultView(lastGetPraiseStatus) // 칭찬 상태에 따라 뷰 설정
+                0 -> setPraiseStatusDefaultVisibility() // 아무 버튼도 누르지 않았을 경우 기본 뷰 설정
+                else -> setPraiseStatusResultVisibility(lastGetPraiseStatus) // 칭찬 상태에 따라 뷰 설정
             }
         }
     }
 
-    private fun setPraiseStatusDefaultView() {
+    private fun setPraiseStatusDefaultVisibility() {
         viewBinding.apply {
             buttonNegative.setVisible()
             buttonPositive.setVisible()
@@ -129,7 +131,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setPraiseStatusResultView(lastGetPraiseStatus: String) {
+    private fun setPraiseStatusResultVisibility(lastGetPraiseStatus: String) {
         setPraiseStatusResultButton(lastGetPraiseStatus)
         viewBinding.apply {
             buttonNegative.setInvisible()
@@ -147,15 +149,15 @@ class HomeFragment : Fragment() {
                     imageViewDolphin.setImageResource(R.drawable.main_img_whale_success)
                     buttonPraiseStatus.setContextCompatBackgroundTintList(R.color.dodger_blue_13)
                     textViewPraiseStatus.setContextCompatTextColor(R.color.dodger_blue)
-                    textViewPraiseStatus.text = "완료"
-                    textViewPraiseDescription.text = "완료한 칭찬은 카드서랍\n" + "에서 확인할 수 있어요!"
+                    textViewPraiseStatus.text = getString(R.string.home_praise_status_done)
+                    textViewPraiseDescription.text = getString(R.string.home_praise_status_done_description)
                 }
                 "undone" -> {
                     imageViewDolphin.setImageResource(R.drawable.main_img_whale_fail)
                     buttonPraiseStatus.setContextCompatBackgroundTintList(R.color.very_light_pink)
                     textViewPraiseStatus.setContextCompatTextColor(R.color.black)
-                    textViewPraiseStatus.text = "미완료"
-                    textViewPraiseDescription.text = "내일은 꼭 칭찬해서\n" + "고래를 춤 추게 해요!"
+                    textViewPraiseStatus.text = getString(R.string.home_praise_status_undone)
+                    textViewPraiseDescription.text = getString(R.string.home_praise_status_undone_description)
                 }
             }
         }
