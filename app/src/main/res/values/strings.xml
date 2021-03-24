@@ -52,6 +52,17 @@
     <string name="start">시작하기</string>
     <string name="nicknameEllipsize">%s...</string>
 
+    <!-- HomeFragment -->
+    <string name="home_user_name">님을 위한</string>
+    <string name="home_title">오늘의 칭찬 한마디</string>
+    <string name="home_button_done">했어요!</string>
+    <string name="home_button_undone">못했어요..</string>
+    <string name="home_praise_status_description">오늘의 칭찬</string>
+    <string name="home_praise_status_done">완료</string>
+    <string name="home_praise_status_undone">미완료</string>
+    <string name="home_praise_status_done_description">완료한 칭찬은 카드서랍\n에서 확인할 수 있어요!</string>
+    <string name="home_praise_status_undone_description">내일은 꼭 칭찬해서\n고래를 춤 추게 해요!</string>
+
     <!-- CardFragment -->
     <string name="all_empty_title">아직 칭찬을 하지 않았어요!</string>
     <string name="all_empty_sub">칭찬 미션을 완료하고,\n칭찬 카드를 모아봐요!</string>

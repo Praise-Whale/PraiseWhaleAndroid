@@ -82,14 +82,16 @@ class HomeFragment : Fragment() {
 
     private fun setDefaultInfo() {
         val userName = sharedPreferences.getValue("nickName", "")
-        viewBinding.textViewUserName.text = userName + "님을 위한"
+        viewBinding.textViewUserName.text = userName + getString(R.string.home_user_name)
         viewBinding.buttonDate.text = "${currentMonth}월 ${currentDate}일"
     }
 
     private fun getCurrentYMD() {
-        currentYear = Calendar.getInstance().get(Calendar.YEAR).toString()
-        currentMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1).toString()
-        currentDate = Calendar.getInstance().get(Calendar.DATE).toString()
+        Calendar.getInstance().let {
+            currentYear = it.get(Calendar.YEAR).toString()
+            currentMonth = (it.get(Calendar.MONTH) + 1).toString()
+            currentDate = it.get(Calendar.DATE).toString()
+        }
         currentYMD = currentYear + currentMonth + currentDate
     }
 
@@ -147,15 +149,15 @@ class HomeFragment : Fragment() {
                     imageViewDolphin.setImageResource(R.drawable.main_img_whale_success)
                     buttonPraiseStatus.setContextCompatBackgroundTintList(R.color.dodger_blue_13)
                     textViewPraiseStatus.setContextCompatTextColor(R.color.dodger_blue)
-                    textViewPraiseStatus.text = "완료"
-                    textViewPraiseDescription.text = "완료한 칭찬은 카드서랍\n" + "에서 확인할 수 있어요!"
+                    textViewPraiseStatus.text = getString(R.string.home_praise_status_done)
+                    textViewPraiseDescription.text = getString(R.string.home_praise_status_done_description)
                 }
                 "undone" -> {
                     imageViewDolphin.setImageResource(R.drawable.main_img_whale_fail)
                     buttonPraiseStatus.setContextCompatBackgroundTintList(R.color.very_light_pink)
                     textViewPraiseStatus.setContextCompatTextColor(R.color.black)
-                    textViewPraiseStatus.text = "미완료"
-                    textViewPraiseDescription.text = "내일은 꼭 칭찬해서\n" + "고래를 춤 추게 해요!"
+                    textViewPraiseStatus.text = getString(R.string.home_praise_status_undone)
+                    textViewPraiseDescription.text = getString(R.string.home_praise_status_undone_description)
                 }
             }
         }
