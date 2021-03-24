@@ -51,13 +51,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
-        setPraiseStatusDefaultView()
+        setPraiseStatusDefaultVisibility()
         setOnBackPressedCallBack()
     }
 
     override fun onResume() {
         super.onResume()
-        getCurrentDate()
+        getCurrentYMD()
         setDefaultInfo()
         checkLastGetPraiseDate()
         if (!onBackPressedCallback.isEnabled) {
@@ -86,7 +86,7 @@ class HomeFragment : Fragment() {
         viewBinding.buttonDate.text = "${currentMonth}월 ${currentDate}일"
     }
 
-    private fun getCurrentDate() {
+    private fun getCurrentYMD() {
         currentYear = Calendar.getInstance().get(Calendar.YEAR).toString()
         currentMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1).toString()
         currentDate = Calendar.getInstance().get(Calendar.DATE).toString()
@@ -112,13 +112,13 @@ class HomeFragment : Fragment() {
 
             val lastGetPraiseStatus = sharedPreferences.getValue(LAST_PRAISE_STATUS, "")
             when (lastGetPraiseStatus.length) {
-                0 -> setPraiseStatusDefaultView() // 아무 버튼도 누르지 않았을 경우 기본 뷰 설정
-                else -> setPraiseStatusResultView(lastGetPraiseStatus) // 칭찬 상태에 따라 뷰 설정
+                0 -> setPraiseStatusDefaultVisibility() // 아무 버튼도 누르지 않았을 경우 기본 뷰 설정
+                else -> setPraiseStatusResultVisibility(lastGetPraiseStatus) // 칭찬 상태에 따라 뷰 설정
             }
         }
     }
 
-    private fun setPraiseStatusDefaultView() {
+    private fun setPraiseStatusDefaultVisibility() {
         viewBinding.apply {
             buttonNegative.setVisible()
             buttonPositive.setVisible()
@@ -129,7 +129,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setPraiseStatusResultView(lastGetPraiseStatus: String) {
+    private fun setPraiseStatusResultVisibility(lastGetPraiseStatus: String) {
         setPraiseStatusResultButton(lastGetPraiseStatus)
         viewBinding.apply {
             buttonNegative.setInvisible()
