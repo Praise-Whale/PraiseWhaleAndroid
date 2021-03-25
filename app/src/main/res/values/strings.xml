@@ -63,6 +63,15 @@
     <string name="home_praise_status_done_description">완료한 칭찬은 카드서랍\n에서 확인할 수 있어요!</string>
     <string name="home_praise_status_undone_description">내일은 꼭 칭찬해서\n고래를 춤 추게 해요!</string>
 
+    <!-- HomeDialogDoneFragment -->
+    <string name="home_dialog_done_title_01">누구에게</string>
+    <string name="home_dialog_done_title_02">칭찬</string>
+    <string name="home_dialog_done_title_03">했나요?</string>
+    <string name="home_dialog_done_edit_text_hint">이름을 실명으로 입력해주세요.</string>
+    <string name="home_dialog_done_edit_text_max_length">/6</string>
+    <string name="home_dialog_done_recent_praise_to">최근 칭찬한 사람</string>
+    <string name="home_dialog_done_confirm">확인</string>
+
     <!-- CardFragment -->
     <string name="all_empty_title">아직 칭찬을 하지 않았어요!</string>
     <string name="all_empty_sub">칭찬 미션을 완료하고,\n칭찬 카드를 모아봐요!</string>
