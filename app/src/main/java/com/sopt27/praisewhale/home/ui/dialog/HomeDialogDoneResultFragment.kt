@@ -44,8 +44,8 @@ class HomeDialogDoneResultFragment : DialogFragment() {
         viewBinding.apply {
             imageButtonClose.visibility = View.INVISIBLE
             imageViewWhale.setImageResource(R.drawable.yes_5_img_whale)
-            textViewTitle.text = "참 잘했고래!"
-            textViewSubTitle.text = "내일도 칭찬해요!"
+            textViewTitle.text = getString(R.string.home_dialog_done_result_title)
+            textViewSubTitle.text = getString(R.string.home_dialog_done_result_sub_title)
         }
     }
 
@@ -69,7 +69,7 @@ class HomeDialogDoneResultFragment : DialogFragment() {
 
     private fun showLevelUpToast(isLevelUp: Boolean) {
         if (isLevelUp) {
-            requireContext().showToast("레벨업 되었어요! 고래를 확인해보세요!")
+            requireContext().showToast(getString(R.string.home_dialog_done_result_toast))
         }
     }
 

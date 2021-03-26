@@ -72,6 +72,11 @@
     <string name="home_dialog_done_recent_praise_to">최근 칭찬한 사람</string>
     <string name="home_dialog_done_confirm">확인</string>
 
+    <!-- HomeDialogDoneResultFragment -->
+    <string name="home_dialog_done_result_title">참 잘했고래!</string>
+    <string name="home_dialog_done_result_sub_title">내일도 칭찬해요!</string>
+    <string name="home_dialog_done_result_toast">레벨업 되었어요! 고래를 확인해보세요!</string>
+
     <!-- CardFragment -->
     <string name="all_empty_title">아직 칭찬을 하지 않았어요!</string>
     <string name="all_empty_sub">칭찬 미션을 완료하고,\n칭찬 카드를 모아봐요!</string>
