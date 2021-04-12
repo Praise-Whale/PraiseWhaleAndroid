@@ -164,28 +164,16 @@
                     android:text="@string/impossible_name_change"
                     android:textColor="@color/brown_grey"
                     android:textSize="13dp"
-                    app:layout_constraintBottom_toTopOf="@id/img_whale"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/img_whale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="22dp"
-                    android:src="@drawable/whalename_img_whale"
-                    app:layout_constraintBottom_toBottomOf="@id/et_whale_name"
-                    app:layout_constraintEnd_toEndOf="@id/tv_warning"
-                    app:layout_constraintStart_toStartOf="@id/tv_warning"
-                    tools:ignore="ContentDescription" />
 
                 <EditText
                     android:id="@+id/et_whale_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="51dp"
-                    android:layout_marginTop="105dp"
+                    android:layout_marginTop="24dp"
                     android:background="@drawable/background_edit_text_focused"
                     android:fontFamily="@font/noto_sans_regular"
                     android:hint="@string/hint_whale_name"
@@ -201,7 +189,7 @@
                     android:textSize="13dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_warning" />
 
                 <ImageButton
                     visibleResetButton="@{signUpViewModel.whaleName}"
